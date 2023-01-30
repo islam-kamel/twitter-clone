@@ -1,0 +1,417 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box ;
+}
+html{
+    font-size:10px ;
+    font-family: 'Poppins','sans-serif';
+}
+body{
+    background-color: white;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem ;
+    font-weight: 400;
+    line-height: 24px;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0 10px 8%;
+    width: 25%;
+    height: 100%;
+    position: fixed;
+
+}
+.nav-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 60%;
+}
+.nav-links a {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    padding:8px 25px 8px 8px ;
+    width: fit-content;
+
+}
+.nav-links a i {
+    font-size: 2.3rem;
+    margin-right: 15px;
+}
+.nav-links a:hover,.main_account a:hover{
+    background-color:rgba(110,118,125,0.3);;
+    border-radius: 9999px;
+}
+.nav-links a:first-child {
+    padding: 8px 8px;
+}
+.nav-links a:first-child i {
+    margin: 0%;
+    color: #1C88d2;
+}
+.tweet_button{
+    background-color: rgb(29,155,240);
+    width: 90%;
+    height: 55px;
+    border-radius: 9999px;
+    margin-top: 15px;
+    cursor: pointer; 
+    font-size: 1.7rem;
+    color: white;
+    font-weight: 700;
+    border: 1px solid white;
+    padding: 5%;
+    transition-duration: 0.2s; 
+}
+.tweet_button:hover{
+    background-color: rgba(29,155,240,0.7);
+}
+.main_account{
+    width: 100%;
+    height: 30%;
+    padding-top: 115px;
+}
+
+.main_account a{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px 8px 15px;
+    margin-right: 10px;
+    align-items: center;
+}
+.img_profile{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.account_details{
+display: flex;
+flex-direction: column;
+flex-basis: 60%;
+margin-left: 10px;
+font-size: 1.5rem;
+line-height: 20px;
+}
+.account_name{
+    font-weight: 500;
+}
+.account_handle{
+    color: rgb(110,118,125);
+} 
+main{
+    width: 75%;
+    height: 100%;
+    margin-left: 25%;
+}
+.main_flex{
+    display: flex;
+    width: 100%;
+}
+.main_feed{
+    width: 50%;
+    border-left: 1px solid  rgba(110,118,125,0.4);
+    border-right: 1px solid  rgba(110,118,125,.4);
+}
+.home_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+    width: 100%;
+    color: black;
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 0 15px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+.new_tweet{
+    display: flex;
+    width: 100%;
+    height: 120px;
+    padding: 4px 16px;
+}
+.new_tweet .img_profile{
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+.new_tweet_details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 4px;
+    width: 100%;
+    margin-left: 12px;
+}
+.new_tweet_actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+}
+.new_tweet_actions ul{
+    display: flex;
+    list-style: none;
+}
+.new_tweet_details input{
+    width: 100%;
+    height: 24px;
+    background-color:white;
+    font-size: 2rem;
+    border: none;
+    color: white;
+    outline: none;
+}
+.new_tweet_actions ul li{
+    margin-right: 12px;
+    cursor: pointer;
+    color: #1C88d2;
+}
+.new_tweet_actions .tweet_button{
+    width: 85px;
+    height: 35px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 1%;
+}
+.feed_tweet{
+    display: flex;
+    width: 100%;
+    min-height: 100px;
+    padding: 12px 16px 0 16px;
+    border-top: 1px solid  rgba(110,118,125,0.4);
+    cursor: pointer;
+}
+.feed_tweet_details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 12px;
+}
+.feed_tweet{
+color:rgb(110,118,125) ;
+font-size: 2rem;
+}
+.tweeter_details{
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+font-style: 1.5rem;
+}
+.tweeter_details a{
+    font-weight: 700;
+}
+.tweeter_details span{
+    color: rgb(110,118,125);
+    font-style: 1.5rem;
+    font-weight:  400;
+    margin-left: 3px;
+}
+.tweet_text{
+    color:black;
+    font-style: 1.5rem;
+    width: 100%;
+}
+.tweet_icons{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin:15px 0;
+    padding-right: 50px;
+}
+.side_feed{
+    width: 50%;
+    padding: 0 2%;
+}
+.search{
+    display: flex;
+    height: 55px;
+    max-width: 355px;
+    position: sticky;
+    top: 0;
+    padding-top: 5px;
+    background-color: white;
+}
+.search  input{
+    background-color: white;
+    border-radius: 9999px;
+    height: 45px;
+    width: 100%;
+    border:1px solid  rgba(110,118,125,0.4) ;
+    padding-left: 30px;
+    font-size: 1.5rem;
+    color: white;
+    line-height: 20px;
+    font-weight:400;
+    background-color: rgba(110,118,125,0.1) ;
+}
+ 
+.trending{
+    display: flex;
+    flex-direction: column;
+    height: 425px;
+    max-width:355px ;
+    border-radius: 16px;
+    background-color: rgba(110,118,125,0.1);
+    margin-top: 16px;
+}
+.h1_title{
+    color:black;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 15px 15px;
+}
+.trending_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+    margin-top: 5px;
+    padding: 0 15px;
+    color: rgb(110,118,125);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.item_category{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.trending span{
+font-size: 1.3;
+font-weight: 400;
+}
+.trending p{
+    color:black;
+}
+.trending_item:hover{
+    cursor: pointer;
+    background-color: rgba(110,118,125,0.1);
+}
+.show_more{
+    display: flex;
+    align-items: center;
+    color: #1c88d2;
+    font-size: 1.5rem;
+    font-weight: 300;
+    width: 100%;
+    padding: 15px 15px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+.show_more:hover ,.follow_profile:hover{
+    cursor: pointer;
+    background-color: rgba(110,118,125,0.1);  
+}
+.follow{
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    max-width: 355px;
+    border-radius: 16px;
+    background-color: rgba(110,118,125,0.1);
+    margin-top: 16px;
+}
+.follow_profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 70px;
+    margin-top: 5px;
+    padding: 30px 15px;
+}
+.follow_details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.follow_details a{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.follow_details a:hover{
+    text-decoration: underline;
+}
+.follow_details span{
+    color: rgb(110,118,125);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+/* #follows{
+    font-weight: 300;
+    font-size: 1.35rem;
+    background-color: #1c1e22; 
+    border-radius: 3px;
+    padding: 2px 4px;
+} */
+.follow .tweet_button{
+    width: 75px;
+    height: 35px;
+    margin: 0 0 0 12px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    background-color: black;
+    color: white;
+    padding: 1%;
+}
+.follow .show_more{
+    padding: 10px 15px;
+}
+.follow_cont{
+    display: flex;
+    justify-content: space-between;
+}
+/* @media screen and (min-width:1260px){
+    header{
+        width: 10%;
+        padding: 10px 0;
+    }
+    main{
+        margin-left: 10%;
+    }
+    header span{
+        display: none;
+    }
+    header .tweet_button{
+        width: 55px;
+        border-radius: 50%;
+        font-size: 1.4rem;
+    }
+    header .main_account{
+        display: flex;
+        justify-content: center;
+    }
+    header .main_account{
+        display: none;
+    }
+    header .account_details{
+        display: none;
+    }
+    .nav-links{
+        align-items: center;
+    }
+    .nav-links a i{
+        margin-right: 0;
+    }
+    .nav-links a, .main_account a{
+        padding: 10px 10px;
+    }
+    
+} */
