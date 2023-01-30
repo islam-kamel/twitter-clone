@@ -5,6 +5,7 @@
 [BootStrap Icon's](https://icons.getbootstrap.com/)
 
 
+
 ## Follow me
 
 ### Remeber me
@@ -20,6 +21,8 @@
 ### Step #3
 
 - type `cd twitter-clone/`
+
+- `npm install`
 
 ## Start to write your code
 
