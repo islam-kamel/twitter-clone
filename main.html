@@ -4,11 +4,206 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Firebase</title>
+
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+
+    <section class="bg-primary-subtle vh-100">
+        <div class="container-fluid w-75  needs-validatn" novalidate>
+            <!-- <div class="form-group">
+                <label class="col-form-label" for="ID">ID</label>
+                <input type="text" class="form-control" placeholder="ID" id="ID" readonly>
+            </div> -->
+            <div class="form-group">
+                <label class="col-form-label" for="FirstName">First Name</label>
+                <input type="text" class="form-control" placeholder="First Name" id="FirstName" required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="LastName">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" id="LastName"required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Age">Age</label>
+                <input type="number" class="form-control" placeholder="Age" id="Age" required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Email">Email</label>
+                <input type="email" class="form-control" placeholder="Email" id="Email" required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="password">password</label>
+                <input type="password" class="form-control" placeholder="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Salary">Salary</label>
+                <input type="number" class="form-control" placeholder="Salary" id="Salary" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department" class="col-form-label">department </label><br>
+                <select class="form-control form-select" id="department " validate>
+                    <option>Front-End</option>
+                    <option>Back-End</option>
+                    <option>Web designer</option>
+                    <option>Full Stack</option>
+                    <!-- <option>Alex</option> -->
+                </select>
+            </div>
+            
+            
+            <br>
+            <button type="submit" class="btn btn-outline-success" onclick="sendDataUser()" >Save</button>
+            <button type="button" class="btn btn-outline-primary" onclick="getDataUser()">Show</button>
+            <hr>
+            <table id="customerDataUser" class="table table-danger table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">department</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
     
 
-    <h1> Welcom Twitter</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script>
+      
+        function sendDataUser()
+        {
+            // event.preventDefault()
+            let firstName= document.getElementById("FirstName").value;
+            let lastName= document.getElementById("LastName").value;
+            let age= document.getElementById("Age").value;
+            let email= document.getElementById("Email").value;
+            let password= document.getElementById("password").value;
+            let Salary= document.getElementById("Salary").value;
+            let Department = document.getElementById("department ").value;
+
+            let data={
+                FirstName:firstName,
+                LastName:lastName,
+                age:age,
+                Email:email,
+                Password:password,
+                Salary:Salary,
+                Department:Department,
+            }
+            
+            var xhr=new XMLHttpRequest();
+            xhr.open("POST","https://customer-database2023-99de2-default-rtdb.firebaseio.com//customer.json");
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    if(xhr.status==200)
+                    {
+                        alert("Registration completed success ");
+                        getDataUser();
+                        clearDataUser();
+                    }
+                    else
+                    {
+                        alert("Sorry, need to check the internet ");
+                    }
+                }
+            }
+            xhr.send(JSON.stringify(data));
+        }
+
+
+        function getDataUser()
+        {
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","https://customer-database2023-99de2-default-rtdb.firebaseio.com//customer.json");
+            xhr.onreadystatechange=function()
+            {
+                if(xhr.readyState==4)
+                {
+                    if(xhr.status==200){
+
+                        var data=JSON.parse(this.response);
+                        var tableBody=document.querySelector("#customerDataUser>tbody");
+                        tableBody.innerHTML="";
+                        for(let customer in data)
+                        {
+                            // console.log(customer);
+                            var row = `<tr>
+                                <td>${data[customer].FirstName}</td>
+                                <td>${data[customer].LastName}</td>
+                                <td>${data[customer].age}</td>
+                                <td>${data[customer].Email}</td>
+                                <td>${data[customer].Salary}</td>
+                                <td>${data[customer].Department}</td>
+                                <td><button class="btn btn-warning" onclick="FillStudent('${customer}','${data[customer].FirstName}','${data[customer].LastName}',${data[customer].age},'${data[customer].Email}','${data[customer].Salary}','${data[customer].department}')"><i class="fas fa-edit"></i></button></td>
+                                <td><button class="btn btn-danger" onclick="deleteUser('${customer}')"><i class="fas fa-trash-alt"></i></button></td>
+                                </tr> `
+                            tableBody.innerHTML += row;
+                        }
+                    }
+                    else
+                    {
+                        console.log("Error Occured");
+                    }
+                }
+            }
+            xhr.send();
+        }
+
+        function clearDataUser(){
+            document.getElementById("FirstName").value=" ";
+            document.getElementById("LastName").value=" ";
+            document.getElementById("Age").value=" ";
+            document.getElementById("Email").value=" ";
+            document.getElementById("password").value=" ";
+            document.getElementById("Salary").value=" ";
+            document.getElementById("department ").value=" ";
+        }
+
+        function deleteUser(id)
+        {
+            console.log(id);
+            var confirmVariable=confirm("Are you sure you want to delete?");
+            if(confirmVariable)
+            {
+                
+                var xhr=new XMLHttpRequest();
+                xhr.open("DELETE","https://customer-database2023-99de2-default-rtdb.firebaseio.com/customer/"+id+"/.json");
+
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4)
+                    {
+                        if(xhr.status==200)
+                        {
+                            console.log("Deleteeeed");
+                            getDataUser()
+                        }
+                        else
+                        {
+                            console.log("Error in delete");
+                        }
+                       
+                    }
+                    
+                }
+                xhr.send();
+            }
+        }
+
+    </script>
+
 </body>
 </html>
