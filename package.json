@@ -1,0 +1,23 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "ITI Project Group #1",
+  "main": "index.js",
+  "scripts": {
+    "compile:scss": "sass --watch static/css/scss:static/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/islam-kamel/twitter-clone.git"
+  },
+  "author": "Group #1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/islam-kamel/twitter-clone/issues"
+  },
+  "homepage": "https://github.com/islam-kamel/twitter-clone#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "sass": "^1.57.1"
+  }
+}
