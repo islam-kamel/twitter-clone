@@ -8,7 +8,7 @@
 ## Follow me
 
 ### Remeber me
-- `git pull origin main`
+- `git pull main-origin main`
 
 ### Step #1
 - Fork this repo first
