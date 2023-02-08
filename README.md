@@ -4,11 +4,20 @@
 
 [BootStrap Icon's](https://icons.getbootstrap.com/)
 
+## Structure
 
+    ├── ...
+    ├── assets                    # Store all static files here 
+    │   ├── css
+    |   |   ├──scss               # All Sacc Files Here
+    │   ├── js                    # Create JavaScript Here 
+    │   └── images                # All Images Here 
+    ├── public   
+    └── ...
 
 ## Follow me
 
-### Remeber me
+### Remember me
 - `git pull main-origin main`
 
 ### Step #1
@@ -46,7 +55,7 @@
 
 ### Step #5
 
-- open your github account
+- open your GitHub account
 - go to your repos and open twitter-clone repo
 - create new pull request
 
@@ -54,6 +63,6 @@
 
 `git remote add main-origin https://github.com/islam-kamel/twitter-clone.git`
 
-### For Pull Latest Update From Main Repo try this
+### For Pull The Latest Update From Main Repo try this
 
 `git pull main-origin main`
