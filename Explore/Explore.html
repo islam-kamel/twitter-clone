@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./static/css/twitter.css"> -->
+    <!-- <link rel="stylesheet" href="static/css/main.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Explore.css">
+    <title>twitter</title>
+</head>
+<body>
+<container class="container-fluid col-12 d-flex">
+    
+        <header class="col-3">
+            <div class="nav-links">
+            <a href="#">
+                <i class="material-icons-outlined">
+                 flutter_dash
+                </i>
+            </a>
+            <a href="#" >
+                <i class="material-icons-outlined">
+                    home
+                </i>
+                <span class="spn">Home</span>
+            </a>
+            <a href="#">
+                <i class="material-icons-outlined">
+                    tag
+                </i>
+                <span style="font-weight: 600;" class="spn">Explore</span>
+            </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    notifications
+                </i>
+                <span class="spn">Notifications</span>
+             </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    email
+                </i>
+                <span class="spn">Messages</span>
+             </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    bookmark_border
+                </i>
+                <span class="spn">Bookmarks</span>
+             </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    list_alt
+                </i>
+                <span class="spn">Lists</span>
+             </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    person
+                </i>
+                <span class="spn">Profile</span>
+             </a>
+             <a href="#">
+                <i class="material-icons-outlined">
+                    more
+                </i>
+                <span class="spn">More</span>
+             </a>
+            <button class="tweet_button">Tweet</button>
+            </div>
+            <div class="main_account">
+             <a href="">
+                <img class="img_profile" src="../assets/images/moon3.jpg" alt="">
+                <div class="account_details">
+                    <span class="account_name">Engy Mo</span>
+                    <span class="account_handle">@engy5821</span>
+                </div>
+                <i class="material-icons-outlined">
+                    more_horiz
+                </i>
+             </a>
+            </div>
+            <hr>
+        </header>
+    
+    
+        <div id="explore" class="col-6 " >
+    
+            <!--  --------------------------------search-Bar-------------- -->
+            <div id="searchBar" class="t-center col-10">
+                <div class=" mb-1  justify-content-between align-items-center d-flex " id="search-group">
+                    <div class=" input-group   d-flex justify-content-start  align-items-center  col-6 rounded-pill ms-3" id="search-icon">
+    
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search col-2" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                              </svg>
+    
+    
+                        <input type="text" class="   border border-0 "  id="input-bar"  placeholder="Search Twitter" aria-label="search" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="ms-3 d-flex align-items-center justify-content-center" id="setting" >
+                        <span  class="input-group-text text-dark d-flex bg-transparent border-0"  >
+    
+                           <!-- Button trigger modal -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+    <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+    </svg>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="d-flex justify-content-center align-items-center " >
+                <button type="button" width="50" class="btn-close fw-4 " data-bs-dismiss="modal" aria-label="Close" ></button>
+                          <h2 class="modal-title fs-3 fw-4 ms-4" id="staticBackdropLabel">Trends</h2>
+            </div>
+        </div>
+        <div class="modal-body p-5 d-flex justify-content-between " style="height:500px;" >
+            <div>
+                <h4 class="d-flex justify-content-start">Trends for you</h4>
+                  <p class="fs-5">Personalize trends based on your location and who you follow.</p>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input p-3" type="checkbox" value="" id="flexCheckChecked" checked>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+         </span>
+            </div>
+               </div>
+            </div>
+            <!----------------  Trending Bar  --------------------->
+              <!-- <div class="btn-group mt-3 justify-content-around align-items-center d-flex w-100 fs-5 fw-5 text-center " id="explore-group" role="group" > -->
+              <ul class="nav nav-tabs mt-4 col-10 w-100 fs-3 fw-5  d-flex justify-content-around align-items-center" id="pills-tab" role="tablist" id="explore-group" role="group">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-tabs-border-color active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you" aria-selected="true">For You</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-Trending" type="button" role="tab" aria-controls="pills-Trending" aria-selected="false">Trending</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-News" type="button" role="tab" aria-controls="pills-News" aria-selected="false">News</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-tabs-border-color" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports" aria-selected="false">Sports</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-tabs-border-color" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-Entertainment" type="button" role="tab" aria-controls="pills-Entertainment" aria-selected="false">Entertainment</button>
+                  </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <!----------------- ForYou-Trends------------->
+                <div class="tab-pane fade show active pt-2" id="pills-for-you" role="tabpanel" aria-labelledby="pills-for-you-tab" >
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">عارف كام</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">24,2K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary  ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">شيكابالا</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">1,996K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">الاهلي#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">21,5K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">الزمالك#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">54,8K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">كاس العالم للأندية#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">Trending With كاس العالم </h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">تضامن مصر</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">25,1K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4 class="me-2">الهداف التاريخي</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">26.0K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+                <hr>
+                <div>
+                    <h1 class="mt-3 ms-4">How To Follow</h1>
+                    <div class="trend-card mt-3 d-flex justify-content-between align-items-center col-12 " >
+                        <div class="followers ms-3 d-flex align-items-center ">
+                            <img src="../assets/images/moon3.jpg" width="50" height="50" class="rounded-circle float-start" alt="...">
+                            <div class="followers ms-3 mt-4">
+                                <h4>Eslam Kamel</h4>
+                                <h4 class="text-secondary">@Eslam</h4>
+                                <h5 class="mt-1">Web Develober-Frontend</h5>
+                            </div>
+    
+                        </div>
+                        <button type="button" class="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow</button>
+                    </div>
+                    <hr>
+                    <div class="trend-card mt-3 d-flex justify-content-between align-items-center" >
+                        <div class="followers ms-3 d-flex align-items-center ">
+                            <!-- <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover"> -->
+                                <img src="../assets/images/moon3.jpg" width="50" height="50" class="rounded-circle float-start" alt="..." >
+                                <!-- <button class="btn btn-primary" type="button" disabled>Disabled button</button> -->
+                              <!-- </span> -->
+    
+                            <div class="followers ms-3 mt-4">
+                                <h4>Ahmed Khaled</h4>
+                                <h4 class="text-secondary">@Ahmed</h4>
+                                <h5 class="mt-1">Web Develober-Frontend</h5>
+                            </div>
+    
+                        </div>
+                        <button type="button" class="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow</button>
+    
+                    </div>
+                    <hr>
+                    <div class="trend-card mt-3 d-flex justify-content-between align-items-center" >
+                        <div class="followers ms-3 d-flex align-items-center ">
+                            <img src="../assets/images/moon3.jpg" width="50" height="50" class="rounded-circle float-start" alt="...">
+                            <div class="followers ms-3 mt-4">
+                                <h4>Eslam Kamel</h4>
+                                <h4 class="text-secondary">@Eslam</h4>
+                                <h5 class="mt-1">Web Develober-Frontend</h5>
+                            </div>
+    
+                        </div>
+                        <button type="button" class="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow</button>
+                    </div>
+                </div>
+                </div>
+    
+                <!--------------------- Trending-Trends-->
+                <div class="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab">
+                    <h2 class="mt-3 ms-4">World Wide Trends</h2>
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                </div>
+    
+                <!-- ----------------- News Trends ------------------------->
+                <div class="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab">
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+                </div>
+    
+                <!------------------ Sports Trends ------------------------->
+                <div class="tab-pane fade" id="pills-Sports" role="tabpanel" aria-labelledby="pills-Sports-tab">
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                </div>
+    
+                <!------------------ Entertainment Trends ----------------------->
+                <div class="tab-pane fade" id="pills-Entertainment" role="tabpanel" aria-labelledby="pills-Entertainment-tab">
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                    <div class="trend-card py-2">
+                        <div class="trending-part  d-flex justify-content-between text-center  ">
+                                <h5 class="text-secondary ms-3">Trending in Egypt</h5>
+                                <!-- <div class="text-center"> -->
+    
+                                   <!-- Default dropstart button -->
+                                <div class=" dropstart d-flex flex-column align-items-end" >
+    
+                                        <i class="fa-solid fa-ellipsis fa-2x dropdown-toggl text-secondary p-2 me-3" data-bs-toggle="dropdown" aria-expanded="false">
+    
+                                    <ul class="dropdown-menu"id="trends">
+                                    <!-- Dropdown menu links -->
+                                    <li class=" p-2"><i class="fa-regular fa-face-frown mx-2"></i>Not Interested in this</li>
+                                    <hr>
+                                    <li class=" p-2  "><i class="fa-regular fa-face-frown mx-2"></i>This Trend is harmful </li>
+                                    </ul>
+                                 </i>
+                                 <h4>يحدث الان#</h4>
+                                </div>
+    
+                                <!-- </div> -->
+                        </div>
+                        <h5 class="text-secondary ms-3">55.3K Tweets</h5>
+                    </div>
+    
+                </div>
+              </div>
+            <!-- </div> -->
+        </div>
+
+        <div id="side_feed" class="col-3">
+            <div class="search">
+                <!-- <input type="text" placeholder="Search twitter"> -->
+                <h5>Terms of Service , Privacy Policy , Cookie Policy</h5>
+                <h5> Accessibility , Ads info ,More
+                </h5>
+                <h5>© 2023 Twitter, Inc.</h5>
+            </div>
+        </div>
+    
+</container>
+
+
+
+  
+<script>
+    document.getElementById("input-bar").addEventListener('focus',()=>{
+     var serchIcon=document.getElementById("search-icon");
+     serchIcon.style.cssText=" background-color:#EEE; border: 1px solid #1c88d2;color:#1c88d2;"
+     document.getElementById("input-bar").style.backgroundColor="#EEE";
+    })
+    document.getElementById("input-bar").addEventListener('blur',()=>{
+     var serchIcon=document.getElementById("search-icon");
+     serchIcon.style.cssText=" background-color:#dad9d9c4; border: 0;color:#797979;"
+     document.getElementById("input-bar").style.backgroundColor="#dad9d9c4";
+    })
+
+ </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
