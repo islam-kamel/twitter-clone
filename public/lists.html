@@ -7,32 +7,134 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
+        :root {
+            --tw-hover-color: rgba(15, 20, 25, 0.1);
+            --tw-link-color: black;
+            --tw-primary: #308ed7
+        }
+        body {
+            height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: var(--tw-link-color);
+        }
+        .pin {
+            color: var(--tw-primary);
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .tw-list-item:hover {
+            background-color: var(--tw-hover-color);
+        }
+        .icon-hover-main {
+            padding: 10px;
+        }
+        .list-img {
+            width: 48px;
+            height: 48px;
+        }
+        .list-img > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .tw-profile-link {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        .tw-profile-link > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        .icon-hover-main:hover {
+            background-color: var(--tw-hover-color);
+            border-radius: 50%;
+        }
         @media (max-width: 576px) {
             .d-sm-none {
                 display: none;
             }
-            .col-sm-8 {
-                width: calc(100% / 2);
+            .col-sm-2 {
+                width: calc(100% / 9);
             }
+
+        }
+        @media (max-width: 499px) {
+            .d-xs-none {
+                display: none;
+            }
+
         }
     </style>
     <title>Lists</title>
 </head>
 <body class="bg-light">
-    <section class="container-fluid border">
-        <div class="row">
-            <div class="col-4 border">
+    <section class="container-fluid border h-100">
+        <div class="row h-100">
+            <div class="col-lg-4 col-sm-1 d-xs-none border">
                 <aside>aside</aside>
             </div>
-            <div class="border col-md-8 col-lg-4 col">
+            <div class="border col-md-8 col-lg-4 col p-0">
                 <main>
-                    <div class="h-25 border w-100">
-                        <i class="bi bi-arrow-left-short"></i>
-                    </div>
-                    Main
+                    <section class="container-fluid">
+                        <div class="h-25 border w-100 d-flex align-items-center py-2">
+                            <i class="bi bi-arrow-left-short icon-hover-main"></i>
+                            <div class="d-flex justify-content-between w-100 mx-4">
+                                <div class="d-flex flex-column">
+                                    <h1 class="fs-4 fw-bold m-0">Lists</h1>
+                                    <span class="text-muted">@IslamKamelLl</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-journal-plus mx-3 icon-hover-main"></i>
+                                    <i class="bi bi-three-dots icon-hover-main"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <h2 class="fs-3 fw-bolder">Pinned Lists</h2>
+                            <div class="p-3">
+                                <p class="text-muted">
+                                    Nothing to see here yet — pin your favorite Lists to access them quickly.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="border-top"></div>
+                    <section>
+                        <h3 class="fw-bold fs-3 mx-3">Your Lists</h3>
+                        <div class="d-flex tw-list-item container-fluid py-2 align-items-center">
+                            <div class="list-img">
+                                <img class="rounded" src="https://pbs.twimg.com/media/EXZ3BXhUwAEFNBE?format=png&name=240x240">
+                            </div>
+                            <div class="d-flex justify-content-between w-100 align-items-center">
+                                <div class="d-flex flex-column mx-3">
+                                    <h4 class="fs-5 fw-bold p-0">
+                                        Notes
+                                        <i class="bi bi-lock-fill"></i>
+                                    </h4>
+                                    <div class="d-flex">
+                                        <a class="" href="#">
+                                        <span class="tw-profile-link">
+                                            <img src="https://pbs.twimg.com/profile_images/1151616541517107205/SMQS1GzY_400x400.jpg" alt="">
+                                        </span>
+                                            <span class="fw-normal">Islam kamel🐍☕</span>
+                                        </a>
+                                        <span class="text-muted">@IslamKamelLl</span>
+                                    </div>
+                                </div>
+                                <i class="bi bi-pin pin icon-hover-main"></i>
+                            </div>
+
+                        </div>
+                    </section>
                 </main>
             </div>
-            <div class="col-4 border d-sm-none d-lg-block d-md-none">
+            <div class="col-lg-4 border d-sm-none d-lg-block d-md-none">
                 <aside>aside</aside>
             </div>
         </div>
