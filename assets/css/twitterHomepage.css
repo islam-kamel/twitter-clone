@@ -81,7 +81,7 @@ font-size: 1.5rem !important;
 display: flex;
 align-items: flex-start !important;
 justify-content: space-between !important;
-font-style: 1.5rem !important;
+font-size: 1.5rem !important;
 }
 .tweeter_details .tweeter_name{
     padding-top: 2% !important;
@@ -91,13 +91,13 @@ font-style: 1.5rem !important;
 }
 .tweeter_details span{
     color: rgb(110,118,125) !important;
-    font-style: 1.5rem !important;
+    font-size: 1.5rem !important;
     font-weight:  400 !important;
     margin-left: 3px !important;
 }
 .tweet_text{
     color:black !important;
-    font-style: 1.5rem !important;
+    font-size: 1.5rem !important;
     width: 100% !important;
     padding-top: 1% !important;
 }
@@ -164,7 +164,7 @@ font-style: 1.5rem !important;
     align-items: center !important;
 }
 .trending span{
-font-size: 1.3;
+font-size: 1.3rem;
 font-weight: 400;
 }
 .trending p{
@@ -259,7 +259,7 @@ font-weight: 400;
     width: 30% !important;
     position: fixed !important;
     bottom: 0 !important;
-    left: calc(60%-30%) !important;
+    left: calc(60% - 30%) !important;
     background-color: white !important;
 }
 .icon{
@@ -275,14 +275,3 @@ font-weight: 400;
     background-color:rgba(110,118,125,0.3) !important;
     border-radius: 50% !important; 
 }
-/* ---------------------------------------------- */
-/* @media(max-width:576px) {
-    .lf-sidbar{
-        display: none !important;
-    }
-    .sb-right{
-        display: none !important;
-         }
-}  */
- 
- 

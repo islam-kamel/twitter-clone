@@ -4,7 +4,7 @@
   "description": "ITI Project Group #1",
   "main": "index.js",
   "scripts": {
-    "compile:scss": "sass --watch static/css/scss:static/css"
+    "compile:scss": "sass --watch assets/css/scss:assets/css"
   },
   "repository": {
     "type": "git",
