@@ -166,13 +166,13 @@ header {
   border-radius: 50%;
 }
 
-#trends {
+.trends {
   transform: translate3d(-26px, -4px, 0px) !important;
   width: 195px;
   border-radius: 6px;
 }
 
-#trends li:hover {
+.trends li:hover {
   background-color: rgba(218, 217, 217, 0.768627451);
   padding-top: 1rem;
 }
@@ -215,9 +215,6 @@ header {
   .spn {
     display: none;
   }
-  #explore {
-    width: 70%;
-  }
   .nav-item {
     font-size: 16px;
     font-weight: bold;
@@ -232,9 +229,6 @@ header {
   }
   .spn {
     display: none;
-  }
-  #explore {
-    width: 70%;
   }
   .nav-item {
     font-size: 10px;
@@ -252,10 +246,10 @@ header {
     justify-content: center;
     align-items: flex-end !important;
   }
-  #trends {
+  .trends {
     width: 100%;
   }
-  #trends li {
+  .trends li {
     width: 100%;
   }
   .trend-card {
@@ -270,4 +264,4 @@ header {
   }
 }
 
-/*# sourceMappingURL=Explore.css.map */
+/*# sourceMappingURL=explore.css.map */

@@ -10769,5 +10769,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@media (max-width: 576px) {
+  .d-sm-none {
+    display: none;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */

@@ -5,185 +5,264 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notifications</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../Notifications/Css/Notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../assets/css/twitterHomepage.css">
+    <link rel="stylesheet" href="../assets/css/homepage.css">
+    <link rel="stylesheet" href="../assets/css/notifications.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 
-    <section id="Notifications" class="container" >
-        <div class="row container px-3">
-            <div class="col-12 col-md-1 col-lg-2 border-end ">Navbar</div>
-
-            <div class="col-12 col-md-6 col-lg-6 border-end content ">
-                <div class="item-Notifications container px-3 py-2 ">
-                    <div class="d-flex justify-content-between mt-2">
-                        <h4>Notifications</h4>
-                        <i class="fa-solid fa-gear"></i>
+<section id="Notifications" class="container-fluid">
+    <div class="row px-3">
+        <aside class="col-xl-3 col-lg-3 col-md-2 col-sm-2 sb-right d-flex align-items-xl-center align-items-lg-center align-items-md-start flex-column">
+            <!-- links part ------------------------------------------------------------------------------------>
+            <div class="col d-flex flex-column ms-5">
+                <a href="#" class="m-2 tw-bottom-nav">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="home">Home</span>
+                </a>
+                <a href="explore.html">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>Explore</span>
+                </a>
+                <a href="notifications.html">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="message.html">
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="#" class="tw-bottom-nav">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <span>Bookmarks</span>
+                </a>
+                <a href="lists.html" class="tw-bottom-nav">
+                    <i class="fa-regular fa-rectangle-list"></i>
+                    <span>Lists</span>
+                </a>
+                <a href="#" class="tw-bottom-nav">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="tw-bottom-nav">
+                    <i class="fa-solid fa-ellipsis more"></i>
+                    <span>More</span>
+                </a>
+                <button class="btn p-3 rounded-pill mt-2 tw-bottom-nav">Tweet</button>
+                <div class="tweet-round tw-bottom-nav">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="tweet_btn">
+                        <g>
+                            <path d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <!-- acount part -->
+            <div class="col acount ps-5 ">
+                <a href="#" class="d-flex flex-row ms-4">
+                    <img src="./imgs/high.jpg" class="rounded-circle  acountimg  me-3" alt="img">
+                    <div class="d-flex flex-column me-5">
+                        <span>Engy Mo</span>
+                        <span>@engy5821</span>
                     </div>
-                    <nav class="container py-3">
-                        <div class="nav nav-tabs justify-content-between border-bottom pb-1 " id="nav-tab" role="">
-                          <button class="nav-link border-0 active" id="nav-All-tab" data-bs-toggle="tab" data-bs-target="#nav-All" type="button" role="tab" aria-controls="nav-All" aria-selected="true">All</button>
-                          <button class="nav-link border-0" id="nav-Verified-tab" data-bs-toggle="tab" data-bs-target="#nav-Verified" type="button" role="tab" aria-controls="nav-Verified" aria-selected="false">Verified</button>
-                          <button class="nav-link border-0" id="nav-Mentions-tab" data-bs-toggle="tab" data-bs-target="#nav-Mentions" type="button" role="tab" aria-controls="nav-Mentions" aria-selected="false">Mentions</button>
-                        </div>
-                    </nav>
+                    <i class="fa-solid fa-ellipsis d-flex align-items-center"></i>
+                </a>
+            </div>
+        </aside>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-2"></div>
+        <div class="col-sm col-md col-lg col-xl-4 border-end content ">
+            <div class="item-Notifications container px-3 py-2 ">
+                <div class="d-flex justify-content-between mt-2">
+                    <h4 class="fw-bold">Notifications</h4>
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                <nav class="container py-3">
+                    <div class="nav nav-tabs justify-content-between border-bottom pb-1 " id="nav-tab" role="">
+                        <button class="nav-link border-0 active" id="nav-All-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-All" type="button" role="tab" aria-controls="nav-All"
+                                aria-selected="true">All
+                        </button>
+                        <button class="nav-link border-0" id="nav-Verified-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-Verified" type="button" role="tab" aria-controls="nav-Verified"
+                                aria-selected="false">Verified
+                        </button>
+                        <button class="nav-link border-0" id="nav-Mentions-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-Mentions" type="button" role="tab" aria-controls="nav-Mentions"
+                                aria-selected="false">Mentions
+                        </button>
+                    </div>
+                </nav>
 
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-All" role="tabpanel" aria-labelledby="nav-All-tab" tabindex="0">
-                            <div class="mx- px-4">
-                                <div class="img-Notifications border-bottom ">
-                                    <div class="d-flex">
-                                        <i class="fa-solid fa-bell fa-2x me-1" ></i>
-                                        <img class="" src="../static/imgs/avatar.png" alt="">
-                                        <img class="" src="../static/imgs/avatar.png" alt="">
-                                        <img class="" src="../static/imgs/avatar.png" alt="">
-                                        <img class="" src="../static/imgs/avatar.png" alt="">
-                                        <img class="" src="../static/imgs/avatar.png" alt="">
-                                    </div>
-                                    
-                                    <div class="mt-3 ms-3">
-                                        <p class="text-muted">New Tweet Notifications for Ahmed | Programing And 3 Others</p>
-                                    </div>
-                                </div>
-                                <div class="img-Notifications border-bottom  ">
-                                    <div class=" d-flex my-4">
-                                        <i class="fa-brands fa-twitter fa-2x me-3 text-primary"></i>
-                                        <p class="text-muted">New Tweet Notifications for Ahmed | Programing And 3 Others</p>
-                                    </div>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-All" role="tabpanel" aria-labelledby="nav-All-tab"
+                         tabindex="0">
+                        <div class="mx- px-4">
+                            <div class="img-Notifications border-bottom ">
+                                <div class="d-flex">
+                                    <i class="fa-solid fa-bell fa-2x me-1"></i>
+                                    <img class="" src="../assets/images/avatar.png" alt="">
+                                    <img class="" src="../assets/images/avatar.png" alt="">
+                                    <img class="" src="../assets/images/avatar.png" alt="">
+                                    <img class="" src="../assets/images/avatar.png" alt="">
+                                    <img class="" src="../assets/images/avatar.png" alt="">
                                 </div>
 
-                                <div class="img-Notifications h-100 position-relative border-bottom  ">
-                                    <div class=" my-4">
-                                        <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
-                                            <i class="fa-solid fa-star fa-1x me-2"></i>
-                                            <img  class="" src="../static/imgs/avatar.png" alt="">
-                                        </div>
-                                        <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
-                                        <p class="pe-3 position-absolute bottom-0 end-0"> <span><i class="fa-solid fa-heart"></i></span> اخويا متولي ده راجل ملهوش حل</p>
-                                    </div>
+                                <div class="mt-3 ms-3">
+                                    <p class="text-muted">New Tweet Notifications for Ahmed | Programing And 3
+                                        Others</p>
                                 </div>
-                                <div class="img-Notifications h-100 position-relative border-bottom  ">
-                                    <div class=" my-4">
-                                        <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
-                                            <i class="fa-solid fa-heart fa-1x me-2"></i>
-                                            <img  class="" src="../static/imgs/avatar.png" alt="">
-                                        </div>
-                                        <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
-                                        <p class="pe-lg-3 ps-md-0 position-absolute bottom-0 end-0"> <span><i class="fa-solid fa-heart"></i></span> اخويا صبحي ده راجل ملهوش حل</p>
-                                    </div>
+                            </div>
+                            <div class="img-Notifications border-bottom  ">
+                                <div class=" d-flex my-4">
+                                    <i class="fa-brands fa-twitter fa-2x me-3 text-primary"></i>
+                                    <p class="text-muted">New Tweet Notifications for Ahmed | Programing And 3
+                                        Others</p>
                                 </div>
-                                <div class="img-Notifications h-100 position-relative border-bottom  ">
-                                    <div class=" my-4">
-                                        <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
-                                            <i class="fa-solid fa-star fa-1x me-2"></i>
-                                            <img  class="" src="../static/imgs/avatar.png" alt="">
-                                        </div>
-                                        <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
-                                        <p class="pe-3 position-absolute bottom-0 end-0"> <span><i class="fa-solid fa-heart"></i></span> اخويا محمد ده راجل ملهوش حل</p>
+                            </div>
+
+                            <div class="img-Notifications h-100 position-relative border-bottom  ">
+                                <div class=" my-4">
+                                    <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
+                                        <i class="fa-solid fa-star fa-1x me-2"></i>
+                                        <img class="" src="../assets/images/avatar.png" alt="">
                                     </div>
+                                    <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
+                                    <p class="pe-3 position-absolute bottom-0 end-0"><span><i
+                                            class="fa-solid fa-heart"></i></span> اخويا متولي ده راجل ملهوش حل</p>
                                 </div>
-                                <div class="img-Notifications h-100 position-relative border-bottom  ">
-                                    <div class=" my-4">
-                                        <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
-                                            <i class="fa-solid fa-user fa-1x me-2"></i>
-                                            <img  class="" src="../static/imgs/avatar.png" alt="">
-                                        </div>
-                                        <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
-                                        <p class="pe-3 pe-sm-0 position-absolute bottom-0 end-0"> <span><i class="fa-solid fa-heart"></i></span> اخويا احمد ده راجل ملهوش حل</p>
+                            </div>
+                            <div class="img-Notifications h-100 position-relative border-bottom  ">
+                                <div class=" my-4">
+                                    <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
+                                        <i class="fa-solid fa-heart fa-1x me-2"></i>
+                                        <img class="" src="../assets/images/avatar.png" alt="">
                                     </div>
+                                    <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
+                                    <p class="pe-lg-3 ps-md-0 position-absolute bottom-0 end-0"><span><i
+                                            class="fa-solid fa-heart"></i></span> اخويا صبحي ده راجل ملهوش حل</p>
+                                </div>
+                            </div>
+                            <div class="img-Notifications h-100 position-relative border-bottom  ">
+                                <div class=" my-4">
+                                    <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
+                                        <i class="fa-solid fa-star fa-1x me-2"></i>
+                                        <img class="" src="../assets/images/avatar.png" alt="">
+                                    </div>
+                                    <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
+                                    <p class="pe-3 position-absolute bottom-0 end-0"><span><i
+                                            class="fa-solid fa-heart"></i></span> اخويا محمد ده راجل ملهوش حل</p>
+                                </div>
+                            </div>
+                            <div class="img-Notifications h-100 position-relative border-bottom  ">
+                                <div class=" my-4">
+                                    <div class="d-flex w-25 align-items-center justify-content-start pt-2 mb-3 ms-2">
+                                        <i class="fa-solid fa-user fa-1x me-2"></i>
+                                        <img class="" src="../assets/images/avatar.png" alt="">
+                                    </div>
+                                    <p class="text-muted ms-5  mb-5">Osama Elzero Liked Your reply </p>
+                                    <p class="pe-3 pe-sm-0 position-absolute bottom-0 end-0"><span><i
+                                            class="fa-solid fa-heart"></i></span> اخويا احمد ده راجل ملهوش حل</p>
                                 </div>
                             </div>
                         </div>
-<!-- ======================================== verified =================================================== -->
+                    </div>
+                    <!-- ======================================== verified =================================================== -->
 
-                        <div class="tab-pane fade" id="nav-Verified" role="tabpanel" aria-labelledby="nav-Verified-tab" tabindex="0">
-                            <div class=" verified mx-5 px-4">
-                                <img class=" w-100" src="../static/imgs/verification-check-800x400.v1.52677a99.png" alt="">
-                                <h1>Nothing to see here — yet</h1>
-                                <p class="text-muted">Likes, mentions, Retweets, and a whole lot more — when it comes from a verified account, you’ll find it here. <span><a class="text-black" href="https://help.twitter.com/en/managing-your-account/about-twitter-verified-accounts">Learn more</a></span></p>
-                            </div>
+                    <div class="tab-pane fade" id="nav-Verified" role="tabpanel" aria-labelledby="nav-Verified-tab"
+                         tabindex="0">
+                        <div class=" verified mx-5 px-4">
+                            <img class=" w-100" src="../assets/images/notifications.jpg"
+                                 alt="">
+                            <h1>Nothing to see here — yet</h1>
+                            <p class="text-muted">Likes, mentions, Retweets, and a whole lot more — when it comes from a
+                                verified account, you’ll find it here. <span><a class="text-black"
+                                                                                href="https://help.twitter.com/en/managing-your-account/about-twitter-verified-accounts">Learn more</a></span>
+                            </p>
                         </div>
+                    </div>
 
-<!-- ======================================== mentions =================================================== -->
+                    <!-- ======================================== mentions =================================================== -->
 
-                        <div class="tab-pane fade" id="nav-Mentions" role="tabpanel" aria-labelledby="nav-Mentions-tab" tabindex="0">
-                            <div class=" mentions mx-5 px-5">
-                                <h2 class=" fw-bold mb-3">Nothing to see here — yet</h2>
-                                <p class="text-muted">When someone mentions you, you’ll find it here.</p>
-                            </div>
+                    <div class="tab-pane fade" id="nav-Mentions" role="tabpanel" aria-labelledby="nav-Mentions-tab"
+                         tabindex="0">
+                        <div class=" mentions mx-5 px-5">
+                            <h2 class=" fw-bold mb-3">Nothing to see here — yet</h2>
+                            <p class="text-muted">When someone mentions you, you’ll find it here.</p>
                         </div>
                     </div>
                 </div>
-               
-                 
             </div>
 
-            <div  class="col-12  col-md-5 col-lg-4 border-end p-5">
-                <div>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search Twitter" aria-label="Search">
-                    </form>
 
-                    <div class="mt-3 rounded-2 py-2 bg-secondary-subtle ">
-                        <h4 class="ms-3">What’s happening</h4>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
-                        <div class="aler-Notfic d-flex justify-content-around my-3">
-                            <p>Trending in Egypt</p>
-                            <div class="position-relative ">
-                                <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
-                                <h6 class=" mt-4">انهارده الخميس</h6>
-                            </div>
-                        </div>
+        </div>
+        <div class="col-md-5 col-lg-4 col-xl-3  p-5 d-md-none d-sm-none d-lg-block d-xl-block">
+            <div>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search Twitter" aria-label="Search">
+                </form>
 
-                        <div class="ms-3"><a class="text-decoration-none" href="#"> Show More</a></div>
+                <div class="mt-3 rounded-2 py-2 bg-secondary-subtle ">
+                    <h4 class="ms-3">What’s happening</h4>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
                     </div>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
+                    </div>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
+                    </div>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
+                    </div>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
+                    </div>
+                    <div class="aler-Notfic d-flex justify-content-around my-3">
+                        <p>Trending in Egypt</p>
+                        <div class="position-relative ">
+                            <i class="fa-solid fa-ellipsis position-absolute end-0"></i>
+                            <h6 class=" mt-4">انهارده الخميس</h6>
+                        </div>
+                    </div>
+
+                    <div class="ms-3"><a class="text-decoration-none" href="#"> Show More</a></div>
                 </div>
             </div>
         </div>
-    </section>
-
-   
-    
+    </div>
+</section>
 
 
-    <!-- <script src="Css/bootstrap.bundle.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 </html>

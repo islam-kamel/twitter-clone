@@ -23,7 +23,7 @@
     width: 100% !important;
     padding: 0 !important;
     margin: 0px !important;
-    --bs-gutter-x:0px ;
+    --bs-gutter-x: 0px ;
   }
   .row {
     width: 100%;
@@ -50,4 +50,4 @@
   }
 }
 
-/*# sourceMappingURL=Notifications.css.map */
+/*# sourceMappingURL=notifications.css.map */

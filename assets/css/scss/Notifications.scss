@@ -1,79 +1,57 @@
-
-    .item-Notifications
-    {
-        .nav-link
-        {
-            transition: all 900ms;
-            &:hover{
-                background-color: #7b757549 !important;
-            }
-        }
-     
-    
-    
-
-        .img-Notifications
-        {
-            img
-            {
-                width: 35Px;
-                margin: 0px 2px;
-            }
-        }
+//* {
+//  font-size: 1.5rem;
+//}
+.item-Notifications {
+  .nav-link {
+    transition: all 900ms;
+    &:hover {
+      background-color: #7b757549 !important;
     }
-
-
-
-.aler-Notfic{
-    transition: all 1s;
-    padding: 3px 0px;
+  }
+  .img-Notifications {
+    img {
+      width: 35Px;
+      margin: 0px 2px;
+    }
+  }
 }
-.aler-Notfic:hover{
-    background-color:rgba(169, 169, 169, 0.247);
+.aler-Notfic {
+  transition: all 1s;
+  padding: 3px 0px;
 }
-
-
-
-
-@media (max-width:767px) {
-    #Notifications
-    {
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0px !important;
-        --bs-gutter-x :0px
-         
+.aler-Notfic:hover {
+  background-color: rgba(169, 169, 169, 0.247);
+}
+@media (max-width: 767px) {
+  #Notifications {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0px !important;
+    --bs-gutter-x: 0px
+  }
+  .row {
+    width: 100%;
+    padding: 0px !important;
+  }
+  .item-Notifications {
+    .content {
+      background-color: brown !important;
+      width: 100% !important;
+      nav {
+        padding: 0;
+      }
     }
-    .row{
-        width: 100%;
-        padding: 0px !important;
+    .img-Notifications p:nth-child(2) {
+      width: 100% !important;
+      padding: 0px !important;
     }
-    .item-Notifications{
-        .content{
-            background-color: brown !important;
-            width: 100% !important;
-            nav{
-                padding: 0;
-            }
-        }
-
-        .img-Notifications p:nth-child(2)
-        {
-            width: 100% !important;
-            // margin: 0px !important;
-            padding: 0px !important;
-        }
-
-        .verified{
-            margin: 0px !important;
-            padding: 0px !important;
-        }
-        .mentions{
-            margin: 0px !important;
-            padding: 0px !important;
-        }
+    .verified {
+      margin: 0px !important;
+      padding: 0px !important;
     }
-
-    
-    
+    .mentions {
+      margin: 0px !important;
+      padding: 0px !important;
+    }
+  }
 }

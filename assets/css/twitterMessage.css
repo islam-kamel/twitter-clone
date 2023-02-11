@@ -19,7 +19,6 @@ input[type=search]:focus {
 }
 input[type=search]:focus + .trysearch {
   display: block;
-  font-family: "Gill Sans", FontAwesome, "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 input[type=search]:focus > .Message div {
@@ -90,9 +89,6 @@ input[type=text]:focus {
 @media (min-width: 481px) and (max-width: 967px) {
   .newmessage {
     display: none;
-  }
-  .message {
-    width: 80%;
   }
 }
 /* Media Query for Mobile Devices */
