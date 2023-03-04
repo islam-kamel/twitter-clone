@@ -1,0 +1,101 @@
+@use "vendor/bootstrap.custom";
+
+@mixin gird-extra-smail() {
+  @for $i from 1 through 12 {
+    .col-xs-#{$i} {
+      width: calc(100% / $i);
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  @include gird-extra-smail();
+}
+
+.btn-tw-primary {
+  @extend .btn-primary;
+  color: bootstrap.$light;
+}
+
+.btn {
+  @extend .btn;
+  border-radius: 9999px;
+}
+
+.main-area {
+  height: 100vh !important;
+}
+
+
+/* Navbar Component */
+$--tw-hover-icon-bg: rgb(15, 20, 25, 0.1);
+$--tw-hover-brand-bg: rgba(29, 155, 240, 0.1);
+
+@mixin tw-navbar() {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+@mixin twNavbarItem() {
+  width: fit-content;
+  font-size: 1.7rem;
+  font-weight: 300;
+  text-decoration-style: unset;
+  padding: 0 12px;
+  display: flex;
+  justify-content: center;
+  border-radius: 9999px;
+  &:hover {
+    background-color: $--tw-hover-icon-bg;
+  }
+  a:hover {
+    color: black;
+  }
+  a:first-child {
+    margin-right: 10px;
+  }
+  transition: ease-in all .2s;
+}
+.tw-navbar {
+  @include tw-navbar();
+}
+.tw-navbar-link {
+  text-decoration: unset;
+}
+.tw-navbar-item {
+  @include twNavbarItem();
+}
+
+.tw-navbar-link {
+  align-self: center;
+  color: black;
+}
+.tw-navbar-brand {
+  @include twNavbarItem();
+  margin-top: 8px;
+  a:first-child {
+    margin: 0;
+  };
+  min-height: 50px;
+
+}
+@media (max-width: 1281px) {
+  .tw-navbar-text {
+    display: none;
+  }
+  .tw-navbar-item {
+    @include twNavbarItem();
+    min-height: 50px;
+    a:first-child {
+      margin: 0;
+    }
+  }
+  .tw-navbar {
+    @include tw-navbar();
+    align-items: flex-end;
+  }
+}
+/* End Navbar Component*/
