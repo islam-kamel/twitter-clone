@@ -1,0 +1,44 @@
+{
+    "users": [
+        
+        {
+            "id": 1,
+            "username": "islam.kamel",
+            "fullName": "Islam Kamel",
+            "photo": "https://avatars.githubusercontent.com/u/61625045?v=4",
+            "birthdate": "1998-07-13",
+            "password": "12345678",
+            "accountStatus": true
+        },
+
+        {
+            "id": 2,
+            "username": "mostafa-abd-alhade",
+            "fullName": "Mostafa Abd Al-Hade",
+            "photo": "https://avatars.githubusercontent.com/u/118631325?v=4",
+            "birthdate": "1998-07-13",
+            "password": "12345678",
+            "accountStatus": true
+        },
+
+        {
+            "id": 3,
+            "username": "bassam.mohamed",
+            "fullName": "Bassam Mohamed Ali",
+            "photo": "https://avatars.githubusercontent.com/u/120774533?v=4",
+            "birthdate": "1998-07-13",
+            "password": "12345678",
+            "accountStatus": true
+        },
+
+        {
+            "id": 4,
+            "username": "ahmed-khaled",
+            "fullName": "Ahmed Khaled",
+            "photo": "https://avatars.githubusercontent.com/u/105175448?v=4",
+            "birthdate": "1998-07-13",
+            "password": "12345678",
+            "accountStatus": false
+        }
+    ]
+}

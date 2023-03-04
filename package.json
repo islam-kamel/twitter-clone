@@ -1,26 +1,19 @@
 {
-  "name": "twitter",
+  "name": "twitter-clone",
   "version": "1.0.0",
-  "description": "Twitter Clone",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "sass --watch scss:assets/css"
+    "ng-start": "cd ./admin-angular & npm start",
+    "react-start": "cd ./user-react & npm start",
+    "server-start": "json-server -p 3001  --watch ./server/db.json",
+    "start": "concurrently \"npm:*-start\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/islam-kamel/twitter-clone.git"
-  },
-  "author": "Group #One",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/islam-kamel/twitter-clone/issues"
-  },
-  "homepage": "https://github.com/islam-kamel/twitter-clone#readme",
-  "dependencies": {
-    "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.2.3"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "sass": "^1.58.0"
+    "concurrently": "^7.6.0",
+    "json-server": "^0.17.2"
   }
 }
