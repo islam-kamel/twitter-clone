@@ -1,2 +1,32 @@
-<h1>Hello, Dashboard</h1>
-{{users | json}}
+<div class="container mt-5">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Password</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngIf="users">
+      <tr *ngFor="let user of users; trackBy: userTrackBy">
+        <th scope="row">{{user["id"]}}</th>
+        <td>{{user.username}}</td>
+        <td>{{user.fullName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.birthDate}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.accountStatus}}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user['id'])">Delete</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
