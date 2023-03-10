@@ -3,6 +3,8 @@ import "./twitter.main.css"
 export default function MainSidebar() {
     return (
         <aside className="position-sticky top-0 h-100">
+            {/* eslint-disable jsx-a11y/anchor-is-valid */}
+            {/* "هذا حل مؤقت" التعليق العلوي من أجل إيقاف تحذير eslint من استخدام a تاج دون وضع رابط صالح */}
             <div className="tw-navbar">
                 <div className="tw-navbar-brand">
                     <a href="#" className="tw-navbar-link text-primary">

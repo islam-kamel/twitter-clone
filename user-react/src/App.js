@@ -1,4 +1,4 @@
-import MainSidebar from "./Components/main-sidebar/MainSidebar";
+import MainSidebar from "./components/main-sidebar/MainSidebar";
 
 function App() {
     return (

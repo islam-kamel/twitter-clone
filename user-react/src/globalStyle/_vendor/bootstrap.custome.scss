@@ -1,0 +1,22 @@
+// Twitter primary color
+$theme-colors: (
+        "primary": #369def,
+);
+
+// Text muted color
+$text-muted: #536571;
+
+// contrast ration
+$min-contrast-ratio: 1;
+
+// base sans-serif font family
+$font-family-sans-serif: "chirp", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+// Font weight
+$font-weight-light:           400;
+$font-weight-normal:          500;
+$font-weight-medium:          600;
+$font-weight-semibold:        700;
+$font-weight-bold:            800;
+
+@import "~bootstrap/scss/bootstrap";

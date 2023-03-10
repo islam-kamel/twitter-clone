@@ -1,0 +1,36 @@
+// Import custom bootstrap
+@use "_vendor/bootstrap.custome";
+
+// Font Family
+$font-path: "fonts";
+
+@font-face {
+  font-family: 'Chirp';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Chirp'), url('#{$font-path}/ChirpRegular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Chirp';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Chirp'), url('#{$font-path}/ChirpMedium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Chirp';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Chirp'), url('#{$font-path}/ChirpBold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Chirp';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Chirp'), url('#{$font-path}/ChirpHeavy.woff') format('woff');
+}
+@font-face {
+  font-family: 'ChirpExtended';
+  font-style: normal;
+  font-weight: 800;
+  src: local('ChirpExtended'), url('#{$font-path}/ChirpExtendedHeavy.woff') format('woff');
+}
