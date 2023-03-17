@@ -1,7 +1,7 @@
 import {io} from "socket.io-client";
 import {useEffect} from "react";
 
-function useMessage() {
+export default function useMessage() {
     const socket = io("http://localhost:3008")
 
     useEffect(() => {
