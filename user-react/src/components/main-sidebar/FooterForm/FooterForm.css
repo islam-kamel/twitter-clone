@@ -1,0 +1,20 @@
+.container-footer-form 
+{
+background-color:#22a1f6  ;
+height: auto;
+color: white;
+
+}
+
+@media (max-width: 876px) { 
+    .footer-par
+    {
+        display: none;
+    }
+      
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 1200px) { 
+  
+  }
