@@ -7,6 +7,204 @@
 	},
 	"item": [
 		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "check auth",
+					"id": "e33157e3-f782-49b9-9f9c-baf82b513f57",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer fomYvpfa85bdrs6GQCIU30yTz49B8l",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/is_auth",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"is_auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get token",
+					"id": "b3dfe65c-c7be-42b6-85d4-535a6ee1750e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "glDsZeSXmjoLJfUKF4VYnmA6alDU4xt61PGfKHEU",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "QOU7yyZ33aPGqZvEsE3V9vkdmYNbvny9XKc0OX2ZenhsO2TE4BbcWXDWkdUUWjFzhHTEFkjiIS89Ti8AoZH5dGSUsHkD3Ez118l1PZqxemzg6Ywq6xWYUZh3NkHFCDH2",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "islam.admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/token",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"id": "894b0198-7dc5-4d01-b2f2-bf0779d74821",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "glDsZeSXmjoLJfUKF4VYnmA6alDU4xt61PGfKHEU",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "QOU7yyZ33aPGqZvEsE3V9vkdmYNbvny9XKc0OX2ZenhsO2TE4BbcWXDWkdUUWjFzhHTEFkjiIS89Ti8AoZH5dGSUsHkD3Ez118l1PZqxemzg6Ywq6xWYUZh3NkHFCDH2",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "islam.admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "X0swB5c2nc50SQXR8cHsmsbHmcijgP",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/auth/token",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "revoke all token",
+					"id": "60605bab-56ea-4f30-9f80-866376f20820",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer fomYvpfa85bdrs6GQCIU30yTz49B8l",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "glDsZeSXmjoLJfUKF4VYnmA6alDU4xt61PGfKHEU",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/auth/invalidate-sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"auth",
+								"invalidate-sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "7d05c8b7-6004-4f89-b062-d84e5376a738"
+		},
+		{
 			"name": "register",
 			"id": "8089bc9e-cbf4-4432-8f4e-644996d1da92",
 			"protocolProfileBehavior": {
