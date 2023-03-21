@@ -1,5 +1,7 @@
 import MainSidebar from "./components/main-sidebar/MainSidebar";
-import FooterForm from './components/main-sidebar/FooterForm/FooterForm';
+import FooterForm from './components/FooterForm/FooterForm';
+import NewToTwitter from "./components/NewToTwitter/NewToTwitter";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (<>
@@ -9,7 +11,7 @@ function App() {
                     <MainSidebar/>
                 </header>
                 <main className="col border">Main Area</main>
-                <aside className="col-3 d-none d-lg-block border">Aside Bar</aside>
+                <aside className="col-4 d-none d-lg-block border"><NewToTwitter/></aside>
              
             </section>
       

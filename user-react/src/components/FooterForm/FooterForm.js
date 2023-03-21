@@ -1,9 +1,8 @@
 import React from 'react';
 import './FooterForm.css';
-// import LogIN from './../LogIN/LogIN';
-// import SignUp from './../SignUp/SignUp';
-// import NewToTwitter from './../NewToTwitter/NewToTwitter';
-// import JoinNowTwitter from '../JoinNowTwitter/JoinNowTwitter';
+
+import JoinNowTwitter from './../JoinNowTwitter/JoinNowTwitter';
+import LogIN from './../LogIN/LogIN';
 
 
 const FooterForm = () => {
@@ -17,9 +16,9 @@ const FooterForm = () => {
                         <h5>People on Twitter are the first to know.</h5>
                     </div>
                     <div className='col-md-2 my-3 col-6 col-lg-3'>
-                        {/* <LogIN/> */}
+                        <LogIN/>
                        
-                        {/* <JoinNowTwitter/> */}
+                        <JoinNowTwitter/>
                     </div>
                 </div>
 

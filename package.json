@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "admin-angular": "file:admin-angular",
+    "bootstrap": "^5.3.0-alpha1",
+    "react-bootstrap": "^2.7.2",
     "sass": "^1.58.3",
     "user-react": "file:user-react"
   }
