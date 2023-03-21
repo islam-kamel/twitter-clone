@@ -17,7 +17,6 @@ const FooterForm = () => {
                     </div>
                     <div className='col-md-2 my-3 col-6 col-lg-3'>
                         <LogIN/>
-                       
                         <JoinNowTwitter/>
                     </div>
                 </div>

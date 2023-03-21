@@ -1,13 +1,12 @@
 import React from "react";
-
+import Modal from "react-bootstrap/Modal";
 import LogIN from "./../LogIN/LogIN";
 import "./JoinNowTwitter.css"
 import SignUp from "../SignUp/SignUp";
 
-
 function JoinNowTwitterModal(props) {
 
-    return (<div
+    return (<Modal
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
@@ -15,7 +14,7 @@ function JoinNowTwitterModal(props) {
 
         >
             {/* <Modal.Dialog > */}
-            <div>
+            <Modal.Header>
 
                 <div className="col-md-2">
                     <button type="button" className="btn-close" onClick={props.onHide}></button>
@@ -26,11 +25,11 @@ function JoinNowTwitterModal(props) {
                 </div>
 
 
-                <div id="contained-modal-title-vcenter">
+                <Modal.Title id="contained-modal-title-vcenter">
 
-                </div>
-            </div>
-            <div className="modal-dialog-scrollable"
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="modal-dialog-scrollable"
                         style={{maxHeight: "calc(105vh - 180px)", overflowY: "auto"}}>
                 <div className="d-flex flex-column  NowTwitter-signup">
                     <h2 className="card-title me-4 my-3"><b>Join Twitter today</b></h2>
@@ -42,16 +41,11 @@ function JoinNowTwitterModal(props) {
 
                     <hr className="hrLoginForm my-4"/>
 
-                    <SignUp customText={"Create Account"}/>
-                    {/*<a href="#!" className="btn btn-outline-dark  px-5 py-2 my-3 rounded-5 col-md-6 col-7">*/}
-                    {/*    <b>*/}
-                    {/*        Create*/}
-                    {/*    Account</b>*/}
-                    {/*</a>*/}
+                    <SignUp customText={"Create Account"} className='btn btn-outline-dark  px-5 py-2 my-3 rounded-5 col-md-6 col-7'/>
+                 
 
                     <br/>
-                    <p className="h6 ms-3 col-md-6 my-3">By signing up, you agree to the <a a
-                                                                                            href="https://twitter.com/en/tos"> Terms
+                    <p className="h6 ms-3 col-md-6 my-3">By signing up, you agree to the <a href="https://twitter.com/en/tos"> Terms
                         of Service</a>and <a href="https://twitter.com/en/privacy"> Privacy Policy</a>, including <a
                         href="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie Use.</a></p>
 
@@ -61,9 +55,9 @@ function JoinNowTwitterModal(props) {
 
 
                 </div>
-            </div>
+            </Modal.Body>
             {/* </Modal.Dialog> */}
-        </div>
+        </Modal>
     );
 }
 
@@ -76,10 +70,10 @@ function JoinNowTwitter() {
 
             <a className="btn btn-light rounded-5" onClick={() => setModalShow(true)}><b>Sign up</b></a>
 
-            {/* <JoinNowTwitterModal
+            <JoinNowTwitterModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-            /> */}
+            />
         </>
     );
 }
