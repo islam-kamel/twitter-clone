@@ -1,22 +1,74 @@
-// Twitter primary color
-$theme-colors: (
-        "primary": #369def,
-);
+$primary: #1DA1F2;
+$secondary: #657786;
+$light: #ffffff;
+$dark:  #000;
 
 // Text muted color
-$text-muted: #536571;
+$text-muted: $secondary;
 
-// contrast ration
-$min-contrast-ratio: 1;
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+// custom theme
+$custom-theme-colors: (
+        "primary": #1DA1F2,
+        "secondary": $secondary,
+        "light": $light,
+        "dark": $black,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// Custom Dark Mode beta
+@import "~bootstrap/scss/mixins/color-mode";
+
+$primary-text-dark:                 $light;
+$body-bg-dark:                      #000;
+
+@mixin color-mode($mode: light, $root: false) {
+  @if $color-mode-type == "media-query" {
+    @if $root == true {
+      @media (prefers-color-scheme: $mode) {
+        :root {
+          @content;
+        }
+      }
+    } @else {
+      @media (prefers-color-scheme: $mode) {
+        @content;
+      }
+    }
+  } @else {
+    [data-bs-theme="#{$mode}"] {
+      .btn-outline-dark{
+        @extend .btn-outline-light;
+      }
+      .btn-dark {
+        @extend .btn-light;
+      }
+      .text-dark {
+        @extend .text-light;
+      }
+      @content;
+
+    }
+  }
+}
+
+@include color-mode(dark);
+
+
+
+
 
 // base sans-serif font family
 $font-family-sans-serif: "chirp", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 
 // Font weight
-$font-weight-light:           400;
-$font-weight-normal:          500;
-$font-weight-medium:          600;
-$font-weight-semibold:        700;
-$font-weight-bold:            800;
+$font-weight-light: 400;
+$font-weight-normal: 500;
+$font-weight-medium: 600;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
 
 @import "~bootstrap/scss/bootstrap";
