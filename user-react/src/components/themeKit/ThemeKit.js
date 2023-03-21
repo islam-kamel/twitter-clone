@@ -14,7 +14,7 @@ export default function ThemeKit() {
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span className="navbar-toggler-icon" />
+                        <span className="navbar-toggler-icon"/>
                     </button>
                     <a className="navbar-brand" href="#!">
                         Navbar
@@ -137,68 +137,68 @@ export default function ThemeKit() {
                             <div className="mt-3">
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-primary active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-primary">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-secondary active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-secondary">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-success active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-success">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-danger active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-danger">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                             </div>
                             <div className="mt-2">
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-warning active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-warning">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-info active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-info">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-light active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-light">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label className="btn btn-dark active">
-                                        <input type="checkbox" defaultChecked="" autoComplete="off" /> Yes
+                                        <input type="checkbox" defaultChecked="" autoComplete="off"/> Yes
                                     </label>
                                     <label className="btn btn-dark">
-                                        <input type="checkbox" autoComplete="off" /> No
+                                        <input type="checkbox" autoComplete="off"/> No
                                     </label>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -257,7 +257,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -287,7 +287,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -319,7 +319,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -349,7 +349,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -379,7 +379,7 @@ export default function ThemeKit() {
                                         <a className="dropdown-item" href="#">
                                             Something else here
                                         </a>
-                                        <div className="dropdown-divider" />
+                                        <div className="dropdown-divider"/>
                                         <a className="dropdown-item" href="#">
                                             Separated link
                                         </a>
@@ -436,8 +436,8 @@ export default function ThemeKit() {
                             </div>
                             <div className="mt-2">
                                 <label className="custom-file">
-                                    <input type="file" id="file" className="custom-file-input" />
-                                    <span className="custom-file-control" />
+                                    <input type="file" id="file" className="custom-file-input"/>
+                                    <span className="custom-file-control"/>
                                 </label>
                             </div>
                             {/*Pagination*/}
@@ -475,7 +475,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-primary"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -483,7 +483,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-secondary"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -491,7 +491,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-success"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -499,7 +499,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-info"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -507,7 +507,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-warning"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -515,7 +515,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-danger"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -523,7 +523,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-light"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -531,7 +531,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar bg-dark"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -541,7 +541,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-primary"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -549,7 +549,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-secondary"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -557,7 +557,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-success"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -565,7 +565,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-info"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -573,7 +573,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-warning"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -581,7 +581,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-danger"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -589,7 +589,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-light"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -597,7 +597,7 @@ export default function ThemeKit() {
                                     <div
                                         className="progress-bar progress-bar-striped bg-dark"
                                         role="progressbar"
-                                        style={{ width: "16%" }}
+                                        style={{width: "16%"}}
                                         aria-valuenow={16}
                                         aria-valuemin={0}
                                         aria-valuemax={100}
@@ -696,7 +696,7 @@ export default function ThemeKit() {
                         <div className="col-lg-6 mt-lg-0 mt-4">
                             <div
                                 className="card text-white bg-primary mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -709,7 +709,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-secondary mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -722,7 +722,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-success mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -735,7 +735,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-danger mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -748,7 +748,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-warning mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -761,7 +761,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-info mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -774,7 +774,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card bg-light mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -787,7 +787,7 @@ export default function ThemeKit() {
                             </div>
                             <div
                                 className="card text-white bg-dark mb-2 d-inline-block"
-                                style={{ maxWidth: "18rem" }}
+                                style={{maxWidth: "18rem"}}
                             >
                                 <div className="card-header">Header</div>
                                 <div className="card-body">
@@ -847,5 +847,5 @@ export default function ThemeKit() {
             </>
 
         </>
-);
+    );
 }

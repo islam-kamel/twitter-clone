@@ -1,72 +1,21 @@
 .main-area {
-  height: 100vh !important;
+    height: 100vh !important;
 }
 
 /* Navbar Component */
 .tw-navbar {
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .tw-navbar-link {
-  text-decoration: unset;
+    text-decoration: unset;
 }
 
 .tw-navbar-item {
-  width: fit-content;
-  font-size: 1.7rem;
-  font-weight: 300;
-  text-decoration-style: unset;
-  padding: 0 12px;
-  display: flex;
-  justify-content: center;
-  border-radius: 9999px;
-  transition: ease-in all 0.2s;
-}
-.tw-navbar-item:hover {
-  background-color: rgba(15, 20, 25, 0.1);
-}
-.tw-navbar-item a:hover {
-  color: black;
-}
-
-.tw-navbar-link {
-  align-self: center;
-  color: black;
-}
-
-.tw-navbar-brand {
-  width: fit-content;
-  font-size: 1.7rem;
-  font-weight: 300;
-  text-decoration-style: unset;
-  padding: 0 12px;
-  display: flex;
-  justify-content: center;
-  border-radius: 9999px;
-  transition: ease-in all 0.2s;
-  margin-top: 8px;
-  min-height: 50px;
-}
-.tw-navbar-brand:hover {
-  background-color: rgba(15, 20, 25, 0.1);
-}
-.tw-navbar-brand a:hover {
-  color: black;
-}
-
-.tw-navbar-item i:first-child {
-  margin-right: 10px;
-}
-
-@media (max-width: 1281px) {
-  .tw-navbar-text {
-    display: none;
-  }
-  .tw-navbar-item {
     width: fit-content;
     font-size: 1.7rem;
     font-weight: 300;
@@ -76,25 +25,84 @@
     justify-content: center;
     border-radius: 9999px;
     transition: ease-in all 0.2s;
-    min-height: 50px;
-  }
-  .tw-navbar-item:hover {
-    background-color: rgba(15, 20, 25, 0.1);
-  }
-  .tw-navbar-item a:hover {
-    color: black;
-  }
-
-  .tw-navbar-item i:first-child {
-    margin: 0;
-  }
-
-  .tw-navbar {
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
 }
+
+.tw-navbar-item:hover {
+    background-color: rgba(15, 20, 25, 0.1);
+}
+
+.tw-navbar-item a:hover {
+    color: black;
+}
+
+.tw-navbar-link {
+    align-self: center;
+    color: black;
+}
+
+.tw-navbar-brand {
+    width: fit-content;
+    font-size: 1.7rem;
+    font-weight: 300;
+    text-decoration-style: unset;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    border-radius: 9999px;
+    transition: ease-in all 0.2s;
+    margin-top: 8px;
+    min-height: 50px;
+}
+
+.tw-navbar-brand:hover {
+    background-color: rgba(15, 20, 25, 0.1);
+}
+
+.tw-navbar-brand a:hover {
+    color: black;
+}
+
+.tw-navbar-item i:first-child {
+    margin-right: 10px;
+}
+
+@media (max-width: 1281px) {
+    .tw-navbar-text {
+        display: none;
+    }
+
+    .tw-navbar-item {
+        width: fit-content;
+        font-size: 1.7rem;
+        font-weight: 300;
+        text-decoration-style: unset;
+        padding: 0 12px;
+        display: flex;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: ease-in all 0.2s;
+        min-height: 50px;
+    }
+
+    .tw-navbar-item:hover {
+        background-color: rgba(15, 20, 25, 0.1);
+    }
+
+    .tw-navbar-item a:hover {
+        color: black;
+    }
+
+    .tw-navbar-item i:first-child {
+        margin: 0;
+    }
+
+    .tw-navbar {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
 /* End Navbar Component*/
