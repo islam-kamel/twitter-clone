@@ -1,4 +1,6 @@
 import MainSidebar from "./components/main-sidebar/MainSidebar";
+import Home from './components/home/home';
+import LeftSidebar from './components/leftSidebar/leftSidebar';
 
 function App() {
     return (
@@ -7,8 +9,12 @@ function App() {
                 <header className="col-3 col-xs-6 border">
                     <MainSidebar/>
                 </header>
-                <main className="col border">Main Area</main>
-                <aside className="col-3 d-none d-lg-block border">Aside Bar</aside>
+                <main className="col border">
+                    <Home />
+                </main>
+                <aside className="col-3 d-none d-lg-block border">
+                    <LeftSidebar />
+                </aside>
             </section>
         </main>
     );
