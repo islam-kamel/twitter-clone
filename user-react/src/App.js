@@ -1,11 +1,13 @@
 import MainSidebar from "./components/main-sidebar/MainSidebar";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/login";
+import SignUp from "./components/sign-up/SignUp";
 
 function App() {
     return (
         <>
             <Login/>
+            <SignUp/>
             <main className="container">
                 <section className="row" style={{height: "100vh"}}>
                     <header className="col-3 col-xs-6 border">

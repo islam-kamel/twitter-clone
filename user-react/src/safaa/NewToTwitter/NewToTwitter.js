@@ -19,13 +19,11 @@ const NewToTwitter = () => {
 
                                 <a href="#!" className='btn btn-outline-dark  py-2 my-3 rounded-5 col-md-11 col-7'><i class="fab fa-google fa-1x "></i> Sign in with Google</a>
                                 <a href="#!" className='btn btn-outline-dark  px-5 py-2 my-3 rounded-5 col-md-11 col-7'><i class="bi bi-apple text-dark "></i> Sign in with Apple</a>
-                                
+
                                 <a href="#!" className='btn btn-outline-dark  px-5 py-2 my-3 rounded-5 col-md-11 col-7'><SignUp customText={"Create Account"}/> <b></b></a>
-                              
+
                                 <p className='h6 ms-3'>By signing up, you agree to the <a a href='https://twitter.com/en/tos'> Terms of Service</a>and <a href='https://twitter.com/en/privacy'> Privacy Policy</a>, including <a href='https://help.twitter.com/en/rules-and-policies/twitter-cookies'>Cookie Use.</a></p>
                             </div>
-                            
-
                         </div>
 
                     </div>
