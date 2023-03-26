@@ -28,7 +28,7 @@ export default function MainSidebar() {
                 </Link>
             </div>
             <div className="tw-navbar-item">
-                <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                <Link to={'/explore'} className="tw-navbar-link d-flex align-items-center text-dark">
                     <i className="d-inherit">
                         <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                              aria-hidden="true" width="26" height="26">
@@ -40,7 +40,7 @@ export default function MainSidebar() {
                         </svg>
                     </i>
                     <span className="tw-navbar-text">Explore</span>
-                </a>
+                </Link>
             </div>
             <div className="tw-navbar-item">
                 <Link to={'/notifications'} className="tw-navbar-link d-flex align-items-center text-dark">
