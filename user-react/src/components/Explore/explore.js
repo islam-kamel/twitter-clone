@@ -96,12 +96,12 @@ export default function Explore(){
                 </div>
             </div>
             {/* <!----------------  Trending Bar  ---------------------> */}
-             <div className="btn-group mt-3 justify-content-around align-items-center d-flex w-100 fs-5 fw-5 text-center " id="explore-group" role="group" > 
-            <ul className="nav nav-tabs mt-4 col-10 w-100 fs-3 fw-5  d-flex justify-content-around align-items-center"
+             <div className="btn-group trend-bar mt-3 justify-content-around align-items-center d-flex w-100 fs-5 fw-5 text-center " id="explore-group" role="group" > 
+            <ul className="nav nav-tabs mt-4 col-10 w-100 fs-5 fw-5  d-flex justify-content-around align-items-center"
                 id="explore-group pills-tab" role="tablist group"  >
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
+                    <button class="nav-links trend-bar nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
                             aria-selected="true" onClick={() => handleClick("For You")} className={activeMenu === "For You" ? "activee" : ""} 
                            >
@@ -121,7 +121,7 @@ export default function Explore(){
                 
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
+                    <button class="nav-links trend-bar nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-Trending" type="button" role="tab" aria-controls="pills-Trending"
                             aria-selected="false" onClick={() => handleClick("Trending")} className={activeMenu === "Trending" ? "activee" : ""} 
                              >
@@ -139,7 +139,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links" data-bs-toggle="pill" data-bs-target="#pills-News"
+                    <button className="nav-links trend-bar" data-bs-toggle="pill" data-bs-target="#pills-News"
                             type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
                     </button>
 
@@ -150,7 +150,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links nav-tabs-border-color" data-bs-toggle="pill"
+                    <button className="nav-links trend-bar  nav-tabs-border-color" data-bs-toggle="pill"
                             data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
                             aria-selected="false">Sports
                     </button>
@@ -160,7 +160,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links nav-tabs-border-color" data-bs-toggle="pill"
+                    <button className="nav-links trend-bar nav-tabs-border-color" data-bs-toggle="pill"
                             data-bs-target="#pills-Entertainment" type="button" role="tab"
                             aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
                     </button>

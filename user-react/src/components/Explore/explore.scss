@@ -1,7 +1,7 @@
-//  html {
-//    font-size: 10px;
-//  }
-//
+
+// .trend-bar{
+//   font-size: 30px !important;
+// }
 
   //a {
   //  text-decoration: none;
@@ -11,14 +11,14 @@
   //  line-height: 24px;
   //}
 
-  header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px 0 10px 8%;
-    position: sticky;
+  // header {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-between;
+  //   padding: 10px 0 10px 8%;
+  //   position: sticky;
 
-  }
+  // }
 
   .sserch{
     background-color: #dad9d9c4 ;
@@ -29,19 +29,20 @@
     flex-direction: column;
     justify-content: space-between;
     border:none;
+    // font-size: 20% !important;
   }
 
   .nav-link a {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     padding: 8px 25px 8px 8px;
     width: fit-content;
 
   }
 
   .nav-link a i {
-    font-size: 2.3rem;
+    // font-size: 2.3rem;
     margin-right: 15px;
   }
 
@@ -65,7 +66,7 @@
     border-radius: 9999px;
     margin-top: 15px;
     cursor: pointer;
-    font-size: 1.7rem;
+    // font-size: 1.7rem;
     color: white;
     font-weight: 700;
     border: 1px solid white;
