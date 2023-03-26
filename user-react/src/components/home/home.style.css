@@ -10,8 +10,8 @@
   }
   .new_tweet .img_profile{
     cursor: pointer;
-    width: 9%;
-    height: 9%;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
   }
   .new_tweet_details{
@@ -56,9 +56,9 @@
     padding: 1% !important;
     color: white !important;
     background-color: rgba(29, 161, 242,.5) !important;
-    cursor: pointer; 
-  } 
-  
+    cursor: pointer;
+  }
+
   .feed_tweet{
     display: flex;
     width: 100% !important;
