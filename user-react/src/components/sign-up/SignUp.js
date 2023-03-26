@@ -1,7 +1,7 @@
 import React from "react";
 import TwModal from "../modal/modal";
 import {twitterIcon} from "../login/login";
-import SignupForm from "../../safaa/Stepper/Stepper";
+import SignupForm from "./Stepper/Stepper";
 
 export default function SignUp() {
     return (

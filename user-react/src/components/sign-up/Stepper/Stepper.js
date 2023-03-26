@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Stepper.css"
 import {Birthdate} from "./Bithdata";
 import {Link} from "react-router-dom";
-import TwButton from "../../components/tw-button/tw-button";
+import TwButton from "../../tw-button/tw-button";
 
 function SignupForm() {
     const [step, setStep] = useState(1);
@@ -13,6 +13,7 @@ function SignupForm() {
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
+        event.preventDefault();
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -169,7 +170,7 @@ function SignupForm() {
                     )}
                     {step === 1 && (
                         <TwButton
-                            type="submit"
+                            type="button"
                             btnStyle={"outline-dark w-100"}
                             classes={"rounded-5 mt-4"}
                         >

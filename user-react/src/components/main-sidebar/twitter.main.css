@@ -7,8 +7,8 @@
   height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
+  gap: 15px;
 }
 
 .tw-navbar-link {
@@ -51,13 +51,8 @@
   margin-top: 8px;
 }
 .tw-navbar-brand:hover {
-  background-color: var(--bs-primary);
-  opacity: 0.1;
+  background-color: rgba(13, 110, 253, 0.1);
 }
-
-/*.tw-navbar-brand a:hover {*/
-/*  color: black;*/
-/*}*/
 
 .tw-navbar-item i:first-child {
   margin-right: 10px;
@@ -92,7 +87,6 @@
     height: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-end;
   }
 }
