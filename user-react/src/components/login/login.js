@@ -51,7 +51,7 @@ export default function Login() {
                         </div>
 
                         {/* input box */}
-                        <form className="gy-4 w-75 row row-cols-1 justify-content-center align-items-center">
+                        <form onSubmit={(e) => e.preventDefault()} className="gy-4 w-75 row row-cols-1 justify-content-center align-items-center">
                             <div className="col">
                                 <input
                                     placeholder={"Email,Phone or Username"}
