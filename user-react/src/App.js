@@ -1,9 +1,10 @@
 import MainSidebar from "./components/main-sidebar/MainSidebar";
-import Footer from "./components/footer/Footer";
 import Login from "./components/login/login";
 import SignUp from "./components/sign-up/SignUp";
 import Home from "./components/home/home";
 import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
+import Footer from "./components/footer/Footer";
+import NotificationsRigte from "./components/notifications/NotificationsRigte";
 
 function App() {
     return (
@@ -27,4 +28,5 @@ function App() {
         </>
     );
 }
+
 export default App;
