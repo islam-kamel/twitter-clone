@@ -1,5 +1,6 @@
 import React from "react";
 
+
 /**
  * @param {string} id use for set modal id
  * @param {string} modalStyle use for set class name for modal
@@ -21,7 +22,7 @@ class TwModal extends React.Component {
             return (
                 <button
                     type={"button"}
-                    className={"btn-close"}
+                    className={"btn-close ms-0 rounded-5"}
                     data-bs-dismiss={"modal"}
                     aria-label={"Close"}
                 ></button>
@@ -29,9 +30,17 @@ class TwModal extends React.Component {
         }
 
         return (
-            <div className={"modal-header"}>
-                <h1 className={`modal-title ${classes ?? "fs-5"}`} id={`${label}Label`}>{title}</h1>
-                {defaultBtn ? <DefaultBtn/> : false}
+            <div className={"modal-header border-0 pt-0"}>
+                <div className={'row w-100 g-0 justify-content-center align-items-center'}>
+                    <div className={'col-4'}>
+                        {defaultBtn ? <DefaultBtn/> : false}
+                    </div>
+                    <div className={'col'}>
+
+                        <h1 className={`modal-title ${classes ?? "fs-5"}`} id={`${label}Label`}>{title}</h1>
+                    </div>
+                    <div className={'col-4'}></div>
+                </div>
             </div>
         );
     }
@@ -73,7 +82,7 @@ class TwModal extends React.Component {
         return (
             <button
                 type="button"
-                className={`btn btn-${btnStyle ?? "primary"} ${classes ?? null}`}
+                className={`btn btn-${btnStyle ?? "primary"} ${classes ?? ""}`}
                 data-bs-toggle="modal"
                 data-bs-target={`#${targetId}`}
             >
@@ -92,8 +101,8 @@ class TwModal extends React.Component {
                 aria-labelledby={this._label(this.props.id)}
                 aria-hidden="true"
             >
-                <div className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
-                    <div className={"modal-content"}>
+                <div  className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
+                    <div className={"modal-content rounded-4"} >
                         {this.props.children.length ? this.getMap() : this.props.children}
                     </div>
                 </div>
