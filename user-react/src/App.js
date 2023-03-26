@@ -1,5 +1,4 @@
 import MainSidebar from "./components/main-sidebar/MainSidebar";
-import TwButton from "./components/tw-button/tw-button";
 
 function App() {
     return (
