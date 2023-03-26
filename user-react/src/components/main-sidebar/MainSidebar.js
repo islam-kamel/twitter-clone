@@ -1,4 +1,5 @@
 import "./twitter.main.css"
+import {Link} from "react-router-dom";
 
 export default function MainSidebar() {
     return (<aside className="position-fixed top-0 h-100">
@@ -12,7 +13,7 @@ export default function MainSidebar() {
             </div>
             <div className="tw-navbar-item">
 
-                <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                <Link to={'/'} className="tw-navbar-link d-flex align-items-center text-dark">
                     <i className="d-inherit">
                         <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                              aria-hidden="true" width="26" height="26">
@@ -24,7 +25,7 @@ export default function MainSidebar() {
                         </svg>
                     </i>
                     <span className="tw-navbar-text">Home</span>
-                </a>
+                </Link>
             </div>
             <div className="tw-navbar-item">
                 <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
@@ -42,7 +43,7 @@ export default function MainSidebar() {
                 </a>
             </div>
             <div className="tw-navbar-item">
-                <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                <Link to={'/notifications'} className="tw-navbar-link d-flex align-items-center text-dark">
                     <i className="d-inherit">
                         <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                              aria-hidden="true" width="26" height="26">
@@ -54,7 +55,7 @@ export default function MainSidebar() {
                         </svg>
                     </i>
                     <span className="tw-navbar-text">Notifications</span>
-                </a>
+                </Link>
             </div>
             <div className="tw-navbar-item">
                 <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">

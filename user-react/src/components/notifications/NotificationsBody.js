@@ -2,6 +2,8 @@ import React from 'react';
 import "./Notifications.css"
 import Avatare from "../../Image/avatar.png"
 import notifications from "../../Image/notifications.jpg"
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
 
 export default function Notifications() {
   return (
@@ -14,7 +16,7 @@ export default function Notifications() {
                         <i className="fa-solid fa-gear"></i>
                     </div>
                     <nav className="container py-3">
-                        <div className="nav nav-tabs justify-content-between border-bottom pb-1 " id="nav-tab" role="">
+                        <div className="nav nav-tabs justify-content-between border-bottom pb-1 " id="nav-tab" role="tab">
                           <button className="nav-link border-0 active" id="nav-All-tab" data-bs-toggle="tab" data-bs-target="#nav-All" type="button" role="tab" aria-controls="nav-All" aria-selected="true">All</button>
                           <button className="nav-link border-0" id="nav-Verified-tab" data-bs-toggle="tab" data-bs-target="#nav-Verified" type="button" role="tab" aria-controls="nav-Verified" aria-selected="false">Verified</button>
                           <button className="nav-link border-0" id="nav-Mentions-tab" data-bs-toggle="tab" data-bs-target="#nav-Mentions" type="button" role="tab" aria-controls="nav-Mentions" aria-selected="false">Mentions</button>
@@ -22,7 +24,7 @@ export default function Notifications() {
                     </nav>
 
                     <div className="tab-content" id="nav-tabContent">
-                        <div className="tab-pane fade show active" id="nav-All" role="tabpanel" aria-labelledby="nav-All-tab" tabindex="0">
+                        <div className="tab-pane fade show active" id="nav-All" role="tabpanel" aria-labelledby="nav-All-tab" tabIndex="0">
                             <div className="mx- px-4">
                                 <div className="img-Notifications border-bottom ">
                                     <div className="d-flex">
@@ -33,14 +35,14 @@ export default function Notifications() {
                                         <img className="" src={Avatare} alt=""/>
                                         <img className="" src={Avatare} alt=""/>
                                     </div>
-                                    
+
                                     <div className="mt-3 ms-3">
                                         <p className="text-muted">New Tweet Notifications for Ahmed | Programing And 3 Others</p>
                                     </div>
                                 </div>
                                 <div className="img-Notifications border-bottom  ">
                                     <div className=" d-flex my-4">
-                                        <i className="fa-brands fa-twitter fa-2x me-3 text-primary"></i>
+                                        <i className="fa fa-brands fa-twitter fa-2x me-3 text-primary"></i>
                                         <p className="text-muted">New Tweet Notifications for Ahmed | Programing And 3 Others</p>
                                     </div>
                                 </div>
@@ -89,7 +91,7 @@ export default function Notifications() {
                         </div>
 {/* <!-- ======================================== verified =================================================== --> */}
 
-                        <div className="tab-pane fade" id="nav-Verified" role="tabpanel" aria-labelledby="nav-Verified-tab" tabindex="0">
+                        <div className="tab-pane fade" id="nav-Verified" role="tabpanel" aria-labelledby="nav-Verified-tab" tabIndex="0">
                             <div className=" verified mx-5 px-4">
                                 <img className=" w-100" src={notifications} alt=""/>
                                 <h1>Nothing to see here — yet</h1>
@@ -99,7 +101,7 @@ export default function Notifications() {
 
 {/* <!-- ======================================== mentions =================================================== --> */}
 
-                        <div className="tab-pane fade" id="nav-Mentions" role="tabpanel" aria-labelledby="nav-Mentions-tab" tabindex="0">
+                        <div className="tab-pane fade" id="nav-Mentions" role="tabpanel" aria-labelledby="nav-Mentions-tab" tabIndex="0">
                             <div className=" mentions mx-5 px-5">
                                 <h2 className=" fw-bold mb-3">Nothing to see here — yet</h2>
                                 <p className="text-muted">When someone mentions you, you’ll find it here.</p>
@@ -107,7 +109,7 @@ export default function Notifications() {
                         </div>
 
                     </div>
-                </div>  
+                </div>
             </div>
         </section>
     </>

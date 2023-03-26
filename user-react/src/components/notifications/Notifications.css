@@ -8,16 +8,16 @@
     width: 35Px;
     margin: 0px 2px;
   }
-  
+
   .aler-Notfic {
     transition: all 1s;
     padding: 3px 0px;
   }
-  
+
   .aler-Notfic:hover {
     background-color: rgba(169, 169, 169, 0.247);
   }
-  
+
   @media (max-width: 767px) {
     #Notifications {
       width: 100% !important;
@@ -49,6 +49,3 @@
       padding: 0px !important;
     }
   }
-  
-  /*# sourceMappingURL=Notifications.css.map */
-  

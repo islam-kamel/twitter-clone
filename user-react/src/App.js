@@ -4,7 +4,8 @@ import SignUp from "./components/sign-up/SignUp";
 import Home from "./components/home/home";
 import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
-import NotificationsRigte from "./components/notifications/NotificationsRigte";
+import {Route, Routes} from "react-router-dom";
+import Notifications from "./components/notifications/NotificationsBody";
 
 function App() {
     return (
@@ -17,10 +18,15 @@ function App() {
                         <MainSidebar/>
                     </header>
                     <main className="col border">
-                        <Home/>
+                        <Routes>
+                            <Route index element={<Home />} />
+                            <Route path={'notifications'} element={<Notifications />} />
+                        </Routes>
                     </main>
                     <aside className="col-3 d-none d-lg-block border">
-                        <NewToTwitter/>
+                        <Routes>
+                           <Route path={'*'} element={<NewToTwitter/>}/>
+                        </Routes>
                     </aside>
                 </section>
             </main>

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 export const Birthdate = () => {
+    // eslint-disable-next-line no-unused-vars
     const [birthdate, setBirthdate] = useState("");
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
