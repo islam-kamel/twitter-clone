@@ -34,3 +34,38 @@ $font-path: "fonts";
   font-weight: 800;
   src: local('ChirpExtended'), url('#{$font-path}/ChirpExtendedHeavy.woff') format('woff');
 }
+
+//.form-control:focus {
+//  @extend .form-control;
+//  border-color: red;
+//  box-shadow: none;
+//}
+@import "~bootstrap/scss/_functions";
+$form-focus-border-color: bootstrap.$primary;
+
+
+.form-control:focus,
+.form-control:not(.is-invalid):focus
+{
+  @extend .form-control;
+  border-color: $form-focus-border-color;
+  box-shadow: unset;
+  border-width: 3px;
+}
+
+.is-valid:focus {
+  border-color: $form-focus-border-color;
+}
+
+
+.form-floating {
+  @extend .form-floating;
+  > .form-control:not(.is-invalid):focus
+  ~ label {
+    color: $form-focus-border-color;
+  }
+  > .form-control:is(.is-invalid):focus
+  ~ label {
+    color: bootstrap.$form-feedback-invalid-color;
+  }
+}

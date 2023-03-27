@@ -43,8 +43,30 @@
   - ## TwButton 
     - Example
     ```jsx
-        <TwButton btnStyle={'outline-primary'} classes={'text-dark'}>FooterButton</TwButton>
+        <TwButton 
+            btnStyle={'outline-primary'}
+            classes={'text-dark'}
+        >
+            FooterButton
+        </TwButton>
     ```
+  - ## TwInput
+    - Example
+    ```jsx
+        <TwInput
+           type={'email'} // text id default
+           id={'id'}
+           labelText={'label text'}
+           errorMessage={'your message'}
+           errorClasses={'text-danger'}
+           other={{
+                onChange: (event) => console.log(event.target),
+                placeholder: 'Youer Holder here',
+                // you can added any element attrbuite like className ! not recomended.
+           }}
+        />
+    ```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
