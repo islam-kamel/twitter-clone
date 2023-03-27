@@ -13,19 +13,20 @@ function App() {
         <>
             <Login/>
             <SignUp/>
-            <main className="container">
+            <main className="container-fluid container-xl">
                 <section className="row" style={{height: "100vh"}}>
-                    <header className="col-2  col-lg-3 border-end">
+                    <header className="col-1 col-xl-3 d-none d-sm-block
+">
                         <MainSidebar/>
                     </header>
-                    <main className="col ">
+                    <main className="col border">
                         <Routes>
                             <Route index element={<Home />} />
                             <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
                         </Routes>
                     </main>
-                    <aside className="col-3 d-none d-lg-block">
+                    <aside className="col-4 d-none d-lg-flex">
                         <Routes>
                            <Route path={'*'} element={<NewToTwitter/>}/>
                         </Routes>

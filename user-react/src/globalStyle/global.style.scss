@@ -50,6 +50,7 @@ $form-focus-border-color: bootstrap.$primary;
   @extend .form-control;
   border-color: $form-focus-border-color;
   box-shadow: unset;
+  border-width: 3px;
 }
 
 .is-valid:focus {
