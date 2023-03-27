@@ -3,10 +3,9 @@ import "./tw-input.style.css";
 
 export default function TwInput(
     props: {
-        type: HTMLInputTypeAttribute,
+        type?: HTMLInputTypeAttribute,
         id: string,
         labelText: string,
-        placeholder?: string,
         classes?: string,
         errorMessage?: string,
         errorClasses?: string,
@@ -19,7 +18,6 @@ export default function TwInput(
                 type={props.type ?? 'text'}
                 className={`form-control ${props.classes ?? ''}`}
                 id={props.id}
-                placeholder={props.placeholder ?? ''}
                 {...props.other}
             />
             <label htmlFor={props.id}>{props.labelText}</label>
@@ -29,4 +27,3 @@ export default function TwInput(
         </div>
     );
 }
-

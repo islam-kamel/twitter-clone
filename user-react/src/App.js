@@ -24,7 +24,6 @@ function App() {
                             <Route index element={<Home />} />
                             <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
-                            <Route path={'kit'} element={<TwInput />}/>
                         </Routes>
                     </main>
                     <aside className="col-3 d-none d-lg-block">
