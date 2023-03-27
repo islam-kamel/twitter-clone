@@ -1,6 +1,16 @@
 // Import custom bootstrap
 @use "_vendor/bootstrap.custome";
 
+
+.btn-primary {
+  @extend .btn-primary;
+  color: bootstrap.$light !important;
+  &:hover, :active {
+    color: bootstrap.$light !important;
+  }
+}
+
+
 // Font Family
 $font-path: "fonts";
 
