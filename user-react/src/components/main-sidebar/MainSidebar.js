@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export default function MainSidebar() {
     return (
-        <div className="d-flex justify-content-center justify-content-xl-start">
+        <div className="d-flex justify-content-center">
             <aside className="position-fixed top-0 h-100">
                 {/* eslint-disable jsx-a11y/anchor-is-valid */}
                 {/* "هذا حل مؤقت" التعليق العلوي من أجل إيقاف تحذير eslint من استخدام a تاج دون وضع رابط صالح */}
