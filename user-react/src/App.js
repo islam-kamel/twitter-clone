@@ -7,7 +7,6 @@ import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/Explore/explore";
-import TwInput from "./components/tw-input/tw-input";
 
 function App() {
     return (
