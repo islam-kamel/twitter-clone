@@ -21,25 +21,19 @@ export default function Footer() {
     return (
         <footer className={"bg-primary p-0"} style={footerStyle}>
 
-            <div className={"container text-light h-100"}>
-                <div className="h-100 row justify-content-center align-items-center">
-                    <div className="col-md-3"></div>
+            <div className={"container-fluid container-md px-0 text-light h-100"}>
+                <div className="h-100 row justify-content-center mx-0 my-auto align-items-center">
+                    <div className="col-2 col-lg-3 d-none d-md-block"></div>
                     <div className=" col-6 d-none d-md-block p-0">
-                        <h3
-                            style={footerHeadingStyle}
-                            className={"fw-bold"}
-                        >
+                        <h3 style={footerHeadingStyle} className={"fw-bold"} >
                             Don’t miss what’s happening
                         </h3>
-                        <h5
-                            style={footerSubTitleStyle}
-                            className={"fw-light"}
-                        >
+                        <h5 style={footerSubTitleStyle} className={"fw-light"} >
                             People on Twitter are the first to know.
                         </h5>
                     </div>
-                    <div className="col h-100">
-                        <div className={"row row-cols-2 justify-content-sm-around h-100 my-auto align-items-center"}>
+                    <div className="col">
+                        <div className={"row w-100 row-cols-2 justify-content-sm-around mx-0 my-auto align-items-center"}>
                             <div className={"col"}>
                                 <TwModal.ModalButton
                                     title={"Login"}
