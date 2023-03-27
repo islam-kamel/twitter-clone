@@ -13,10 +13,9 @@ function App() {
         <>
             <Login/>
             <SignUp/>
-            <main className="container-fluid container-xl">
-                <section className="row" style={{height: "100vh"}}>
-                    <header className="col-1 col-xl-3 d-none d-sm-block
-">
+            <main className="container-fluid container-xl p-0 px-sm-5">
+                <section className="row mx-auto" style={{height: "100vh"}}>
+                    <header className="col-1 col-xl-3 d-none d-sm-block">
                         <MainSidebar/>
                     </header>
                     <main className="col border">
@@ -26,7 +25,7 @@ function App() {
                             <Route path={'notifications'} element={<Notifications />} />
                         </Routes>
                     </main>
-                    <aside className="col-4 d-none d-lg-flex">
+                    <aside className="col-3 d-none d-lg-flex">
                         <Routes>
                            <Route path={'*'} element={<NewToTwitter/>}/>
                         </Routes>
