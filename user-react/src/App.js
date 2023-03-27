@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/Explore/explore";
+import TwInput from "./components/tw-input/tw-input";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                             <Route index element={<Home />} />
                             <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
+                            <Route path={'kit'} element={<TwInput />}/>
                         </Routes>
                     </main>
                     <aside className="col-3 d-none d-lg-block">

@@ -1,13 +1,35 @@
+//@import "../node_modules/bootstrap/scss/functions";
+
 $primary: #1DA1F2;
 $secondary: #657786;
 $light: #ffffff;
-$dark:  #000;
+$dark: #000;
 
 // Text muted color
 $text-muted: $secondary;
 
 @import "~bootstrap/scss/_functions";
 @import "~bootstrap/scss/_variables";
+
+$form-feedback-invalid-color: $danger;
+$tooltip-color: red;
+$form-label-color: $dark;
+$form-floating-label-opacity: 1;
+
+$border-width: 3px;
+
+$form-validation-states: (
+    "valid": (
+        "color": $border-color,
+        "icon": none,
+        "focus-box-shadow": unset,
+    ),
+    "invalid": (
+        "color": $form-feedback-invalid-color,
+        "icon": none,
+        "focus-box-shadow": unset,
+    )
+);
 
 // custom theme
 $custom-theme-colors: (
@@ -19,11 +41,12 @@ $custom-theme-colors: (
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
+
 // Custom Dark Mode beta
 @import "~bootstrap/scss/mixins/color-mode";
 
-$primary-text-dark:                 $light;
-$body-bg-dark:                      #000;
+$primary-text-dark: $light;
+$body-bg-dark: #000;
 
 @mixin color-mode($mode: light, $root: false) {
   @if $color-mode-type == "media-query" {
@@ -40,20 +63,24 @@ $body-bg-dark:                      #000;
     }
   } @else {
     [data-bs-theme="#{$mode}"] {
-      .btn-outline-dark{
+      .btn-outline-dark {
         @extend .btn-outline-light;
       }
+
       .btn-dark {
         @extend .btn-light;
       }
+
       .text-dark {
         @extend .text-light;
       }
+
       @content;
 
     }
   }
 }
+
 @include color-mode(dark);
 
 
