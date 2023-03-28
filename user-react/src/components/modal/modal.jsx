@@ -1,8 +1,10 @@
 import React from "react";
 
 const contentContainerStyle = {
-    maxHeight: '90vh',
-    minHeight: 400,
+    maxHeight: '100%',
+    MaxWidth:'100%',
+    minHeight: 430,
+    minWidth:600,
     height: 650
 }
 /**
