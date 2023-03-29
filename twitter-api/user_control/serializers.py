@@ -15,3 +15,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class UserInfoSerailzer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'full_name', 'username', 'email', 'date_of_birth', 'bio']
