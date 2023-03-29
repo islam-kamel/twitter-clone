@@ -178,13 +178,25 @@
   .trends {
     transform: translate3d(-26px, -4px, 0px) !important;
 
-    width: 195px;
+    width: 213px;
     border-radius: 6px;
+    
   }
 
+  .trends ul{
+    height:transparent ;
+  }
+
+  .trends li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:transparent ;
+  }
   .trends li:hover {
     background-color: #dad9d9c4;
-    padding-top: 1rem;
+    
+    
   }
 
 
