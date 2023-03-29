@@ -6,7 +6,7 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
-import Explore from "./components/Explore/explore";
+import Explore from "./components/explore/explore";
 
 function App() {
     return (
