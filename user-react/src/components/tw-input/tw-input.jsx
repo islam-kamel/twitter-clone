@@ -17,6 +17,7 @@ export default function TwInput(
             <input
                 type={props.type ?? 'text'}
                 className={`form-control ${props.classes ?? ''}`}
+                placeholder={''}
                 id={props.id}
                 {...props.other}
             />
