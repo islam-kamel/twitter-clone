@@ -1,6 +1,7 @@
 import "./twitter.main.css"
 import {Link} from "react-router-dom";
 
+
 export default function MainSidebar() {
     return (
         <div className="d-flex justify-content-center">
@@ -13,6 +14,23 @@ export default function MainSidebar() {
                             <i className="bi bi-twitter"></i>
                         </a>
                     </div>
+
+                            {/* test loading pages */}
+         <div className="tw-navbar-item">
+                           
+            <Link to={"/loading-twitter-icon"} className="tw-navbar-link d-flex align-items-center text-dark">
+             <span className="tw-navbar-text">load-icon</span>
+            </Link>
+            </div>
+                     <div className="tw-navbar-item">
+
+            <Link to={"/Loading-spiner"} className="tw-navbar-link d-flex align-items-center text-dark">
+             <span className="tw-navbar-text">load-spiner</span>
+            </Link>
+            </div>
+             {/* ------- end loading pages --- */}
+
+
                     <div className="tw-navbar-item">
 
                         <Link to={"/"} className="tw-navbar-link d-flex align-items-center text-dark">

@@ -96,12 +96,12 @@ export default function Explore(){
                 </div>
             </div>
             {/* <!----------------  Trending Bar  ---------------------> */}
-             <div className="btn-group trend-bar mt-2 justify-content-around align-items-center d-flex w-100 fs-6 fw-5 text-center " id="explore-group" role="group" > 
-            <ul className="nav nav-tabs mt-4 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
-                id="explore-group pills-tab" role="tablist group"  >
+             <div className="btn-group trend-bar mt-1 justify-content-around align-items-center d-flex w-100 fs-6 fw-5 text-center " id="explore-group" role="group" > 
+            <ul className="nav nav-tabs mt-2 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
+                id="pills-tab explore-group" role="tablist"  >
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links trend-bar nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
+                    <button class="nav-link  nav-links trend-bar nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
                             aria-selected="true" onClick={() => handleClick("For You")} className={activeMenu === "For You" ? "activee" : ""} 
                            >
@@ -121,8 +121,8 @@ export default function Explore(){
                 
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links trend-bar nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-Trending" type="button" role="tab" aria-controls="pills-Trending"
+                    <button class="nav-link  nav-links trend-bar nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-Trending" href='#pills-Trending' type="button" role="tab" aria-controls="pills-Trending"
                             aria-selected="false" onClick={() => handleClick("Trending")} className={activeMenu === "Trending" ? "activee" : ""} 
                              >
                                 Trending
@@ -139,7 +139,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links trend-bar" data-bs-toggle="pill" data-bs-target="#pills-News"
+                    <button className="nav-link  nav-links trend-bar" data-bs-toggle="pill" data-bs-target="#pills-News"
                             type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
                     </button>
 
@@ -150,7 +150,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links trend-bar  nav-tabs-border-color" data-bs-toggle="pill"
+                    <button className="nav-link  nav-links trend-bar  nav-tabs-border-color" data-bs-toggle="pill"
                             data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
                             aria-selected="false">Sports
                     </button>
@@ -160,7 +160,7 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links trend-bar nav-tabs-border-color" data-bs-toggle="pill"
+                    <button className="nav-link  nav-links trend-bar nav-tabs-border-color" data-bs-toggle="pill"
                             data-bs-target="#pills-Entertainment" type="button" role="tab"
                             aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
                     </button>
@@ -172,7 +172,7 @@ export default function Explore(){
             </div>
             <div className="tab-content" id="pills-tabContent">
                 {/* <!----------------- ForYou-Trends-------------> */}
-                <div className="tab-pane fade show active pt-2" id="pills-for-you" role="tabpanel"
+                <div className="tab-pane fade show active pt-2" id="pills-for-You" role="tabpanel"
                      aria-labelledby="pills-for-you-tab">
 
                 <Trends className='trendss' trendPlace='Trending in Egypt' trendName='أفريقيا يا زمالك' trendTweets='24,2K Tweets' ></Trends>
@@ -195,9 +195,9 @@ export default function Explore(){
 
                     <hr/>
                     <div className="row">
-                        <div className="col-12 border-bottom py-3">
-                            <h1 className="mt-3 ms-4">How To Follow</h1>
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <h3 className=" ms-4">How To Follow</h3>
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
                                     <img src="../assets/images/moon3.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
@@ -212,8 +212,8 @@ export default function Explore(){
                                 </button>
                             </div>
                         </div>
-                        <div className="col-12 border-bottom py-3">
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
                                     {/* <!-- <span className="d-inline-block" tabIndex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover"> --> */}
                                     <img src="../assets/images/moon3.jpg" width="50" height="50"
@@ -232,10 +232,10 @@ export default function Explore(){
                                 </button>
                             </div>
                         </div>
-                        <div className="col-12 border-bottom py-3">
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
-                                    <img src="../assets/images/moon3.jpg" width="50" height="50"
+                                    <img src="./assets/profile.image.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
                                     <div className="followers ms-3 mt-4">
                                         <h5>Eslam Kamel</h5>
