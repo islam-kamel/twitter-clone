@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="twitter_clone@localhost" uuid="60ae12e7-3394-41e8-ae41-27fe601541b8">
+    <data-source source="LOCAL" name="adyhgmqv@isilo.db.elephantsql.com" uuid="5b4c9121-2656-46a7-b43b-5ebf9b56556a">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/twitter_clone</jdbc-url>
+      <jdbc-url>jdbc:postgresql://isilo.db.elephantsql.com:5432/adyhgmqv</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="twitter_clone_dev@localhost" uuid="3a8971a6-3c8b-4c1d-926d-7fb125624b73">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/twitter_clone_dev</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

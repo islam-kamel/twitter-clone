@@ -15,3 +15,21 @@ class RegisterSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class UserInfoSerializer(serializers.ModelSerializer):
+    """
+    username,
+    image,
+    """
+
+    class Meta:
+        model = CustomUser
+        fields = ['username']
+
+
+
+class UserLoginClaimsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username']

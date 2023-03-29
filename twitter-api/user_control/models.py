@@ -7,7 +7,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, username, full_name, date_of_birth, password):
+    def create_user(self, email, username, fullname, password):
+        print(email, username)
         if not email:
             raise ValueError(_("The Email must be set."))
 
@@ -20,41 +21,67 @@ class CustomUserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             username=username,
-            full_name=full_name,
-            date_of_birth=date_of_birth,
+            fullname=fullname
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
 
-    def create_superuser(self, email, full_name, username, date_of_birth, password):
-        user = self.create_user(
-            email=email,
-            username=username,
-            full_name=full_name,
-            date_of_birth=date_of_birth,
-            password=password,
-        )
+    def create_superuser(self, **kwargs):
+        user = self.create_user(**kwargs)
         user.is_admin = True
         user.save(using=self._db)
         return user
 
 
 class CustomUser(AbstractBaseUser):
-    email = models.EmailField(verbose_name="Email", max_length=255, unique=True)
-    username = models.CharField(verbose_name="Username", max_length=50, unique=True)
-    date_of_birth = models.DateField(verbose_name="Date of birth")
-    create_date = models.DateTimeField(auto_now_add=timezone.now, editable=False)
-    full_name = models.CharField(max_length=100, verbose_name="Full name")
-    address = models.CharField(verbose_name="Address", max_length=255, blank=True)
-    bio = models.TextField(max_length=500, verbose_name="Bio", blank=True)
+    """
+    user_id       serial primary key unique not null,
+    username      varchar(99) unique       not null,
+    full_name     varchar(249)              not null,
+    email         varchar(249)              not null,
+    date_of_birth date,
+    create_at     timestamp default now(),
+    is_active     boolean   default true,
+    is_staff      boolean   default false,
+    is_admin      boolean   default false
+    """
+    email = models.EmailField(
+        verbose_name="Email",
+        max_length=255,
+        unique=True,
+        null=False,
+        blank=False
+    )
+
+    username = models.CharField(
+        verbose_name="Username",
+        max_length=50,
+        unique=True,
+        null=False,
+        blank=False
+    )
+
+    fullname = models.CharField(
+        max_length=100,
+        verbose_name="Name",
+        null=False,
+        blank=False,
+    )
+
+    birthdate = models.DateField(verbose_name="Date of birth", null=True, blank=True)
+
+    create_at = models.DateTimeField(
+        editable=False,
+        auto_now_add=timezone.now
+    )
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = CustomUserManager()
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["full_name", "email", "date_of_birth"]
+    REQUIRED_FIELDS = ["email", "fullname"]
 
 
     def __str__(self):
@@ -77,3 +104,39 @@ class CustomUser(AbstractBaseUser):
     def is_staff(self):
         """Is the user a member of staff?"""
         return self.is_admin
+
+
+class Profile(models.Model):
+    """
+    user_profile_id serial primary key unique   not null,
+    user_fk         int references twitter_user UNIQUE not null,
+    address         varchar,
+    bio             text,
+    image           text
+    """
+    user = models.OneToOneField(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='user_profile',
+        null=False,
+        blank=False
+    )
+    location = models.CharField(
+        max_length=250,
+        verbose_name='Location',
+        blank=True
+    )
+    bio = models.TextField(
+        max_length=1000,
+        verbose_name='Bio',
+        blank=True
+    )
+    image = models.ImageField(
+        verbose_name='Image',
+        blank=True,
+        upload_to='./media/user_profile/'
+    )
+
+
+    def __str__(self):
+        return f'{self.user.username} Profile'

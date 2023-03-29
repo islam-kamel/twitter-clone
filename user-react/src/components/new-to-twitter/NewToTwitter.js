@@ -1,10 +1,18 @@
 import React from "react";
 import "./NewToTwitter.css";
-import TwButton from "../../components/tw-button/tw-button";
+import TwButton, {GithubButton, GoogleButton} from "../tw-button/tw-button";
 import TwModal from "../../components/modal/modal";
 
+const auth = `
+https://accounts.google.com/o/oauth2/v2/auth?
+scope=https%3A//www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/user.birthday.read&
+access_type=offline&
+include_granted_scopes=true&
+response_type=code&
+redirect_uri=http%3A//localhost:3008&
+client_id=903796776003-hvlec3ebn0pbc8hmt4ao97g0cbhe9hl8.apps.googleusercontent.com
+`
 const NewToTwitter = () => {
-
     return (
         <div>
             <div className="m-3 New-to-Twitter">
@@ -20,22 +28,20 @@ const NewToTwitter = () => {
                                     Sign up now to get your own personalized
                                     timeline!
                                 </h6>
+                                <div id={"authWithGoogle"}></div>
 
-                                <TwButton
+                                <GoogleButton
                                     btnStyle={"outline-dark"}
-                                    classes={"rounded-5 py-2 "}
-                                >
-                                    <i className="fab fa-google fa-1x mx-2"></i>
-                                    Sign in with Google
-                                </TwButton>
+                                    classes={"rounded-5 py-2"}
+                                />
 
-                                <TwButton
+                                <GithubButton
                                     btnStyle={"outline-dark"}
                                     classes={"rounded-5 py-2"}
                                 >
-                                    <i className="bi bi-apple mx-2"></i>
-                                    Sign in with Apple
-                                </TwButton>
+                                    <i className="bi bi-github mx-2"></i>
+                                    Sign in with Github
+                                </GithubButton>
 
                                 <TwModal.ModalButton
                                     targetId={"signup-modal"}
