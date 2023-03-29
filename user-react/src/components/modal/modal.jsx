@@ -2,7 +2,8 @@ import React, {ButtonHTMLAttributes, MouseEventHandler} from "react";
 
 const contentContainerStyle = {
     maxHeight: "90vh",
-    minHeight: 400,
+    minHeight: 430,
+    minWidth:600,
     height: 650
 }
 

@@ -34,6 +34,7 @@ export const Birthdate = () => {
             >
                 Birthdate
             </span>
+          
             <span
                 className={"d-inline-block text-muted fw-light text-break"}
                 style={{fontSize: 14}}
