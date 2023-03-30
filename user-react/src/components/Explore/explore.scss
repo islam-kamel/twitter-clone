@@ -1,97 +1,68 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    font-size: 10px;
-    // font-family: 'Poppins', 'sans-serif';
-  }
-  
-  body {
-    background-color: white;
-  }
-  
-  a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 24px;
-  }
-  
-  header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px 0 10px 8%;
-    position: sticky;
-  
-  }
+
 
   .sserch{
     background-color: #dad9d9c4 ;
   }
-  
+
   .nav-links {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border:none;
+    // font-size: 20% !important;
   }
-  
+
   .nav-link a {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     padding: 8px 25px 8px 8px;
     width: fit-content;
-  
+
   }
-  
+
   .nav-link a i {
-    font-size: 2.3rem;
+    // font-size: 2.3rem;
     margin-right: 15px;
   }
-  
+
   .nav-link a:hover, .main_account a:hover {
     background-color: rgba(110, 118, 125, 0.3) ;
     border-radius: 9999px ;
   }
-  
+
   .nav-link a:first-child {
     padding: 8px 8px;
   }
-  
+
   .nav-link a:first-child i {
     margin: 0%;
     color: #1C88d2;
   }
-  
+
   .tweet_button {
     // background-color: rgb(29, 155, 240);
     height: 55px;
     border-radius: 9999px;
     margin-top: 15px;
     cursor: pointer;
-    font-size: 1.7rem;
+    // font-size: 1.7rem;
     color: white;
     font-weight: 700;
     border: 1px solid white;
     padding: 5%;
     transition-duration: 0.2s;
   }
-  
+
   .tweet_button:hover {
     background-color: rgba(29, 155, 240, 0.7);
   }
-  
+
   .main_account {
     height: 30%;
     padding-top: 115px;
   }
-  
+
   .main_account a {
     display: flex;
     justify-content: space-between;
@@ -99,14 +70,14 @@
     margin-right: 10px;
     align-items: center;
   }
-  
+
   .img_profile {
     width: 38px;
     height: 38px;
     border-radius: 50%;
     background-color: white;
   }
-  
+
   .account_details {
     display: flex;
     flex-direction: column;
@@ -115,21 +86,21 @@
     font-size: 1.5rem;
     line-height: 20px;
   }
-  
+
   .account_name {
     font-weight: 500;
   }
-  
+
   .account_handle {
     color: rgb(110, 118, 125);
   }
-  
+
   /////////
-  
+
   #search-icon {
     background-color: #dad9d9c4;
   }
-  
+
   #input-bar {
     width: 82%;
     border-radius: 25%;
@@ -138,35 +109,50 @@
     background-color: #dad9d9c4 ;
     font-size: 1.5rem;
   }
-  
+
   #setting {
     margin-left: 4rem;
   }
-  
+
   #setting:hover {
     background-color: #dad9d9c4;
     border-radius: 50%;
     width: 30px;
     height: 30px;
-  
+
   }
-  
+
   #explore-group li button {
     color: #777;
     border: 0;
     background-color: transparent;
     padding: 1rem;
   }
-  
+
   #explore-group li button:hover {
     background-color: #d7d6d6;
-  
-  
   }
-  
-  #explore-group li button:focus {
+
+  // .active{
+  //   border-bottom: 4px solid #1d9bf0;
+  //   color: #222;
+  // }
+
+  #explore-group li button:hover {
     border-bottom: 4px solid #1d9bf0;
     color: #222;
+  
+  }
+
+  #explore-group li button:active {
+    border-bottom: 4px solid #1d9bf0;
+    color: #222;
+  
+  }
+  #explore-group li button.active {
+    border-bottom: 4px solid #1d9bf0;
+    color: #222;
+  
   }
 
   // .activee{
@@ -174,35 +160,45 @@
   //   color:dark;
   // }
 
-  
+
   .trend-card:hover {
     background-color: #f3f3f3;
   }
-  
+
   .trend-card:hover i:hover {
     background-color: #d2f7ff;
     border-radius: 50%;
   }
-  
+
   .trends {
     transform: translate3d(-26px, -4px, 0px) !important;
-  
-    width: 195px;
+
+    width: 213px;
     border-radius: 6px;
+    
   }
-  
+
+  .trends ul{
+    height:transparent ;
+  }
+
+  .trends li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:transparent ;
+  }
   .trends li:hover {
     background-color: #dad9d9c4;
-    padding-top: 1rem;
   }
-  
-  
+
+
   ///////////////////////////////
   /// right-side
   .side_feed {
     padding: 0 2%;
   }
-  
+
   .search {
     display: flex;
     height: 55px;
@@ -212,7 +208,7 @@
     padding-top: 5px;
     background-color: white;
   }
-  
+
   .search input {
     background-color: white;
     border-radius: 9999px;
@@ -226,82 +222,82 @@
     font-weight: 400;
     background-color: rgba(110, 118, 125, 0.1);
   }
-  
-  
+
+
   ////////////// media  ///////////////////////
   ////content mixin
   @mixin laptopStyle {
     @media (max-width: 1023px) {
       @content;
-  
+
     }
   }
-  
+
   @mixin tabletStyle {
     @media (max-width: 880px) {
       @content;
     }
   }
-  
+
   @mixin mobileStyle {
     @media (max-width: 585px) {
       @content;
     }
   }
-  
+
   ////////////// calling media //////////////////////
   @include tabletStyle() {
     #side_feed {
       display: none;
-  
+
     }
-  
+
     .nav_links {
       width: 80%;
     }
     .spn {
       display: none;
     }
-  
+
     .nav-item {
       font-size: 16px;
       font-weight: bold;
     }
-  
+
   }
-  
+
   @include mobileStyle() {
     #side_feed {
       display: none;
-  
+
     }
-  
+
     .nav_links {
       width: 80%;
     }
     .spn {
       display: none;
     }
-  
+
     .nav-item {
       font-size: 10px;
       font-weight: bold;
     }
-  
+
     .trending-part {
-  
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-end;
       font-size: 16px;
     }
+    
     .trending-part h4 {
       display: flex;
       justify-content: center;
       align-items: flex-end !important;
     }
-  
+
     .trends {
       width: 100%;
     }
@@ -311,7 +307,7 @@
     .trend-card {
       display: flex;
       flex-direction: column;
-  
+
     }
     .followers {
       display: flex;
@@ -319,5 +315,5 @@
       font-size: larger;
       font-weight: bold;
     }
-  
+
   }

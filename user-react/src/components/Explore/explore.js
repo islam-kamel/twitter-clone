@@ -5,15 +5,15 @@ import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 export default function Explore(){
 
-     const [activeMenu, setActiveMenu] = useState('For You');
+    //  const [activeMenu, setActiveMenu] = useState('For You');
 
-     useEffect(() => {
-        handleClick();
-     }, []);
+     
+        // handleClick();
+    
 
-     const handleClick = (menu) => {
-        setActiveMenu(menu);
-      };
+    //  const handleClick = (menu) => {
+    //     setActiveMenu(menu);
+    //   };
         
 
     const handleSearcher=()=>{
@@ -29,9 +29,9 @@ export default function Explore(){
         serchIcon.style.cssText = " background-color:#eff3f4; border: 1px solid #1c88d2;color:#1c88d2;"
         document.getElementById("input-bar").style.backgroundColor = "#eff3f4 !important";
     })
-    
+ }
 
-    }
+
 
     return <>
     
@@ -42,7 +42,7 @@ export default function Explore(){
        
         <div id="explore" className=" col-12  border-end p-3">
             {/* <!--  --------------------------------search-Bar-------------- --> */}
-            <div id="searchBar" className="t-center col-11">
+            <div id="searchBar" className="t-center col-10">
                 <div className=" mb-1  justify-content-between align-items-center d-flex " id="search-group">
                     <div className="sserch input-group  d-flex justify-content-start  align-items-center  col-6 rounded-pill ms-3"
                          id="search-icon">
@@ -72,19 +72,19 @@ export default function Explore(){
                                                 <button type="button" width="50" className="btn-close fw-4 "
                                                         data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
-                                                <h2 className="modal-title fs-3 fw-4 ms-4" id="staticBackdropLabel">
+                                                <h2 className="modal-title fs-4 fw-4 ms-3" id="staticBackdropLabel">
                                                     Trends</h2>
                                             </div>
                                         </div>
-                                        <div className="modal-body p-5 d-flex justify-content-between "
+                                        <div className="modal-body py-3 d-flex justify-content-between "
                                              style={{height:'500px'}}>
                                             <div>
                                                 <h4 className="d-flex justify-content-start">Trends for you</h4>
-                                                <p className="fs-5">Personalize trends based on your location and who you
+                                                <p className="fs-6">Personalize trends based on your location and who you
                                                     follow.</p>
                                             </div>
                                             <div className="form-check">
-                                                <input className="form-check-input p-3" type="checkbox" value=""
+                                                <input className="form-check-input px-2" type="checkbox" value=""
                                                        id="flexCheckChecked" defaultChecked />
                                             </div>
                                         </div>
@@ -96,22 +96,18 @@ export default function Explore(){
                 </div>
             </div>
             {/* <!----------------  Trending Bar  ---------------------> */}
-             <div className="btn-group mt-3 justify-content-around align-items-center d-flex w-100 fs-5 fw-5 text-center " id="explore-group" role="group" > 
-            <ul className="nav nav-tabs mt-4 col-10 w-100 fs-3 fw-5  d-flex justify-content-around align-items-center"
-                id="explore-group pills-tab" role="tablist group"  >
+             <div className="btn-group trend-bar mt-1 justify-content-around align-items-center d-flex w-100 fs-6 fw-5 text-center " id="explore-group" role="group" > 
+            <ul className="nav nav-pills  mt-2 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
+                id="pills-tab explore-group" role="tablist"  >
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
-                            aria-selected="true" onClick={() => handleClick("For You")} className={activeMenu === "For You" ? "activee" : ""} 
-                           >
-                                 {/* style={(activeMenu === "For You" ?({color:'dark',backgroundColor:'#1d9bf0'} ): "")} */}
+                
+                    <button class="nav-link  nav-links trend-bar nav-tabs border-color  active focus" id="pills-foryou-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-foryou" type="button" role="tab" aria-controls="pills-foryou"
+                            aria-selected="false" >
+                                
                                For You
                     </button>
-
-                    {/* <NavLink style={({isActive})=>isActive?{color:'green'}:{color:'blue'}} to="#" className='nav-links  nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
-                            aria-selected="true' >For You</NavLink> */}
 
 
 
@@ -121,17 +117,14 @@ export default function Explore(){
                 
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-links nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-Trending" type="button" role="tab" aria-controls="pills-Trending"
-                            aria-selected="false" onClick={() => handleClick("Trending")} className={activeMenu === "Trending" ? "activee" : ""} 
-                             >
+                    <button class="nav-link  nav-links trend-bar nav-tabs border-color" id="pills-Trending-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-Trending"  type="button" role="tab" aria-controls="pills-Trending"
+                            aria-selected="false"  >
                                 Trending
-                                {/* style={(activeMenu === "Trending" ?({color:'dark',backgroundColor:'#1d9bf0'} ): "")} */}
+                               
                     </button>
 
-                    {/* <NavLink style={({isActive})=>isActive?{color:'green'}:{color:'blue'}} to="pills-Trending-tab" className="nav-links nav-tabs-border-color:gray" aria-controls="pills-Trending"
-                            aria-selected="false"   >Trending</NavLink> */}
-
+                  
 
                    
 
@@ -139,9 +132,10 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links" data-bs-toggle="pill" data-bs-target="#pills-News"
-                            type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
+                    <button className="nav-link  nav-links trend-bar nav-tabs border-color" id="pills-News-tab" data-bs-toggle="pill" data-bs-target="#pills-News"
+                         type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
                     </button>
+                   
 
 
                         
@@ -150,8 +144,8 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links nav-tabs-border-color" data-bs-toggle="pill"
-                            data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
+                    <button className="nav-link  nav-links trend-bar  nav-tabs-border-color"   data-bs-toggle="pill"
+                        id="pills-Sports-tab"    data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
                             aria-selected="false">Sports
                     </button>
 
@@ -160,8 +154,8 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-links nav-tabs-border-color" data-bs-toggle="pill"
-                            data-bs-target="#pills-Entertainment" type="button" role="tab"
+                    <button className="nav-link nav-links trend-bar nav-tabs-border-color"   data-bs-toggle="pill"
+                          id="pills-Entertainment-tab"  data-bs-target="#pills-Entertainment" type="button" role="tab"
                             aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
                     </button>
 
@@ -170,10 +164,10 @@ export default function Explore(){
                 </li>
             </ul>
             </div>
-            <div className="tab-content" id="pills-tabContent">
+            <div className="tab-content show" id="pills-tabContent">
                 {/* <!----------------- ForYou-Trends-------------> */}
-                <div className="tab-pane fade show active pt-2" id="pills-for-you" role="tabpanel"
-                     aria-labelledby="pills-for-you-tab">
+                <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
+               
 
                 <Trends className='trendss' trendPlace='Trending in Egypt' trendName='أفريقيا يا زمالك' trendTweets='24,2K Tweets' ></Trends>
                
@@ -195,56 +189,56 @@ export default function Explore(){
 
                     <hr/>
                     <div className="row">
-                        <div className="col-12 border-bottom py-3">
-                            <h1 className="mt-3 ms-4">How To Follow</h1>
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <h3 className=" ms-4">How To Follow</h3>
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
                                     <img src="../assets/images/moon3.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
                                     <div className="followers ms-3 mt-4">
-                                        <h4>Eslam Kamel</h4>
-                                        <h4 className="text-secondary">@Eslam</h4>
-                                        <h5 className="mt-1">Web Develober-Frontend</h5>
+                                        <h5>Eslam Kamel</h5>
+                                        <h6 className="text-secondary">@Eslam</h6>
+                                        <h6 className="mt-1">Web Develober-Frontend</h6>
                                     </div>
 
                                 </div>
-                                <button type="button" className="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow
+                                <button type="button" className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
                                 </button>
                             </div>
                         </div>
-                        <div className="col-12 border-bottom py-3">
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
-                                    {/* <!-- <span className="d-inline-block" tabIndex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover"> --> */}
+                                   
                                     <img src="../assets/images/moon3.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
-                                    {/* <!-- <button className="btn btn-primary" type="button" disabled>Disabled button</button> --> */}
-                                    {/* <!-- </span> --> */}
+                                  
+                                   
 
                                     <div className="followers ms-3 mt-4">
-                                        <h4>Ahmed Khaled</h4>
-                                        <h4 className="text-secondary">@Ahmed</h4>
-                                        <h5 className="mt-1">Web Develober-Frontend</h5>
+                                        <h5>Ahmed Khaled</h5>
+                                        <h6 className="text-secondary">@Ahmed</h6>
+                                        <h6 className="mt-1">Web Develober-Frontend</h6>
                                     </div>
 
                                 </div>
-                                <button type="button" className="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow
+                                <button type="button" className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
                                 </button>
                             </div>
                         </div>
-                        <div className="col-12 border-bottom py-3">
-                            <div className="trend-card mt-3 d-flex justify-content-between align-items-center">
+                        <div className="col-12 border-bottom py-2">
+                            <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
-                                    <img src="../assets/images/moon3.jpg" width="50" height="50"
+                                    <img src="./assets/profile.image.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
                                     <div className="followers ms-3 mt-4">
-                                        <h4>Eslam Kamel</h4>
-                                        <h4 className="text-secondary">@Eslam</h4>
-                                        <h5 className="mt-1">Web Develober-Frontend</h5>
+                                        <h5>Eslam Kamel</h5>
+                                        <h6 className="text-secondary">@Eslam</h6>
+                                        <h6 className="mt-1">Web Develober-Frontend</h6>
                                     </div>
 
                                 </div>
-                                <button type="button" className="btn btn-dark rounded-pill fs-4 fw-bold px-4 me-3">Follow
+                                <button type="button" className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
                                 </button>
                             </div>
                         </div>
@@ -252,7 +246,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!--------------------- Trending-Trends--> */}
-                <div className="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab">
+                <div className="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
                     <h2 className="mt-3 ms-4">World Wide Trends</h2>
                    
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
@@ -274,7 +268,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!-- ----------------- News Trends -------------------------> */}
-                <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab">
+                <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab" tabindex="0" >
 
                 <Trends className='trendss' trendPlace='Coding' trendName='Javascript' trendTweets='55.3K Tweets' ></Trends>
                 
@@ -296,7 +290,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!------------------ Sports Trends -------------------------> */}
-                <div className="tab-pane fade" id="pills-Sports" role="tabpanel" aria-labelledby="pills-Sports-tab">
+                <div className="tab-pane fade" id="pills-Sports" role="tabpanel" aria-labelledby="pills-Sports-tab" tabindex="0">
 
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
                     
@@ -317,8 +311,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!------------------ Entertainment Trends -----------------------> */}
-                <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"
-                     aria-labelledby="pills-Entertainment-tab">
+                <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"  aria-labelledby="pills-Entertainment-tab" tabindex="0">
                         
                     <Trends className='trendss' trendPlace='Trending in Entertainment' trendName='Marvel Studios' trendTweets='55.3K Tweets' ></Trends>   
                     

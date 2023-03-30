@@ -6,24 +6,34 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
+import Explore from "./components/Explore/explore";
+import LoadingTwitterIcon from './components/Loading/loading-twitter-icon';
+import LoadingSpiner from './components/Loading/loading-spiner';
 
 function App() {
     return (
         <>
             <Login/>
             <SignUp/>
-            <main className="container">
-                <section className="row" style={{height: "100vh"}}>
-                    <header className="col-2  col-lg-3 border">
+            <main className="container-fluid container-xl p-0 px-sm-5">
+                <section className="row mx-auto" style={{height: "100vh"}}>
+                    <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
                     </header>
-                    <main className="col border">
+                    <main className="col border p-0">
                         <Routes>
                             <Route index element={<Home />} />
+
+                            {/* test loading pages */}
+                            <Route path={'Loading-twitter-icon'} index element={<LoadingTwitterIcon />} />
+                            <Route path={'Loading-spiner'} index element={<LoadingSpiner />} />
+                            {/* ------- end loading pages --- */}
+                            
+                            <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
                         </Routes>
                     </main>
-                    <aside className="col-3 d-none d-lg-block border">
+                    <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
                         <Routes>
                            <Route path={'*'} element={<NewToTwitter/>}/>
                         </Routes>
