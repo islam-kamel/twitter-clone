@@ -9,21 +9,21 @@ export default function TwInput(
         classes?: string,
         errorMessage?: string,
         errorClasses?: string,
-        other: InputHTMLAttributes
+        other?: InputHTMLAttributes
     }
 ) {
     return (
         <div className="form-floating">
             <input
-                type={props.type ?? 'text'}
-                className={`form-control ${props.classes ?? ''}`}
+                type={props?.type ?? 'text'}
+                className={`form-control ${props?.classes ?? ''}`}
                 placeholder={''}
-                id={props.id}
-                {...props.other}
+                id={props?.id}
+                {...props?.other}
             />
-            <label htmlFor={props.id}>{props.labelText}</label>
-            <div className={`ms-3 invalid-feedback fw-bold ${props.errorClasses ?? ''}`}>
-                {props.errorMessage}
+            <label htmlFor={props?.id}>{props?.labelText}</label>
+            <div className={`ms-3 invalid-feedback fw-400 ${props?.errorClasses ?? ''}`}>
+                {props?.errorMessage}
             </div>
         </div>
     );

@@ -19,48 +19,39 @@ import FormStepFifth from "../forms/FormStepFifth";
  * }
  *
  * */
+
+function SubmitButton(props: { callback: Function, title: string, disabled: boolean }) {
+    console.log(props.disabled)
+    return <TwButton
+        type="submit"
+        btnStyle={"outline-dark w-100"}
+        classes={"rounded-5"}
+        other={{
+            onClick: props?.callback,
+            disabled: props?.disabled
+        }}
+    >
+        {props?.title}
+    </TwButton>
+}
+
+
 function SignupForm() {
     const [step, setStep] = useState(1);
     const [validated, setValidated] = useState(true);
     const [data, setData] = useState({});
+    const [formState, setFormState] = useState(false);
 
-    const form = document.forms["hero"];
+    const handleNext = () => {};
 
-    useEffect(() => console.log('stepper', validated), [validated])
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        setValidated(true);
-    };
-
-
-    const handleNext = () => {
-        setValidated(form.checkValidity());
-        if (form.checkValidity()) setStep(step + 1)
-    }
-
-    const handlePrev = () => {
-        setStep(step - 1);
-    };
+    const handlePrev = () => {};
 
     const getMonthName = (i) => new Date(`${i}/1/1970`).toLocaleString("default", {month: "short"})
 
-    const saveMainData = () => {
-        const data = new FormData(form);
-        const obj = {}
-        const birthdate = `${data.get("year")}, ${getMonthName(+data.get("month"))}, ${data.get("day")}`;
+    const saveMainData = () => {}
 
-        for (let key of data.keys()) {
-            obj[key] = data.get(key);
-        }
+    const handelSubmit = (event) => {
 
-        setData({...obj, birthdate});
-        console.log(birthdate)
     }
 
     return (
@@ -74,32 +65,22 @@ function SignupForm() {
             </p>
 
             <div className="row gy-4 w-100 row-cols-1 mx-auto justify-content-start text-start align-items-center">
-                <form name={"hero"} className={""} noValidate={true}
-                      onSubmit={handleSubmit}>
-                    {step === 1 && <FormStepOne validState={setValidated}/>}
+                <div>
+                    {step === 1 && (
+                        <FormStepOne
+                            handelSubmit={handelSubmit}
+                            formState={setFormState}
+                        >
+                            <SubmitButton callback={handleNext} title={'Next'} disabled={formState}></SubmitButton>
+                        </FormStepOne>
+                    )}
+
                     {step === 2 && <FormStepTwo/>}
                     {step === 3 &&
                         <FormStepThird fullname={data.fullname} email={data.email} birthdate={data.birthdate}/>}
                     {step === 4 && <FormStepFourth email={data?.email}/>}
                     {step === 5 && <FormStepFifth handleSubmit={() => console.log("Step 5")}/>}
                     <br/>
-                    {step === 1 && (
-                        <TwButton
-                            type="button"
-                            btnStyle={"outline-dark w-100"}
-                            classes={"rounded-5"}
-                            other={{
-                                onClick: () => {
-                                    saveMainData()
-                                    handleNext()
-                                },
-                                disabled: !validated ?? false
-                            }}
-                        >
-                            Next
-                        </TwButton>
-
-                    )}
                     {(step >= 2 && step < 3) && (
                         <TwButton
                             type="button"
@@ -108,6 +89,7 @@ function SignupForm() {
                             other={{
                                 onClick: handleNext
                             }}
+
                         >
                             Next
                         </TwButton>
@@ -140,15 +122,13 @@ function SignupForm() {
                             btnStyle={"outline-dark w-100"}
                             classes={"rounded-5"}
                             other={{
-                                onClick: () => {
-                                    handleSubmit()
-                                }
+                                onClick: () => {}
                             }}
                         >
                             Finish
                         </TwButton>
                     )}
-                </form>
+                </div>
             </div>
         </div>);
 }

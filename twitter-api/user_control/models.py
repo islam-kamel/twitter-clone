@@ -8,7 +8,6 @@ from django.utils.translation import gettext_lazy as _
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, fullname, password):
-        print(email, username)
         if not email:
             raise ValueError(_("The Email must be set."))
 
@@ -117,7 +116,7 @@ class Profile(models.Model):
     user = models.OneToOneField(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='user_profile',
+        related_name='profile',
         null=False,
         blank=False
     )

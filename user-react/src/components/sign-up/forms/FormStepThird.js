@@ -1,20 +1,28 @@
 import {Link} from "react-router-dom";
 import TwInput from "../../tw-input/tw-input";
+import FormWrapper from "../FormWrapper";
 
-function FormStepThird(props: { fullname: string, email: string, birthdate: string}) {
-    console.log(props)
+type FormData = {
+    fullname: string,
+    email: string,
+    birthdate: string,
+    password: string
+}
+
+function FormStepThird(props: { data: FormData, goto: Function }) {
     return (
-        <form className="mt-3">
-            <div id="growth" className={"row row-cols-1 g-3"}>
-                <h2 className="mb-5"><b>Create your account</b></h2>
+        <FormWrapper title={"Create your account"}>
+            <div id="growth" className={"row row-cols-1 gx-0 gy-3"}>
                 <div>
                     <TwInput
                         id="inputName"
                         labelText={"Name"}
+                        classes={"is-valid"}
                         other={{
-                            value: props?.fullname,
+                            value: props?.data?.fullname,
                             type: "text",
-                            disabled: true
+                            readOnly: true,
+                            onClick: () =>  props?.goto(0)
                         }}
                     />
 
@@ -24,10 +32,12 @@ function FormStepThird(props: { fullname: string, email: string, birthdate: stri
                         className="form-control input-lg py-2"
                         id="inputEmail"
                         labelText={"Email"}
+                        classes={"is-valid"}
                         other={{
-                            value: props?.email,
+                            value: props?.data?.email,
                             type: "email",
-                            disabled: true
+                            readOnly: true,
+                            onClick: () =>  props?.goto(0)
                         }}
                     />
                 </div>
@@ -35,11 +45,13 @@ function FormStepThird(props: { fullname: string, email: string, birthdate: stri
                     <TwInput
                         id="inputBirthDate"
                         labelText={"Birth Date"}
+                        classes={"is-valid"}
                         other={{
-                            value: props?.birthdate,
+                            value: props?.data?.birthdate,
                             type: "text",
-                            name: 'birthdate',
-                            disabled: true,
+                            name: "birthdate",
+                            readOnly: true,
+                            onClick: () =>  props?.goto(0)
                         }}
                     />
                 </div>
@@ -55,7 +67,7 @@ function FormStepThird(props: { fullname: string, email: string, birthdate: stri
                         you choose otherwise <Link to="#">here</Link>.</h6>
                 </div>
             </div>
-        </form>
+        </FormWrapper>
     );
 }
 

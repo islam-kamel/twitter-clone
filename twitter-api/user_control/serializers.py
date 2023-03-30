@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from .models import CustomUser
+from .models import CustomUser, Profile
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'date_of_birth', 'password']
+        fields = ['id', 'username', 'email', 'birthdate', 'password']
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -17,19 +17,45 @@ class RegisterSerializer(serializers.ModelSerializer):
         return instance
 
 
-class UserInfoSerializer(serializers.ModelSerializer):
-    """
-    username,
-    image,
-    """
-
-    class Meta:
-        model = CustomUser
-        fields = ['username']
-
-
-
 class UserLoginClaimsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['username']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        extra_kwargs = {
+            'user': {'read_only': True},
+        }
+
+
+class UserInfoSerializer(serializers.ModelSerializer):
+    profile = UserProfileSerializer(instance=serializers.CurrentUserDefault, required=False)
+
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False},
+            'username': {'read_only': True},
+            'email': {'required': False},
+            'fullname': {'required': False}
+        }
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile', {})
+        profile_instance = instance.pop('profile')
+
+        for key, value in profile_data.items():
+            setattr(profile_instance, key, value)
+        profile_instance.save()
+
+        user_instance = instance.pop('user', {})
+        for key, value in validated_data.items():
+            setattr(user_instance, key, value)
+        user_instance.save()
+
+        return user_instance
