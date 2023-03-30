@@ -23,7 +23,7 @@ const Message = () => {
                         </nav>
 
                         <div className="form-group">
-                            <input type="search" id="form1" className="form-control search" placeholder="&#61442; Search Direct Messages" />
+                            <input type="search" id="form1" className="form-control search Message-Search" placeholder="&#61442; Search Direct Messages" />
                             <div className="trysearch text-center pt-5">Try searching for people, groups, or messages</div>
                         </div>
                         <br />
@@ -53,40 +53,39 @@ const Message = () => {
                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
-                                <div className="modal-header row">
+                                <div className="modal-header border-0">
+                                    
+                                        <button type="button" className="btn-close col-sm-1 pt-4" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
 
-                                    <button type="button" className="btn-close col-sm-1 pt-4" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                        <h1 className="modal-title fs-5 col-sm-9 ps-3" id="staticBackdropLabel"> New Message</h1>
 
-                                    <h1 className="modal-title fs-5 col-sm-9 ps-3" id="staticBackdropLabel"> New Message</h1>
-
-                                    <button type="button" className="btn btn-light col-sm-2">Next</button>
-
-
-                                    <div className="form-group  row">
-                                        <input type="text" id="form1" className="form-control search border-0 text-left"
-                                            placeholder="&#61442; Search People" />
-                                    </div>
+                                        <button type="button" className="btn btn-light col-sm-2">Next</button>
+                                </div>
+                                <div className="form-group d-flex flex-row">
+                                <i class="bi bi-search mx-2 mt-3"></i>
+                                        <input type="text" id="form1" className="form-control search border-0 text-left "
+                                            placeholder="Search People" />
                                 </div>
 
-                                <div className="modal-body">
+                                <div className="modal-body border-top">
                                     <a href="#"> <i className="bi bi-people p-1"></i><span> Create a group</span></a>
                                 </div>
-                                <div className="modal-footer ">
-                                    <div className="searchpeople">
-                                        <span className="ps-3"><i className="bi bi-person-fill"></i> You follow each other</span>
-                                        <span className="row ">
+                                <div className="modal-footer">
+                                    <span className="col-12"><i className="bi bi-person-fill"></i> You follow each other</span>
+                                    <div className="me-5 d-flex flex-column  ">
+                                        <div className="row searchpeople">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU" className="col-2 col-md-2" />
                                             <span className="col-9 col-md-9">Engy<br />@engy123 </span>
-                                        </span>
-                                    </div>
+                                        </div>
 
-                                    <div className="searchpeople">
-                                        <span className="row ">
+                                        <div className="row mt-3 searchpeople">
                                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU" className="col-2 col-md-2" />
                                             <span className="col-9 col-md-9 pe-5">aya<br />@aya3883 </span>
-                                        </span>
+                                        </div>
                                     </div>
+
+                                  
                                 </div>
                             </div>
                         </div>
