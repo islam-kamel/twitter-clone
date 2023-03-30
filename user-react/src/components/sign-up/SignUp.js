@@ -6,6 +6,7 @@ import TwButton from "../tw-button/tw-button";
 import FormStepTwo from "./forms/FormStepTwo";
 import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
+import axios from "../../apiProvider/axios";
 
 type FormData = {
     fullname: string,
@@ -73,6 +74,14 @@ export default function SignUp() {
     }
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault();
+        if (isLastStep) {
+           axios.post('/api/register', {
+               ...data,
+               username: 'testUser'
+           }).then(e => {
+               console.log(e.data)
+           })
+        }
         next();
     }
 

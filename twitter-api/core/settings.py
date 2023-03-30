@@ -62,7 +62,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 AUTH_USER_MODEL = 'user_control.CustomUser'
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://localhost:3008']
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = ['localhost:3000', 'http://localhost:3008']
 
 TEMPLATES = [
     {
@@ -130,7 +131,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -162,9 +166,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-OAUTH2_PROVIDER = {
-    'OAUTH2_BACKEND_CLASS': 'user_control.backend.OAuth'
-}
 
 # Google OAuth2 Settings
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('GOOGLE_ID')

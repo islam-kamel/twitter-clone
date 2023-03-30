@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 
+
 function App() {
     return (
         <>
@@ -19,6 +20,7 @@ function App() {
                         <MainSidebar/>
                     </header>
                     <main className="col border p-0">
+                        {process.env.API_ID}
                         <Routes>
                             <Route index element={<Home />} />
                             <Route path={'explore'} element={<Explore />} />
