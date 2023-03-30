@@ -5,15 +5,15 @@ import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 export default function Explore(){
 
-     const [activeMenu, setActiveMenu] = useState('For You');
+    //  const [activeMenu, setActiveMenu] = useState('For You');
 
-     useEffect(() => {
-        handleClick();
-     }, []);
+     
+        // handleClick();
+    
 
-     const handleClick = (menu) => {
-        setActiveMenu(menu);
-      };
+    //  const handleClick = (menu) => {
+    //     setActiveMenu(menu);
+    //   };
         
 
     const handleSearcher=()=>{
@@ -29,9 +29,9 @@ export default function Explore(){
         serchIcon.style.cssText = " background-color:#eff3f4; border: 1px solid #1c88d2;color:#1c88d2;"
         document.getElementById("input-bar").style.backgroundColor = "#eff3f4 !important";
     })
-    
+ }
 
-    }
+
 
     return <>
     
@@ -97,21 +97,17 @@ export default function Explore(){
             </div>
             {/* <!----------------  Trending Bar  ---------------------> */}
              <div className="btn-group trend-bar mt-1 justify-content-around align-items-center d-flex w-100 fs-6 fw-5 text-center " id="explore-group" role="group" > 
-            <ul className="nav nav-tabs mt-2 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
+            <ul className="nav nav-pills  mt-2 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
                 id="pills-tab explore-group" role="tablist"  >
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-link  nav-links trend-bar nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
-                            aria-selected="true" onClick={() => handleClick("For You")} className={activeMenu === "For You" ? "activee" : ""} 
-                           >
-                                 {/* style={(activeMenu === "For You" ?({color:'dark',backgroundColor:'#1d9bf0'} ): "")} */}
+                
+                    <button class="nav-link  nav-links trend-bar nav-tabs border-color  active focus" id="pills-foryou-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-foryou" type="button" role="tab" aria-controls="pills-foryou"
+                            aria-selected="false" >
+                                
                                For You
                     </button>
-
-                    {/* <NavLink style={({isActive})=>isActive?{color:'green'}:{color:'blue'}} to="#" className='nav-links  nav-tabs-border-color  active" id="pills-home-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-for-you" type="button" role="tab" aria-controls="pills-for-you"
-                            aria-selected="true' >For You</NavLink> */}
 
 
 
@@ -121,17 +117,14 @@ export default function Explore(){
                 
                 <li className="nav-item" role="presentation">
 
-                    <button class="nav-link  nav-links trend-bar nav-tabs-border-color:gray" id="pills-profile-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-Trending" href='#pills-Trending' type="button" role="tab" aria-controls="pills-Trending"
-                            aria-selected="false" onClick={() => handleClick("Trending")} className={activeMenu === "Trending" ? "activee" : ""} 
-                             >
+                    <button class="nav-link  nav-links trend-bar nav-tabs border-color" id="pills-Trending-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-Trending"  type="button" role="tab" aria-controls="pills-Trending"
+                            aria-selected="false"  >
                                 Trending
-                                {/* style={(activeMenu === "Trending" ?({color:'dark',backgroundColor:'#1d9bf0'} ): "")} */}
+                               
                     </button>
 
-                    {/* <NavLink style={({isActive})=>isActive?{color:'green'}:{color:'blue'}} to="pills-Trending-tab" className="nav-links nav-tabs-border-color:gray" aria-controls="pills-Trending"
-                            aria-selected="false"   >Trending</NavLink> */}
-
+                  
 
                    
 
@@ -139,9 +132,10 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-link  nav-links trend-bar" data-bs-toggle="pill" data-bs-target="#pills-News"
-                            type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
+                    <button className="nav-link  nav-links trend-bar nav-tabs border-color" id="pills-News-tab" data-bs-toggle="pill" data-bs-target="#pills-News"
+                         type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
                     </button>
+                   
 
 
                         
@@ -150,8 +144,8 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-link  nav-links trend-bar  nav-tabs-border-color" data-bs-toggle="pill"
-                            data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
+                    <button className="nav-link  nav-links trend-bar  nav-tabs-border-color"   data-bs-toggle="pill"
+                        id="pills-Sports-tab"    data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
                             aria-selected="false">Sports
                     </button>
 
@@ -160,8 +154,8 @@ export default function Explore(){
                 </li>
                 <li className="nav-item" role="presentation">
 
-                    <button className="nav-link  nav-links trend-bar nav-tabs-border-color" data-bs-toggle="pill"
-                            data-bs-target="#pills-Entertainment" type="button" role="tab"
+                    <button className="nav-link nav-links trend-bar nav-tabs-border-color"   data-bs-toggle="pill"
+                          id="pills-Entertainment-tab"  data-bs-target="#pills-Entertainment" type="button" role="tab"
                             aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
                     </button>
 
@@ -170,10 +164,10 @@ export default function Explore(){
                 </li>
             </ul>
             </div>
-            <div className="tab-content" id="pills-tabContent">
+            <div className="tab-content show" id="pills-tabContent">
                 {/* <!----------------- ForYou-Trends-------------> */}
-                <div className="tab-pane fade show active pt-2" id="pills-for-You" role="tabpanel"
-                     aria-labelledby="pills-for-you-tab">
+                <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
+               
 
                 <Trends className='trendss' trendPlace='Trending in Egypt' trendName='أفريقيا يا زمالك' trendTweets='24,2K Tweets' ></Trends>
                
@@ -215,11 +209,11 @@ export default function Explore(){
                         <div className="col-12 border-bottom py-2">
                             <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
-                                    {/* <!-- <span className="d-inline-block" tabIndex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover"> --> */}
+                                   
                                     <img src="../assets/images/moon3.jpg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
-                                    {/* <!-- <button className="btn btn-primary" type="button" disabled>Disabled button</button> --> */}
-                                    {/* <!-- </span> --> */}
+                                  
+                                   
 
                                     <div className="followers ms-3 mt-4">
                                         <h5>Ahmed Khaled</h5>
@@ -252,7 +246,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!--------------------- Trending-Trends--> */}
-                <div className="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab">
+                <div className="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
                     <h2 className="mt-3 ms-4">World Wide Trends</h2>
                    
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
@@ -274,7 +268,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!-- ----------------- News Trends -------------------------> */}
-                <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab">
+                <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab" tabindex="0" >
 
                 <Trends className='trendss' trendPlace='Coding' trendName='Javascript' trendTweets='55.3K Tweets' ></Trends>
                 
@@ -296,7 +290,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!------------------ Sports Trends -------------------------> */}
-                <div className="tab-pane fade" id="pills-Sports" role="tabpanel" aria-labelledby="pills-Sports-tab">
+                <div className="tab-pane fade" id="pills-Sports" role="tabpanel" aria-labelledby="pills-Sports-tab" tabindex="0">
 
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
                     
@@ -317,8 +311,7 @@ export default function Explore(){
                 </div>
 
                 {/* <!------------------ Entertainment Trends -----------------------> */}
-                <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"
-                     aria-labelledby="pills-Entertainment-tab">
+                <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"  aria-labelledby="pills-Entertainment-tab" tabindex="0">
                         
                     <Trends className='trendss' trendPlace='Trending in Entertainment' trendName='Marvel Studios' trendTweets='55.3K Tweets' ></Trends>   
                     
