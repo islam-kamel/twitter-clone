@@ -1,17 +1,9 @@
 import React from "react";
 import "./NewToTwitter.css";
-import TwButton, {GithubButton, GoogleButton} from "../tw-button/tw-button";
+import {GithubButton, GoogleButton} from "../tw-button/tw-button";
 import TwModal from "../../components/modal/modal";
+import {Link} from "react-router-dom";
 
-const auth = `
-https://accounts.google.com/o/oauth2/v2/auth?
-scope=https%3A//www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/user.birthday.read&
-access_type=offline&
-include_granted_scopes=true&
-response_type=code&
-redirect_uri=http%3A//localhost:3008&
-client_id=903796776003-hvlec3ebn0pbc8hmt4ao97g0cbhe9hl8.apps.googleusercontent.com
-`
 const NewToTwitter = () => {
     return (
         <div>
@@ -51,11 +43,12 @@ const NewToTwitter = () => {
                                 />
 
                                 <p className="h6 ms-3 fw-light">By signing up, you agree to the
-                                    <a a href="https://twitter.com/en/tos">
-                                        Terms of Service</a>and <a href="https://twitter.com/en/privacy"> Privacy
-                                        Policy</a>,
-                                    including <a href="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie
-                                        Use.</a></p>
+                                    <Link to="https://twitter.com/en/tos"> Terms of Service </Link>
+                                    and
+                                    <Link to="https://twitter.com/en/privacy"> Privacy Policy</Link>
+                                    , including
+                                    <Link to="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie Use.</Link>
+                                </p>
                             </div>
                         </div>
 

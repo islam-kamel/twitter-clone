@@ -3,7 +3,7 @@ import React, {ButtonHTMLAttributes, MouseEventHandler} from "react";
 const contentContainerStyle = {
     maxHeight: "90vh",
     minHeight: 430,
-    minWidth:600,
+    minWidth: 600,
     height: 650
 }
 
@@ -17,13 +17,17 @@ class TwModal extends React.Component {
     _label: string = (id) => `${id}Label`;
 
     /**
-     * @param {string} title set Modal title
-     * @param {boolean} defaultBtn option to render Default button or not default true
-     * @param {React.HTMLAttributes.className} classes set custom class for header element
-     * @param {string} label use to set element id
+     *
      * @return React.Component
+     * @param props
      * */
-    static Header({title, defaultBtn = true, classes, label = "TwModal"}) {
+    static Header(props: {
+        title?: string,
+        children?: React.Component | React.Component[],
+        defaultBtn?: boolean,
+        classes?: string,
+        label?: string
+    }) {
         function DefaultBtn() {
             return (
                 <button
@@ -37,16 +41,20 @@ class TwModal extends React.Component {
 
         return (
             <div className={"modal-header border-0 pt-0"}>
-                <div className={"row w-100 g-0 justify-content-center align-items-center"}>
-                    <div className={"col-4"}>
-                        {defaultBtn ? <DefaultBtn/> : false}
-                    </div>
-                    <div className={"col"}>
+                {props?.children ?? (
+                    <div className={"row w-100 g-0 justify-content-center align-items-center"}>
+                        <div className={"col-4"}>
+                            {props?.defaultBtn ? <DefaultBtn/> : false}
+                        </div>
+                        <div className={"col"}>
 
-                        <h1 className={`modal-title ${classes ?? "fs-5"}`} id={`${label}Label`}>{title}</h1>
+                            <h1 className={`modal-title ${props?.classes ?? "fs-5"}`}
+                                id={`${props?.label}Label`}>{props.title}</h1>
+                        </div>
+                        <div className={"col-4"}></div>
                     </div>
-                    <div className={"col-4"}></div>
-                </div>
+                )}
+
             </div>
         );
     }
@@ -84,23 +92,36 @@ class TwModal extends React.Component {
     static ModalButton(
         props: {
             targetId: string,
-            btnStyle: string,
-            classes: string,
-            title: string,
-            children: React.ReactElement,
+            btnStyle?: string,
+            withOutButton?: boolean,
+            classes?: string,
+            title?: string,
+            children?: React.ReactElement,
             other?: MouseEventHandler | ButtonHTMLAttributes
         }
     ) {
+        const elementRole = {
+            type: "button",
+            className: `btn btn-${props.btnStyle ?? "primary"} ${props.classes ?? ""}`,
+            "data-bs-toggle": "modal",
+            "data-bs-target": `#${props.targetId}`,
+        }
         return (
-            <button
-                type="button"
-                className={`btn btn-${props.btnStyle ?? "primary"} ${props.classes ?? ""}`}
-                data-bs-toggle="modal"
-                data-bs-target={`#${props.targetId}`}
-                {...props.other}
-            >
-                {props.title ? props.title : props.children ? props.children : "Tw Model"}
-            </button>
+            <>
+                {!props?.withOutButton
+                    ? (
+                        <button
+                            {...elementRole}
+                            {...props.other}
+                        >
+                            {props.title ? props.title : props.children ? props.children : "Tw Model"}
+                        </button>
+                    ) : (
+                        <span  {...elementRole} className={""}>{props?.children}</span>
+                    )
+                }
+
+            </>
         );
     }
 
