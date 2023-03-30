@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
+import Message from './components/Message/Message';
 
 function App() {
     return (
@@ -23,13 +24,16 @@ function App() {
                             <Route index element={<Home />} />
                             <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
+                            
+                            <Route path={'Message'} element={<Message />} />
+
                         </Routes>
                     </main>
-                    <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
+                    {/* <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
                         <Routes>
                            <Route path={'*'} element={<NewToTwitter/>}/>
                         </Routes>
-                    </aside>
+                    </aside> */}
                 </section>
             </main>
             <Footer/>

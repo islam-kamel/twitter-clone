@@ -1,0 +1,101 @@
+/* @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css"; */
+.message a:hover {
+  border-radius: 50%;
+  background-color: rgb(238, 234, 234);
+}
+
+input[type=search] {
+  border-radius: 25px;
+  height: 40px;
+  text-align: center;
+}
+
+.trysearch {
+  display: none;
+}
+
+input[type=search]:focus {
+  text-align: left;
+}
+input[type=search]:focus + .trysearch {
+  display: block;
+  
+}
+
+input[type=search]:focus > .Message div {
+  display: none;
+}
+
+.msg1 {
+  width: 100%;
+}
+.msg1 .more {
+  display: none;
+}
+.msg1:hover {
+  background-color: #f4f4f6;
+  cursor: pointer;
+}
+.msg1:hover .more {
+  display: block;
+}
+.msg1:hover .more:hover {
+  border-radius: 60px 20px 60px 20px;
+  background-color: #d2d3d3;
+  color: rgb(118, 118, 238);
+}
+
+.newmessage {
+  line-height: 150px;
+}
+
+.newmessage p {
+  line-height: 1.5;
+  display: inline-block;
+  justify-content: start;
+}
+
+input[type=text]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.modal-body {
+  font-size: 20px;
+  font-style: normal;
+}
+.modal-body a {
+  text-decoration: none;
+}
+.modal-body i {
+  border: 1px solid rgb(227, 218, 218);
+  border-radius: 50%;
+}
+.modal-body:hover {
+  background-color: #f4f4f6;
+}
+
+.modal-footer {
+  height: auto;
+}
+.modal-footer .searchpeople:hover {
+  background-color: #f4f4f6;
+  cursor: pointer;
+}
+
+@media (min-width: 481px) and (max-width: 967px) {
+  .newmessage {
+    display: none;
+  }
+  .message {
+    width: 80%;
+  }
+}
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+  .newmessage {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=twitterMessage.css.map */
