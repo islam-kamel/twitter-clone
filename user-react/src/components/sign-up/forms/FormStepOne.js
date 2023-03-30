@@ -2,6 +2,7 @@ import TwInput from "../../tw-input/tw-input";
 import FormWrapper from "../FormWrapper";
 import {useState} from "react";
 import {Birthdate} from "../Stepper/Bithdata";
+import {FormData} from "../SignUp";
 
 const initialErrors = {
     email: {
@@ -14,13 +15,6 @@ const initialErrors = {
     }
 }
 
-type FormData = {
-    fullname: string,
-    email: string,
-    birthdate: string,
-    password: string
-}
-
 function FormStepOne(props: { updateData: Function , data:FormData}) {
     const [errors, setErrors] = useState(initialErrors);
 
@@ -30,7 +24,6 @@ function FormStepOne(props: { updateData: Function , data:FormData}) {
             return {...prev}
         });
     }
-
     return (
         <FormWrapper title={"Create your account"}>
             <div className={'row row-cols-1 gx-1 gy-3'}>

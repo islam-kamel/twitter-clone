@@ -8,7 +8,7 @@ import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
 import axios from "../../apiProvider/axios";
 
-type FormData = {
+export type FormData = {
     fullname: string,
     email: string,
     birthdate: string,
@@ -52,6 +52,7 @@ export default function SignUp() {
     useEffect(() => {
         console.log(data)
     }, [data])
+
     const getArrow = () => {
         return (
             <div className={"fs-5 fw-bolder"}>
@@ -72,15 +73,14 @@ export default function SignUp() {
         const form = document.forms["signInForm"];
         setIsDisabled(!form.checkValidity())
     }
+
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (isLastStep) {
-           axios.post('/api/register', {
-               ...data,
-               username: 'testUser'
-           }).then(e => {
-               console.log(e.data)
-           })
+            axios.post("/api/register", {...data, username: "testUser"})
+                .then(e => {
+                    console.log(e.data)
+                })
         }
         next();
     }
@@ -107,7 +107,7 @@ export default function SignUp() {
                                 disabled: isDisabled
                             }}
                         >
-                           Finish
+                            Finish
                         </TwButton>
                     ) : (
                         <TwButton
@@ -122,7 +122,6 @@ export default function SignUp() {
                         </TwButton>
                     )
                     }
-
                 </TwModal.Body>
             </TwModal>
         </form>

@@ -1,16 +1,12 @@
 import {useState} from "react";
 import TwInput from "../../tw-input/tw-input";
 import FormWrapper from "../FormWrapper";
+import {FormData} from "../SignUp";
 
-type FormData = {
-    fullname: string,
-    email: string,
-    birthdate: string,
-    password: string
-}
 
 function FormStepFifth(props: { data: FormData, updateData: Function }) {
     const [show, setShow] = useState(false);
+
     const togglePasswordVisibility = () => setShow(!show);
 
     return (
