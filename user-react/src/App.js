@@ -7,7 +7,7 @@ import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
-import Message from './components/Message/Message';
+import Message from "./components/Message/Message";
 
 
 function App() {
@@ -23,19 +23,19 @@ function App() {
                     <main className="col border p-0">
                         {process.env.API_ID}
                         <Routes>
-                            <Route index element={<Home />} />
-                            <Route path={'explore'} element={<Explore />} />
-                            <Route path={'notifications'} element={<Notifications />} />
-                            
-                            <Route path={'Message'} element={<Message />} />
+                            <Route index element={<Home/>}/>
+                            <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"notifications"} element={<Notifications/>}/>
+
+                            <Route path={"Message"} element={<Message/>}/>
 
                         </Routes>
                     </main>
-                    {/* <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
+                    <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
                         <Routes>
-                           <Route path={'*'} element={<NewToTwitter/>}/>
+                            <Route path={"*"} element={<NewToTwitter/>}/>
                         </Routes>
-                    </aside> */}
+                    </aside>
                 </section>
             </main>
             <Footer/>

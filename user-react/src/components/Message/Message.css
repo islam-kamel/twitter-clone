@@ -19,7 +19,7 @@
 }
 .Message-Search:focus + .trysearch {
   display: block;
-  
+
 }
 
 .Message-Search:focus > .Message div {
@@ -81,5 +81,3 @@
     display: none;
   }
 }
-
-/*# sourceMappingURL=twitterMessage.css.map */
