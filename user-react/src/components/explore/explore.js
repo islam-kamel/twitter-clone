@@ -112,7 +112,7 @@ export default function Explore() {
                             id="pills-tab explore-group" role="tablist">
                             <li className="nav-item" role="presentation">
 
-                                <button class="nav-link  nav-links trend-bar nav-tabs-border-color  active"
+                                <button className="nav-link  nav-links trend-bar nav-tabs-border-color  active"
                                         id="pills-home-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-for-you" type="button" role="tab"
                                         aria-controls="pills-for-you"
@@ -132,7 +132,7 @@ export default function Explore() {
 
                             <li className="nav-item" role="presentation">
 
-                                <button class="nav-link  nav-links trend-bar nav-tabs-border-color:gray"
+                                <button className="nav-link  nav-links trend-bar nav-tabs-border-color:gray"
                                         id="pills-profile-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-Trending" href="#pills-Trending" type="button" role="tab"
                                         aria-controls="pills-Trending"
@@ -397,11 +397,5 @@ export default function Explore() {
 
             </div>
         </section>
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-                crossOrigin="anonymous"></script>
-
     </>
 }
