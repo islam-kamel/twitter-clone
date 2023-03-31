@@ -21,7 +21,6 @@ const initialData: FormData = {
     birthdate: "",
     password: ""
 }
-
 export default function SignUp() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [data, setData] = useState(initialData)
