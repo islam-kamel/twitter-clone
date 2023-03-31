@@ -6,7 +6,7 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
-
+import Explore from "./components/explore/explore";
 
 function App() {
     return (
@@ -23,6 +23,7 @@ function App() {
                         <Routes>
                             <Route index element={<Home />} />
                             <Route path={'notifications'} element={<Notifications />} />
+                            <Route path={'explore'} element={<Explore />} />
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
