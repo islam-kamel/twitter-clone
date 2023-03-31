@@ -6,7 +6,6 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
-import Explore from "./components/explore/explore";
 
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
                         {process.env.API_ID}
                         <Routes>
                             <Route index element={<Home />} />
-                            <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
                         </Routes>
                     </main>
