@@ -6,9 +6,8 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import Footer from "./components/footer/Footer";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
-import Explore from "./components/Explore/explore";
-import LoadingTwitterIcon from './components/Loading/loading-twitter-icon';
-import LoadingSpiner from './components/Loading/loading-spiner';
+import Explore from "./components/explore/explore";
+
 
 function App() {
     return (
@@ -21,14 +20,9 @@ function App() {
                         <MainSidebar/>
                     </header>
                     <main className="col border p-0">
+                        {process.env.API_ID}
                         <Routes>
                             <Route index element={<Home />} />
-
-                            {/* test loading pages */}
-                            <Route path={'Loading-twitter-icon'} index element={<LoadingTwitterIcon />} />
-                            <Route path={'Loading-spiner'} index element={<LoadingSpiner />} />
-                            {/* ------- end loading pages --- */}
-                            
                             <Route path={'explore'} element={<Explore />} />
                             <Route path={'notifications'} element={<Notifications />} />
                         </Routes>

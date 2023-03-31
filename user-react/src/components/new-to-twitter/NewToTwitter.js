@@ -1,10 +1,10 @@
 import React from "react";
 import "./NewToTwitter.css";
-import TwButton from "../../components/tw-button/tw-button";
+import {GithubButton, GoogleButton} from "../tw-button/tw-button";
 import TwModal from "../../components/modal/modal";
+import {Link} from "react-router-dom";
 
 const NewToTwitter = () => {
-
     return (
         <div>
             <div className="m-3 New-to-Twitter">
@@ -20,22 +20,20 @@ const NewToTwitter = () => {
                                     Sign up now to get your own personalized
                                     timeline!
                                 </h6>
+                                <div id={"authWithGoogle"}></div>
 
-                                <TwButton
+                                <GoogleButton
                                     btnStyle={"outline-dark"}
-                                    classes={"rounded-5 py-2 "}
-                                >
-                                    <i className="fab fa-google fa-1x mx-2"></i>
-                                    Sign in with Google
-                                </TwButton>
+                                    classes={"rounded-5 py-2"}
+                                />
 
-                                <TwButton
+                                <GithubButton
                                     btnStyle={"outline-dark"}
                                     classes={"rounded-5 py-2"}
                                 >
-                                    <i className="bi bi-apple mx-2"></i>
-                                    Sign in with Apple
-                                </TwButton>
+                                    <i className="bi bi-github mx-2"></i>
+                                    Sign in with Github
+                                </GithubButton>
 
                                 <TwModal.ModalButton
                                     targetId={"signup-modal"}
@@ -45,11 +43,12 @@ const NewToTwitter = () => {
                                 />
 
                                 <p className="h6 ms-3 fw-light">By signing up, you agree to the
-                                    <a a href="https://twitter.com/en/tos">
-                                        Terms of Service</a>and <a href="https://twitter.com/en/privacy"> Privacy
-                                        Policy</a>,
-                                    including <a href="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie
-                                        Use.</a></p>
+                                    <Link to="https://twitter.com/en/tos"> Terms of Service </Link>
+                                    and
+                                    <Link to="https://twitter.com/en/privacy"> Privacy Policy</Link>
+                                    , including
+                                    <Link to="https://help.twitter.com/en/rules-and-policies/twitter-cookies">Cookie Use.</Link>
+                                </p>
                             </div>
                         </div>
 

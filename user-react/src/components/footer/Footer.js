@@ -19,7 +19,7 @@ const footerSubTitleStyle = {
 }
 export default function Footer() {
     return (
-        <footer className={"bg-primary p-0"} style={footerStyle}>
+        <footer className={"bg-primary p-0 "} style={footerStyle}>
 
             <div className={"container-fluid container-md px-0 text-light h-100"}>
                 <div className="h-100 row justify-content-center mx-0 my-auto align-items-center">

@@ -1,10 +1,12 @@
-import React from "react";
+import React, {ButtonHTMLAttributes, MouseEventHandler} from "react";
 
 const contentContainerStyle = {
-    maxHeight: '90vh',
-    minHeight: 400,
+    maxHeight: "90vh",
+    minHeight: 430,
+    minWidth: 600,
     height: 650
 }
+
 /**
  * @param {string} id use for set modal id
  * @param {string} modalStyle use for set class name for modal
@@ -15,13 +17,17 @@ class TwModal extends React.Component {
     _label: string = (id) => `${id}Label`;
 
     /**
-     * @param {string} title set Modal title
-     * @param {boolean} defaultBtn option to render Default button or not default true
-     * @param {React.HTMLAttributes.className} classes set custom class for header element
-     * @param {string} label use to set element id
+     *
      * @return React.Component
+     * @param props
      * */
-    static Header({title, defaultBtn = true, classes, label = "TwModal"}) {
+    static Header(props: {
+        title?: string,
+        children?: React.Component | React.Component[],
+        defaultBtn?: boolean,
+        classes?: string,
+        label?: string
+    }) {
         function DefaultBtn() {
             return (
                 <button
@@ -35,16 +41,20 @@ class TwModal extends React.Component {
 
         return (
             <div className={"modal-header border-0 pt-0"}>
-                <div className={'row w-100 g-0 justify-content-center align-items-center'}>
-                    <div className={'col-4'}>
-                        {defaultBtn ? <DefaultBtn/> : false}
-                    </div>
-                    <div className={'col'}>
+                {props?.children ?? (
+                    <div className={"row w-100 g-0 justify-content-center align-items-center"}>
+                        <div className={"col-4"}>
+                            {props?.defaultBtn ? <DefaultBtn/> : false}
+                        </div>
+                        <div className={"col"}>
 
-                        <h1 className={`modal-title ${classes ?? "fs-5"}`} id={`${label}Label`}>{title}</h1>
+                            <h1 className={`modal-title ${props?.classes ?? "fs-5"}`}
+                                id={`${props?.label}Label`}>{props.title}</h1>
+                        </div>
+                        <div className={"col-4"}></div>
                     </div>
-                    <div className={'col-4'}></div>
-                </div>
+                )}
+
             </div>
         );
     }
@@ -76,22 +86,42 @@ class TwModal extends React.Component {
     }
 
     /**
-     * @param {string} targetId use to set target modal
-     * @param {string} btnStyle set custom style for button
-     * @param {string} title set title for button
-     * @param {React.HTMLAttributes.className} classes set custom class for header element
      * @return React.Component
+     * @param props
      * */
-    static ModalButton({targetId, btnStyle, classes, title}) {
+    static ModalButton(
+        props: {
+            targetId: string,
+            btnStyle?: string,
+            withOutButton?: boolean,
+            classes?: string,
+            title?: string,
+            children?: React.ReactElement,
+            other?: MouseEventHandler | ButtonHTMLAttributes
+        }
+    ) {
+        const elementRole = {
+            type: "button",
+            className: `btn btn-${props.btnStyle ?? "primary"} ${props.classes ?? ""}`,
+            "data-bs-toggle": "modal",
+            "data-bs-target": `#${props.targetId}`,
+        }
         return (
-            <button
-                type="button"
-                className={`btn btn-${btnStyle ?? "primary"} ${classes ?? ""}`}
-                data-bs-toggle="modal"
-                data-bs-target={`#${targetId}`}
-            >
-                {title ?? "Tw Model"}
-            </button>
+            <>
+                {!props?.withOutButton
+                    ? (
+                        <button
+                            {...elementRole}
+                            {...props.other}
+                        >
+                            {props.title ? props.title : props.children ? props.children : "Tw Model"}
+                        </button>
+                    ) : (
+                        <span  {...elementRole} className={""}>{props?.children}</span>
+                    )
+                }
+
+            </>
         );
     }
 
@@ -105,7 +135,7 @@ class TwModal extends React.Component {
                 aria-labelledby={this._label(this.props.id)}
                 aria-hidden="true"
             >
-                <div  className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
+                <div className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
                     <div className={"modal-content rounded-4"} style={contentContainerStyle}>
                         {this.props.children.length ? this.getMap() : this.props.children}
                     </div>
