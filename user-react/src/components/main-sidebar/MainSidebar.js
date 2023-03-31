@@ -6,33 +6,13 @@ export default function MainSidebar() {
     return (
         <div className="d-flex justify-content-center">
             <aside className="position-fixed top-0 h-100">
-                {/* eslint-disable jsx-a11y/anchor-is-valid */}
-                {/* "هذا حل مؤقت" التعليق العلوي من أجل إيقاف تحذير eslint من استخدام a تاج دون وضع رابط صالح */}
                 <div className="tw-navbar">
                     <div className="tw-navbar-brand">
-                        <a href="#" className="tw-navbar-link text-primary">
+                        <Link to="#" className="tw-navbar-link text-primary">
                             <i className="bi bi-twitter"></i>
-                        </a>
+                        </Link>
                     </div>
-
-                            {/* test loading pages */}
-         <div className="tw-navbar-item">
-                           
-            <Link to={"/loading-twitter-icon"} className="tw-navbar-link d-flex align-items-center text-dark">
-             <span className="tw-navbar-text">load-icon</span>
-            </Link>
-            </div>
-                     <div className="tw-navbar-item">
-
-            <Link to={"/Loading-spiner"} className="tw-navbar-link d-flex align-items-center text-dark">
-             <span className="tw-navbar-text">load-spiner</span>
-            </Link>
-            </div>
-             {/* ------- end loading pages --- */}
-
-
                     <div className="tw-navbar-item">
-
                         <Link to={"/"} className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
@@ -78,7 +58,7 @@ export default function MainSidebar() {
                         </Link>
                     </div>
                     <div className="tw-navbar-item">
-                        <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <Link to="/Message" className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                                      aria-hidden="true" width="26" height="26">
@@ -90,10 +70,10 @@ export default function MainSidebar() {
                                 </svg>
                             </i>
                             <span className="tw-navbar-text">Messages</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="tw-navbar-item">
-                        <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                                      aria-hidden="true" width="26" height="26">
@@ -105,10 +85,10 @@ export default function MainSidebar() {
                                 </svg>
                             </i>
                             <span className="tw-navbar-text">Bookmarks</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="tw-navbar-item">
-                        <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                                      aria-hidden="true" width="26" height="26">
@@ -120,10 +100,10 @@ export default function MainSidebar() {
                                 </svg>
                             </i>
                             <span className="tw-navbar-text">Profile</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="tw-navbar-item">
-                        <a href="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                                      aria-hidden="true" width="26" height="26">
@@ -135,7 +115,7 @@ export default function MainSidebar() {
                                 </svg>
                             </i>
                             <span className="tw-navbar-text">More</span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </aside>

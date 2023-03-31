@@ -1,20 +1,11 @@
-import React, { useEffect } from 'react' 
-import '../Explore/explore.scss'
-import Trends from '../Trends/trends'
+import React, { useEffect } from 'react' ;
+import './explore.scss';
+import Trends from '../Trends/trends';
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 export default function Explore(){
 
-    //  const [activeMenu, setActiveMenu] = useState('For You');
 
-     
-        // handleClick();
-    
-
-    //  const handleClick = (menu) => {
-    //     setActiveMenu(menu);
-    //   };
-        
 
     const handleSearcher=()=>{
 
@@ -50,7 +41,7 @@ export default function Explore(){
                              className="bi bi-search col-2" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
-                        <input type="text" className=" bg-transparent   border border-0 " id="input-bar" placeholder="Search Twitter"
+                        <input type="text" className=" bg-transparent   border border-0 fs-6 " id="input-bar" placeholder="Search Twitter"
                                aria-label="search" aria-describedby="basic-addon1" onClick={()=>handleSearcher()} />
                     </div>
                     <div className="ms-3 d-flex align-items-center justify-content-center" id="setting">
@@ -72,15 +63,15 @@ export default function Explore(){
                                                 <button type="button" width="50" className="btn-close fw-4 "
                                                         data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
-                                                <h2 className="modal-title fs-4 fw-4 ms-3" id="staticBackdropLabel">
-                                                    Trends</h2>
+                                                <h5 className="modal-title fs-5 fw-4 ms-3" id="staticBackdropLabel">
+                                                    Trends</h5>
                                             </div>
                                         </div>
                                         <div className="modal-body py-3 d-flex justify-content-between "
                                              style={{height:'500px'}}>
                                             <div>
-                                                <h4 className="d-flex justify-content-start">Trends for you</h4>
-                                                <p className="fs-6">Personalize trends based on your location and who you
+                                                <h6 className="d-flex justify-content-start">Trends for you</h6>
+                                                <p className="" style={{fontSize:13}}>Personalize trends based on your location and who you
                                                     follow.</p>
                                             </div>
                                             <div className="form-check">
@@ -123,50 +114,34 @@ export default function Explore(){
                                 Trending
                                
                     </button>
-
-                  
-
-                   
-
-
                 </li>
-                <li className="nav-item" role="presentation">
 
+                <li className="nav-item" role="presentation">
                     <button className="nav-link  nav-links trend-bar nav-tabs border-color" id="pills-News-tab" data-bs-toggle="pill" data-bs-target="#pills-News"
                          type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
-                    </button>
-                   
-
-
-                        
-               
-                    
+                    </button>   
                 </li>
-                <li className="nav-item" role="presentation">
 
+                <li className="nav-item" role="presentation">
                     <button className="nav-link  nav-links trend-bar  nav-tabs-border-color"   data-bs-toggle="pill"
                         id="pills-Sports-tab"    data-bs-target="#pills-Sports" type="button" role="tab" aria-controls="pills-Sports"
                             aria-selected="false">Sports
                     </button>
-
-
-
                 </li>
-                <li className="nav-item" role="presentation">
 
+                <li className="nav-item" role="presentation">
                     <button className="nav-link nav-links trend-bar nav-tabs-border-color"   data-bs-toggle="pill"
                           id="pills-Entertainment-tab"  data-bs-target="#pills-Entertainment" type="button" role="tab"
                             aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
                     </button>
-
-
-
                 </li>
+
             </ul>
+
             </div>
             <div className="tab-content show" id="pills-tabContent">
                 {/* <!----------------- ForYou-Trends-------------> */}
-                <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
+                <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel" aria-labelledby="pills-foryou-tab" tabindex="0" >
                
 
                 <Trends className='trendss' trendPlace='Trending in Egypt' trendName='أفريقيا يا زمالك' trendTweets='24,2K Tweets' ></Trends>
@@ -210,7 +185,7 @@ export default function Explore(){
                             <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
                                    
-                                    <img src="../assets/images/moon3.jpg" width="50" height="50"
+                                    <img src="../../assets/images/OIP.jpeg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
                                   
                                    
@@ -229,7 +204,7 @@ export default function Explore(){
                         <div className="col-12 border-bottom py-2">
                             <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                 <div className="followers ms-3 d-flex align-items-center ">
-                                    <img src="./assets/profile.image.jpg" width="50" height="50"
+                                    <img src="../assets/OIP.jpeg" width="50" height="50"
                                          className="rounded-circle float-start" alt="..." />
                                     <div className="followers ms-3 mt-4">
                                         <h5>Eslam Kamel</h5>
@@ -247,7 +222,7 @@ export default function Explore(){
 
                 {/* <!--------------------- Trending-Trends--> */}
                 <div className="tab-pane fade" id="pills-Trending" role="tabpanel" aria-labelledby="pills-Trending-tab" tabindex="0" >
-                    <h2 className="mt-3 ms-4">World Wide Trends</h2>
+                    <h5 className="mt-3 ms-4">World Wide Trends</h5>
                    
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
                     
@@ -262,8 +237,6 @@ export default function Explore(){
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
                     
                     <Trends className='trendss' trendPlace='Sports.Trending' trendName='Baseball' trendTweets='55.3K Tweets' ></Trends>
-
-                   
 
                 </div>
 
@@ -286,7 +259,6 @@ export default function Explore(){
                 
                 <Trends className='trendss' trendPlace='Coding' trendName='Javascript' trendTweets='55.3K Tweets' ></Trends>
 
-                  
                 </div>
 
                 {/* <!------------------ Sports Trends -------------------------> */}
@@ -338,9 +310,7 @@ export default function Explore(){
 </section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossOrigin="anonymous"></script>
+
 
         </>
 }

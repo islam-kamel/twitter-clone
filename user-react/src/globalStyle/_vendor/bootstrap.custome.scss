@@ -18,13 +18,13 @@ $form-floating-label-opacity: 1;
 
 $form-validation-states: (
     "valid": (
-        "color": $border-color,
-        "icon": none,
+        "color": $success-border-subtle,
+        "icon": $form-feedback-icon-valid,
         "focus-box-shadow": unset,
     ),
     "invalid": (
         "color": $form-feedback-invalid-color,
-        "icon": none,
+        "icon": $form-feedback-icon-invalid,
         "focus-box-shadow": unset,
     )
 );
