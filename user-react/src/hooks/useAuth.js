@@ -15,7 +15,8 @@ const INITIAL_VALUE: Credentials = {
 function useAuth() {
     const {setTokens} = useToken();
     const [credentials, setCredentials] = useState(INITIAL_VALUE)
-    const {setIsLoading} = useContext(IsLoadingContext);
+    const {isLoading, setIsLoading} = useContext(IsLoadingContext);
+    const [response, setResponse] = useState(new Promise(() => {}))
 
     useEffect(() => {
         const controller = new AbortController();
@@ -35,9 +36,7 @@ function useAuth() {
         }
 
         if (credentials.username && credentials.password) {
-            login().then(r => {
-                console.log(r)
-            });
+            setResponse(login())
         }
 
         return () => {
@@ -45,7 +44,7 @@ function useAuth() {
         }
     }, [credentials, setTokens, setIsLoading]);
 
-    return {credentials, setCredentials}
+    return {response, isLoading, setCredentials}
 }
 
 export default useAuth;
