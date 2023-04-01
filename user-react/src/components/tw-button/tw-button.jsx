@@ -60,7 +60,7 @@ export function GithubButton(
     function openWindow() {
         const config = {
             client_id: "b4b597ac187ffebdfef2",
-            scope: "read:user",
+            scope: "user",
             redirect_uri: "http://localhost:3008/github/callback"
         }
         const url = `https://github.com/login/oauth/authorize?${new URLSearchParams(config).toString()}`
