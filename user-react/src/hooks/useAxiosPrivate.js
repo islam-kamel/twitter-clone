@@ -33,6 +33,10 @@ function useAxiosPrivate() {
                         grant_type: "refresh_token",
                     }
                 }
+                else {
+                    config.data.client_id = process.env.REACT_APP_API_ID
+                    config.data.client_secret = process.env.REACT_APP_API_SECRET
+                }
                 return config;
             },
             (error) => Promise.reject(error)

@@ -1,15 +1,20 @@
 import {Link} from "react-router-dom";
 import TwInput from "../../tw-input/tw-input";
 import FormWrapper from "../FormWrapper";
-
-type FormData = {
-    fullname: string,
-    email: string,
-    birthdate: string,
-    password: string
-}
+import {useEffect, useState} from "react";
+import type {FormData} from "../SignUp";
 
 function FormStepThird(props: { data: FormData, goto: Function }) {
+    const [date, setDate] = useState("");
+
+
+    useEffect(() => {
+        const date = new Date(
+            `${props?.data?.birthdate.year} - ${props?.data?.birthdate.month} - ${props?.data?.birthdate.day}`
+        ).toLocaleString(true, {dateStyle: "medium"});
+        setDate(date)
+    }, [props])
+
     return (
         <FormWrapper title={"Create your account"}>
             <div id="growth" className={"row row-cols-1 gx-0 gy-3"}>
@@ -22,7 +27,7 @@ function FormStepThird(props: { data: FormData, goto: Function }) {
                             value: props?.data?.fullname,
                             type: "text",
                             readOnly: true,
-                            onClick: () =>  props?.goto(0)
+                            onClick: () => props?.goto(0)
                         }}
                     />
 
@@ -37,7 +42,7 @@ function FormStepThird(props: { data: FormData, goto: Function }) {
                             value: props?.data?.email,
                             type: "email",
                             readOnly: true,
-                            onClick: () =>  props?.goto(0)
+                            onClick: () => props?.goto(0)
                         }}
                     />
                 </div>
@@ -47,11 +52,11 @@ function FormStepThird(props: { data: FormData, goto: Function }) {
                         labelText={"Birth Date"}
                         classes={"is-valid"}
                         other={{
-                            value: props?.data?.birthdate,
+                            value: date,
                             type: "text",
                             name: "birthdate",
                             readOnly: true,
-                            onClick: () =>  props?.goto(0)
+                            onClick: () => props?.goto(0)
                         }}
                     />
                 </div>

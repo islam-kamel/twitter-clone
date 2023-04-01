@@ -1,58 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
+import type {FormData} from "../SignUp";
 
-type birthdate = {
-    year: string,
-    month: string,
-    day: string
-}
+export const Birthdate = (props: { updateData: Function, data: FormData }) => {
 
-const initialDate: birthdate = {
-    year: "",
-    month: "",
-    day: ""
-}
-type FormData = {
-    fullname: string,
-    email: string,
-    birthdate: string,
-    password: string
-}
-
-export const Birthdate = (props: { updateData: Function, data: FormData}) => {
-
-    const [birthdate, setBirthdate] = useState(initialDate);
-
-    useEffect(() => {
-        const day = document.querySelector('select[name="day"]');
-        const month = document.querySelector('select[name="month"]');
-        const year = document.querySelector('select[name="year"]');
-
-        for (let i= 0; i < year.childElementCount; i++ ) {
-            if (year.options[i].text === props?.data.birthdate.split('-')[0]){
-                year.selectedIndex = i;
-            }
-        }
-        month.selectedIndex = props?.data.birthdate.split('-')[1];
-        day.selectedIndex = props?.data.birthdate.split('-')[2];
-
-    }, [props])
-
-
-    useEffect(() => {
-        const formattedDate = `${birthdate.year}-${birthdate.month}-${birthdate.day}`;
-        props?.updateData({birthdate: formattedDate})
-    }, [birthdate])
+    function updateBirthDate(value: {}) {
+        props?.updateData({...props?.data, birthdate: {...props?.data?.birthdate, ...value}})
+    }
 
     const handleDayChange = (e) => {
-        setBirthdate({...birthdate, day: e.target.value});
+        updateBirthDate({day: e.target.value})
     };
 
     const handleMonthChange = (e) => {
-        setBirthdate({...birthdate, month: e.target.value});
+        updateBirthDate({month: e.target.value})
     };
 
     const handleYearChange = (e) => {
-        setBirthdate({...birthdate, year: e.target.value});
+        updateBirthDate({year: e.target.value})
     };
 
     return (
@@ -76,7 +40,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData}) => {
                 <div className="col-5 form-floating">
                     <select
                         className="form-select fw-light"
-                        // value={birthdate.month}
+                        value={props?.data?.birthdate?.month}
                         name={"month"}
                         onChange={handleMonthChange}
                         required={true}
@@ -91,7 +55,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData}) => {
                 <div className="col form-floating">
                     <select
                         className="form-select fw-light"
-                        // value={birthdate.day}
+                        value={props?.data?.birthdate?.day}
                         name={"day"}
                         onChange={handleDayChange}
                         required={true}
@@ -106,7 +70,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData}) => {
                 <div className="col form-floating">
                     <select
                         className="form-select fw-light"
-                        // value={birthdate.year}
+                        value={props?.data?.birthdate?.year}
                         name={"year"}
                         onChange={handleYearChange}
                         required={true}

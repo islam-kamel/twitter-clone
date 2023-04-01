@@ -7,23 +7,35 @@ import FormStepTwo from "./forms/FormStepTwo";
 import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
 import axios from "../../apiProvider/axios";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useToken from "../../hooks/useToken";
 
 export type FormData = {
     fullname: string,
     email: string,
-    birthdate: string,
+    birthdate: {
+        day: string,
+        month: string,
+        year: string
+    } | string,
     password: string
 }
 
 const initialData: FormData = {
     fullname: "",
     email: "",
-    birthdate: "",
+    birthdate: {
+        day: "",
+        month: "",
+        year: ""
+    },
     password: ""
 }
 export default function SignUp() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [data, setData] = useState(initialData)
+    const axiosPrivate = useAxiosPrivate();
+    const {setTokens} = useToken();
 
     const updateDate = (newData) => {
         setData({...data, ...newData})
@@ -76,10 +88,24 @@ export default function SignUp() {
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (isLastStep) {
-            axios.post("/api/register", {...data, username: "testUser"})
-                .then(e => {
-                    console.log(data)
-                    console.log(e.data)
+            const {year, month, day} = data.birthdate
+            const date = `${year}-${month}-${day}`
+
+            axios.post("/api/register", {...data, username: "testDate", birthdate: date})
+                .then(async res => {
+                    if (res.status === 200) {
+                        await axiosPrivate.post('/auth/token', {
+                            grant_type: 'password',
+                            username: 'testDate',
+                            password: data.password
+                        }).then(loginResponse => {
+                            setTokens(loginResponse?.data)
+                        })
+                        console.log(res.data)
+                    }
+                })
+                .catch(error => {
+                    console.log(error.message)
                 })
         }
         next();
@@ -124,6 +150,7 @@ export default function SignUp() {
                     }
                 </TwModal.Body>
             </TwModal>
+
         </form>
     );
 }
