@@ -45,7 +45,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData }) => {
                         onChange={handleMonthChange}
                         required={true}
                     >
-                        <option value="" selected disabled></option>
+                        <option value="" disabled></option>
                         {[...Array(12)].map((_, i) => (<option key={i} value={i + 1}>
                             {new Date(`${i + 1}/1/1970`).toLocaleString("default", {month: "long"})}
                         </option>))}
@@ -60,7 +60,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData }) => {
                         onChange={handleDayChange}
                         required={true}
                     >
-                        <option value="" disabled selected></option>
+                        <option value="" disabled></option>
                         {[...Array(31)].map((_, i) => (<option key={i} value={i + 1}>
                             {i + 1}
                         </option>))}
@@ -75,7 +75,7 @@ export const Birthdate = (props: { updateData: Function, data: FormData }) => {
                         onChange={handleYearChange}
                         required={true}
                     >
-                        <option value="" selected disabled></option>
+                        <option value="" disabled></option>
                         {[...Array(100)].map((_, i) => (<option key={i} value={2023 - i}>
                             {2023 - i}
                         </option>))}

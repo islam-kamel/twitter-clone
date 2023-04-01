@@ -4,13 +4,16 @@ import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import "./globalStyle/global.style.scss";
 import UserContextProvider from "./context/userContext";
+import IsLoadingContextProvider from "./context/isLoading";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
             <UserContextProvider>
-                <App/>
+                <IsLoadingContextProvider>
+                    <App/>
+                </IsLoadingContextProvider>
             </UserContextProvider>
         </BrowserRouter>
     </React.StrictMode>

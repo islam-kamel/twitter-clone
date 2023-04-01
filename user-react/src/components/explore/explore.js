@@ -23,7 +23,6 @@ export default function Explore() {
 
     return <>
 
-
         <section className="container-fluid">
             <div className="row">
 
@@ -102,7 +101,7 @@ export default function Explore() {
                             <li className="nav-item" role="presentation">
 
 
-                                <button class="nav-link  nav-links trend-bar nav-tabs border-color  active focus"
+                                <button className="nav-link  nav-links trend-bar nav-tabs border-color  active focus"
                                         id="pills-foryou-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-foryou" type="button" role="tab"
                                         aria-controls="pills-foryou"
@@ -116,7 +115,7 @@ export default function Explore() {
 
                             <li className="nav-item" role="presentation">
 
-                                <button class="nav-link  nav-links trend-bar nav-tabs border-color"
+                                <button className="nav-link  nav-links trend-bar nav-tabs border-color"
                                         id="pills-Trending-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-Trending" type="button" role="tab"
                                         aria-controls="pills-Trending"
@@ -157,7 +156,7 @@ export default function Explore() {
                     <div className="tab-content show" id="pills-tabContent">
                         {/* <!----------------- ForYou-Trends-------------> */}
                         <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel"
-                             aria-labelledby="pills-foryou-tab" tabindex="0">
+                             aria-labelledby="pills-foryou-tab" tabIndex="0">
 
 
                             <Trends className="trendss" trendPlace="Trending in Egypt" trendName="أفريقيا يا زمالك"
@@ -249,7 +248,7 @@ export default function Explore() {
 
                         {/* <!--------------------- Trending-Trends--> */}
                         <div className="tab-pane fade" id="pills-Trending" role="tabpanel"
-                             aria-labelledby="pills-Trending-tab" tabindex="0">
+                             aria-labelledby="pills-Trending-tab" tabIndex="0">
                             <h5 className="mt-3 ms-4">World Wide Trends</h5>
 
                             <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
@@ -277,7 +276,7 @@ export default function Explore() {
 
                         {/* <!-- ----------------- News Trends -------------------------> */}
                         <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab"
-                             tabindex="0">
+                             tabIndex="0">
 
                             <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
                                     trendTweets="55.3K Tweets"></Trends>
@@ -307,7 +306,7 @@ export default function Explore() {
 
                         {/* <!------------------ Sports Trends -------------------------> */}
                         <div className="tab-pane fade" id="pills-Sports" role="tabpanel"
-                             aria-labelledby="pills-Sports-tab" tabindex="0">
+                             aria-labelledby="pills-Sports-tab" tabIndex="0">
 
                             <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
                                     trendTweets="55.3K Tweets"></Trends>
@@ -337,7 +336,7 @@ export default function Explore() {
 
                         {/* <!------------------ Entertainment Trends -----------------------> */}
                         <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"
-                             aria-labelledby="pills-Entertainment-tab" tabindex="0">
+                             aria-labelledby="pills-Entertainment-tab" tabIndex="0">
 
                             <Trends className="trendss" trendPlace="Trending in Entertainment"
                                     trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>

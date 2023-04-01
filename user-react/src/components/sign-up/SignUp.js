@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {FormEvent, useContext, useState} from "react";
 import TwModal from "../modal/modal";
 import useMultiStepForm from "../../hooks/useMultiStepForm";
 import FormStepOne from "./forms/FormStepOne";
@@ -6,12 +6,14 @@ import TwButton from "../tw-button/tw-button";
 import FormStepTwo from "./forms/FormStepTwo";
 import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
+import {IsLoadingContext} from "../../context/isLoading";
+import LoadingSpiner from "../Loading/loading-spiner";
 import axios from "../../apiProvider/axios";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import useToken from "../../hooks/useToken";
+import useAuth from "../../hooks/useAuth";
 
 export type FormData = {
     fullname: string,
+    username: string,
     email: string,
     birthdate: {
         day: string,
@@ -31,11 +33,17 @@ const initialData: FormData = {
     },
     password: ""
 }
+
+function formatDate(data) {
+    const {year, month, day} = data.birthdate
+    return `${year}-${month}-${day}`;
+}
+
 export default function SignUp() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [data, setData] = useState(initialData)
-    const axiosPrivate = useAxiosPrivate();
-    const {setTokens} = useToken();
+    const {isLoading} = useContext(IsLoadingContext);
+    const {setCredentials} = useAuth();
 
     const updateDate = (newData) => {
         setData({...data, ...newData})
@@ -60,11 +68,7 @@ export default function SignUp() {
         <FormStepFifth data={data} updateData={updateDate}/>
     ])
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
-
-    const getArrow = () => {
+    const getHeader = () => {
         return (
             <div className={"fs-5 fw-bolder"}>
                 {isFirstStep
@@ -88,21 +92,10 @@ export default function SignUp() {
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (isLastStep) {
-            const {year, month, day} = data.birthdate
-            const date = `${year}-${month}-${day}`
-
-            axios.post("/api/register", {...data, username: "testDate", birthdate: date})
+            const date = formatDate(data);
+            axios.post("/api/register", {...data, birthdate: date})
                 .then(async res => {
-                    if (res.status === 200) {
-                        await axiosPrivate.post('/auth/token', {
-                            grant_type: 'password',
-                            username: 'testDate',
-                            password: data.password
-                        }).then(loginResponse => {
-                            setTokens(loginResponse?.data)
-                        })
-                        console.log(res.data)
-                    }
+                    setCredentials({username: data.username, password: data.password})
                 })
                 .catch(error => {
                     console.log(error.message)
@@ -120,34 +113,39 @@ export default function SignUp() {
         >
             <TwModal id={"signup-modal"} modalStyle={"modal-dialog-scrollable"}>
                 <div className={"mt-3"}>
-                    <TwModal.Header> {getArrow()} </TwModal.Header>
+                    <TwModal.Header> {getHeader()} </TwModal.Header>
                 </div>
                 <TwModal.Body classes={"mx-5"}>
-                    {step}
-                    {isLastStep ? (
-                        <TwButton
-                            btnStyle={"outline-dark"}
-                            classes={"rounded-5 w-100"}
-                            other={{
-                                type: "submit",
-                                disabled: isDisabled
-                            }}
-                        >
-                            Finish
-                        </TwButton>
-                    ) : (
-                        <TwButton
-                            btnStyle={"outline-dark"}
-                            classes={"rounded-5 w-100"}
-                            other={{
-                                type: "submit",
-                                disabled: isDisabled
-                            }}
-                        >
-                            Next
-                        </TwButton>
-                    )
-                    }
+                    {isLoading ? <LoadingSpiner/> : (
+                        <>
+                            {step}
+                            {isLastStep ? (
+                                <TwButton
+                                    btnStyle={"outline-dark"}
+                                    classes={"rounded-5 w-100"}
+                                    other={{
+                                        type: "submit",
+                                        disabled: isDisabled
+                                    }}
+                                >
+                                    Finish
+                                </TwButton>
+                            ) : (
+                                <TwButton
+                                    btnStyle={"outline-dark"}
+                                    classes={"rounded-5 w-100"}
+                                    other={{
+                                        type: "submit",
+                                        disabled: isDisabled
+                                    }}
+                                >
+                                    Next
+                                </TwButton>
+                            )
+                            }
+                        </>
+                    )}
+
                 </TwModal.Body>
             </TwModal>
 
