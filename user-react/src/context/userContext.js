@@ -1,6 +1,7 @@
 import {createContext, useContext, useState} from "react";
 
 type userInfo = {
+    isLogin: boolean,
     id: number,
     profile: {
         id: number,
@@ -17,6 +18,7 @@ type userInfo = {
 }
 
 const INITINALData: userInfo = {
+    isLoging: false,
     id: 0,
     profile: {
         id: 0,

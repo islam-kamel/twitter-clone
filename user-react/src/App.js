@@ -21,10 +21,12 @@ function App() {
                     </header>
                     <main className="col border p-0">
                         <Routes>
+                            {/* start protected*/}
                             <Route index element={<Home/>}/>
-                            <Route path={"explore"} element={<Explore/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
+                            {/* end protected*/}
+                            <Route path={"explore"} element={<Explore/>}/>
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
@@ -34,7 +36,9 @@ function App() {
                     </aside>
                 </section>
             </main>
+            {/*protected*/}
             <Footer/>
+            {/*protected*/}
         </>
     );
 }
