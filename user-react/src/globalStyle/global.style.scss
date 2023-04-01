@@ -1,14 +1,24 @@
 // Import custom bootstrap
 @use "_vendor/bootstrap.custome";
 
+
+.btn-primary {
+  @extend .btn-primary;
+  color: bootstrap.$light !important;
+  &:hover, :active {
+    color: bootstrap.$light !important;
+  }
+}
+
+
 // Font Family
 $font-path: "fonts";
 
 @font-face {
   font-family: 'Chirp';
   font-style: normal;
-  font-weight: 400;
-  src: local('Chirp'), url('#{$font-path}/ChirpRegular.woff') format('woff');
+  font-weight: 300;
+  src: local('Chirp'), url('#{$font-path}/ChirpRegular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Chirp';
@@ -20,17 +30,52 @@ $font-path: "fonts";
   font-family: 'Chirp';
   font-style: normal;
   font-weight: 700;
-  src: local('Chirp'), url('#{$font-path}/ChirpBold.woff') format('woff');
+  src: local('Chirp'), url('#{$font-path}/ChirpBold.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Chirp';
   font-style: normal;
   font-weight: 800;
-  src: local('Chirp'), url('#{$font-path}/ChirpHeavy.woff') format('woff');
+  src: local('Chirp'), url('#{$font-path}/ChirpHeavy.woff2') format('woff2');
 }
 @font-face {
   font-family: 'ChirpExtended';
   font-style: normal;
   font-weight: 800;
   src: local('ChirpExtended'), url('#{$font-path}/ChirpExtendedHeavy.woff') format('woff');
+}
+
+//.form-control:focus {
+//  @extend .form-control;
+//  border-color: red;
+//  box-shadow: none;
+//}
+@import "~bootstrap/scss/_functions";
+$form-focus-border-color: bootstrap.$primary;
+
+
+.form-control:focus,
+.form-control:not(.is-invalid):focus
+{
+  @extend .form-control;
+  border-color: $form-focus-border-color;
+  box-shadow: unset;
+  border-width: 3px;
+}
+
+.is-valid:focus {
+  border-color: $form-focus-border-color;
+}
+
+
+.form-floating {
+  @extend .form-floating;
+  > .form-control:not(.is-invalid):focus
+  ~ label {
+    color: $form-focus-border-color;
+  }
+  > .form-control:is(.is-invalid):focus
+  ~ label {
+    color: bootstrap.$form-feedback-invalid-color;
+  }
 }
