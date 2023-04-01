@@ -1,7 +1,7 @@
 import {createContext, useState} from "react";
-type IsLoading = boolean
 
-const INITIAL_VALUE= false;
+type IsLoading = boolean
+const INITIAL_VALUE: IsLoading= false;
 
 export const IsLoadingContext = createContext(INITIAL_VALUE);
 

@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
+import Profile from "./components/profile/profile";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                             <Route index element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
+                            <Route path={"profile/:username"} element={<Profile/>}/>
                             {/* end protected*/}
                             <Route path={"explore"} element={<Explore/>}/>
                         </Routes>

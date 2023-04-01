@@ -88,7 +88,7 @@ export default function MainSidebar() {
                         </Link>
                     </div>
                     <div className="tw-navbar-item">
-                        <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <Link to={"profile/islam.admin"} className="tw-navbar-link d-flex align-items-center text-dark">
                             <i className="d-inherit">
                                 <svg className={"d-block"} fill={"currentColor"} viewBox="0 0 24 24"
                                      aria-hidden="true" width="26" height="26">
@@ -117,15 +117,6 @@ export default function MainSidebar() {
                             <span className="tw-navbar-text">More</span>
                         </Link>
                     </div>
-                    <div className={"tw-navbar-item"}>
-                        <Link className={"d-flex align-items-center justify-content-start"}>
-                            <img
-                                className={"image-fluid rounded-pill w-25"}
-                                src={"https://avatars.githubusercontent.com/u/61625045?s=400&u=5d30dd894553fb7d819489257ece67d4edf5385d&v=4"}
-                             alt={'...'}/>
-                        </Link>
-                    </div>
-
                 </div>
             </aside>
         </div>

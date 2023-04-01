@@ -18,7 +18,7 @@ type userInfo = {
 }
 
 const INITINALData: userInfo = {
-    isLoging: false,
+    isLogin: false,
     id: 0,
     profile: {
         id: 0,

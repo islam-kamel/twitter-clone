@@ -7,7 +7,7 @@ import FormStepTwo from "./forms/FormStepTwo";
 import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
 import {IsLoadingContext} from "../../context/isLoading";
-import LoadingSpiner from "../Loading/loading-spiner";
+import LoadingSpinner from "../Loading/loading-spiner";
 import axios from "../../apiProvider/axios";
 import useAuth from "../../hooks/useAuth";
 
@@ -116,7 +116,7 @@ export default function SignUp() {
                     <TwModal.Header> {getHeader()} </TwModal.Header>
                 </div>
                 <TwModal.Body classes={"mx-5"}>
-                    {isLoading ? <LoadingSpiner/> : (
+                    {isLoading ? <LoadingSpinner/> : (
                         <>
                             {step}
                             {isLastStep ? (
