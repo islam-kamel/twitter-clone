@@ -42,12 +42,12 @@ export default function Profile() {
                         </div>
                         <div className="card mt-3 border-0">
                             <img src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.cover_image}`}
-                                 className="card-img-top profile-photo" alt="..."/>
+                                 className="card-img-top profile-photo" alt={"..."}/>
                             <div className="card-body d-flex justify-content-between  ">
                                 <div>
                                     <img
                                         src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.image}`}
-                                        className=" person-image" alt={`${userInfo?.username} Image`}
+                                        className=" person-image" alt={`${userInfo?.username}`}
                                     />
                                 </div>
                                 <button
@@ -144,7 +144,8 @@ export default function Profile() {
                                     <li className="nav-item" role="presentation">
                                         <button className="nav-link  nav-links trend-bar  nav-tabs-border-color"
                                                 data-bs-toggle="pill"
-                                                id="pills-Likes-tab" data-bs-target="#pills-Likes" type="button" role="tab"
+                                                id="pills-Likes-tab" data-bs-target="#pills-Likes" type="button"
+                                                role="tab"
                                                 aria-controls="pills-Likes"
                                                 aria-selected="false">Likes
                                         </button>
@@ -164,7 +165,8 @@ export default function Profile() {
                                 <div className="row">
                                     <div className="col-12 border-bottom py-2">
                                         <h3 className=" ms-4">How To Follow</h3>
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -181,7 +183,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
 
                                                 <img src={"..."} width="50" height="50"
@@ -201,7 +204,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -229,7 +233,8 @@ export default function Profile() {
                                 <div className="row">
                                     <div className="col-12 border-bottom py-2">
                                         <h3 className=" ms-4">How To Follow</h3>
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -246,7 +251,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
 
                                                 <img src={"..."} width="50" height="50"
@@ -266,7 +272,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -327,7 +334,8 @@ export default function Profile() {
                                 <div className="row">
                                     <div className="col-12 border-bottom py-2">
                                         <h3 className=" ms-4">How To Follow</h3>
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -344,7 +352,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
 
                                                 <img src={"..."} width="50" height="50"
@@ -364,7 +373,8 @@ export default function Profile() {
                                         </div>
                                     </div>
                                     <div className="col-12 border-bottom py-2">
-                                        <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
+                                        <div
+                                            className="trend-card mt-1 d-flex justify-content-between align-items-center">
                                             <div className="followers ms-3 d-flex align-items-center ">
                                                 <img src={"..."} width="50" height="50"
                                                      className="rounded-circle float-start" alt="..."/>
@@ -387,6 +397,6 @@ export default function Profile() {
                     </div>
 
                 </section>
-                )}
+            )}
         </>);
 }
