@@ -26,9 +26,10 @@ function App() {
                             <Route index element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
+                            <Route path={"explore"} element={<Explore/>}/>
                             <Route path={"profile/:username"} element={<Profile/>}/>
                             {/* end protected*/}
-                            <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"Profile"} element={<Profile/>}/>
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
