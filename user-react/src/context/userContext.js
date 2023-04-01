@@ -44,7 +44,7 @@ const UserContextProvider = (props:{children: React.Component | React.Component[
     const [userInfo, setUserInfo] = useState(INITINALData);
 
     return (
-        <UserContext.Provider value={[{...userInfo}, setUserInfo]}>{props.children}</UserContext.Provider>
+        <UserContext.Provider value={{userInfo, setUserInfo}}>{props.children}</UserContext.Provider>
     );
 }
 

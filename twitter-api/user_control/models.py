@@ -133,9 +133,13 @@ class Profile(models.Model):
     image = models.ImageField(
         verbose_name='Image',
         blank=True,
-        upload_to='./media/user_profile/'
+        upload_to='user_profile/'
     )
-
+    cover_image = models.ImageField(
+        verbose_name='Cover Image',
+        blank=True,
+        upload_to='profile_cover/'
+    )
 
     def __str__(self):
         return f'{self.user.username} Profile'
