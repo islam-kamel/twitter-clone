@@ -15,12 +15,12 @@ function App() {
             <Login/>
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
+
                 <section className="row mx-auto" style={{height: "100vh"}}>
                     <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
                     </header>
                     <main className="col border p-0">
-                        {process.env.API_ID}
                         <Routes>
                             <Route index element={<Home/>}/>
                             <Route path={"explore"} element={<Explore/>}/>
@@ -32,6 +32,7 @@ function App() {
                         <Routes>
                             <Route path={"*"} element={<NewToTwitter/>}/>
                         </Routes>
+                        {document.cookie}
                     </aside>
                 </section>
             </main>

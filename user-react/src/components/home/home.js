@@ -1,5 +1,4 @@
 import Card from "../card/card";
-// import '../card/card.style.css';
 import "./home.style.css";
 
 const profileImage = require("../../assets/profile.image.jpg");
