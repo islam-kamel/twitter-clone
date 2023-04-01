@@ -41,7 +41,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="card mt-3 border-0">
-                            <img src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile['cover_image']}`}
+                            <img src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.cover_image}`}
                                  className="card-img-top profile-photo" alt="..."/>
                             <div className="card-body d-flex justify-content-between  ">
                                 <div>

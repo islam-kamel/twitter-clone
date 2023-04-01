@@ -8,6 +8,7 @@ type userInfo = {
         location: string,
         bio: string,
         image: string,
+        cover_image: string,
         user: number
     },
     email: string,
@@ -25,6 +26,7 @@ const INITINALData: userInfo = {
         location: '',
         bio: '',
         image: '',
+        cover_image: '',
         user: 0
     },
     email: '',
