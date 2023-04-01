@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
-import { home, explore, twitter, notifications, messages, bookmarks, lists, profile, more } from '../icons/icons';
+import { home, explore, twitter, notifications, messages, bookmarks, lists, profile, more } from '..//../constants/icons';
 import './leftSidebar.style.scss';
 
 

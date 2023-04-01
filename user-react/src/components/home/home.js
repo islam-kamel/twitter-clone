@@ -6,7 +6,7 @@ const profileImage = require('../../assets/profile.image.jpg');
 
 export default function Home() {
     return (
-        <main class="">
+        <main class="main_style">
         <div class="col-12  position-sticky top-0 z-1 main-div border-bottom">
            <div class="d-flex flex-row justify-content-between p-4">
                <h1 style={{fontSize:'20px',fontWeight:'600'}}>Home</h1>
@@ -23,7 +23,7 @@ export default function Home() {
             <div class="d-flex flex-row ">
                <img src={profileImage} alt="img" class="img_profile"/>
                <div class="new_tweet_details">
-               <input type="search" placeholder="What's happening?"/>
+               <input type="text" placeholder="What's happening?"/>
                <div class="new_tweet_actions">
                    <ul>
                        <li>
