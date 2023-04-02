@@ -31,7 +31,7 @@ function useAuth() {
 
             setTokens(response?.data);
             setIsLoading(false);
-            return response?.data["access_token"];
+
         }
 
         if (credentials.username && credentials.password) {

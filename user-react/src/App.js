@@ -9,8 +9,14 @@ import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
+import useAuth from "./hooks/useAuth";
+import {useEffect} from "react";
 
 function App() {
+    const {setCredentials} = useAuth();
+    useEffect(() => {
+        setCredentials({username: "islam.admin", password:'123'})
+    }, [])
     return (
         <>
             <Login/>
