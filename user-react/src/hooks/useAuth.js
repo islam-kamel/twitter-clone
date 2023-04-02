@@ -49,7 +49,7 @@ function useAuth() {
 }
 
 
-function useProfileInfo() {
+function useGetProfileInfo() {
     const [username, setUsername] = useState(false);
     const {setUserInfo} = useUserContext();
 
@@ -73,5 +73,5 @@ function useProfileInfo() {
 export default useAuth;
 
 export {
-    useProfileInfo
+    useGetProfileInfo
 }
