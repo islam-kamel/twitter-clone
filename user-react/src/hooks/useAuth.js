@@ -17,48 +17,63 @@ function useAuth() {
     const {setTokens} = useToken();
     const [credentials, setCredentials] = useState(INITIAL_VALUE)
     const {isLoading, setIsLoading} = useContext(IsLoadingContext);
-    const [response, setResponse] = useState(new Promise(() => {}))
+    const [response, setResponse] = useState(new Promise(() => {
+    }))
+    const login = async (credentials: Credentials) => {
+        setIsLoading(true);
+        const response = await axios.post("/auth/token", {
+            grant_type: "password",
+            username: credentials.username,
+            password: credentials.password,
+            client_id: process.env.REACT_APP_API_ID,
 
-    useEffect(() => {
-        const controller = new AbortController();
-        const login = async () => {
-            setIsLoading(true);
-            const response = await axios.post("/auth/token", {
-                grant_type: "password",
-                username: credentials.username,
-                password: credentials.password,
-                client_id: process.env.REACT_APP_API_ID,
+        });
 
-            }, {signal: controller.signal});
+        setTokens(response?.data);
+        setIsLoading(false);
+    }
+    // useEffect(() => {
+    //     const controller = new AbortController();
+    //     const login = async () => {
+    //         // setIsLoading(true);
+    //         const response = await axios.post("/auth/token", {
+    //             grant_type: "password",
+    //             username: credentials.username,
+    //             password: credentials.password,
+    //             client_id: process.env.REACT_APP_API_ID,
+    //
+    //         }, {signal: controller.signal});
+    //
+    //         setTokens(response?.data);
+    //         // setIsLoading(false);
+    //     }
+    //
+    //     if (credentials.username && credentials.password) {
+    //         setResponse(login);
+    //     }
+    //
+    //     return () => {
+    //         controller.abort();
+    //     }
+    //
+    // }, [credentials, setTokens, setIsLoading]);
 
-            setTokens(response?.data);
-            setIsLoading(false);
-        }
-
-        if (credentials.username && credentials.password) {
-            setResponse(login());
-        }
-
-        return () => {
-            controller.abort();
-        }
-
-    }, [credentials, setTokens, setIsLoading]);
-
-    return {response, isLoading, setCredentials}
+    return {login, isLoading, setCredentials}
 }
 
 
 function useGetProfileInfo() {
     const [username, setUsername] = useState(false);
     const {setUserInfo} = useUserContext();
+    // const [errors, setErrors] = useState(new Promise(() => {}))
 
     useEffect(() => {
         const controller = new AbortController();
-
-        axios.get(`api/user_info/${username}`, { signal: controller.signal })
-            .then(res => res.data)
-            .then(data => setUserInfo({...data}));
+        if (username) {
+            axios.get(`api/user_info/${username}`, {signal: controller.signal})
+                .then(res => res.data)
+                .then(data => setUserInfo({...data}));
+        }
 
         return () => {
             controller.abort();
@@ -66,7 +81,7 @@ function useGetProfileInfo() {
 
     }, [username, setUserInfo])
 
-    return {setUsername}
+    return setUsername
 }
 
 

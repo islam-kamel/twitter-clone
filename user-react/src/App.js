@@ -24,7 +24,7 @@ function App() {
                     <main className="col border p-0">
                         <Routes>
                             {/* start protected*/}
-                            <Route index element={<Home/>}/>
+                            <Route index={true} element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
                             <Route path={"explore"} element={<Explore/>}/>
