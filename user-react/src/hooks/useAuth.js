@@ -2,6 +2,7 @@ import useToken from "./useToken";
 import axios from "../apiProvider/axios";
 import {useContext, useEffect, useState} from "react";
 import {IsLoadingContext} from "../context/isLoading";
+import {useUserContext} from "../context/userContext";
 
 export type Credentials = {
     username: string | boolean,
@@ -47,4 +48,30 @@ function useAuth() {
     return {response, isLoading, setCredentials}
 }
 
+
+function useProfileInfo() {
+    const [username, setUsername] = useState(false);
+    const {setUserInfo} = useUserContext();
+
+    useEffect(() => {
+        const controller = new AbortController();
+
+        axios.get(`api/user_info/${username}`, { signal: controller.signal })
+            .then(res => res.data)
+            .then(data => setUserInfo({...data}));
+
+        return () => {
+            controller.abort();
+        }
+
+    }, [username, setUserInfo])
+
+    return {setUsername}
+}
+
+
 export default useAuth;
+
+export {
+    useProfileInfo
+}

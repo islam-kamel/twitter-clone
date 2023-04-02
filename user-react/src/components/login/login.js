@@ -1,11 +1,13 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useContext, useEffect, useState} from "react";
 import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 import type {Credentials} from "../../hooks/useAuth";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpiner from "../Loading/loading-spinner";
+import LoadingSpinner from "../Loading/loading-spinner";
 import {useNavigate} from "react-router-dom";
+import {useUserContext} from "../../context/userContext";
+import axios from "../../apiProvider/axios";
 
 
 const googleIconColors = {
@@ -32,6 +34,7 @@ export default function Login() {
     const [loginData, setLoginData] = useState(INITIAL_VALUE);
     const {response, isLoading, setCredentials} = useAuth();
     const navigate = useNavigate();
+    const {userInfo, setUserInfo} = useUserContext()
 
     const isFormValid = () => {
         const form = document.forms["loginForm"];
@@ -48,8 +51,9 @@ export default function Login() {
     const togglePasswordVisibility = () => setShow(!show);
     return (
         <div>
+            {JSON.stringify(userInfo)}
             {isLoading
-                ? <LoadingSpiner/>
+                ? <LoadingSpinner/>
                 : (
                     <TwModal id={"login-modal"} modalStyle={"modal-dialog-scrollable"}>
                         <TwModal.Header classes={"text-dark text-center w-100"} title={twitterIcon}/>
