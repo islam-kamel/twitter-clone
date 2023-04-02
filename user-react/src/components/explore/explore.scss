@@ -164,6 +164,7 @@
 
   .trend-card:hover {
     background-color: #f3f3f3;
+    // border-radius: 40%;
   }
 
   .trend-card:hover i:hover {
@@ -180,16 +181,18 @@
   }
 
   .trends ul{
-    height:transparent ;
+    // height:transparent ;
+    padding:0;
+
   }
 
-  .trends li {
+  .trends div {
     display: flex;
     justify-content: center;
     align-items: center;
     height:transparent ;
   }
-  .trends li:hover {
+  .trends div:hover {
     background-color: #dad9d9c4;
   }
 
