@@ -8,7 +8,6 @@ import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
-import JoinNowTwitter from "./components/JoinNowTwitter/JoinNowTwitter";
 import Profile from "./components/profile/profile";
 import UserSignButton from './components/usersignButton/userSignButton';
 
@@ -28,10 +27,15 @@ function App() {
                             {/* start protected*/}
                             <Route index={true} element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
-                            <Route path={"Message"} element={<Message/>}/>     
+                            <Route path={"Message"} element={<Message/>}/>
+                            <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"profile/:username"} element={<Profile/>}/>
+                            {/* end protected*/}
+                            <Route path={"Profile"} element={<Profile/>}/>
+                            <Route path={"UserSignButton"} element={<UserSignButton/>}/>
                         </Routes>
                     </main>
-                    {/* <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
+                    {/* <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
                         <Routes>
                             <Route path={"*"} element={<NewToTwitter/>}/>
                         </Routes>

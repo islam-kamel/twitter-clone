@@ -181,7 +181,14 @@ export default function Login() {
     return (
         <div>
             <TwModal id={"login-modal"} modalStyle={"modal-dialog-scrollable"}>
-                <TwModal.Header classes={"text-dark text-center w-100"} title={twitterIcon}/>
+                <TwModal.Header classes={"text-dark"}>
+                    <div className="row row-cols-2 w-100 mt-3 justify-content-evenly align-items-center">
+                        <div className="w-50 text-align-start">
+                            <i className="bi bi-x"></i>
+                        </div>
+                        <span className="d-block">{twitterIcon}</span>
+                    </div>
+                </TwModal.Header>
                 <TwModal.Body>
                     {isLoading
                         ? <LoadingSpinner/>
