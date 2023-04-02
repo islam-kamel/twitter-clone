@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const OneMessage = () => {
+const OneMessage = (props) => {
+
+
+    const handleClick = () => {
+       
+        props.updateShow(!props.show);
+    }
     return (
         <>
-            <div className=" container-fluid msg1">
+      
+           <div onClick={handleClick}>
 
-                <span className="row p-1 ">
+                <span className="row p-1 people-list ">
                     <img alt={'...'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU" className="col-2 col-md-2 col-lg-2 " />
                     <span className="col-1 col-lg-1  ps-1">Safaa </span>
 
@@ -16,8 +23,11 @@ const OneMessage = () => {
                     <span className="col-2 col-lg-2"><i className="bi bi-three-dots more" title="More"></i></span>
                     <p className="col-12 ps-5 ms-3">hi safaa </p>
                 </span>
+               
+                </div>
 
-            </div>
+            
+          
         </>
     );
 }

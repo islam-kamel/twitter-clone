@@ -67,12 +67,12 @@
   cursor: pointer;
 }
 
-@media (min-width: 481px) and (max-width: 967px) {
+@media (min-width: 481px) and (max-width: 989px) {
   .newmessage {
     display: none;
   }
   .message {
-    width: 80%;
+    display: none;
   }
 }
 /* Media Query for Mobile Devices */
@@ -81,3 +81,8 @@
     display: none;
   }
 }
+.people-list:hover {
+  background: #efefef;
+  cursor: pointer
+}
+
