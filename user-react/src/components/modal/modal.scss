@@ -1,12 +1,16 @@
+.modal-content {
+  border-radius: 1rem !important;
+}
+
 @media screen and (max-width: 900px) {
   .modal-content {
+    transition: none;
     position: fixed !important;
     max-width: 100% !important;
     min-width: 100% !important;
     width: 100% !important;
     height: 100vh !important;
     max-height: 100vh !important;
-    border: unset !important;
     border-radius: 0 !important;
     top: 0;
     left: 0;

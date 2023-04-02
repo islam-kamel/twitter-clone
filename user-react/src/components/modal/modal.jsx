@@ -136,7 +136,7 @@ class TwModal extends React.Component {
                 aria-hidden="true"
             >
                 <div className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
-                    <div className={"modal-content rounded-4"} style={contentContainerStyle}>
+                    <div className={"modal-content"} style={contentContainerStyle}>
                         {this.props.children.length ? this.getMap() : this.props.children}
                     </div>
                 </div>
