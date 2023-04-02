@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     "rest_framework",
     "user_control",
+    "tweet_controller"
 
 ]
 
