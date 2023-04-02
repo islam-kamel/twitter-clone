@@ -1,5 +1,5 @@
 import React, {ButtonHTMLAttributes, MouseEventHandler} from "react";
-
+import "./modal.scss"
 const contentContainerStyle = {
     maxHeight: "90vh",
     minHeight: 430,
