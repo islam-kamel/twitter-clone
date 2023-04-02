@@ -4,7 +4,7 @@ import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 import type {Credentials} from "../../hooks/useAuth";
 import useAuth from "../../hooks/useAuth";
-import LoadingSpiner from "../Loading/loading-spiner";
+import LoadingSpiner from "../Loading/loading-spinner";
 import {useNavigate} from "react-router-dom";
 
 

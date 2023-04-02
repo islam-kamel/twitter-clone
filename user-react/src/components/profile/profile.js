@@ -6,6 +6,7 @@ import ProfileModal from "./profileModal";
 
 export default function Profile() {
     const params = useParams();
+
     return (
         <>
             <section>
