@@ -16,7 +16,7 @@ function App() {
         <>
             <Login/>
             <SignUp/>
-           
+
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto" style={{height: "100vh"}}>
                     <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
@@ -35,11 +35,11 @@ function App() {
                             <Route path={"UserSignButton"} element={<UserSignButton/>}/>
                         </Routes>
                     </main>
-                    {/* <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
+                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
                         <Routes>
                             <Route path={"*"} element={<NewToTwitter/>}/>
                         </Routes>
-                    </aside> */}
+                    </aside>
                 </section>
             </main>
             {/*protected*/}
