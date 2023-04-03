@@ -1,20 +1,48 @@
-.modal-content {
-  border-radius: 1rem !important;
+.tw-modal-fixed {
+  position: fixed !important;
 }
 
-@media screen and (max-width: 900px) {
+.tw-modal-centred {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+}
+
+.tw-modal-content {
+  border-radius: var(--bs-border-radius-xl) !important;
+  max-width: 100%;
+  width: 600px !important;
+  height: 650px;
+  border: none !important;
+}
+
+@mixin tw-modal-full-screen {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+
+}
+@media screen and (width <= 705px) {
   .modal-content {
-    transition: none;
-    position: fixed !important;
-    max-width: 100% !important;
-    min-width: 100% !important;
-    width: 100% !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
-    border-radius: 0 !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    @include tw-modal-full-screen;
+
   }
+}
+
+.modal.fade .modal-dialog {
+  transform: none !important;
+}
+.tw-modal-close-button {
+	min-width: 36px !important;
+	min-height: 36px !important;
+	align-items: center !important;
+	width: fit-content !important;
+	display: flex !important;
+	align-content: center !important;
+	justify-content: center !important;
+    margin-right: 0 !important;
+}
+.tw-modal-close-button:hover {
+  background-color: rgba(239, 243, 244, 0.1);
+  width: fit-content;
 }

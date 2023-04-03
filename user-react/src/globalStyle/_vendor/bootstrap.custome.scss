@@ -1,7 +1,7 @@
 //@import "../node_modules/bootstrap/scss/functions";
 
 $primary: #1DA1F2;
-$secondary: #657786;
+$secondary: #71767b;
 $light: #ffffff;
 $dark: #000;
 
@@ -10,6 +10,9 @@ $text-muted: $secondary;
 
 @import "~bootstrap/scss/_functions";
 @import "~bootstrap/scss/_variables";
+
+//$modal-backdrop-bg: rgb(91, 112, 131);
+$modal-backdrop-opacity: .4;
 
 $form-feedback-invalid-color: $danger;
 $tooltip-color: red;
@@ -61,6 +64,10 @@ $body-bg-dark: #000;
     }
   } @else {
     [data-bs-theme="#{$mode}"] {
+      .modal-backdrop.fade.show {
+        background-color: rgb(91, 112, 131);
+        @content;
+      }
       .btn-outline-dark {
         @extend .btn-outline-light;
       }
