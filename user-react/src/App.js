@@ -10,19 +10,21 @@ import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
 import UserSignButton from './components/usersignButton/userSignButton';
+import Chat from "./components/chat/Chat";
 
 function App() {
     return (
         <>
             <Login/>
             <SignUp/>
-           
+
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto" style={{height: "100vh"}}>
                     <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
                     </header>
                     <main className="col border p-0">
+                        <Chat/>
                         <Routes>
                             {/* start protected*/}
                             <Route index={true} element={<Home/>}/>
