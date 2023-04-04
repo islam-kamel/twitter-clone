@@ -11,6 +11,10 @@
   gap: 15px;
 }
 
+.tw-navbar-icon {
+  width: 26px;
+}
+
 .tw-navbar-link {
   text-decoration: unset;
 }

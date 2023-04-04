@@ -10,6 +10,7 @@ import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
 import UserSignButton from './components/usersignButton/userSignButton';
+import {explore_fill, home_fill, notifications_fill} from "./constants/icons";
 
 function App() {
     return (
