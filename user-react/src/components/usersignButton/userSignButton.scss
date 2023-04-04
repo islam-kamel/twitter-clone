@@ -1,22 +1,22 @@
 
-.user-box{
-width:260px;
-height:75px;
-// background-color: #EEf;
-border-radius: 40px;
-display: flex;
-justify-content: space-around;
-align-items: center;
-margin:50% auto;
+.user-box {
+  width: 260px;
+  height: 75px;
+  // background-color: #EEf;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50% auto;
 }
 
-.user-box:hover{
-    background-color: #EEE;
-    
+.user-box:hover {
+  background-color: #EEE;
+
 }
 
 .trends-option {
-    position:absolute;
-    top:0;
-    right:50%;
+  position: absolute;
+  top: 0;
+  right: 50%;
 }

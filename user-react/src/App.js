@@ -9,7 +9,7 @@ import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
-import UserSignButton from './components/usersignButton/userSignButton';
+import UserSignButton from "./components/usersignButton/userSignButton";
 
 function App() {
     return (
@@ -18,7 +18,8 @@ function App() {
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto" style={{height: "100vh"}}>
-                    <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
+                    <header
+                        className="col-1 mx-2 col-sm-auto align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
                     </header>
                     <main className="col p-0">

@@ -57,11 +57,21 @@
 .tw-navbar-item i:first-child {
   margin-right: 10px;
 }
+@media screen and (max-width: 1281px){
 
+}
 @media (max-width: 1281px) {
-  .tw-navbar-text {
-    display: none;
+  .tw-navbar-text, .user-box-info, .user-box-dropdown {
+    display: none !important;
   }
+  .user-box {
+    width: fit-content !important;
+  }
+
+  .user-box:hover {
+    background-color: unset !important;
+  }
+
   .tw-navbar-item {
     width: fit-content;
     text-decoration-style: unset;
