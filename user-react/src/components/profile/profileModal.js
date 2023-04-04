@@ -54,33 +54,33 @@ const ProfileModal = (props) => {
                     <form className="d-flex flex-column justify-content-center">
                         <div className="card border-0">
                             <img
-                                src="https://th.bing.com/th/id/OIP.nPKODoaHaadqnZgghUxH4wHaEK?pid=ImgDet&rs=1"
+                                src={`${process.env.REACT_APP_BASE_URL}/api${props?.userInfo?.profile?.cover_image}`}
                                 className="card-img-top profile-photo"
                                 alt="..."
                                 width="100"
                             />
                             <div className="card-body d-flex justify-content-between  ">
                                 <img
-                                    src="https://th.bing.com/th/id/OIF.mAtJExIDFFm2zNDsIaVirA?pid=ImgDet&rs=1"
+                                    src={`${process.env.REACT_APP_BASE_URL}/api${props?.userInfo?.profile?.image}`}
                                     className=" person-image mt-5"
                                     alt="..."
                                 />
                             </div>
                         </div>
                         <div className="row row-cols-1 mt-5  gy-4 gx-0">
-                            <TwInput id={"username"} labelText={"Name"}/>
+                            <TwInput id={"fullname"} labelText={"Name"} other={{value: props?.userInfo?.fullname}}/>
 
-                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true}>
+                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true} other={{value: props?.userInfo?.profile?.bio}}>
                                 <label htmlFor={"bio"}>Bio</label>
                             </TwInput>
 
-                            <TwInput id={"location"} labelText={"Location"} />
+                            <TwInput id={"location"} labelText={"Location"} other={{value: props?.userInfo?.profile?.location}}/>
 
-                            <TwInput id={"website"} labelText={"Website"} />
+                            <TwInput id={"website"} labelText={"Website"} other={{value: props?.userInfo?.profile?.website}} />
 
                             <div className="mt-4">
                                 <p className="text-secondary ">Birth date.</p>
-                                <p className="fs-5 ">June 28, 1997</p>
+                                <p className="fs-5 ">{new Date(props?.userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</p>
                             </div>
 
                         </div>

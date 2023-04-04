@@ -7,7 +7,7 @@ import FormStepTwo from "./forms/FormStepTwo";
 import FormStepThird from "./forms/FormStepThird";
 import FormStepFifth from "./forms/FormStepFifth";
 import {IsLoadingContext} from "../../context/isLoading";
-import LoadingSpinner from "../Loading/loading-spiner";
+import LoadingSpinner from "../Loading/loading-spinner";
 import axios from "../../apiProvider/axios";
 import useAuth from "../../hooks/useAuth";
 

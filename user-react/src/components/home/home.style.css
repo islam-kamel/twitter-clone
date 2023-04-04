@@ -1,65 +1,14 @@
-.main_style{
-  width: 100%;
-}
-.main-div{
-    background-color: white;
-    /* padding: 0;
-    margin: 0; */
-  }
-  .new_tweet{
+/*.main_style {*/
+/*    max-width: 100%;*/
+/*}*/
+
+.new_tweet {
     display: flex;
     height: 140px !important;
-    padding: 15px 16px !important;
     width: 100%;
-  }
-  .new_tweet .img_profile{
-    cursor: pointer;
-    width: 11%;
-    height: 20%;
-    border-radius: 50%;
-  }
-  .new_tweet_details{
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-evenly !important;
-    padding-top: 4px !important;
-    width: 100% !important;
-    margin-left: 12px !important;
-  }
-  .new_tweet_actions{
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    height: 100px !important;
-  }
-  .new_tweet_actions ul{
-    display: flex !important;
-    list-style: none !important;
-    padding: 0;
-    padding-top: 20px;
-  }
-  .new_tweet_details input{
-    width: 100% !important;
-    height: 24px !important;
-    background-color:white !important;
-    font-size: 20px !important;
-    border: none !important;
-    color: black !important;
-    outline:black !important;
-  }
-  .new_tweet_actions ul li{
-    margin-right: 12px !important;
-    cursor: pointer !important;
-    color: #1C88d2 !important;
-  }
-  .new_tweet_actions .tweet_button{
-    width: 85px !important;
-    height: 35px !important;
-    font-weight: 400 !important;
-    font-size:18px !important;
-    padding: 1% !important;
-    color: white !important;
-    background-color: rgba(29, 161, 242,.5) !important;
-    cursor: pointer; 
-  } 
-  
+}
+
+.tw-profile-image {
+    width: 48px;
+    height: 48px;
+}

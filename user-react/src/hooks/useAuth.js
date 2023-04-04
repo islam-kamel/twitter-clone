@@ -1,9 +1,10 @@
 import useToken from "./useToken";
-import {axiosPrivate} from "../apiProvider/axios";
+import axios from "../apiProvider/axios";
 import {useContext, useEffect, useState} from "react";
 import {IsLoadingContext} from "../context/isLoading";
+import {useUserContext} from "../context/userContext";
 
-type Credentials = {
+export type Credentials = {
     username: string | boolean,
     password: string | boolean,
 }
@@ -11,36 +12,81 @@ const INITIAL_VALUE: Credentials = {
     username: false,
     password: false,
 }
+
 function useAuth() {
     const {setTokens} = useToken();
     const [credentials, setCredentials] = useState(INITIAL_VALUE)
-    const {setIsLoading} = useContext(IsLoadingContext);
+    const {isLoading, setIsLoading} = useContext(IsLoadingContext);
+    const [response, setResponse] = useState(new Promise(() => {
+    }))
+    const login = async (credentials: Credentials) => {
+        setIsLoading(true);
+        const response = await axios.post("/auth/token", {
+            grant_type: "password",
+            username: credentials.username,
+            password: credentials.password,
+            client_id: process.env.REACT_APP_API_ID,
+
+        });
+
+        setTokens(response?.data);
+        setIsLoading(false);
+    }
+    // useEffect(() => {
+    //     const controller = new AbortController();
+    //     const login = async () => {
+    //         // setIsLoading(true);
+    //         const response = await axios.post("/auth/token", {
+    //             grant_type: "password",
+    //             username: credentials.username,
+    //             password: credentials.password,
+    //             client_id: process.env.REACT_APP_API_ID,
+    //
+    //         }, {signal: controller.signal});
+    //
+    //         setTokens(response?.data);
+    //         // setIsLoading(false);
+    //     }
+    //
+    //     if (credentials.username && credentials.password) {
+    //         setResponse(login);
+    //     }
+    //
+    //     return () => {
+    //         controller.abort();
+    //     }
+    //
+    // }, [credentials, setTokens, setIsLoading]);
+
+    return {login, isLoading, setCredentials}
+}
+
+
+function useGetProfileInfo() {
+    const [username, setUsername] = useState(false);
+    const {setUserInfo} = useUserContext();
+    // const [errors, setErrors] = useState(new Promise(() => {}))
 
     useEffect(() => {
         const controller = new AbortController();
-        const login = async () => {
-            setIsLoading(true);
-            const response = await axiosPrivate.post("/auth/token", {
-                grant_type: "password",
-                username: credentials.username,
-                password: credentials.password
-            }, {signal: controller.signal});
-
-            setTokens(response?.data);
-            setIsLoading(false);
-            return response?.data['access_token'];
-        }
-
-        if (credentials.username && credentials.password) {
-            login().then(r => console.log(r));
+        if (username) {
+            axios.get(`api/user_info/${username}`, {signal: controller.signal})
+                .then(res => res.data)
+                .then(data => setUserInfo({...data}));
         }
 
         return () => {
             controller.abort();
         }
-    }, [credentials, setTokens, setIsLoading]);
 
-    return {credentials, setCredentials}
+    }, [username, setUserInfo])
+
+    return setUsername
 }
 
+
 export default useAuth;
+
+export {
+    useGetProfileInfo
+}

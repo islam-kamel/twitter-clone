@@ -21,10 +21,10 @@ function App() {
                     <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
                     </header>
-                    <main className="col border p-0">
+                    <main className="col p-0">
                         <Routes>
                             {/* start protected*/}
-                            <Route index element={<Home/>}/>
+                            <Route index={true} element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
                             <Route path={"explore"} element={<Explore/>}/>
@@ -34,7 +34,7 @@ function App() {
                             <Route path={"UserSignButton"} element={<UserSignButton/>}/>
                         </Routes>
                     </main>
-                    <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
+                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
                         <Routes>
                             <Route path={"*"} element={<NewToTwitter/>}/>
                         </Routes>

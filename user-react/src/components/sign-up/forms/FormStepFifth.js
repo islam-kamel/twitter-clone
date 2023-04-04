@@ -23,7 +23,7 @@ function FormStepFifth(props: { data: FormData, updateData: Function }) {
                             placeholder: "start with @ ex. @username",
                             required: true,
                             minLength: 8,
-                            pattern: "(^|[^@\\w])@(\\w{1,15})",
+                            pattern: "(\\w{1,15})",
                             onChange: (e) => {
                                 props?.updateData({...props?.data, username: e?.target.value})
                             }

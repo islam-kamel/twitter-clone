@@ -1,47 +1,73 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./profile.scss";
 import {useParams} from "react-router-dom";
 import ProfileModal from "./profileModal";
+import axios from "../../apiProvider/axios";
 
 
 export default function Profile() {
     const params = useParams();
+    const [userInfo, setUserInfo] = useState({});
+
+    useEffect(() => {
+        axios.get(`api/user_info/${params?.username}`)
+            .then(res => res.data)
+            .then(data => setUserInfo({...data}))
+    }, [params]);
+
     return (
         <>
             <section>
                 <div>
-                    <div className="d-flex justify-content-between align-items-center mt-1 py-1 w-25">
+                    <div className="row row-cols-auto align-items-center gx-2 mt-3">
                         <div className="mx-2"><i className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"></i>
                         </div>
                         <div className="mx-2">
-                            <h6 className="fs-5 fw-2">mostafa</h6>
+                            <h6 className="fs-5 fw-2">{userInfo?.fullname}</h6>
                             <p className="text-secondary">2 tweets</p>
                         </div>
                     </div>
                     <div className="card mt-3 border-0">
-                        <img src="https://th.bing.com/th/id/OIP.nPKODoaHaadqnZgghUxH4wHaEK?pid=ImgDet&rs=1"
+                        <img src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.cover_image}`}
                              className="card-img-top profile-photo" alt="..."/>
                         <div className="card-body d-flex justify-content-between  ">
                             <div>
                                 <img
-                                    src="https://th.bing.com/th/id/OIF.mAtJExIDFFm2zNDsIaVirA?pid=ImgDet&rs=1"
+                                    src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.image}`}
                                     className=" person-image" alt="..."
                                 />
                             </div>
 
                             {/* <!-- Modal --> */}
-                            <ProfileModal/>
+                            <ProfileModal userInfo={userInfo}/>
 
                         </div>
                     </div>
 
                     <div className="px-3 mx-2 ">
-                        <h4 className="card-title">mostafa</h4>
-                        <p className="card-text"><small className="text-body-secondary">@moustaf37510</small></p>
-                        <i className="bi bi-github fs-4 bi-link-hover"></i>
+                        <h4 className="card-title">{userInfo?.fullname}</h4>
+                        <p className="card-text"><small className="text-body-secondary">@{userInfo?.username}</small>
+                        </p>
                         <div>
-                            <small>Joined February 2022</small>
+                            <p>{userInfo?.profile?.bio}</p>
                         </div>
+                        <div className={"row row-cols-auto gx-2"}>
+                            <div className={"text-muted"}>
+                                <i className={"bi bi-geo-alt me-1"}></i>
+                                <span>{userInfo?.profile?.location}</span>
+                            </div>
+
+                            <div className={"text-muted"}>
+                                <i className={"bi bi-balloon me-1"}></i>
+                                <span>Born {new Date(userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</span>
+                            </div>
+
+                            <div className={"text-muted"}>
+                                <i className={"bi bi-calendar3 me-1"}></i>
+                                <span>Joined {new Date(userInfo?.create_at).toLocaleString(true, {dateStyle: "medium"})}</span>
+                            </div>
+                        </div>
+
                         <div className="">
                             <small className="following-N">
                                 <span className=" mx-1">59</span><span
@@ -54,61 +80,6 @@ export default function Profile() {
                         </div>
 
                         <hr/>
-                    </div>
-
-                    <div>
-                        <div
-                            className="btn-group trend-bar mt-1 justify-content-around align-items-center d-flex w-100 fs-6 fw-5 text-center "
-                            id="explore-group" role="group">
-                            <ul className="nav nav-pills  mt-2 col-10 w-100 fs-6 fw-5  d-flex justify-content-around align-items-center"
-                                id="pills-tab explore-group" role="tablist">
-                                <li className="nav-item" role="presentation">
-
-
-                                    <button
-                                        className="nav-link  nav-links trend-bar nav-tabs border-color  active focus"
-                                        id="pills-Tweets-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-Tweets" type="button" role="tab"
-                                        aria-controls="pills-Tweets"
-                                        aria-selected="false">
-
-                                        Tweets
-                                    </button>
-
-
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-
-                                    <button className="nav-link  nav-links trend-bar nav-tabs border-color"
-                                            id="pills-Replies-tab" data-bs-toggle="pill"
-                                            data-bs-target="#pills-Replies" type="button" role="tab"
-                                            aria-controls="pills-Replies"
-                                            aria-selected="false">
-                                        Replies
-                                    </button>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <button className="nav-link  nav-links trend-bar nav-tabs border-color"
-                                            id="pills-Media-tab" data-bs-toggle="pill" data-bs-target="#pills-Media"
-                                            type="button" role="tab" aria-controls="pills-Media"
-                                            aria-selected="false">Media
-                                    </button>
-                                </li>
-
-                                <li className="nav-item" role="presentation">
-                                    <button className="nav-link  nav-links trend-bar  nav-tabs-border-color"
-                                            data-bs-toggle="pill"
-                                            id="pills-Likes-tab" data-bs-target="#pills-Likes" type="button" role="tab"
-                                            aria-controls="pills-Likes"
-                                            aria-selected="false">Likes
-                                    </button>
-                                </li>
-
-                            </ul>
-
-                        </div>
                     </div>
 
                     <div className="tab-content show" id="pills-tabContent">

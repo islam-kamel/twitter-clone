@@ -9,7 +9,9 @@ function useAxiosPrivate() {
 
     useEffect(() => {
         const responseInterceptors = axiosPrivate.interceptors.response.use(
-            response => response,
+            response => {
+                return response;
+            },
             async error => {
                 const prevRequest = error?.config;
                 if (error?.response?.status === 401 && !prevRequest?.send) {
@@ -32,11 +34,11 @@ function useAxiosPrivate() {
                         refresh_token: getToken("refresh"),
                         grant_type: "refresh_token",
                     }
-                }
-                else {
+                } else {
                     config.data.client_id = process.env.REACT_APP_API_ID
                     config.data.client_secret = process.env.REACT_APP_API_SECRET
                 }
+
                 return config;
             },
             (error) => Promise.reject(error)
