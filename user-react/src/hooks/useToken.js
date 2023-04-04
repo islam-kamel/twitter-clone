@@ -12,7 +12,7 @@ export default function useToken() {
                 const tokenAge = new Date(new Date().getTime() + tokens["expires_in"] * 60)
                 Cookies.set(key, tokens[key], {secure: true, sameSite: "lax", expires: tokenAge})
             } else if (key === "refresh_token") {
-                Cookies.set(key, tokens[key], {secure: true, sameSite: "lax"})
+                Cookies.set(key, tokens[key], {secure: true, expires: 365, sameSite: "lax"})
             }
         }
     }, [tokens])

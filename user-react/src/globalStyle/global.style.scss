@@ -53,7 +53,11 @@ $font-path: "fonts";
 @import "~bootstrap/scss/_functions";
 $form-focus-border-color: bootstrap.$primary;
 
-
+.form-control,
+input,
+.form-select {
+  background-color: transparent !important;
+}
 .form-control:focus,
 .form-control:not(.is-invalid):focus
 {

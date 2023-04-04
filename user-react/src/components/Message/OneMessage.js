@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import NewMessageModal from './NewMessageModal';
+import ChatRoom from './ChatRoom';
 
 const OneMessage = (props) => {
 
+    const [show, setShow] = useState(false);
 
     const handleClick = () => {
-       
-        props.updateShow(!props.show);
+      props.setActiveChat(props.chatId);
+      setShow(true);
     }
+  
     return (
         <>
       
@@ -15,6 +19,7 @@ const OneMessage = (props) => {
                 <span className="row p-1 people-list ">
                     <img alt={'...'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU" className="col-2 col-md-2 col-lg-2 " />
                     <span className="col-1 col-lg-1  ps-1">Safaa </span>
+                    
 
                     <span className="col-3 col-lg-3 "> @safaa123 </span>
 
@@ -24,6 +29,7 @@ const OneMessage = (props) => {
                     <p className="col-12 ps-5 ms-3">hi safaa </p>
                 </span>
                
+
                 </div>
 
             

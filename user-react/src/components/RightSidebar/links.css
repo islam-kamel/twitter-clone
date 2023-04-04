@@ -1,0 +1,9 @@
+.a-style {
+    font-size: 14px;
+    text-decoration: none;
+    margin-left: 2% !important;
+    color: rgb(110, 118, 125) !important;
+}
+.a-style:hover{
+    text-decoration: underline !important;
+  }

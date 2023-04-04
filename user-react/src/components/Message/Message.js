@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import OneMessage from "./OneMessage";
@@ -6,7 +6,9 @@ import NewMessageModal from "./NewMessageModal";
 import ChatRoom from "./ChatRoom";
 
 const Message = () => {
-    const [show, setShow] = useState(true);
+
+    const [activeChat, setActiveChat] = useState(null)
+
 
 
     return (
@@ -39,25 +41,22 @@ const Message = () => {
                             </div>
                         </div>
                         <br />
+                        <div >
 
-                       
                             <div className="Message">
-                                <OneMessage updateShow={setShow} show={show} />
-                                <OneMessage updateShow={setShow} show={show} />
-                                <OneMessage updateShow={setShow} show={show} />
-                                <OneMessage updateShow={setShow} show={show} />
+
+
+                                <OneMessage chatId="Chat1" setActiveChat={setActiveChat} />
+                                <OneMessage chatId="Chat2" setActiveChat={setActiveChat} />
+                                <OneMessage chatId="Chat3" setActiveChat={setActiveChat} />
+                                <OneMessage chatId="Chat4" setActiveChat={setActiveChat} />
 
                             </div>
-                        
-
+                        </div>
                     </div>
 
+                    {activeChat ? <ChatRoom chatId={activeChat} /> : <NewMessageModal />}
 
-                    {/* new message */}
-
-                    {/* <NewMessageModal /> */}
-                    {show ? <NewMessageModal /> : <ChatRoom />}
-                    {/* <ChatRoom/> */}
                 </div>
             </div>
 

@@ -1,6 +1,9 @@
-import React from "react";
+import React, {FormEvent, useState} from "react";
 import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
+import TwInput from "../tw-input/tw-input";
+import type {Credentials} from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 
 const googleIconColors = {
@@ -10,7 +13,6 @@ const googleIconColors = {
     color: "transparent",
     WebkitTextFillColor: "transparent"
 }
-
 export const twitterIcon = <svg width={32} viewBox="0 0 24 24" aria-label="Twitter" role="img">
     <g>
         <path
@@ -18,11 +20,25 @@ export const twitterIcon = <svg width={32} viewBox="0 0 24 24" aria-label="Twitt
     </g>
 </svg>
 
-export const arrowIcon=<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-<path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-</svg>
-
+const INITIAL_VALUE: Credentials = {
+    username: "",
+    password: ""
+}
 export default function Login() {
+    const [show, setShow] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [loginData, setLoginData] = useState(INITIAL_VALUE);
+    const {setCredentials} = useAuth();
+
+    const isFormValid = () => {
+        const form = document.forms["loginForm"];
+        setIsDisabled(!form.checkValidity())
+    }
+    const handelSubmit = (event: FormEvent) => {
+        event.preventDefault()
+        setCredentials({username: loginData?.username, password: loginData?.password})
+    }
+    const togglePasswordVisibility = () => setShow(!show);
     return (
         <div>
             <TwModal id={"login-modal"} modalStyle={"modal-dialog-scrollable"}>
@@ -55,22 +71,70 @@ export default function Login() {
                         </div>
 
                         {/* input box */}
-                        <form onSubmit={(e) => e.preventDefault()} className="gy-4 w-75 row row-cols-1 justify-content-center align-items-center">
+                        <form
+                            onChange={isFormValid}
+                            name={"loginForm"}
+                            onSubmit={handelSubmit}
+                            className="gy-4 w-75 row row-cols-1 justify-content-center align-items-center"
+                        >
                             <div className="col">
-                                <input
-                                    placeholder={"Email,Phone or Username"}
-                                    type="email"
+                                <TwInput
+                                    id="username"
+                                    labelText={"Username"}
                                     className="form-control py-3"
-                                    id="exampleInputEmail1"
-                                    aria-describedby="emailHelp"
+                                    other={{
+                                        name: "username",
+                                        required: true,
+                                        minLength: 8,
+                                        pattern: "(\\w{1,15})",
+                                        onChange: (e) => {
+                                            setLoginData({...loginData, username: e?.target?.value})
+                                        }
+                                    }}
                                 />
                             </div>
                             <div className="col">
+                                <div className={"position-relative"}>
+                                    <span
+                                        className="p-0 fs-6 fw-light text-secondary"
+                                    >
+                                        Make sure it’s 8 characters or more.
+                                    </span>
+                                    <TwInput
+                                        labelText={"Password"}
+                                        className="form-control py-3"
+                                        type={show ? "text" : "password"}
+                                        other={{
+                                            name: "password",
+                                            required: true,
+                                            minLength: 8,
+                                            onChange: (e) => {
+                                                setLoginData({...loginData, password: e?.target?.value})
+                                            }
+                                        }}
+                                        id="password"
+                                    />
+                                    <i
+                                        style={{
+                                            position: "absolute",
+                                            top: "50%",
+                                            right: "3%"
+                                        }}
+                                        className={!show ? "bi bi-eye" : "bi bi-eye-slash"}
+                                        onClick={togglePasswordVisibility} id="PasswordShowing"
+                                    ></i>
+                                </div>
+                            </div>
+                            <div className="col">
                                 <TwButton
-                                    btnStyle={"dark"}
-                                    classes={"rounded-5 py-2 w-100"}
+                                    btnStyle={"outline-dark"}
+                                    classes={"rounded-5 w-100"}
+                                    other={{
+                                        type: "submit",
+                                        disabled: isDisabled
+                                    }}
                                 >
-                                    Next
+                                    Login
                                 </TwButton>
                             </div>
                             <div>
@@ -85,10 +149,10 @@ export default function Login() {
                                 <p className="text-secondary-emphasis fw-light ">
                                     Don't have an account ? {" "}
                                     <TwModal.ModalButton
-                                        targetId={'signup-modal'}
-                                        btnStyle={'btn-link p-2 border-none'}
-                                        classes={'text-primary fw-light'}
-                                        title={'Sign up'}
+                                        targetId={"signup-modal"}
+                                        btnStyle={"btn-link p-2 border-none"}
+                                        classes={"text-primary fw-light"}
+                                        title={"Sign up"}
                                     />
                                 </p>
                             </div>

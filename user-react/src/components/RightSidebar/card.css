@@ -1,0 +1,27 @@
+.trandy{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    color: rgb(110,118,125) !important;
+    width: 100% !important;
+}
+.div-trandy{
+    padding: 5px 0;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+.trandy:hover{
+    cursor: pointer;
+    background-color: rgba(110,118,125,0.1) ;
+}
+.div-trandy .icon_style{
+    padding: 8px 8px !important;
+}
+
+.div-trandy .icon_style:hover{
+    color: rgba(28, 136, 210,.7) !important;
+    border-radius: 50% !important;
+    background-color: rgba(28, 136, 210,.2) !important;
+}

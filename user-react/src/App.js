@@ -8,9 +8,26 @@ import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
+
 import JoinNowTwitter from "./components/JoinNowTwitter/JoinNowTwitter";
 
+import Profile from "./components/profile/profile";
+import useAuth from "./hooks/useAuth";
+import { useEffect } from "react";
+
+
 function App() {
+    const {response, setCredentials} = useAuth();
+
+    useEffect(() => {
+        setCredentials({username: 'islam.admin', password: '123'})
+    },  [setCredentials])
+
+    useEffect(() => {
+        response.then(e => console.log("isalm"))
+        .catch(e => console.log(e.response.data))
+
+    }, [response]) 
     return (
         <>
             <Login/>
@@ -23,11 +40,15 @@ function App() {
                     </header>
                     <main className="col border p-0">
                         <Routes>
+                            {/* start protected*/}
                             <Route index element={<Home/>}/>
-                            <Route path={"explore"} element={<Explore/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
-                           
+                            <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"profile/:username"} element={<Profile/>}/>
+                            {/* end protected*/}
+                            <Route path={"Profile"} element={<Profile/>}/>
+
                         </Routes>
                     </main>
                     {/* <aside className="col-4 d-none d-md-flex flex-grow-0 p-0">
@@ -37,7 +58,9 @@ function App() {
                     </aside> */}
                 </section>
             </main>
+            {/*protected*/}
             <Footer/>
+            {/*protected*/}
         </>
     );
 }

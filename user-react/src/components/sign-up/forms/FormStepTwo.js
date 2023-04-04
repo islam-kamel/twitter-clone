@@ -21,6 +21,7 @@ function FormStepTwo() {
                     <div className={"mx-4 col p-0"}>
                         <input
                             type="checkbox"
+                            defaultChecked={true}
                             className="form-check-input text-light border-primary border shadow-none"
                             style={{width: 20, height: 20}}
                         />

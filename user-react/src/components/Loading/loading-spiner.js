@@ -1,16 +1,14 @@
 import React from "react";
 import "../Loading/loading-spiner.scss";
 
-const LoadingSpiner = () => {
-  return (
-    <>
-      <div class="w-100 h-100">
-        <div class="load-spiner w-100  h-100">
-        <i class="" id='spinner'></i>
+const LoadingSpinner = () => {
+    return (
+        <div className={"d-flex align-items-center justify-content-center w-100 h-100"}>
+            <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
         </div>
-      </div>
-    </>
-  );
+    );
 };
 
-export default LoadingSpiner;
+export default LoadingSpinner;
