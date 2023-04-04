@@ -4,6 +4,7 @@ import UserSignButton from "../usersignButton/userSignButton";
 import TwButton from "../tw-button/tw-button";
 
 import {
+    bookmarks,
     bookmarks_fill,
     explore,
     explore_fill,
@@ -116,10 +117,10 @@ export default function MainSidebar() {
                             <div className="tw-navbar-item">
                                 <Link
                                     onClick={() => handelClick("bookmarks")}
-                                    to="#"
+                                    to="bookmarks"
                                     className="tw-navbar-link d-flex align-items-center text-dark"
                                 >
-                                    {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> : <BuildIcon icon={bookmarks_fill}/>}
+                                    {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> : <BuildIcon icon={bookmarks}/>}
                                     <span className="tw-navbar-text">Bookmarks</span>
                                 </Link>
                             </div>

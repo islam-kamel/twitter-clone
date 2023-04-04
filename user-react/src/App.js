@@ -9,6 +9,7 @@ import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
 import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
+import Bookmarks from "./components/bookmarks/Bookmarks";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
                             <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"bookmarks"} element={<Bookmarks/>}/>
                             <Route path={"profile/:username"} element={<Profile/>}/>
                             {/* end protected*/}
                             <Route path={"Profile"} element={<Profile/>}/>
