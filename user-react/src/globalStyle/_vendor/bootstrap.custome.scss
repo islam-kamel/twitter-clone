@@ -51,6 +51,8 @@ $body-bg-dark: #000;
 $backdrop-light: rgba(255, 255, 255, .85);
 $backdrop-dark: rgba(0, 0, 0, .85);
 
+$dropdown-link-active-bg: unset;
+
 .backdrop-blur {
   background-color: $backdrop-light;
   backdrop-filter: blur(12px);

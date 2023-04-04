@@ -1,7 +1,9 @@
 import React from "react";
 import "./card.style.scss"
 import {Link} from "react-router-dom";
-import {chart, comment, like, replay, share, threeDots} from "../../constants/icons";
+import {chart, comment, like, newFollow, replay, share, threeDots} from "../../constants/icons";
+import TwDropdown from "../twDropdown/TwDropdown";
+import "../main-sidebar/twitter.main.css"
 
 const Card = (props) => {
     return (
@@ -18,7 +20,24 @@ const Card = (props) => {
                                 {props.name}
                                 <span className={"text-muted"}> {props.username} </span>
                             </Link>
-                            <span className="icon-0 icon"> {threeDots} </span>
+
+
+                            <TwDropdown
+                                down={true}
+                                toggle={
+                                    <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
+                                }
+                            >
+                                <Link
+                                    to={"#"}
+                                    className={"text-decoration-none dropdown-item-text"}
+                                >
+                                    <div className={"d-flex align-items-center flex-row-reverse justify-content-center"}>
+                                        <i className={"ms-2"} style={{width: 20}}>{newFollow}</i>
+                                        <span>Follow {props?.username}</span>
+                                    </div>
+                                </Link>
+                            </TwDropdown>
                         </div>
                     </div>
                 </div>

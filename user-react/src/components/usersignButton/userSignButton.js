@@ -1,7 +1,9 @@
 import React from "react";
 import "./userSignButton.scss";
 import high from "../../Image/high.jpg";
-import {UserSignDropdown} from "../TrendsOpenion/trendsOpinion";
+import TwDropdown from "../twDropdown/TwDropdown";
+import {threeDots} from "../../constants/icons";
+import {Link} from "react-router-dom";
 
 
 const UserSignButton = () => {
@@ -18,11 +20,19 @@ const UserSignButton = () => {
                     <small className="text-body-secondary">@moustaf37510</small>
                 </div>
                 <div className="dropstart d-none d-xl-flex flex-column align-items-end mt-2 user-box-dropdown">
-                    <UserSignDropdown
-                        className="trends-option fw-bolder "
-                        addAccount="Add an existing account"
-                        logOut="Log out @moustaf37510"
-                    />
+
+                    <TwDropdown
+                        down={false}
+                        classes={"tw-dropdown-top-center tw-dropdown-arrow-down"}
+                        toggle={
+                            <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
+                        }
+                    >
+                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
+                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
+                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
+                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
+                    </TwDropdown>
                 </div>
             </div>
         </div>

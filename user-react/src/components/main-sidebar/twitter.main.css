@@ -33,14 +33,6 @@
 .tw-navbar-item:hover {
   background-color: rgba(15, 20, 25, 0.1);
 }
-.tw-navbar-item a:hover {
-  /*color: black;*/
-}
-
-.tw-navbar-link {
-  /*align-self: center;*/
-  /*color: black;*/
-}
 
 .tw-navbar-brand {
   font-size: 28px;
