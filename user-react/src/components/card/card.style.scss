@@ -26,14 +26,12 @@
 
 .feed_tweet {
   color: rgb(110, 118, 125) !important;
-  /*font-size: 1.5rem !important;*/
 }
 
 .tweeter_details {
   display: flex;
   align-items: flex-start !important;
   justify-content: space-between !important;
-  /*font-style: 1.5rem !important;*/
 }
 
 .tweeter_details .tweeter_name {
@@ -53,14 +51,12 @@
 
 .tweeter_details span {
   color: rgb(110, 118, 125) !important;
-  /*font-style: 1.5rem !important;*/
   font-weight: 400 !important;
   margin-left: 3px !important;
 }
 
 .tweet_text {
   color: black !important;
-  /*font-style: 1.5rem !important;*/
   width: 100% !important;
   padding-top: 1% !important;
 }
@@ -72,20 +68,6 @@
   margin: 15px 0 !important;
   padding-right: 50px !important;
 }
-
-//.tweet_icons i {
-//  padding: 8px 8px !important;
-//}
-
-//.icon-0 {
-//  padding: 8px 8px !important;
-//}
-
-//.tweet_icons .icon-2:hover {
-//  color: rgba(0, 128, 0, .7) !important;
-//  /*border-radius: 50% !important;*/
-//  background-color: rgba(0, 128, 0, .2) !important;
-//}
 
 $primary-icon-hover-bg: rgba(28, 136, 210, .2);
 $primary-icon-hover-color: rgba(28, 136, 210, .7);
@@ -116,26 +98,22 @@ $success-icon-hover-color: rgba(0, 128, 0, .7);
   }
 }
 
-//.tweet_icons .icon-1:hover, .tweet_icons .icon-4:hover, .tweet_icons .icon-5:hover, .feed_tweet .icon-0:hover {
-//  color: rgba(28, 136, 210, .7) !important;
-//  border-radius: 50% !important;
-//  background-color: rgba(28, 136, 210, .2) !important;
-//}
-
-//.tweet_icons .icon-3:hover {
-//  color: rgba(211, 46, 110, .7) !important;
-//  border-radius: 50% !important;
-//  background-color: rgba(211, 46, 110, .2) !important;
-//}
-
 .icon {
-  min-width: 36px !important;
-  min-height: 36px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
   align-items: center !important;
   width: fit-content !important;
   display: flex !important;
   align-content: center !important;
   justify-content: center !important;
-  margin-right: 0 !important;
   border-radius: 50%;
+  flex-shrink: 0;
+
+  svg {
+    width: 15.75px !important;
+    height: 15.75px !important;
+  }
+  font-size: 13px;
 }
+
+

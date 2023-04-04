@@ -7,22 +7,24 @@ const Card = (props) => {
     return (
         <>
             <div className={"row p-3 border-top gx-0"}>
-                <div className={"col-1 me-3"}>
-                    <img src={props.img} alt="" className="tw-profile-image  rounded-circle"/>
-                </div>
-                <div className={"col"}>
-                    <div className={"d-flex align-self-start justify-content-between align-items-center"}>
-                        <Link
-                            to="#"
-                            className="tweeter_name text-decoration-none text-dark"
-                        >
-                            {props.name}
-                            <span className={"text-muted"}> {props.username} </span>
-                        </Link>
-                        <span className="icon-0 icon"> {threeDots} </span>
+                <div className={"col-12 me-3"}>
+                    <div className={'d-flex '}>
+                        <img src={props.img} alt="" className="tw-profile-image  rounded-circle"/>
+                        <div className={"d-flex ms-2 justify-content-between align-items-start align-items-start w-100"}>
+                            <Link
+                                to="#"
+                                className="tweeter_name text-decoration-none text-dark"
+                            >
+                                {props.name}
+                                <span className={"text-muted"}> {props.username} </span>
+                            </Link>
+                            <span className="icon-0 icon"> {threeDots} </span>
+                        </div>
                     </div>
+                </div>
+                <div className={"col-11 ms-5 ps-2"}>
                     <div className={"d-flex flex-column"}>
-                        <p className={""}> {props.text}.</p>
+                        <p className={"fw-light"} style={{fontSize: 15}}> {props.text}.</p>
                         <div className="tweet_icons text-muted">
                             <div className={"icon"}>
                                 <i className={"icon icon-1"}>{comment}</i>

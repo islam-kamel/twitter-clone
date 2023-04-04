@@ -7,8 +7,8 @@ const profileImage = require("../../assets/profile.image.jpg");
 
 export default function Home() {
     return (
-        <main className="main_style">
-            <div className="col-12 position-sticky top-0 z-1 main-div border-bottom">
+        <main className="main_style border">
+            <div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">
                 <div className="d-flex flex-row justify-content-between p-4">
                     <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
                 </div>
