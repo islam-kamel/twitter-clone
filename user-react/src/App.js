@@ -17,7 +17,7 @@ function App() {
             <Login/>
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
-                <section className="row mx-auto" style={{height: "100vh"}}>
+                <section className="row mx-auto">
                     <nav
                         className="col-1 mx-2 col-sm-auto align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
@@ -44,12 +44,12 @@ function App() {
 
                     </aside>
                 </section>
+                <nav className={"d-sm-none mt-auto"} style={{margin: "58px 0!important"}}>
+                    <SmNavbar/>
+                </nav>
             </main>
             {/*protected*/}
-            <nav className={"d-sm-none mt-auto"}>
-                <SmNavbar/>
-            </nav>
-            <Footer/>
+                <Footer/>
             {/*protected*/}
         </>
     );
