@@ -8,11 +8,11 @@
   justify-content: space-around;
   align-items: center;
   margin: 50% auto;
+  transition: background-color ease-in .1s;
 }
 
 .user-box:hover {
-  background-color: #EEE;
-
+  background-color:  rgba(15, 20, 25, 0.1);
 }
 
 .trends-option {

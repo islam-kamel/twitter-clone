@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   border-radius: 9999px;
-  transition: ease-in all 0.2s;
+  transition: ease-in all 0.1s;
 }
 .tw-navbar-item:hover {
   background-color: rgba(15, 20, 25, 0.1);
@@ -90,10 +90,20 @@
   }
 
   .tw-navbar {
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
 }
 /* End Navbar Component*/
+.tw-new-tweet-btn {
+  border: none !important;
+  height: 52px !important;
+  width: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}

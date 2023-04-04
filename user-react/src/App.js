@@ -18,10 +18,10 @@ function App() {
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto" style={{height: "100vh"}}>
-                    <header
+                    <nav
                         className="col-1 mx-2 col-sm-auto align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
                         <MainSidebar/>
-                    </header>
+                    </nav>
                     <main className="col p-0">
                         <Routes>
                             {/* start protected*/}
@@ -46,7 +46,7 @@ function App() {
             <nav className={"d-sm-none"}>
                 <SmNavbar/>
             </nav>
-            <Footer/>
+            {/*<Footer/>*/}
             {/*protected*/}
         </>
     );

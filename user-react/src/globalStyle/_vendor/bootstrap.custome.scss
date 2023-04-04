@@ -73,6 +73,10 @@ $dropdown-link-active-bg: unset;
     }
   } @else {
     [data-bs-theme="#{$mode}"] {
+      .user-box:hover,
+      .tw-navbar-item:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
       .backdrop-blur {
         @extend .backdrop-blur;
         background-color: $backdrop-dark;
@@ -92,7 +96,9 @@ $dropdown-link-active-bg: unset;
       .text-dark {
         @extend .text-light;
       }
-
+      .bg-light {
+        @extend .bg-dark;
+      }
       @content;
 
     }
