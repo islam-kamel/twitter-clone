@@ -64,7 +64,7 @@ export function SmNavbar() {
     const {isActive, handelClick} = useActiveLink();
 
     return (
-        <div className={"position-fixed bg-light border-top start-0 bottom-0 w-100"}>
+        <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
             <div className={"container"}>
                 <div className={"w-100 d-flex justify-content-center my-1"}>
                     <div className={"d-flex justify-content-around w-100"}>
@@ -81,7 +81,8 @@ export function SmNavbar() {
                                 onClick={() => handelClick("home")}
                                 to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
                             >
-                                {isActive?.search ? <BuildIcon icon={search_fill}/> : <BuildIcon icon={search_fill}/>}
+                                {isActive?.search ? <BuildIcon icon={search_fill}/> :
+                                    <BuildIcon icon={search_fill}/>}
                             </Link>
                         </div>
                         <div className={"tw-navbar-item"}>
@@ -98,7 +99,8 @@ export function SmNavbar() {
                                 onClick={() => handelClick("home")}
                                 to={"/Message"} className="tw-navbar-link d-flex align-items-center text-dark"
                             >
-                                {isActive?.message ? <BuildIcon icon={messages_fill}/> : <BuildIcon icon={messages}/>}
+                                {isActive?.message ? <BuildIcon icon={messages_fill}/> :
+                                    <BuildIcon icon={messages}/>}
                             </Link>
                         </div>
                     </div>
@@ -119,7 +121,7 @@ export default function MainSidebar() {
                     className="position-relative  d-flex flex-column align-items-center justify-content-between"
                 >
                     <div
-                        className={"top-0 position-fixed d-flex mt-0 h-100 flex-column align-items-start mx-auto justify-content-start"}
+                        className={"top-0 overflow-y-auto position-fixed d-flex mt-0 h-100 flex-column align-items-start mx-auto justify-content-start"}
                     >
                         <div className={"d-flex  h-100  justify-content-between flex-column"}>
                             <div className="tw-navbar">

@@ -4,7 +4,6 @@
 
 /* Navbar Component */
 .tw-navbar {
-  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -90,7 +89,6 @@
   }
 
   .tw-navbar {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

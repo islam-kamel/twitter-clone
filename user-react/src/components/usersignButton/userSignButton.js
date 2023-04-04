@@ -7,9 +7,9 @@ import {Link} from "react-router-dom";
 
 
 const UserSignButton = () => {
-    return (<>
-        <div className="" style={{paddingTop: "3"}}>
-            <div role={"button"} className="user-box">
+    return (
+        <div className="mb-0" style={{paddingTop: "3"}}>
+            <div role={"button"} className="user-box mb-5 ">
                 <img
                     src={high}
                     className="rounded-circle float-start tw-profile-image"
@@ -36,7 +36,7 @@ const UserSignButton = () => {
                 </div>
             </div>
         </div>
-    </>);
+    );
 }
 
 export default UserSignButton;

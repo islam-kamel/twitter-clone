@@ -35,7 +35,7 @@ const ProfileModal = (props) => {
                 title={"Edit Profile"}
                 classes={"rounded-5 border"}
             />
-            <TwModal id={"editProfileModal"}>
+            <TwModal id={"editProfileModal"} modalStyle={"rounded-4"}>
                 <TwModal.Header>
                     <div className={"d-flex w-100 mt-2 align-items-center justify-content-between"}>
                         <div className={"d-flex align-items-center"}>

@@ -45,6 +45,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 // Custom Dark Mode beta
 @import "~bootstrap/scss/mixins/color-mode";
 
+
 $primary-text-dark: $light;
 $body-bg-dark: #000;
 

@@ -65,7 +65,7 @@ class TwModal extends React.Component {
         }
 
         return (
-            <div className={"modal-header backdrop-blur border-0 pt-0"} style={{height: 53}}>
+            <div className={"modal-header border-0 pt-0"} style={{height: 53}}>
                 {props?.defaultHeader ? <DefaultHeader/> : (
                     props?.children ?? (
                         <div className={"row w-100 h-100 g-0 justify-content-center align-items-center"}>
@@ -161,8 +161,8 @@ class TwModal extends React.Component {
                 aria-labelledby={this._label(this.props.id)}
                 aria-hidden="true"
             >
-                <div className={`modal-dialog ${this.props?.modalStyle}`}>
-                    <div className={"modal-content tw-modal-content tw-modal-centred tw-modal-fixed"}>
+                <div className={`modal-dialog  ${this.props?.modalStyle}`}>
+                    <div className={"modal-content  tw-modal-content tw-modal-centred tw-modal-fixed"}>
                         {this.props.children.length ? this.getMap() : this.props.children}
                     </div>
                 </div>
