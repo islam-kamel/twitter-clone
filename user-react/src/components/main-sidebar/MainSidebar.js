@@ -1,8 +1,8 @@
-import "./twitter.main.css"
 import {Link, useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
 import UserSignButton from "../usersignButton/userSignButton";
 import TwButton from "../tw-button/tw-button";
-
+import "./twitter.main.css"
 import {
     bookmarks,
     bookmarks_fill,
@@ -16,9 +16,8 @@ import {
     notifications,
     notifications_fill,
     profile,
-    profile_fill
+    profile_fill, search_fill
 } from "../../constants/icons";
-import {useEffect, useState} from "react";
 
 
 const initialValue = {
@@ -30,9 +29,28 @@ const initialValue = {
     bookmarks: false,
 }
 
-function BuildIcon(props: { icon: HTMLElement }) {
+export function BuildIcon(props: { icon: HTMLElement }) {
     return (
         <i className="d-flex tw-navbar-icon">{props?.icon}</i>
+    );
+}
+
+
+export function SmNavbar() {
+    return (
+        <div className={"position-fixed bg-light border-top start-0 bottom-0 w-100"}>
+            <div className={"container"}>
+                <div className={"w-100 d-flex justify-content-center my-3"}>
+                    <div className={"d-flex justify-content-around w-100"}>
+                        <BuildIcon icon={home}/>
+                        <BuildIcon icon={search_fill}/>
+                        <BuildIcon icon={notifications}/>
+                        <BuildIcon icon={messages}/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     );
 }
 
@@ -120,7 +138,8 @@ export default function MainSidebar() {
                                     to="bookmarks"
                                     className="tw-navbar-link d-flex align-items-center text-dark"
                                 >
-                                    {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> : <BuildIcon icon={bookmarks}/>}
+                                    {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> :
+                                        <BuildIcon icon={bookmarks}/>}
                                     <span className="tw-navbar-text">Bookmarks</span>
                                 </Link>
                             </div>

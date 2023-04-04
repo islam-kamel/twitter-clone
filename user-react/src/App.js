@@ -1,4 +1,4 @@
-import MainSidebar from "./components/main-sidebar/MainSidebar";
+import MainSidebar, {SmNavbar} from "./components/main-sidebar/MainSidebar";
 import Login from "./components/login/login";
 import SignUp from "./components/sign-up/SignUp";
 import Home from "./components/home/home";
@@ -43,6 +43,9 @@ function App() {
                 </section>
             </main>
             {/*protected*/}
+            <nav className={"d-sm-none"}>
+                <SmNavbar/>
+            </nav>
             <Footer/>
             {/*protected*/}
         </>

@@ -1,10 +1,13 @@
 import {useUserContext} from "../../context/userContext";
-import {threeDots} from "../../constants/icons";
+import {explore, home, messages, notifications, search_fill, threeDots} from "../../constants/icons";
 import Card from "../card/card";
 import TwDropdown from "../twDropdown/TwDropdown";
 import {Link} from "react-router-dom";
+import {BuildIcon} from "../main-sidebar/MainSidebar";
 
 const profileImage = require("../../assets/profile.image.jpg");
+
+
 
 function Bookmarks() {
     const {userInfo} = useUserContext();
@@ -35,7 +38,6 @@ function Bookmarks() {
                     img={profileImage}
                 />
             </div>
-
         </div>
     );
 }
