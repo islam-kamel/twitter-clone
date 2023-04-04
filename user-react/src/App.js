@@ -16,7 +16,6 @@ function App() {
         <>
             <Login/>
             <SignUp/>
-
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto" style={{height: "100vh"}}>
                     <header className="col-1 align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">

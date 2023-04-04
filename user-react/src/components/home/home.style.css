@@ -1,7 +1,6 @@
-.main_style {
-    width: 600px;
-    max-width: 100%;
-}
+/*.main_style {*/
+/*    max-width: 100%;*/
+/*}*/
 
 .new_tweet {
     display: flex;
