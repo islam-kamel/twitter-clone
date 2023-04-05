@@ -1,22 +1,29 @@
-import {useEffect} from "react";
+import {useCallback, useContext, useEffect} from "react";
 import useRefreshToken from "./useRefreshToken";
 import {axiosPrivate} from "../apiProvider/axios";
 import useToken from "./useToken";
+import {IsLoadingContext} from "../context/isLoading";
 
 function useAxiosPrivate() {
     const refresh = useRefreshToken();
-    const {tokens, getToken} = useToken();
+    const {getToken} = useToken();
+    const {setIsLoading} = useContext(IsLoadingContext);
+
+    const setLoading = useCallback(() => setIsLoading(true), [setIsLoading]);
+    const removeLoading = useCallback(() => setIsLoading(false), [setIsLoading]);
 
     useEffect(() => {
         const responseInterceptors = axiosPrivate.interceptors.response.use(
             response => {
+                removeLoading();
                 return response;
             },
             async error => {
+                removeLoading();
                 const prevRequest = error?.config;
                 if (error?.response?.status === 401 && !prevRequest?.send) {
                     prevRequest.send = true
-                    const newAccessToken = await refresh();
+                    const newAccessToken = await refresh().then(res => res?.data?.access_token);
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest)
                 }
@@ -24,6 +31,7 @@ function useAxiosPrivate() {
         )
         const requestInterceptors = axiosPrivate.interceptors.request.use(
             config => {
+                setLoading();
                 if (!config.headers["Authorization"]) {
                     config.headers["Authorization"] = `Bearer ${getToken("access")}`
                 }
@@ -41,13 +49,17 @@ function useAxiosPrivate() {
 
                 return config;
             },
-            (error) => Promise.reject(error)
+            (error) => {
+                removeLoading();
+                return Promise.reject(error)
+            }
         );
         return () => {
+            removeLoading();
             axiosPrivate.interceptors.request.eject(requestInterceptors);
             axiosPrivate.interceptors.response.eject(responseInterceptors);
         }
-    }, [getToken, refresh, tokens]);
+    }, [getToken, refresh, removeLoading, setLoading]);
 
     return axiosPrivate;
 }

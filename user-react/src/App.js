@@ -10,6 +10,60 @@ import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
 import Bookmarks from "./components/bookmarks/Bookmarks";
 import Footer from "./components/footer/Footer";
+import {useEffect, useRef, useState} from "react";
+import {useIsLoading} from "./context/isLoading";
+import LoadingSpinner from "./components/Loading/loading-spinner";
+import useAxiosPrivate from "./hooks/useAxiosPrivate";
+import useAuth from "./hooks/useAuth";
+import useRefreshToken from "./hooks/useRefreshToken";
+
+function ApiTest() {
+    const [apiHealth, setApiHealth] = useState("Nothing");
+    const {isLoading} = useIsLoading();
+    const {login} = useAuth();
+    const refresh = useRefreshToken();
+
+    // const axios = useAxios();
+    // useEffect(() => {
+    //     axios.get('api/api-health-check')
+    //         .then(res => setApiHealth(res?.data?.state))
+    //         .catch(err => setApiHealth(err?.message))
+    // }, [axios])
+
+    const axiosPrivate = useAxiosPrivate();
+
+    const handelRefresh = () => refresh().then(res => setApiHealth(res.data.access_token))
+    const handelLogin = () => {
+        login({username: "islam.admin", password: "123"}).then(response => {
+            setApiHealth(response.statusText);
+            setTimeout(() => {
+                axiosPrivate.get("api/user/is_auth")
+                    .then(res => setApiHealth(res.data.message))
+                    .catch(err => {
+                        if (err?.response) {
+                            setApiHealth(err?.response?.data["error_description"])
+                        }
+                    })
+            }, 2000)
+        })
+    }
+
+    const handelGetFullname = () => {
+        axiosPrivate.get("api/user/info/islam.admin").then(res => {
+            setApiHealth(res.data.fullname)
+        })
+    }
+    return (
+        <div className={"container my-5"}>
+            <div className={"p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"}>
+                {isLoading ? <LoadingSpinner/> : apiHealth}
+            </div>
+            <button className={"btn btn-danger mt-3"} onClick={handelRefresh}>Refresh</button>
+            <button className={"btn btn-primary mt-3"} onClick={handelLogin}>Login</button>
+            <button className={"btn btn-success mt-3"} onClick={handelGetFullname}>Get Fullname</button>
+        </div>
+    );
+}
 
 function App() {
     return (
@@ -18,11 +72,10 @@ function App() {
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
                 <section className="row mx-auto">
-                    <nav
-                        className="col-1 mx-2 col-sm-auto align-items-start flex-shrink-0 col-xl-2 d-none d-sm-flex">
+                    <nav className={"col-2 d-none d-sm-flex"}>
                         <MainSidebar/>
                     </nav>
-                    <main className="col p-0 mb-auto">
+                    <main className="col  p-0 mb-auto">
                         <Routes>
                             {/* start protected*/}
                             <Route index={true} element={<Home/>}/>
@@ -36,12 +89,11 @@ function App() {
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
-                        <div className={"position-fixed"} style={{width: 400}}>
+                        <div className={"position-fixed"} style={{width: 350}}>
                             <Routes>
                                 <Route path={"*"} element={<NewToTwitter/>}/>
                             </Routes>
                         </div>
-
                     </aside>
                 </section>
                 <nav className={"d-sm-none mt-auto"} style={{margin: "58px 0!important"}}>
@@ -49,7 +101,9 @@ function App() {
                 </nav>
             </main>
             {/*protected*/}
+            <div style={{margin: "72px 0 !important"}}>
                 <Footer/>
+            </div>
             {/*protected*/}
         </>
     );

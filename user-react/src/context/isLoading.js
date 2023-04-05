@@ -1,9 +1,11 @@
-import {createContext, useState} from "react";
+import {createContext, useContext, useState} from "react";
 
 type IsLoading = boolean
 const INITIAL_VALUE: IsLoading= false;
 
 export const IsLoadingContext = createContext(INITIAL_VALUE);
+
+export const useIsLoading = () => useContext(IsLoadingContext);
 
 const IsLoadingContextProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(INITIAL_VALUE);

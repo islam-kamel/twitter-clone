@@ -21,7 +21,7 @@ class TwDropdown extends React.Component {
                 <ul className={`dropdown-menu rounded-4 ${this.props.classes}`}>
                     {this.props.children?.length
                         ? this.props.children.map((el, i) => {
-                            return <li className={"dropdown-item my-2"}>{el}</li>
+                            return <li key={i} className={"dropdown-item my-2"}>{el}</li>
                         })
                         : <li className={"dropdown-item my-2"}>{this.props.children}</li>}
                 </ul>
