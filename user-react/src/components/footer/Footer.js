@@ -1,4 +1,5 @@
 import TwModal from "../modal/modal";
+import noneLoginRequire from "../../guards/noneLoginRequire";
 
 
 const footerStyle = {
@@ -17,7 +18,7 @@ const footerHeadingStyle = {
 const footerSubTitleStyle = {
     fontSize: 15,
 }
-export default function Footer() {
+function Footer() {
     return (
         <footer className={"bg-primary p-0 "} style={footerStyle}>
 
@@ -58,3 +59,5 @@ export default function Footer() {
         </footer>
     );
 }
+
+export default noneLoginRequire(Footer);

@@ -3,8 +3,6 @@ import "./explore.scss";
 import Trends from "../Trends/trends";
 
 export default function Explore() {
-
-
     const handleSearcher = () => {
 
         document.getElementById("input-bar").addEventListener("blur", () => {
@@ -20,12 +18,9 @@ export default function Explore() {
         })
     }
 
-
     return <>
-
         <section className="container-fluid">
             <div className="row">
-
 
                 <div id="explore" className=" col-12  border-end p-3">
                     {/* <!--  --------------------------------search-Bar-------------- --> */}

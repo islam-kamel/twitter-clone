@@ -10,7 +10,7 @@ import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
 import Bookmarks from "./components/bookmarks/Bookmarks";
 import Footer from "./components/footer/Footer";
-import {useEffect, useRef, useState} from "react";
+import {useState} from "react";
 import {useIsLoading} from "./context/isLoading";
 import LoadingSpinner from "./components/Loading/loading-spinner";
 import useAxiosPrivate from "./hooks/useAxiosPrivate";
@@ -32,18 +32,22 @@ function ApiTest() {
 
     const axiosPrivate = useAxiosPrivate();
 
+    function isAuth() {
+        axiosPrivate.get("api/user/is_auth")
+            .then(res => setApiHealth(res.data.message))
+            .catch(err => {
+                if (err?.response) {
+                    setApiHealth(err?.response?.data["error_description"])
+                }
+            })
+    }
+
     const handelRefresh = () => refresh().then(res => setApiHealth(res.data.access_token))
     const handelLogin = () => {
         login({username: "islam.admin", password: "123"}).then(response => {
             setApiHealth(response.statusText);
             setTimeout(() => {
-                axiosPrivate.get("api/user/is_auth")
-                    .then(res => setApiHealth(res.data.message))
-                    .catch(err => {
-                        if (err?.response) {
-                            setApiHealth(err?.response?.data["error_description"])
-                        }
-                    })
+                isAuth();
             }, 2000)
         })
     }
@@ -53,14 +57,18 @@ function ApiTest() {
             setApiHealth(res.data.fullname)
         })
     }
+
     return (
         <div className={"container my-5"}>
             <div className={"p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"}>
                 {isLoading ? <LoadingSpinner/> : apiHealth}
             </div>
-            <button className={"btn btn-danger mt-3"} onClick={handelRefresh}>Refresh</button>
-            <button className={"btn btn-primary mt-3"} onClick={handelLogin}>Login</button>
-            <button className={"btn btn-success mt-3"} onClick={handelGetFullname}>Get Fullname</button>
+            <div className={"btn-group"}>
+                <button className={"btn btn-danger mt-3"} onClick={handelRefresh}>Refresh</button>
+                <button className={"btn btn-primary mt-3"} onClick={handelLogin}>Login</button>
+                <button className={"btn btn-success mt-3"} onClick={handelGetFullname}>Get Fullname</button>
+                <button className={"btn btn-dark mt-3"} onClick={isAuth}>Is Auth?</button>
+            </div>
         </div>
     );
 }
@@ -76,16 +84,14 @@ function App() {
                         <MainSidebar/>
                     </nav>
                     <main className="col  p-0 mb-auto">
+                        <ApiTest/>
                         <Routes>
-                            {/* start protected*/}
                             <Route index={true} element={<Home/>}/>
                             <Route path={"notifications"} element={<Notifications/>}/>
                             <Route path={"Message"} element={<Message/>}/>
-                            <Route path={"explore"} element={<Explore/>}/>
                             <Route path={"bookmarks"} element={<Bookmarks/>}/>
                             <Route path={"profile/:username"} element={<Profile/>}/>
-                            {/* end protected*/}
-                            <Route path={"Profile"} element={<Profile/>}/>
+                            <Route path={"explore"} element={<Explore/>}/>
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
@@ -101,9 +107,7 @@ function App() {
                 </nav>
             </main>
             {/*protected*/}
-            <div style={{margin: "72px 0 !important"}}>
                 <Footer/>
-            </div>
             {/*protected*/}
         </>
     );

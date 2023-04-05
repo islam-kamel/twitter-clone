@@ -5,7 +5,8 @@ import ProfileModal from "./profileModal";
 import axios from "../../apiProvider/axios";
 import TwButton from "../tw-button/tw-button";
 import Card from "../card/card";
-import {verifyBlue, verifyGold} from "../../constants/icons";
+import {verifyBlue} from "../../constants/icons";
+import authGuard from "../../guards/authGuard";
 
 const mediaImage = require("../../Image/media.png")
 const profileImage = require("../../assets/profile.image.jpg");
@@ -23,9 +24,9 @@ function SuggestionFollow(props: { username: string, fullname: string, profileIm
                         alt="..."
                     />
                     <div className="ms-3">
-                        <div className={'d-flex justify-content-center'}>
-                            <h5 className={'m-0 fw-bold me-1'}>{props?.fullname}</h5>
-                            <span className={'text-primary tw-navbar-icon'}>{verifyBlue}</span>
+                        <div className={"d-flex justify-content-center"}>
+                            <h5 className={"m-0 fw-bold me-1"}>{props?.fullname}</h5>
+                            <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
                         </div>
                         <span className="text-muted fw-light">@{props?.username}</span>
                     </div>
@@ -43,12 +44,12 @@ function SuggestionFollow(props: { username: string, fullname: string, profileIm
 }
 
 
-export default function Profile() {
+function Profile() {
     const params = useParams();
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
-        axios.get(`api/user_info/${params?.username}`)
+        axios.get(`api/user/info/${params?.username}`)
             .then(res => res.data)
             .then(data => setUserInfo({...data}))
     }, [params]);
@@ -277,16 +278,22 @@ export default function Profile() {
                     tabIndex="0"
                 >
                     <div className={"d-flex flex-column p-0"}>
-                        <div className={'px-4'}>
+                        <div className={"px-4"}>
                             <h2 className={"fw-bold"}> Who to follow</h2>
                         </div>
-                        <SuggestionFollow username={"mostafaAbdElHady"} fullname={"Mostafa Abd ElHady 🧑‍💻"} profileImage={"https://picsum.photos/220"}/>
-                        <SuggestionFollow username={"ahmedKhaled"} fullname={"Ahmed Khaled 💪"} profileImage={"https://picsum.photos/220"}/>
-                        <SuggestionFollow username={"safaAbdElNaser"} fullname={"Safa Abd ElNaser ❤️"} profileImage={"https://picsum.photos/220"}/>
-                        <SuggestionFollow username={"engyMohamed"} fullname={"Engy Mohamed 🍂"} profileImage={"https://picsum.photos/220"}/>
+                        <SuggestionFollow username={"mostafaAbdElHady"} fullname={"Mostafa Abd ElHady 🧑‍💻"}
+                                          profileImage={"https://picsum.photos/220"}/>
+                        <SuggestionFollow username={"ahmedKhaled"} fullname={"Ahmed Khaled 💪"}
+                                          profileImage={"https://picsum.photos/220"}/>
+                        <SuggestionFollow username={"safaAbdElNaser"} fullname={"Safa Abd ElNaser ❤️"}
+                                          profileImage={"https://picsum.photos/220"}/>
+                        <SuggestionFollow username={"engyMohamed"} fullname={"Engy Mohamed 🍂"}
+                                          profileImage={"https://picsum.photos/220"}/>
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+
+export default authGuard(Profile)

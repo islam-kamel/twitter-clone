@@ -3,6 +3,7 @@ import "./NewToTwitter.css";
 import {GithubButton, GoogleButton} from "../tw-button/tw-button";
 import TwModal from "../../components/modal/modal";
 import {Link} from "react-router-dom";
+import noneLoginRequire from "../../guards/noneLoginRequire";
 
 const NewToTwitter = () => {
     return (
@@ -60,4 +61,4 @@ const NewToTwitter = () => {
     );
 }
 
-export default NewToTwitter;
+export default noneLoginRequire(NewToTwitter);

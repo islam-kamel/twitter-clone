@@ -2,10 +2,12 @@ import Card from "../card/card";
 import "./home.style.css";
 import {emoji, gif, imageIcon, poll} from "../../constants/icons";
 import TwButton from "../tw-button/tw-button";
+import authGuard from "../../guards/authGuard";
 
 const profileImage = require("../../assets/profile.image.jpg");
 
-export default function Home() {
+function Home() {
+
     return (
         <main className="main_style border">
             <div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">
@@ -86,3 +88,5 @@ export default function Home() {
         </main>
     );
 }
+
+export default authGuard(Home);

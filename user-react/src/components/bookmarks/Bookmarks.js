@@ -1,12 +1,11 @@
 import {useUserContext} from "../../context/userContext";
-import {explore, home, messages, notifications, search_fill, threeDots} from "../../constants/icons";
+import {threeDots} from "../../constants/icons";
 import Card from "../card/card";
 import TwDropdown from "../twDropdown/TwDropdown";
 import {Link} from "react-router-dom";
-import {BuildIcon} from "../main-sidebar/MainSidebar";
+import authGuard from "../../guards/authGuard";
 
 const profileImage = require("../../assets/profile.image.jpg");
-
 
 
 function Bookmarks() {
@@ -42,4 +41,4 @@ function Bookmarks() {
     );
 }
 
-export default Bookmarks;
+export default authGuard(Bookmarks);

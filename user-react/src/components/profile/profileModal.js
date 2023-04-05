@@ -7,25 +7,24 @@ import TwInput from "../tw-input/tw-input";
 const ProfileModal = (props) => {
 
     const [text, setText] = useState(() => {
-        const storedBio = sessionStorage.getItem("text");
-        return storedBio !== null ? JSON.parse(storedBio) : "..";
+        // const storedBio = sessionStorage.getItem("text");
+        // return storedBio !== null ? JSON.parse(storedBio) : "..";
     });
 
     const [name, setName] = useState(() => {
-        const storedName = sessionStorage.getItem("name");
-        return storedName !== null ? JSON.parse(storedName) : "..";
+        // const storedName = sessionStorage.getItem("name");
+        // return storedName !== null ? JSON.parse(storedName) : "..";
     });
 
     function handleName(name) {
-        setName(name.target.value);
+        // setName(name.target.value);
     }
 
     function handleBio(event) {
-        setText(event.target.value);
+        // setText(event.target.value);
     }
 
 
-    console.log(props);
 
     return (
         <>
@@ -68,15 +67,15 @@ const ProfileModal = (props) => {
                             </div>
                         </div>
                         <div className="row row-cols-1 mt-5  gy-4 gx-0">
-                            <TwInput id={"fullname"} labelText={"Name"} other={{value: props?.userInfo?.fullname}}/>
+                            <TwInput id={"fullname"} labelText={"Name"} other={{value: props?.userInfo?.fullname, onChange: () => {}}}/>
 
-                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true} other={{value: props?.userInfo?.profile?.bio}}>
+                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true} other={{value: props?.userInfo?.profile?.bio, onChange: () => {}}}>
                                 <label htmlFor={"bio"}>Bio</label>
                             </TwInput>
 
-                            <TwInput id={"location"} labelText={"Location"} other={{value: props?.userInfo?.profile?.location}}/>
+                            <TwInput id={"location"} labelText={"Location"} other={{value: props?.userInfo?.profile?.location, onChange: () => {}}}/>
 
-                            <TwInput id={"website"} labelText={"Website"} other={{value: props?.userInfo?.profile?.website}} />
+                            <TwInput id={"website"} labelText={"Website"} other={{value: props?.userInfo?.profile?.website, onChange: () => {}}} />
 
                             <div className="mt-4">
                                 <p className="text-secondary ">Birth date.</p>
