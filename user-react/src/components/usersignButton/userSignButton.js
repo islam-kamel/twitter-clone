@@ -1,23 +1,22 @@
 import React from "react";
 import "./userSignButton.scss";
-import high from "../../Image/high.jpg";
 import TwDropdown from "../twDropdown/TwDropdown";
 import {threeDots} from "../../constants/icons";
 import {Link} from "react-router-dom";
+import {UserIdentity} from "../../hooks/useCurrentUser";
 
-
-const UserSignButton = () => {
+const UserSignButton = (props: { userInfo: UserIdentity }) => {
     return (
         <div className="mb-0" style={{paddingTop: "3"}}>
-            <div role={"button"} className="user-box mb-5 ">
+            <div role={"button"} className="user-box mb-5 px-2">
                 <img
-                    src={high}
+                    src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.userInfo?.image}`}
                     className="rounded-circle float-start tw-profile-image"
                     alt="..."
                 />
                 <div className="mt-1 user-box-info">
-                    <h5 className="">moustafa</h5>
-                    <small className="text-body-secondary">@moustaf37510</small>
+                    <h5 className="m-0">{props?.userInfo?.fullname}</h5>
+                    <small className="text-body-secondary">@{props?.userInfo?.username}</small>
                 </div>
                 <div className="dropstart d-none d-xl-flex flex-column align-items-end mt-2 user-box-dropdown">
 

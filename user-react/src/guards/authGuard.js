@@ -16,9 +16,16 @@ function authGuard(Component) {
             const controller = new AbortController()
 
             const response = apiClient.get("api/user/is_auth", {signal: controller.signal})
-            response.then(res => {
-                res?.status === 200 && setAuthState(true)
-            }).catch(_ => goExplore())
+            response
+                .then(res => {
+                    res?.status === 200 && setAuthState(true)
+                })
+                .catch(error => {
+                    if (!error?.message.includes("canceled")) {
+                        setAuthState(false)
+                        goExplore();
+                    }
+                })
 
             return () => {
                 controller.abort();

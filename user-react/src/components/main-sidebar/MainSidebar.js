@@ -1,5 +1,5 @@
 import {Link, useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import UserSignButton from "../usersignButton/userSignButton";
 import TwButton from "../tw-button/tw-button";
 import "./twitter.main.css"
@@ -20,9 +20,11 @@ import {
     profile_fill,
     search_fill
 } from "../../constants/icons";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 
-const initialValue = {
+const initialRouteValue = {
     home: false,
     explore: false,
     notifications: false,
@@ -33,7 +35,7 @@ const initialValue = {
 }
 
 function useActiveLink() {
-    const [isActive, setIsActive] = useState(initialValue)
+    const [isActive, setIsActive] = useState(initialRouteValue)
     const location = useLocation();
 
     useEffect(() => {
@@ -46,9 +48,9 @@ function useActiveLink() {
     }, [location])
 
     const handelClick = (name: string) => {
-        const value = structuredClone(initialValue)
+        const value = structuredClone(initialRouteValue)
         value[name] = true
-        setIsActive({...initialValue, ...value})
+        setIsActive({...initialRouteValue, ...value})
     }
 
     return {isActive, handelClick}
@@ -62,6 +64,7 @@ export function BuildIcon(props: { icon: HTMLElement }) {
 
 export function SmNavbar() {
     const {isActive, handelClick} = useActiveLink();
+    const currentUser = useCurrentUser()
 
     return (
         <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
@@ -103,6 +106,19 @@ export function SmNavbar() {
                                     <BuildIcon icon={messages}/>}
                             </Link>
                         </div>
+                        <div className="tw-navbar-item p-1">
+                            <Link
+                                onClick={() => handelClick("profile")}
+                                to={`profile/${currentUser?.username}`}
+                                className="tw-navbar-link d-flex align-items-center text-dark"
+                            >
+                                <img
+                                    src={`${process.env.REACT_APP_BASE_URL + "/api" + currentUser?.image}`}
+                                    className="rounded-circle p-0 tw-profile-image"
+                                    alt="..."
+                                />
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
@@ -113,6 +129,7 @@ export function SmNavbar() {
 
 export default function MainSidebar() {
     const {isActive, handelClick} = useActiveLink();
+    const currentUser = useCurrentUser()
 
     return (
         <div className={"container"}>
@@ -188,7 +205,7 @@ export default function MainSidebar() {
                                 <div className="tw-navbar-item">
                                     <Link
                                         onClick={() => handelClick("profile")}
-                                        to={"profile/islam.admin"}
+                                        to={`profile/${currentUser?.username}`}
                                         className="tw-navbar-link d-flex align-items-center text-dark"
                                     >
                                         {isActive?.profile ? <BuildIcon icon={profile_fill}/> :
@@ -218,10 +235,9 @@ export default function MainSidebar() {
                             </div>
 
                             <div className={"d-flex align-self-center align-items-center"}>
-                                <UserSignButton/>
+                                <UserSignButton userInfo={currentUser}/>
                             </div>
                         </div>
-
                     </div>
                 </aside>
             </div>

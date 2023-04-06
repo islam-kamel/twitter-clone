@@ -11,12 +11,13 @@ function noneLoginRequire(Component) {
             const controller = new AbortController()
 
             const response = apiClient.get("api/user/is_auth", {signal: controller.signal})
-            response.catch(error => {
-                console.log(error)
-                if (error?.response?.status === 401 || error?.response?.status === 400) {
+            response
+                .then(res => {
+                    setRenderState(false);
+                })
+                .catch(error => {
                     setRenderState(true)
-                }
-            })
+                })
 
             return () => {
                 controller.abort();

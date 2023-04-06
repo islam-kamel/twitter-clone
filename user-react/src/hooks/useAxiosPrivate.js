@@ -27,9 +27,7 @@ function useAxiosPrivate() {
                     prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest)
                 }
-                if(error?.response?.status === 400) {
-                    return Promise.reject(error)
-                }
+                return Promise.reject(error)
             }
         )
         const requestInterceptors = axiosPrivate.interceptors.request.use(

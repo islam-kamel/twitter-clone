@@ -78,7 +78,6 @@ function Profile() {
 
                         {/* <!-- Modal --> */}
                         <ProfileModal userInfo={userInfo}/>
-
                     </div>
                 </div>
 

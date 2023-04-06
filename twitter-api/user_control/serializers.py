@@ -32,7 +32,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         }
 
 
-class UserInfoSerializer(serializers.ModelSerializer):
+class UserInfoWithProfileSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(instance=serializers.CurrentUserDefault, required=False)
 
     class Meta:
@@ -60,3 +60,10 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
         user_instance.save()
         return user_instance
+
+
+class UserIdentitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'fullname']
+
