@@ -1,5 +1,5 @@
 import {Link, useLocation} from "react-router-dom";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import UserSignButton from "../usersignButton/userSignButton";
 import TwButton from "../tw-button/tw-button";
 import "./twitter.main.css"
@@ -20,8 +20,9 @@ import {
     profile_fill,
     search_fill
 } from "../../constants/icons";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import useCurrentUser from "../../hooks/useCurrentUser";
+import TwDropdown from "../twDropdown/TwDropdown";
+import useLogout from "../../hooks/useLogout";
 
 
 const initialRouteValue = {
@@ -65,6 +66,7 @@ export function BuildIcon(props: { icon: HTMLElement }) {
 export function SmNavbar() {
     const {isActive, handelClick} = useActiveLink();
     const currentUser = useCurrentUser()
+    const logout = useLogout();
 
     return (
         <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
@@ -107,17 +109,34 @@ export function SmNavbar() {
                             </Link>
                         </div>
                         <div className="tw-navbar-item px-1">
-                            <Link
-                                onClick={() => handelClick("profile")}
-                                to={`profile/${currentUser?.username}`}
-                                className="tw-navbar-link d-flex align-items-center text-dark"
+
+                            <TwDropdown
+                                down={false}
+                                classes={"tw-dropdown-top-center mb-4"}
+                                toggle={
+                                    <TwDropdown.Toggle>
+                                        <img
+                                            src={`${process.env.REACT_APP_BASE_URL + "/api" + currentUser?.image}`}
+                                            className="rounded-circle  tw-profile-image"
+                                            alt={currentUser?.fullname}
+                                        />
+                                    </TwDropdown.Toggle>
+                                }
                             >
-                                <img
-                                    src={`${process.env.REACT_APP_BASE_URL + "/api" + currentUser?.image}`}
-                                    className="rounded-circle  tw-profile-image"
-                                    alt="..."
-                                />
-                            </Link>
+                                <Link
+                                    to={`profile/${currentUser?.username}`}
+                                    className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
+                                >
+                                    <span className={"text-bold"}>Profile @{currentUser?.username}</span>
+                                </Link>
+                                <Link
+                                    onClick={logout}
+                                    to={"#"}
+                                    className={"text-decoration-none dropdown-item-text"}
+                                >
+                                    <span className={"text-danger"}>Logout @{currentUser?.username}</span>
+                                </Link>
+                            </TwDropdown>
                         </div>
                     </div>
                 </div>
