@@ -1,6 +1,9 @@
 // Import custom bootstrap
 @use "_vendor/bootstrap.custome";
 
+:root {
+  --backdrop-bg: bootstrap.$backdrop-light;
+}
 
 .btn-primary {
   @extend .btn-primary;
@@ -45,11 +48,6 @@ $font-path: "fonts";
   src: local('ChirpExtended'), url('#{$font-path}/ChirpExtendedHeavy.woff') format('woff');
 }
 
-//.form-control:focus {
-//  @extend .form-control;
-//  border-color: red;
-//  box-shadow: none;
-//}
 @import "~bootstrap/scss/_functions";
 $form-focus-border-color: bootstrap.$primary;
 
@@ -70,7 +68,6 @@ input,
 .is-valid:focus {
   border-color: $form-focus-border-color;
 }
-
 
 .form-floating {
   @extend .form-floating;

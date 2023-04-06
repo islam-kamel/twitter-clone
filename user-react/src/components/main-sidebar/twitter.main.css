@@ -4,11 +4,14 @@
 
 /* Navbar Component */
 .tw-navbar {
-  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
+}
+
+.tw-navbar-icon {
+  width: 26px;
 }
 
 .tw-navbar-link {
@@ -24,18 +27,10 @@
   display: flex;
   justify-content: center;
   border-radius: 9999px;
-  transition: ease-in all 0.2s;
+  transition: ease-in all 0.1s;
 }
 .tw-navbar-item:hover {
   background-color: rgba(15, 20, 25, 0.1);
-}
-.tw-navbar-item a:hover {
-  /*color: black;*/
-}
-
-.tw-navbar-link {
-  /*align-self: center;*/
-  /*color: black;*/
 }
 
 .tw-navbar-brand {
@@ -57,11 +52,21 @@
 .tw-navbar-item i:first-child {
   margin-right: 10px;
 }
+@media screen and (max-width: 1281px){
 
+}
 @media (max-width: 1281px) {
-  .tw-navbar-text {
-    display: none;
+  .tw-navbar-text, .user-box-info, .user-box-dropdown {
+    display: none !important;
   }
+  .user-box {
+    width: fit-content !important;
+  }
+
+  .user-box:hover {
+    background-color: unset !important;
+  }
+
   .tw-navbar-item {
     width: fit-content;
     text-decoration-style: unset;
@@ -84,10 +89,20 @@
   }
 
   .tw-navbar {
-    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    /*width: 100%;*/
   }
 }
 /* End Navbar Component*/
+.tw-new-tweet-btn {
+  border: none !important;
+  height: 52px !important;
+  width: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}

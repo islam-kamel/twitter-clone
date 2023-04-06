@@ -1,46 +1,77 @@
-import React from 'react';
-import './card.style.css'
+import React from "react";
+import "./card.style.scss"
 import {Link} from "react-router-dom";
+import {chart, comment, like, newFollow, replay, share, threeDots} from "../../constants/icons";
+import TwDropdown from "../twDropdown/TwDropdown";
+import "../main-sidebar/twitter.main.css"
 
 const Card = (props) => {
     return (
         <>
-             <div className=" card feed_tweet rounded-0 col-12  d-flex flex-row">
-            <img src={props.img} alt="" className="img_profile"/>
-            <div className="feed_tweet_details">
-                <div className="tweeter_details">
-                    <Link to="#" className="tweeter_name">
-                        {props.name}
-                        <span >
-                           {props.username}
-                        </span>
-                    </Link>
-                    <i className="material-icons-outlined icon-0">
-                        more_horiz
-                    </i>
+            <div className={"row p-3 border-top gx-0"}>
+                <div className={"col-12 me-3"}>
+                    <div className={'d-flex '}>
+                        <img src={props.img} alt="" className="tw-profile-image  rounded-circle"/>
+                        <div className={"d-flex ms-2 justify-content-between align-items-start align-items-start w-100"}>
+                            <Link
+                                to="#"
+                                className="tweeter_name text-decoration-none text-dark"
+                            >
+                                {props.name}
+                                <span className={"text-muted"}> {props.username} </span>
+                            </Link>
+
+
+                            <TwDropdown
+                                down={true}
+                                toggle={
+                                    <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
+                                }
+                            >
+                                <Link
+                                    to={"#"}
+                                    className={"text-decoration-none dropdown-item-text"}
+                                >
+                                    <div className={"d-flex align-items-center flex-row-reverse justify-content-center"}>
+                                        <i className={"ms-2"} style={{width: 20}}>{newFollow}</i>
+                                        <span>Follow {props?.username}</span>
+                                    </div>
+                                </Link>
+                            </TwDropdown>
+                        </div>
+                    </div>
                 </div>
-                <div className="tweet_text">
-                    <p style={{fontSize: '15px'}}> {props.text}.</p>
-                </div>
-                <div className="tweet_icons">
-                    <i className="material-icons-outlined icon-1">
-                        chat_bubble_outline
-                    </i>
-                    <i className="material-icons-outlined icon-2">
-                        restart_alt
-                    </i>
-                    <i className="material-icons-outlined icon-3">
-                        favorite_border
-                    </i>
-                    <i className="material-icons-outlined icon-4">
-                        equalizer
-                    </i>
-                    <i className="material-icons-outlined icon-5">
-                        upload
-                    </i>
+                <div className={"col-11 ms-5 ps-2"}>
+                    <div className={"d-flex flex-column"}>
+                        <p className={"fw-light"} style={{fontSize: 15}}> {props.text}.</p>
+                        <div className="tweet_icons text-muted">
+                            <div className={"icon"}>
+                                <i className={"icon icon-1"}>{comment}</i>
+                                <span className={"ms-1"}>300</span>
+                            </div>
+
+                            <div className={"icon"}>
+                                <i className={"icon-2 icon"}>{replay}</i>
+                                <span className={"ms-1"}>300</span>
+                            </div>
+
+                            <div className={"icon"}>
+                                <i className={"icon-3 icon"}>{like}</i>
+                                <span className={"ms-1"}>300</span>
+                            </div>
+
+                            <div className={"icon"}>
+                                <i className={"icon-4 icon"}>{chart}</i>
+                                <span className={"ms-1"}>300</span>
+                            </div>
+                            <div className={"icon"}>
+                                <i className={"icon-5 icon"}>{share}</i>
+                                <span className={"ms-1"}>300</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }

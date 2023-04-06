@@ -1,25 +1,34 @@
 import Cookies from "js-cookie";
-import {useEffect, useState} from "react";
 
 type CookieKey = "access" | "refresh"
 
-export default function useToken() {
-    const [tokens, setTokens] = useState({});
+type Token = {
+    access_token: string,
+    refresh_token: string,
+    expires_in: number,
+}
 
-    useEffect(() => {
-        for (let key in tokens) {
-            if (key === "access_token") {
-                const tokenAge = new Date(new Date().getTime() + tokens["expires_in"] * 60)
-                Cookies.set(key, tokens[key], {secure: true, sameSite: "lax", expires: tokenAge})
-            } else if (key === "refresh_token") {
-                Cookies.set(key, tokens[key], {secure: true, expires: 365, sameSite: "lax"})
-            }
-        }
-    }, [tokens])
+export default function useToken() {
+    const calcTokenAge = (age: number) => new Date(new Date().getTime() + age * 60)
+    const REFRESH_TOKEN_AGE = 365;
+
+    const setToken = (token: Token) => {
+        Cookies.set("access_token", token.access_token, {
+            secure: true,
+            sameSite: "lax",
+            expires: calcTokenAge(token.expires_in)
+        })
+
+        Cookies.set("refresh_token", token.refresh_token, {
+            secure: true,
+            expires: REFRESH_TOKEN_AGE,
+            sameSite: "lax"
+        })
+    }
 
     function getToken(cookieKey: CookieKey) {
         return Cookies.get(`${cookieKey}_token`)
     }
 
-    return {tokens, setTokens, getToken}
+    return {setToken, getToken};
 }

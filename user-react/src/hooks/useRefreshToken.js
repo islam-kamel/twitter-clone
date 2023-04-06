@@ -2,9 +2,9 @@ import axios from "axios";
 import useToken from "./useToken";
 
 function  useRefreshToken() {
-    const {tokens, setTokens, getToken} = useToken();
+    const {setToken, getToken} = useToken();
 
-    const refresh = async  () => {
+    return async () => {
         const response = await axios.post('http://127.0.0.1:8000/auth/token', {
             client_id: process.env.REACT_APP_API_ID,
             client_secret: process.env.REACT_APP_API_SECRET,
@@ -13,10 +13,11 @@ function  useRefreshToken() {
         }, {
             headers: {"Content-Type": "application/json"},
         })
-        setTokens({...tokens, ...response?.data})
-        return response?.data['access_token'];
-    }
-    return refresh;
+        if (response.status === 200) {
+            setToken(response?.data)
+        }
+        return response;
+    };
 }
 
 export default useRefreshToken;

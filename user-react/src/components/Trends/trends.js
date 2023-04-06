@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Trends/trends.scss';
-import TrendsOpenion from '../TrendsOpenion/trendsOpenion';
+import TrendsOpinion from '../TrendsOpenion/trendsOpinion';
 
 const Trends = (props) => {
 
@@ -14,8 +14,8 @@ const Trends = (props) => {
                 {/* <!-- Default dropstart button --> */}
                 <div className=" dropstart d-flex flex-column align-items-end ">
 
-                    <TrendsOpenion className='trends-option' interestedTrend='Not Interested in this'
-                                   harmfulTrend='This Trend is harmful'></TrendsOpenion>
+                    <TrendsOpinion className='trends-option' interestedTrend='Not Interested in this'
+                                   harmfulTrend='This Trend is harmful'></TrendsOpinion>
 
 
                     <h4 className="me-2 fs-6">{props.trendName}</h4>

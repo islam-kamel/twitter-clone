@@ -1,10 +1,15 @@
 import React, {ButtonHTMLAttributes, MouseEventHandler} from "react";
+import "./modal.scss"
 
 const contentContainerStyle = {
-    maxHeight: "90vh",
-    minHeight: 430,
-    minWidth: 600,
-    height: 650
+    // maxHeight: '100%',
+    // minHeight: 430,
+    width: 600,
+    // height: 650,
+    maxWidth: "100%",
+    // top: '50%',
+    // left: '50%',
+    // transform: 'translate(-50%, -50%)'
 }
 
 /**
@@ -25,6 +30,7 @@ class TwModal extends React.Component {
         title?: string,
         children?: React.Component | React.Component[],
         defaultBtn?: boolean,
+        defaultHeader?: boolean,
         classes?: string,
         label?: string
     }) {
@@ -39,22 +45,42 @@ class TwModal extends React.Component {
             );
         }
 
-        return (
-            <div className={"modal-header border-0 pt-0"}>
-                {props?.children ?? (
-                    <div className={"row w-100 g-0 justify-content-center align-items-center"}>
-                        <div className={"col-4"}>
-                            {props?.defaultBtn ? <DefaultBtn/> : false}
+        function DefaultHeader() {
+            return (
+                <div className="row row-cols-2 w-100 mt-2 justify-content-evenly align-items-center">
+                    <div className="w-50 text-align-start text-dark">
+                        <div className={" rounded-pill tw-modal-close-button"}>
+                            <i
+                                style={{WebkitTextStroke: 1}}
+                                role={"button"}
+                                className={"bi bi-x mx-0 text-dark fs-3"}
+                                data-bs-dismiss={"modal"}
+                                aria-label={"Close"}
+                            ></i>
                         </div>
-                        <div className={"col"}>
-
-                            <h1 className={`modal-title ${props?.classes ?? "fs-5"}`}
-                                id={`${props?.label}Label`}>{props.title}</h1>
-                        </div>
-                        <div className={"col-4"}></div>
                     </div>
-                )}
+                    <i className={"bi bi-twitter fs-2"}></i>
+                </div>
+            );
+        }
 
+        return (
+            <div className={"modal-header border-0 pt-0"} style={{height: 53}}>
+                {props?.defaultHeader ? <DefaultHeader/> : (
+                    props?.children ?? (
+                        <div className={"row w-100 h-100 g-0 justify-content-center align-items-center"}>
+                            <div className={"col-4"}>
+                                {props?.defaultBtn ? <DefaultBtn/> : false}
+                            </div>
+                            <div className={"col"}>
+
+                                <h1 className={`modal-title ${props?.classes ?? "fs-5"}`}
+                                    id={`${props?.label}Label`}>{props.title}</h1>
+                            </div>
+                            <div className={"col-4"}></div>
+                        </div>
+                    )
+                )}
             </div>
         );
     }
@@ -135,8 +161,8 @@ class TwModal extends React.Component {
                 aria-labelledby={this._label(this.props.id)}
                 aria-hidden="true"
             >
-                <div className={`modal-dialog ${this.props.modalStyle ?? "modal-dialog-centered"}`}>
-                    <div className={"modal-content rounded-4"} style={contentContainerStyle}>
+                <div className={`modal-dialog  ${this.props?.modalStyle}`}>
+                    <div className={"modal-content  tw-modal-content tw-modal-centred tw-modal-fixed"}>
                         {this.props.children.length ? this.getMap() : this.props.children}
                     </div>
                 </div>
