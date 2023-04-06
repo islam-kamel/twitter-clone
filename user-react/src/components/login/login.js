@@ -27,8 +27,8 @@ export default function Login() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [loginData, setLoginData] = useState(INITIAL_VALUE);
     const {login, isLoading} = useAuth();
-    const setUsername = useGetProfileInfo();
-    const navigate = useNavigate();
+    // const setUsername = useGetProfileInfo();
+    // const navigate = useNavigate();
 
     const isFormValid = () => {
         const form = document.forms["loginForm"];
@@ -43,15 +43,15 @@ export default function Login() {
     }
 
     const handelSubmit = (event: FormEvent) => {
-        event.preventDefault()
-        login({
-            username: loginData?.username,
-            password: loginData?.password
-        }).then(e => {
-            setUsername(loginData?.username);
-            navigate("/explore", {replace: true});
-            removeModal();
-        })
+        // event.preventDefault()
+        // login({
+        //     username: loginData?.username,
+        //     password: loginData?.password
+        // }).then(e => {
+        //     setUsername(loginData?.username);
+        //     navigate("/explore", {replace: true});
+        //     removeModal();
+        // })
     }
     const togglePasswordVisibility = () => setShow(!show);
 

@@ -15,7 +15,7 @@ import LoadingSpinner from "./components/Loading/loading-spinner";
 import useAxiosPrivate from "./hooks/useAxiosPrivate";
 import useAuth from "./hooks/useAuth";
 
-import useRefreshToken from "./hooks/useRefreshToken";
+// import useRefreshToken from "./hooks/useRefreshToken";
 import LoadingTwitterIcon from "./components/Loading/LoadingTwitterIcon";
 import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 
@@ -23,7 +23,7 @@ function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
     const {isLoading} = useIsLoading();
     const {login} = useAuth();
-    const refresh = useRefreshToken();
+    // const refresh = useRefreshToken;
 
     // const axios = useAxios();
     // useEffect(() => {
@@ -44,7 +44,7 @@ function ApiTest() {
             })
     }
 
-    const handelRefresh = () => refresh().then(res => setApiHealth(res.data.access_token))
+    // const handelRefresh = () => refresh().then(res => setApiHealth(res.data.access_token))
     const handelLogin = () => {
         login({username: "islam.admin", password: "123"}).then(response => {
             setApiHealth(response.statusText);
@@ -66,7 +66,7 @@ function ApiTest() {
                 {isLoading ? <LoadingSpinner/> : apiHealth}
             </div>
             <div className={"btn-group"}>
-                <button className={"btn btn-danger mt-3"} onClick={handelRefresh}>Refresh</button>
+                {/*<button className={"btn btn-danger mt-3"} onClick={handelRefresh}>Refresh</button>*/}
                 <button className={"btn btn-primary mt-3"} onClick={handelLogin}>Login</button>
                 <button className={"btn btn-success mt-3"} onClick={handelGetFullname}>Get Fullname</button>
                 <button className={"btn btn-dark mt-3"} onClick={isAuth}>Is Auth?</button>
@@ -84,16 +84,16 @@ function App() {
 
         setTimeout(() => {
             setIsLoading(false)
-        }, 500)
+        }, 1000)
 
         setTimeout(() => {
             setShow(false)
-        }, 300)
+        }, 800)
 
     }, [])
 
     return (
-        isLoading ? <LoadingTwitterIcon show={show}/> : <>
+         isLoading ? <LoadingTwitterIcon show={show}/> : <>
             <Login/>
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
@@ -112,13 +112,13 @@ function App() {
                             <Route path={"explore"} element={<Explore/>}/>
                         </Routes>
                     </main>
-                    {/*<aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">*/}
-                    {/*    <div className={"position-fixed"} style={{width: 350}}>*/}
-                    {/*        <Routes>*/}
-                    {/*            <Route path={"*"} element={<NewToTwitter/>}/>*/}
-                    {/*        </Routes>*/}
-                    {/*    </div>*/}
-                    {/*</aside>*/}
+                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
+                        <div className={"position-fixed"} style={{width: 350}}>
+                            <Routes>
+                                <Route path={"*"} element={<NewToTwitter/>}/>
+                            </Routes>
+                        </div>
+                    </aside>
                 </section>
                 <nav className={"d-sm-none mt-auto"} style={{margin: "58px 0!important"}}>
                     <SmNavbar/>

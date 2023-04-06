@@ -8,13 +8,11 @@ import IsLoadingContextProvider from "./context/isLoading";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <UserContextProvider>
-                <IsLoadingContextProvider>
-                    <App/>
-                </IsLoadingContextProvider>
-            </UserContextProvider>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <UserContextProvider>
+            <IsLoadingContextProvider>
+                <App/>
+            </IsLoadingContextProvider>
+        </UserContextProvider>
+    </BrowserRouter>
 );

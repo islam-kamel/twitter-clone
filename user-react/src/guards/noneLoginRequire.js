@@ -9,9 +9,7 @@ function noneLoginRequire(Component) {
 
         useEffect(() => {
             const controller = new AbortController()
-
-            const response = apiClient.get("api/user/is_auth", {signal: controller.signal})
-            response
+            apiClient.get("api/user/is_auth", {signal: controller.signal})
                 .then(res => {
                     setRenderState(false);
                 })

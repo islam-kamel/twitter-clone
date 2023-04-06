@@ -34,7 +34,7 @@ const initialData: FormData = {
     password: ""
 }
 
-function formatDate(data) {
+export function formatDate(data) {
     const {year, month, day} = data.birthdate
     return `${year}-${month}-${day}`;
 }

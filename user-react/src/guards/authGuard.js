@@ -1,5 +1,5 @@
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 function authGuard(Component) {
@@ -9,14 +9,13 @@ function authGuard(Component) {
         const [authState, setAuthState] = useState(false);
         const location = useLocation();
         const navigate = useNavigate();
-        const goExplore = useCallback(() => navigate("/explore", {state: {from: location}}), [location, navigate])
+
+        const goExplore = () => navigate("/explore", {state: {from: location}})
 
 
         useEffect(() => {
             const controller = new AbortController()
-
-            const response = apiClient.get("api/user/is_auth", {signal: controller.signal})
-            response
+            apiClient.get("api/user/is_auth", {signal: controller.signal})
                 .then(res => {
                     res?.status === 200 && setAuthState(true)
                 })

@@ -23,15 +23,18 @@ function useCurrentUser() {
 
     useEffect(() => {
         const controller = new AbortController()
-        const response = apiClient.get("api/user/current-user", {signal: controller.signal});
-        response.then(res => {
-            if (res?.status === 200) {
-                setCurrentUser(value => {
-                    return {...value, ...res?.data}
-                });
-            }
-        })
+        apiClient.get("api/user/current-user", {signal: controller.signal})
+            .then(res => {
+                if (res?.status === 200) {
+                    setCurrentUser(res?.data);
+                }
+            })
+
+        return () => {
+            controller.abort()
+        }
     }, [apiClient])
+
 
     return currentUser;
 }

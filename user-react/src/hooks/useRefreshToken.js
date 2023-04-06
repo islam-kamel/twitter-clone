@@ -1,9 +1,8 @@
-import axios from "axios";
 import useToken from "./useToken";
+import axios from "axios";
 
 function  useRefreshToken() {
     const {setToken, getToken} = useToken();
-
     return async () => {
         const response = await axios.post('http://127.0.0.1:8000/auth/token', {
             client_id: process.env.REACT_APP_API_ID,

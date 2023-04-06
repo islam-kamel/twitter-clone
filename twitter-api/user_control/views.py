@@ -47,7 +47,7 @@ class UserProfileView(APIView):
 
         user = CustomUser.objects.get(username=username)
         profile = Profile.objects.get(user__username=username)
-
+        print(request.data)
         serializer = UserInfoWithProfileSerializer(instance={'user': user, 'profile': profile}, data=request.data)
 
         if serializer.is_valid():

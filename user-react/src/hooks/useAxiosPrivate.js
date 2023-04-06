@@ -1,38 +1,17 @@
-import {useCallback, useContext, useEffect} from "react";
+import {useEffect} from "react";
 import useRefreshToken from "./useRefreshToken";
 import {axiosPrivate} from "../apiProvider/axios";
 import useToken from "./useToken";
-import {IsLoadingContext} from "../context/isLoading";
+
 
 function useAxiosPrivate() {
     const refresh = useRefreshToken();
     const {getToken} = useToken();
-    const {setIsLoading} = useContext(IsLoadingContext);
-
-    const setLoading = useCallback(() => setIsLoading(true), [setIsLoading]);
-    const removeLoading = useCallback(() => setIsLoading(false), [setIsLoading]);
 
     useEffect(() => {
-        const responseInterceptors = axiosPrivate.interceptors.response.use(
-            response => {
-                removeLoading();
-                return response;
-            },
-            async error => {
-                removeLoading();
-                const prevRequest = error?.config;
-                if (error?.response?.status === 401 && !prevRequest?.send) {
-                    prevRequest.send = true
-                    const newAccessToken = await refresh().then(res => res?.data?.access_token);
-                    prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-                    return axiosPrivate(prevRequest)
-                }
-                return Promise.reject(error)
-            }
-        )
+
         const requestInterceptors = axiosPrivate.interceptors.request.use(
             config => {
-                setLoading();
                 if (!config.headers["Authorization"]) {
                     config.headers["Authorization"] = `Bearer ${getToken("access")}`
                 }
@@ -50,20 +29,37 @@ function useAxiosPrivate() {
                         client_secret: process.env.REACT_APP_API_SECRET
                     }
                 }
-
                 return config;
             },
             (error) => {
-                removeLoading();
                 return Promise.reject(error)
             }
         );
+
+        const responseInterceptors = axiosPrivate.interceptors.response.use(
+            response => {
+                return response;
+            },
+            async error => {
+                const prevRequest = error?.config;
+                if (error?.response.status === 401 && !prevRequest?.send) {
+                    prevRequest.send = true
+                    const newAccessToken = await refresh().then(res => res?.data?.access_token);
+                    prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+                    return axiosPrivate(prevRequest)
+                }
+
+                return Promise.reject(error)
+            }
+        );
+
         return () => {
-            removeLoading();
-            axiosPrivate.interceptors.request.eject(requestInterceptors);
+            console.log("Axios Private Abort");
             axiosPrivate.interceptors.response.eject(responseInterceptors);
+            axiosPrivate.interceptors.request.eject(requestInterceptors);
         }
-    }, [getToken, refresh, removeLoading, setLoading]);
+    }, [getToken, refresh])
+
 
     return axiosPrivate;
 }
