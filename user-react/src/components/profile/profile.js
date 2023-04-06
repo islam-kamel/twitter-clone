@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./profile.scss";
 import {useParams} from "react-router-dom";
 import ProfileModal from "./profileModal";
-import axios from "../../apiProvider/axios";
 import TwButton from "../tw-button/tw-button";
 import Card from "../card/card";
 import {verifyBlue} from "../../constants/icons";
 import authGuard from "../../guards/authGuard";
-import {useIsLoading} from "../../context/isLoading";
 import useGetProfileInfo from "../../hooks/useGetProfileInfo";
 
 const mediaImage = require("../../Image/media.png")

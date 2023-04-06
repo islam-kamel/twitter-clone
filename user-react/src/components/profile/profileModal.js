@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import "./profile";
 import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
+import {Birthdate} from "../sign-up/Stepper/Bithdata";
 
 const ProfileModal = (props) => {
-    
+
+    const form = useRef();
 
 
     const [text, setText] = useState(() => {
@@ -26,7 +28,10 @@ const ProfileModal = (props) => {
         // setText(event.target.value);
     }
 
-
+    const handelSubmit = () => {
+        const data = new FormData(form.current)
+        console.log(data)
+    }
 
     return (
         <>
@@ -48,11 +53,11 @@ const ProfileModal = (props) => {
                             ></i>
                             <span className={"fw-bold"}>Edit Profile</span>
                         </div>
-                        <TwButton btnStyle={"dark btn-sm"} classes={"rounded-5 mt-1"}>Save</TwButton>
+                        <TwButton other={{type: "submit", onClick: handelSubmit}} btnStyle={"dark btn-sm"} classes={"rounded-5 mt-1"}>Save</TwButton>
                     </div>
                 </TwModal.Header>
                 <TwModal.Body classes={"overflow-scroll"}>
-                    <form className="d-flex flex-column justify-content-center">
+                    <form ref={form} className="d-flex flex-column justify-content-center">
                         <div className="card border-0">
                             <img
                                 src={`${process.env.REACT_APP_BASE_URL}/api${props?.userInfo?.profile?.cover_image}`}
@@ -69,13 +74,25 @@ const ProfileModal = (props) => {
                             </div>
                         </div>
                         <div className="row row-cols-1 mt-5  gy-4 gx-0">
-                            <TwInput id={"fullname"} labelText={"Name"} other={{value: props?.userInfo?.fullname, onChange: () => {}}}/>
+                            <TwInput id={"fullname"} labelText={"Name"} other={{
+                                name:"fullname",
+                                value: props?.userInfo?.fullname,
+                                onChange: () => {}}
+                            }/>
 
-                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true} other={{value: props?.userInfo?.profile?.bio, onChange: () => {}}}>
+                            <TwInput id={"bio"} labeltext={"Bio"} textarea={true} other={{
+                                name: "bio",
+                                value: props?.userInfo?.profile?.bio,
+                                onChange: () => {}}
+                            }>
                                 <label htmlFor={"bio"}>Bio</label>
                             </TwInput>
 
-                            <TwInput id={"location"} labelText={"Location"} other={{value: props?.userInfo?.profile?.location, onChange: () => {}}}/>
+                            <TwInput id={"location"} labelText={"Location"} other={{
+                                name: "location",
+                                value: props?.userInfo?.profile?.location,
+                                onChange: () => {}}
+                            }/>
 
                             <TwInput id={"website"} labelText={"Website"} other={{value: props?.userInfo?.profile?.website, onChange: () => {}}} />
 
@@ -83,7 +100,6 @@ const ProfileModal = (props) => {
                                 <p className="text-secondary ">Birth date.</p>
                                 <p className="fs-5 ">{new Date(props?.userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</p>
                             </div>
-
                         </div>
                     </form>
                 </TwModal.Body>
