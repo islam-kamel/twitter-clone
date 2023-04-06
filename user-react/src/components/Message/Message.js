@@ -7,7 +7,8 @@ import ChatRoom from "./ChatRoom";
 import authGuard from "../../guards/authGuard";
 
 const Message = () => {
-    const [show, setShow] = useState(true);
+
+    const [activeChat, setActiveChat] = useState(null)
 
 
     return (
@@ -19,7 +20,6 @@ const Message = () => {
 
                     {/* one message */}
                     <div className="col-12 col-md-6 col-lg-5 border-end message">
-
 
                         <nav className="navbar navbar-light ">
                             <div className="container-fluid">
@@ -40,29 +40,19 @@ const Message = () => {
                             </div>
                         </div>
                         <br/>
+                        <div>
 
-
-                        <div className="Message">
-                            <OneMessage updateShow={setShow} show={show}/>
-                            <OneMessage updateShow={setShow} show={show}/>
-                            <OneMessage updateShow={setShow} show={show}/>
-                            <OneMessage updateShow={setShow} show={show}/>
-
+                            <div className="Message">
+                                <OneMessage chatId="Chat1" setActiveChat={setActiveChat}/>
+                                <OneMessage chatId="Chat2" setActiveChat={setActiveChat}/>
+                                <OneMessage chatId="Chat3" setActiveChat={setActiveChat}/>
+                                <OneMessage chatId="Chat4" setActiveChat={setActiveChat}/>
+                            </div>
                         </div>
-
-
                     </div>
-
-
-                    {/* new message */}
-
-                    {/* <NewMessageModal /> */}
-                    {show ? <NewMessageModal/> : <ChatRoom/>}
-                    {/* <ChatRoom/> */}
+                    {activeChat ? <ChatRoom chatId={activeChat}/> : <NewMessageModal/>}
                 </div>
             </div>
-
-
         </>
     );
 }

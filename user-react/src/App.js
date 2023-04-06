@@ -2,7 +2,6 @@ import MainSidebar, {SmNavbar} from "./components/main-sidebar/MainSidebar";
 import Login from "./components/login/login";
 import SignUp from "./components/sign-up/SignUp";
 import Home from "./components/home/home";
-import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import {Route, Routes} from "react-router-dom";
 import Notifications from "./components/notifications/NotificationsBody";
 import Explore from "./components/explore/explore";
@@ -15,8 +14,10 @@ import {useIsLoading} from "./context/isLoading";
 import LoadingSpinner from "./components/Loading/loading-spinner";
 import useAxiosPrivate from "./hooks/useAxiosPrivate";
 import useAuth from "./hooks/useAuth";
+
 import useRefreshToken from "./hooks/useRefreshToken";
 import LoadingTwitterIcon from "./components/Loading/LoadingTwitterIcon";
+import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 
 function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
@@ -111,20 +112,22 @@ function App() {
                             <Route path={"explore"} element={<Explore/>}/>
                         </Routes>
                     </main>
-                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
-                        <div className={"position-fixed"} style={{width: 350}}>
-                            <Routes>
-                                <Route path={"*"} element={<NewToTwitter/>}/>
-                            </Routes>
-                        </div>
-                    </aside>
+                    {/*<aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">*/}
+                    {/*    <div className={"position-fixed"} style={{width: 350}}>*/}
+                    {/*        <Routes>*/}
+                    {/*            <Route path={"*"} element={<NewToTwitter/>}/>*/}
+                    {/*        </Routes>*/}
+                    {/*    </div>*/}
+                    {/*</aside>*/}
                 </section>
                 <nav className={"d-sm-none mt-auto"} style={{margin: "58px 0!important"}}>
                     <SmNavbar/>
                 </nav>
             </main>
             {/*protected*/}
-            <Footer/>
+            <div style={{margin: "72px 0 !important"}}>
+                <Footer/>
+            </div>
             {/*protected*/}
         </>
     );

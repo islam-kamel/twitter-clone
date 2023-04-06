@@ -1,7 +1,7 @@
 import React from 'react';
 import './ChatRoom.css'
 import "../Message/Message.css"
-const ChatRoom = () => {
+const ChatRoom = (props) => {
     return (
         <>
 
@@ -16,7 +16,7 @@ const ChatRoom = () => {
                                             <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
                                         </a>
                                         <div class="chat-about">
-                                            <h6 class="m-b-0">seif naser</h6>
+                                            <h6 class="m-b-0"> {props.chatId} </h6>
                                             <small>Last seen: 2 hours ago</small>
                                         </div>
                                     </div>
