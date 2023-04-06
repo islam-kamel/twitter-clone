@@ -7,6 +7,8 @@ import TwButton from "../tw-button/tw-button";
 import Card from "../card/card";
 import {verifyBlue} from "../../constants/icons";
 import authGuard from "../../guards/authGuard";
+import {useIsLoading} from "../../context/isLoading";
+import useGetProfileInfo from "../../hooks/useGetProfileInfo";
 
 const mediaImage = require("../../Image/media.png")
 const profileImage = require("../../assets/profile.image.jpg");
@@ -46,13 +48,7 @@ function SuggestionFollow(props: { username: string, fullname: string, profileIm
 
 function Profile() {
     const params = useParams();
-    const [userInfo, setUserInfo] = useState({});
-
-    useEffect(() => {
-        axios.get(`api/user/info/${params?.username}`)
-            .then(res => res.data)
-            .then(data => setUserInfo({...data}))
-    }, [params]);
+    const userInfo = useGetProfileInfo(params?.username);
 
     const ProfileSection = () => {
         return (

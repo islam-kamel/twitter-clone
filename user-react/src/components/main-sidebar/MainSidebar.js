@@ -106,7 +106,7 @@ export function SmNavbar() {
                                     <BuildIcon icon={messages}/>}
                             </Link>
                         </div>
-                        <div className="tw-navbar-item p-1">
+                        <div className="tw-navbar-item px-1">
                             <Link
                                 onClick={() => handelClick("profile")}
                                 to={`profile/${currentUser?.username}`}
@@ -114,7 +114,7 @@ export function SmNavbar() {
                             >
                                 <img
                                     src={`${process.env.REACT_APP_BASE_URL + "/api" + currentUser?.image}`}
-                                    className="rounded-circle p-0 tw-profile-image"
+                                    className="rounded-circle  tw-profile-image"
                                     alt="..."
                                 />
                             </Link>

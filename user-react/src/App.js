@@ -10,12 +10,13 @@ import Message from "./components/Message/Message";
 import Profile from "./components/profile/profile";
 import Bookmarks from "./components/bookmarks/Bookmarks";
 import Footer from "./components/footer/Footer";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useIsLoading} from "./context/isLoading";
 import LoadingSpinner from "./components/Loading/loading-spinner";
 import useAxiosPrivate from "./hooks/useAxiosPrivate";
 import useAuth from "./hooks/useAuth";
 import useRefreshToken from "./hooks/useRefreshToken";
+import LoadingTwitterIcon from "./components/Loading/LoadingTwitterIcon";
 
 function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
@@ -74,8 +75,24 @@ function ApiTest() {
 }
 
 function App() {
+    const [isLoading, setIsLoading] = useState(true)
+    const [show, setShow] = useState(true)
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 500)
+
+        setTimeout(() => {
+            setShow(false)
+        }, 300)
+
+    }, [])
+
     return (
-        <>
+        isLoading ? <LoadingTwitterIcon show={show}/> : <>
             <Login/>
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">
@@ -107,7 +124,7 @@ function App() {
                 </nav>
             </main>
             {/*protected*/}
-                <Footer/>
+            <Footer/>
             {/*protected*/}
         </>
     );

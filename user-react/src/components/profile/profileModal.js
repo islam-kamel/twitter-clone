@@ -5,6 +5,8 @@ import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 
 const ProfileModal = (props) => {
+    
+
 
     const [text, setText] = useState(() => {
         // const storedBio = sessionStorage.getItem("text");
