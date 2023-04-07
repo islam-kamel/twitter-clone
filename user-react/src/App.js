@@ -18,6 +18,7 @@ import useAuth from "./hooks/useAuth";
 // import useRefreshToken from "./hooks/useRefreshToken";
 import LoadingTwitterIcon from "./components/Loading/LoadingTwitterIcon";
 import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
+import RightSidebar from "./components/RightSidebar/RightSidebar";
 
 function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
@@ -112,11 +113,10 @@ function App() {
                             <Route path={"explore"} element={<Explore/>}/>
                         </Routes>
                     </main>
-                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0">
-                        <div className={"position-fixed"} style={{width: 350}}>
-                            <Routes>
-                                <Route path={"*"} element={<NewToTwitter/>}/>
-                            </Routes>
+                    <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0 ">
+                        <div className={"position-fixed h-100"} style={{width: 350}}>
+                            <NewToTwitter/>
+                            <RightSidebar/>
                         </div>
                     </aside>
                 </section>

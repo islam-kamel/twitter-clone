@@ -16,7 +16,7 @@
         border-bottom-left-radius: 16px !important;
         &:hover{
             cursor: pointer;
-            background-color: rgba(110,118,125,0.1) !important;  
+            background-color: rgba(110,118,125,0.1) !important;
         }
     }
 }
@@ -37,18 +37,20 @@
         border-bottom-left-radius: 16px !important;
         &:hover{
             cursor: pointer;
-            background-color: rgba(110,118,125,0.1) !important;  
+            background-color: rgba(110,118,125,0.1) !important;
         }
 }}
- 
+
 .masseg{
     width: 100% !important;
     position: relative !important;
 }
 .masseg-details{
     height: 50px !important;
+    max-width: 20%;
     padding:  .7% .7% 0 .7% !important;
-    width: 30% !important;
+    //width: 30% !important;
+    width: 100%;
     position: fixed !important;
     bottom: 0 !important;
     left: calc(99% - 30%) !important;
@@ -69,7 +71,7 @@
 }
 .a-icon:hover{
     background-color:rgba(110,118,125,0.3) !important;
-    border-radius: 50% !important; 
+    border-radius: 50% !important;
 }
  .search-details{
     background-color: white;
@@ -89,13 +91,14 @@
 .ends{
     margin-top: 2% !important;
     width: 100% !important;
-    height: 20% !important;
+    height: 100px;
+    //height: 20% !important;
     .end{
         width: 100% !important ;
         margin: 11px 11px 0 11px; }
     .end-1{
         width: 100% !important ;
-        margin: 0px 11px;     
+        margin: 0px 11px;
      }
     .copywrite {
         color: rgb(110, 118, 125) !important;
@@ -103,5 +106,5 @@
         font-size: 14px !important;
         margin: 0px 17px;
     }
-        
+
 }
