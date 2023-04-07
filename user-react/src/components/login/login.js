@@ -1,12 +1,10 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useEffect, useRef, useState} from "react";
 import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 import type {Credentials} from "../../hooks/useAuth";
 import useAuth from "../../hooks/useAuth";
-import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../Loading/loading-spinner";
-import useGetProfileInfo from "../../hooks/useGetProfileInfo";
 
 
 const googleIconColors = {
@@ -22,13 +20,58 @@ const INITIAL_VALUE: Credentials = {
     username: "",
     password: ""
 }
+
+function ErrorToasts(props: { display: boolean, message: string }) {
+    const toasts = useRef();
+    const closeBtn = useRef();
+
+    const DEFAULT_TIME = 5000;
+
+    useEffect(() => {
+        if (props?.display) {
+            toasts.current?.classList?.add("show");
+        }
+        setTimeout(() => {
+            closeBtn.current?.click();
+        }, DEFAULT_TIME)
+    }, [props?.display])
+
+    return (
+
+        <div
+            ref={toasts}
+            className={"toast align-items-center position-absolute start-0 end-0 fade justify-content-center bg-danger text-bg-danger border-0 mx-auto mb-4"}
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+        >
+            <div className="d-flex">
+                <div className="toast-body">
+                    {props?.message}
+                </div>
+                <span
+                    ref={closeBtn}
+                    role="button"
+                    className="me-2 m-auto"
+                    data-bs-dismiss="toast"
+                    aria-label="Close"
+                >
+                    <i className={"bi bi-x fs-3"}></i>
+                </span>
+            </div>
+        </div>
+    );
+}
+
 export default function Login() {
     const [show, setShow] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
     const [loginData, setLoginData] = useState(INITIAL_VALUE);
-    const {login, isLoading} = useAuth();
+    const {login} = useAuth();
+    const [errorState, setErrorState] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     // const setUsername = useGetProfileInfo();
-    // const navigate = useNavigate();
 
     const isFormValid = () => {
         const form = document.forms["loginForm"];
@@ -43,15 +86,20 @@ export default function Login() {
     }
 
     const handelSubmit = (event: FormEvent) => {
-        // event.preventDefault()
-        // login({
-        //     username: loginData?.username,
-        //     password: loginData?.password
-        // }).then(e => {
-        //     setUsername(loginData?.username);
-        //     navigate("/explore", {replace: true});
-        //     removeModal();
-        // })
+        event.preventDefault()
+        setLoading(true)
+        login({username: loginData.username, password: loginData.password})
+            .then(res => {
+                setLoading(false);
+                window.location.reload();
+            })
+            .catch(error => {
+                if (error?.response?.status === 400) {
+                    setErrorState(true);
+                    setLoading(false);
+                }
+            })
+        setErrorState(false)
     }
     const togglePasswordVisibility = () => setShow(!show);
 
@@ -177,7 +225,8 @@ export default function Login() {
             <TwModal id={"login-modal"} modalStyle={"modal-dialog-scrollable"}>
                 <TwModal.Header classes={"text-dark"} defaultHeader={true}/>
                 <TwModal.Body>
-                    {isLoading
+                    {errorState && <ErrorToasts display={true} message={"Missing Username, Password !."}/>}
+                    {loading
                         ? <LoadingSpinner/>
                         : getFrom()
                     }
