@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from .models import CustomUser, Profile
 from .serializers import RegisterSerializer, UserInfoWithProfileSerializer, UserIdentitySerializer
@@ -28,7 +29,7 @@ class ValidToken(APIView):
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
-
+    parser_classes = [FormParser, MultiPartParser]
 
     def get(self, request, username):
         try:
@@ -41,13 +42,12 @@ class UserProfileView(APIView):
 
 
     def put(self, request, username):
-
         if not bool(request.data):
             return Response({'message': 'Not Found any Data!'}, status=status.HTTP_400_BAD_REQUEST)
 
         user = CustomUser.objects.get(username=username)
         profile = Profile.objects.get(user__username=username)
-        print(request.data)
+        # print(request.data)
         serializer = UserInfoWithProfileSerializer(instance={'user': user, 'profile': profile}, data=request.data)
 
         if serializer.is_valid():

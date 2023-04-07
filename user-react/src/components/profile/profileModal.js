@@ -6,42 +6,37 @@ import TwInput from "../tw-input/tw-input";
 import {Birthdate} from "../sign-up/Stepper/Bithdata";
 import {formatDate} from "../sign-up/SignUp";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import axios from "axios";
+
+
+type BirthDate = { year: number, month: number, day: number }
+const initialDate: BirthDate = {}
 
 const ProfileModal = (props) => {
-
-    type BirthDate = { year: number, month: number, day: number }
-    const initialDate: BirthDate = {}
-
     const [date, setDate] = useState(initialDate)
     const [toggleState, setToggleState] = useState(false);
     const form = useRef();
-    const [displayBirthDate, setDisplayBirthdate] = useState("")
     const axiosPrivate = useAxiosPrivate();
+    const imageInput = useRef();
+    const coverImageInput = useRef();
 
-
-    useEffect(() => {
-        const {year, month, day} = extractDate();
-        setDisplayBirthdate(new Date(year, month, day).toLocaleString(true, {dateStyle: "medium"}))
-
-    }, [])
-
+    const extractDate = () => {
+        const date = new Date(props?.userInfo?.birthdate);
+        return {day: date.getUTCDate(), year: date.getUTCFullYear(), month: date.getUTCMonth() + 1}
+    }
 
     useEffect(() => {
         setDate(extractDate);
-    }, [props?.userInfo?.birthdate])
+    }, [props.userInfo.birthdate])
 
     const updateProfile = (data) => {
-        const url =`${process.env.REACT_APP_BASE_URL}/api/user/profile/${props?.userInfo?.username}`
-        axiosPrivate.put(url, data, {headers: {"Content-Type": "application/json"}})
+        const url = `${process.env.REACT_APP_BASE_URL}/api/user/profile/${props?.userInfo?.username}`
+        axiosPrivate.put(url, data, {headers: {"Content-Type": "multipart/form-data"}})
             .then(res => {
                 console.log(res.data)
             })
     }
 
-    const extractDate = () => {
-        const date = new Date(props?.userInfo?.birthdate);
-        return {day: date.getUTCDate(), year: date.getUTCFullYear(), month: date.getUTCMonth()}
-    }
 
     const handelClickToggle = () => {
         setToggleState(!toggleState);
@@ -50,12 +45,12 @@ const ProfileModal = (props) => {
     const handelSubmit = () => {
         const data = new FormData(form.current)
         const userInfo = {
-            fullname: data.get('fullname'),
-            birthdate: formatDate({birthdate: date}),
-            profile: {
-                location: data.get('location'),
-                bio: data.get('bio'),
-            }
+            'fullname': data.get("fullname"),
+            'birthdate': formatDate({birthdate: date}),
+            'profile.bio': data.get("bio"),
+            'profile.image': data.get("profileImage"),
+            'profile.cover_image': data.get("coverImage"),
+            'profile.location': data.get("location"),
         }
         updateProfile(userInfo);
     }
@@ -85,17 +80,21 @@ const ProfileModal = (props) => {
                     </div>
                 </TwModal.Header>
                 <TwModal.Body classes={"overflow-scroll"}>
-                    <form ref={form} className="d-flex flex-column justify-content-center">
+                    <form  ref={form} className="d-flex flex-column justify-content-center">
                         <div className="card border-0">
+                            <input ref={coverImageInput} name={"coverImage"} type={"file"} hidden={true}/>
                             <img
-                                name={'image'}
+                                onClick={() => coverImageInput.current?.click()}
+                                name={"image"}
                                 src={`${process.env.REACT_APP_BASE_URL}/api${props?.userInfo?.profile?.cover_image}`}
                                 className="card-img-top profile-photo"
                                 alt="..."
                                 width="100"
                             />
                             <div className="card-body d-flex justify-content-between  ">
+                                <input ref={imageInput} name={"profileImage"} type={"file"} hidden={true}/>
                                 <img
+                                    onClick={() => imageInput?.current?.click()}
                                     src={`${process.env.REACT_APP_BASE_URL}/api${props?.userInfo?.profile?.image}`}
                                     className=" person-image mt-5"
                                     alt="..."

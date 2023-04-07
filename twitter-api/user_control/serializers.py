@@ -46,9 +46,9 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
         }
 
     def update(self, instance, validated_data):
+        print(validated_data)
         profile_data = validated_data.pop('profile', {})
         profile_instance = instance.pop('profile')
-
         for key, value in profile_data.items():
             setattr(profile_instance, key, value)
         profile_instance.save()
