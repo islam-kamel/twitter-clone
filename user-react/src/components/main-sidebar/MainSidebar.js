@@ -150,6 +150,100 @@ export default function MainSidebar() {
     const {isActive, handelClick} = useActiveLink();
     const currentUser = useCurrentUser()
 
+
+    const UserAction = () => {
+
+        return (
+            <>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("home")}
+                        to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
+                    >
+                        {isActive?.home ? <BuildIcon icon={home_fill}/> : <BuildIcon icon={home}/>}
+                        <span className="tw-navbar-text">Home</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("explore")}
+                        to={"/explore"}
+                        className="tw-navbar-link d-flex align-items-center text-dark"
+                    >
+                        {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
+                            <BuildIcon icon={explore}/>}
+                        <span className="tw-navbar-text">Explore</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("notifications")}
+                        to={"/notifications"}
+                        className={`tw-navbar-link d-flex align-items-center text-dark`}
+                    >
+                        {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :
+                            <BuildIcon icon={notifications}/>}
+                        <span className="tw-navbar-text">Notifications</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("messages")}
+                        to="/Message"
+                        className="tw-navbar-link d-flex align-items-center text-dark"
+                    >
+
+                        {isActive?.message ? <BuildIcon icon={messages_fill}/> :
+                            <BuildIcon icon={messages}/>}
+                        <span className="tw-navbar-text">Messages</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("bookmarks")}
+                        to="bookmarks"
+                        className="tw-navbar-link d-flex align-items-center text-dark"
+                    >
+                        {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> :
+                            <BuildIcon icon={bookmarks}/>}
+                        <span className="tw-navbar-text">Bookmarks</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link
+                        onClick={() => handelClick("profile")}
+                        to={`profile/${currentUser?.username}`}
+                        className="tw-navbar-link d-flex align-items-center text-dark"
+                    >
+                        {isActive?.profile ? <BuildIcon icon={profile_fill}/> :
+                            <BuildIcon icon={profile}/>}
+                        <span className="tw-navbar-text">Profile</span>
+                    </Link>
+                </div>
+                <div className="tw-navbar-item">
+                    <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
+                        <BuildIcon icon={more}/>
+                        <span className="tw-navbar-text">More</span>
+                    </Link>
+                </div>
+                <TwButton
+                    btnStyle={"primary"}
+                    classes={"rounded-pill py-2 w-100 d-none d-xl-block"}
+                >
+                    Tweet
+                </TwButton>
+
+                <TwButton
+                    btnStyle={"primary"}
+                    classes={"rounded-circle  tw-new-tweet-btn d-xl-none"}
+                >
+                    <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
+                </TwButton>
+            </>
+        );
+    }
+
+
     return (
         <div className={"container"}>
             <div className="" style={{width: 0}}>
@@ -166,96 +260,27 @@ export default function MainSidebar() {
                                         <i className="bi bi-twitter"></i>
                                     </Link>
                                 </div>
-                                <div className="tw-navbar-item">
-                                    <Link
-                                        onClick={() => handelClick("home")}
-                                        to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
-                                    >
-                                        {isActive?.home ? <BuildIcon icon={home_fill}/> : <BuildIcon icon={home}/>}
-                                        <span className="tw-navbar-text">Home</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-
-                                    <Link
-                                        onClick={() => handelClick("explore")}
-                                        to={"/explore"}
-                                        className="tw-navbar-link d-flex align-items-center text-dark"
-                                    >
-                                        {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
-                                            <BuildIcon icon={explore}/>}
-                                        <span className="tw-navbar-text">Explore</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-                                    <Link
-                                        onClick={() => handelClick("notifications")}
-                                        to={"/notifications"}
-                                        className={`tw-navbar-link d-flex align-items-center text-dark`}
-                                    >
-                                        {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :
-                                            <BuildIcon icon={notifications}/>}
-                                        <span className="tw-navbar-text">Notifications</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-                                    <Link
-                                        onClick={() => handelClick("messages")}
-                                        to="/Message"
-                                        className="tw-navbar-link d-flex align-items-center text-dark"
-                                    >
-
-                                        {isActive?.message ? <BuildIcon icon={messages_fill}/> :
-                                            <BuildIcon icon={messages}/>}
-                                        <span className="tw-navbar-text">Messages</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-                                    <Link
-                                        onClick={() => handelClick("bookmarks")}
-                                        to="bookmarks"
-                                        className="tw-navbar-link d-flex align-items-center text-dark"
-                                    >
-                                        {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> :
-                                            <BuildIcon icon={bookmarks}/>}
-                                        <span className="tw-navbar-text">Bookmarks</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-                                    <Link
-                                        onClick={() => handelClick("profile")}
-                                        to={`profile/${currentUser?.username}`}
-                                        className="tw-navbar-link d-flex align-items-center text-dark"
-                                    >
-                                        {isActive?.profile ? <BuildIcon icon={profile_fill}/> :
-                                            <BuildIcon icon={profile}/>}
-                                        <span className="tw-navbar-text">Profile</span>
-                                    </Link>
-                                </div>
-                                <div className="tw-navbar-item">
-                                    <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
-                                        <BuildIcon icon={more}/>
-                                        <span className="tw-navbar-text">More</span>
-                                    </Link>
-                                </div>
-                                <TwButton
-                                    btnStyle={"primary"}
-                                    classes={"rounded-pill py-2 w-100 d-none d-xl-block"}
-                                >
-                                    Tweet
-                                </TwButton>
-
-                                <TwButton
-                                    btnStyle={"primary"}
-                                    classes={"rounded-circle w-100 tw-new-tweet-btn d-xl-none"}
-                                >
-                                    <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
-                                </TwButton>
+                                {currentUser?.id ? <UserAction/> : (
+                                    <div className="tw-navbar-item">
+                                        <Link
+                                            onClick={() => handelClick("explore")}
+                                            to={"/explore"}
+                                            className="tw-navbar-link d-flex align-items-center text-dark"
+                                        >
+                                            {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
+                                                <BuildIcon icon={explore}/>}
+                                            <span className="tw-navbar-text">Explore</span>
+                                        </Link>
+                                    </div>
+                                )
+                                }
                             </div>
 
-                            <div className={"d-flex align-self-center align-items-center"}>
-                                <UserSignButton userInfo={currentUser}/>
-                            </div>
+                            {currentUser?.id && (
+                                <div className={"d-flex align-self-center align-items-center"}>
+                                    <UserSignButton userInfo={currentUser}/>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </aside>

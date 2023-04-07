@@ -4,8 +4,11 @@ import TwDropdown from "../twDropdown/TwDropdown";
 import {threeDots} from "../../constants/icons";
 import {Link} from "react-router-dom";
 import {UserIdentity} from "../../hooks/useCurrentUser";
+import useLogout from "../../hooks/useLogout";
 
 const UserSignButton = (props: { userInfo: UserIdentity }) => {
+    const logout = useLogout();
+
     return (
         <div className="mb-0" style={{paddingTop: "3"}}>
             <div role={"button"} className="user-box mb-5 px-2">
@@ -22,15 +25,24 @@ const UserSignButton = (props: { userInfo: UserIdentity }) => {
 
                     <TwDropdown
                         down={false}
-                        classes={"tw-dropdown-top-center tw-dropdown-arrow-down"}
+                        classes={"tw-dropdown-top-center tw-dropdown-arrow-down mb-5"}
                         toggle={
                             <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
                         }
                     >
-                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
-                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
-                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
-                        <Link to={"#"} className={"text-decoration-none dropdown-item-text"}>Logout @moustaf37510</Link>
+                        <Link
+                            to={`profile/${props?.userInfo?.username}`}
+                            className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
+                        >
+                            <span className={"text-bold"}>Profile @{props?.userInfo?.username}</span>
+                        </Link>
+                        <Link
+                            onClick={logout}
+                            to={"#"}
+                            className={"text-decoration-none dropdown-item-text"}
+                        >
+                            <span className={"text-danger"}>Logout @{props?.userInfo?.username}</span>
+                        </Link>
                     </TwDropdown>
                 </div>
             </div>
