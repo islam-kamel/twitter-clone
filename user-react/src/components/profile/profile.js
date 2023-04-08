@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./profile.scss";
-import {useParams} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import ProfileModal from "./profileModal";
 import Card from "../card/card";
 import authGuard from "../../guards/authGuard";
@@ -13,13 +13,27 @@ const profileImage = require("../../assets/profile.image.jpg");
 
 function Profile() {
     const params = useParams();
-    const userInfo = useGetProfileInfo(params?.username);
+    const {userInfo, setUsername} = useGetProfileInfo();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const back = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
+        setUsername(params?.username)
+    }, [params?.username, setUsername])
 
     const ProfileSection = () => {
         return (
             <>
                 <div className="row row-cols-auto align-items-center gx-2 mt-3">
-                    <div className="mx-2"><i className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"></i>
+                    <div className="mx-2">
+                        <i
+                            onClick={() => {
+                                navigate(back, {state: {from: location.pathname}})
+                            }}
+                            role={"button"}
+                            className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"
+                        ></i>
                     </div>
                     <div className="mx-2">
                         <h6 className="fs-5 fw-2">{userInfo?.fullname}</h6>
@@ -46,33 +60,47 @@ function Profile() {
                     <h4 className="card-title">{userInfo?.fullname}</h4>
                     <p className="card-text"><small className="text-body-secondary">@{userInfo?.username}</small>
                     </p>
-                    <div>
-                        <p>{userInfo?.profile?.bio}</p>
-                    </div>
-                    <div className={"row row-cols-auto gx-2"}>
-                        <div className={"text-muted"}>
-                            <i className={"bi bi-geo-alt me-1"}></i>
-                            <span>{userInfo?.profile?.location}</span>
+                    {userInfo?.profile?.bio !== "" && (
+                        <div>
+                            <p>{userInfo?.profile?.bio}</p>
                         </div>
+                    )}
+                    <div className={"row row-cols-auto gx-2 gy-1 mb-2 w-100"}>
+                        {userInfo?.profile?.location !== "" && (
+                            <div className={"text-muted d-flex align-items-center"}>
+                                <i className={"bi bi-geo-alt me-1"}></i>
+                                <span>{userInfo?.profile?.location}</span>
+                            </div>
+                        )}
+                        {userInfo?.profile?.birthdate !== "" && (
+                            <div className={"text-muted d-flex align-items-center"}>
+                                <i className={"bi bi-balloon me-1"}></i>
+                                <span>Born {new Date(userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</span>
+                            </div>
+                        )}
 
-                        <div className={"text-muted"}>
-                            <i className={"bi bi-balloon me-1"}></i>
-                            <span>Born {new Date(userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</span>
-                        </div>
-
-                        <div className={"text-muted"}>
-                            <i className={"bi bi-calendar3 me-1"}></i>
-                            <span>Joined {new Date(userInfo?.create_at).toLocaleString(true, {dateStyle: "medium"})}</span>
-                        </div>
+                        {userInfo?.profile?.create_at !== "" && (
+                            <div className={"text-muted d-flex align-items-center"}>
+                                <i className={"bi bi-calendar3 me-1"}></i>
+                                <span>Joined {new Date(userInfo?.create_at).toLocaleString(true, {dateStyle: "medium"})}</span>
+                            </div>
+                        )}
+                        {userInfo?.profile?.website !== "" && (
+                            <div className={"text-muted d-flex align-items-center"}>
+                                <i className={"bi bi-link me-1"}></i>
+                                <Link to={userInfo?.profile?.website} className={"text-truncate d-inline-block"}
+                                      style={{maxWidth: 200}}>{userInfo?.profile?.website}</Link>
+                            </div>
+                        )}
                     </div>
 
                     <div className="">
                         <small className="following-N">
-                            <span className=" mx-1">59</span><span
+                            <span className=" mx-1">{userInfo?.following?.length}</span><span
                             className="me-1 text-body-secondary">Following</span>
                         </small>
                         <small className="following-N">
-                            <span className=" mx-1">99</span><span
+                            <span className=" mx-1">{userInfo?.followers?.length}</span><span
                             className="ms-12 text-body-secondary">Followers</span>
                         </small>
                     </div>

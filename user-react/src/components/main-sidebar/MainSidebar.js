@@ -20,9 +20,9 @@ import {
     profile_fill,
     search_fill
 } from "../../constants/icons";
-import useCurrentUser from "../../hooks/useCurrentUser";
 import TwDropdown from "../twDropdown/TwDropdown";
 import useLogout from "../../hooks/useLogout";
+import {useUserContext} from "../../context/userContext";
 
 
 const initialRouteValue = {
@@ -65,7 +65,8 @@ export function BuildIcon(props: { icon: HTMLElement }) {
 
 export function SmNavbar() {
     const {isActive, handelClick} = useActiveLink();
-    const currentUser = useCurrentUser()
+    // const userInfo = useCurrentUser()
+    const {userInfo} = useUserContext()
     const logout = useLogout();
 
     return (
@@ -116,25 +117,25 @@ export function SmNavbar() {
                                 toggle={
                                     <TwDropdown.Toggle>
                                         <img
-                                            src={`${process.env.REACT_APP_BASE_URL + "/api" + currentUser?.image}`}
+                                            src={`${process.env.REACT_APP_BASE_URL + "/api" + userInfo?.profile?.image}`}
                                             className="rounded-circle  tw-profile-image"
-                                            alt={currentUser?.fullname}
+                                            alt={userInfo?.fullname}
                                         />
                                     </TwDropdown.Toggle>
                                 }
                             >
                                 <Link
-                                    to={`profile/${currentUser?.username}`}
+                                    to={`profile/${userInfo?.username}`}
                                     className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
                                 >
-                                    <span className={"text-bold"}>Profile @{currentUser?.username}</span>
+                                    <span className={"text-bold"}>Profile @{userInfo?.username}</span>
                                 </Link>
                                 <Link
                                     onClick={logout}
                                     to={"#"}
                                     className={"text-decoration-none dropdown-item-text"}
                                 >
-                                    <span className={"text-danger"}>Logout @{currentUser?.username}</span>
+                                    <span className={"text-danger"}>Logout @{userInfo?.username}</span>
                                 </Link>
                             </TwDropdown>
                         </div>
@@ -148,7 +149,7 @@ export function SmNavbar() {
 
 export default function MainSidebar() {
     const {isActive, handelClick} = useActiveLink();
-    const currentUser = useCurrentUser()
+    const {userInfo} = useUserContext();
 
 
     const UserAction = () => {
@@ -212,7 +213,7 @@ export default function MainSidebar() {
                 <div className="tw-navbar-item">
                     <Link
                         onClick={() => handelClick("profile")}
-                        to={`profile/${currentUser?.username}`}
+                        to={`profile/${userInfo?.username}`}
                         className="tw-navbar-link d-flex align-items-center text-dark"
                     >
                         {isActive?.profile ? <BuildIcon icon={profile_fill}/> :
@@ -260,7 +261,7 @@ export default function MainSidebar() {
                                         <i className="bi bi-twitter"></i>
                                     </Link>
                                 </div>
-                                {currentUser?.id ? <UserAction/> : (
+                                {userInfo?.id ? <UserAction/> : (
                                     <div className="tw-navbar-item">
                                         <Link
                                             onClick={() => handelClick("explore")}
@@ -276,9 +277,9 @@ export default function MainSidebar() {
                                 }
                             </div>
 
-                            {currentUser?.id && (
+                            {userInfo?.id && (
                                 <div className={"d-flex align-self-center align-items-center"}>
-                                    <UserSignButton userInfo={currentUser}/>
+                                    <UserSignButton userInfo={userInfo}/>
                                 </div>
                             )}
                         </div>

@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/twitter_clone_dev</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db driver - db.sqlite3" uuid="161d0477-505f-487a-aec9-6caeb5b390e8">
+      <driver-ref>6faa2146-7f58-4467-b5f9-0590f12ae37f</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

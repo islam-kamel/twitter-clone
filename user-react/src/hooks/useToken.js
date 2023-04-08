@@ -30,5 +30,9 @@ export default function useToken() {
         return Cookies.get(`${cookieKey}_token`)
     }
 
-    return {setToken, getToken};
+    function removeToken() {
+        Cookies.remove('access_token');
+        Cookies.remove('refresh_token');
+    }
+    return {setToken, getToken, removeToken};
 }

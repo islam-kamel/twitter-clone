@@ -12,6 +12,10 @@ function useAxiosPrivate() {
 
         const requestInterceptors = axiosPrivate.interceptors.request.use(
             config => {
+                const refreshToken = getToken("refresh");
+                if (!refreshToken) {
+                    return Promise.reject("NotFound refresh Token")
+                }
                 if (!config.headers["Authorization"]) {
                     config.headers["Authorization"] = `Bearer ${getToken("access")}`
                 }
@@ -19,7 +23,7 @@ function useAxiosPrivate() {
                     config.data = {
                         client_id: process.env.REACT_APP_API_ID,
                         client_secret: process.env.REACT_APP_API_SECRET,
-                        refresh_token: getToken("refresh"),
+                        refresh_token: refreshToken,
                         grant_type: "refresh_token",
                     }
                 } else {

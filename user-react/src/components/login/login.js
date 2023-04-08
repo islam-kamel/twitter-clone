@@ -71,19 +71,12 @@ export default function Login() {
     const [errorState, setErrorState] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    // const setUsername = useGetProfileInfo();
-
     const isFormValid = () => {
         const form = document.forms["loginForm"];
         setIsDisabled(!form.checkValidity())
     }
 
-    const removeModal = () => {
-        document.getElementById("login-modal").classList.remove("show");
-        document.body.removeAttribute("style");
-        document.body.classList.remove("model-open");
-        document.body.removeChild(document.querySelector(".modal-backdrop.fade.show"));
-    }
+
 
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault()

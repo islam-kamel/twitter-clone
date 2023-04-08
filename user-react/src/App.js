@@ -19,6 +19,8 @@ import useAuth from "./hooks/useAuth";
 import LoadingTwitterIcon from "./components/Loading/LoadingTwitterIcon";
 import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import RightSidebar from "./components/RightSidebar/RightSidebar";
+import useGetProfileInfo from "./hooks/useGetProfileInfo";
+import useCurrentUser from "./hooks/useCurrentUser";
 
 function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
@@ -79,6 +81,15 @@ function ApiTest() {
 function App() {
     const [isLoading, setIsLoading] = useState(true)
     const [show, setShow] = useState(true)
+    const currentUser = useCurrentUser();
+    const {setUsername} = useGetProfileInfo();
+
+    useEffect(() => {
+        if (currentUser?.id) {
+            console.log("here")
+            setUsername(currentUser?.username);
+        }
+    }, [currentUser?.id, currentUser?.username, setUsername])
 
     useEffect(() => {
         setIsLoading(true);
@@ -94,7 +105,7 @@ function App() {
     }, [])
 
     return (
-         isLoading ? <LoadingTwitterIcon show={show}/> : <>
+        isLoading ? <LoadingTwitterIcon show={show}/> : <>
             <Login/>
             <SignUp/>
             <main className="container-fluid container-xl p-0 px-sm-5">

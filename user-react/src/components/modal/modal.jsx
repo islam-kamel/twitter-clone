@@ -21,6 +21,15 @@ class TwModal extends React.Component {
 
     _label: string = (id) => `${id}Label`;
 
+    componentWillUnmount() {
+        try {
+            document.body.removeChild(document.querySelector(".modal-backdrop.fade.show"));
+            document.body.removeAttribute("style");
+            document.body.classList.remove("model-open");
+        } catch (e) {
+        }
+    }
+
     /**
      *
      * @return React.Component

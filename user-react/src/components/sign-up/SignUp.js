@@ -10,6 +10,7 @@ import {IsLoadingContext} from "../../context/isLoading";
 import LoadingSpinner from "../Loading/loading-spinner";
 import axios from "../../apiProvider/axios";
 import useAuth from "../../hooks/useAuth";
+import {useDate} from "../../hooks/useDate";
 
 export type FormData = {
     fullname: string,
@@ -34,16 +35,17 @@ const initialData: FormData = {
     password: ""
 }
 
-export function formatDate(data) {
-    const {year, month, day} = data.birthdate
-    return `${year}-${month}-${day}`;
-}
+// export function formatDate(data) {
+//     const {year, month, day} = data.birthdate
+//     return `${year}-${month}-${day}`;
+// }
 
 export default function SignUp() {
     const [isDisabled, setIsDisabled] = useState(true);
     const [data, setData] = useState(initialData)
-    const {isLoading} = useContext(IsLoadingContext);
-    const {setCredentials} = useAuth();
+    const [loading, setLoading ] = useState(false)
+    const {login} = useAuth();
+    const {formatDate} = useDate();
 
     const updateDate = (newData) => {
         setData({...data, ...newData})
@@ -92,14 +94,17 @@ export default function SignUp() {
     const handelSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (isLastStep) {
-            const date = formatDate(data);
-            axios.post("/api/register", {...data, birthdate: date})
+            const date = formatDate(data.birthdate);
+            setLoading(true)
+            console.log(date)
+            axios.post("/api/user/register", {...data, birthdate: date})
                 .then(async res => {
-                    setCredentials({username: data.username, password: data.password})
+                    await login({username: data.username, password: data.password})
                 })
                 .catch(error => {
                     console.log(error.message)
                 })
+                .finally(() => setLoading(false));
         }
         next();
     }
@@ -116,7 +121,7 @@ export default function SignUp() {
                     <TwModal.Header> {getHeader()} </TwModal.Header>
                 </div>
                 <TwModal.Body classes={"mx-5"}>
-                    {isLoading ? <LoadingSpinner/> : (
+                    {loading ? <LoadingSpinner/> : (
                         <>
                             {step}
                             {isLastStep ? (

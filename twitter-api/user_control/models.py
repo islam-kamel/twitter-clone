@@ -2,6 +2,7 @@ import re
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -125,6 +126,11 @@ class Profile(models.Model):
         verbose_name='Location',
         blank=True
     )
+    website = models.URLField(
+        max_length=600,
+        verbose_name='Website',
+        blank=True
+    )
     bio = models.TextField(
         max_length=1000,
         verbose_name='Bio',
@@ -141,5 +147,31 @@ class Profile(models.Model):
         upload_to='profile_cover/'
     )
 
+
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+class Follow(models.Model):
+    user_id = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="following",
+    )
+
+    following = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="followers",
+    )
+
+
+    def __str__(self):
+        return f'{self.user_id} Following {self.following}'
+
+
+    def save(self, *args, **kwargs):
+        try:
+            obj = Follow.objects.get(Q(following=self.following) and Q(user_id=self.user_id))
+        except Follow.DoesNotExist:
+            super(Follow, self).save(*args, **kwargs)

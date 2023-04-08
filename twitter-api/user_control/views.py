@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 
 from .models import CustomUser, Profile
-from .serializers import RegisterSerializer, UserInfoWithProfileSerializer, UserIdentitySerializer
+from .serializers import RegisterSerializer, UserInfoWithProfileSerializer, UserIdentitySerializer, UserProfileSerializer
 
 
 class RegisterView(APIView):
@@ -46,8 +46,7 @@ class UserProfileView(APIView):
             return Response({'message': 'Not Found any Data!'}, status=status.HTTP_400_BAD_REQUEST)
 
         user = CustomUser.objects.get(username=username)
-        profile = Profile.objects.get(user__username=username)
-        # print(request.data)
+        profile = Profile.objects.get_or_create(user__username=username, defaults={'user': user})[0]
         serializer = UserInfoWithProfileSerializer(instance={'user': user, 'profile': profile}, data=request.data)
 
         if serializer.is_valid():
@@ -64,13 +63,18 @@ class UserIdentityView(APIView):
     def get(reqeust):
         try:
             user = CustomUser.objects.get(username=reqeust.user.username)
-            user_image = Profile.objects.get(user_id=user.id).image
             serializer = UserIdentitySerializer(user)
 
             data = {}
             for field in serializer.data.items():
                 data.setdefault(field[0], field[1])
-            data.setdefault('image', user_image.url)
+
+            try:
+
+                user_image = Profile.objects.get(user_id=user.id).image
+                data.setdefault('image', user_image.url)
+            except Exception as e:
+                pass
 
             return Response(data)
 

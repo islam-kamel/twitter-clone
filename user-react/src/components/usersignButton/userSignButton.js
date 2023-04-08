@@ -5,21 +5,23 @@ import {threeDots} from "../../constants/icons";
 import {Link} from "react-router-dom";
 import {UserIdentity} from "../../hooks/useCurrentUser";
 import useLogout from "../../hooks/useLogout";
+import {useUserContext} from "../../context/userContext";
 
 const UserSignButton = (props: { userInfo: UserIdentity }) => {
     const logout = useLogout();
+    const {userInfo} = useUserContext();
 
     return (
         <div className="mb-0" style={{paddingTop: "3"}}>
             <div role={"button"} className="user-box mb-5 px-2">
                 <img
-                    src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.userInfo?.image}`}
+                    src={`${process.env.REACT_APP_BASE_URL + "/api" + userInfo.profile?.image}`}
                     className="rounded-circle float-start tw-profile-image"
                     alt="..."
                 />
                 <div className="mt-1 user-box-info">
-                    <h5 className="m-0">{props?.userInfo?.fullname}</h5>
-                    <small className="text-body-secondary">@{props?.userInfo?.username}</small>
+                    <h5 className="m-0">{userInfo?.fullname}</h5>
+                    <small className="text-body-secondary">@{userInfo?.username}</small>
                 </div>
                 <div className="dropstart d-none d-xl-flex flex-column align-items-end mt-2 user-box-dropdown">
 
@@ -31,17 +33,17 @@ const UserSignButton = (props: { userInfo: UserIdentity }) => {
                         }
                     >
                         <Link
-                            to={`profile/${props?.userInfo?.username}`}
+                            to={`profile/${userInfo?.username}`}
                             className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
                         >
-                            <span className={"text-bold"}>Profile @{props?.userInfo?.username}</span>
+                            <span className={"text-bold"}>Profile @{userInfo?.username}</span>
                         </Link>
                         <Link
                             onClick={logout}
                             to={"#"}
                             className={"text-decoration-none dropdown-item-text"}
                         >
-                            <span className={"text-danger"}>Logout @{props?.userInfo?.username}</span>
+                            <span className={"text-danger"}>Logout @{userInfo?.username}</span>
                         </Link>
                     </TwDropdown>
                 </div>

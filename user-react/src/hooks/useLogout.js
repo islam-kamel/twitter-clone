@@ -3,7 +3,7 @@ import useToken from "./useToken";
 
 function useLogout() {
     const axiosPrivate = useAxiosPrivate();
-    const {getToken} = useToken()
+    const {getToken, removeToken} = useToken()
 
     const logout = async () => {
         const data = {
@@ -11,6 +11,7 @@ function useLogout() {
         }
         const res = await axiosPrivate.post("auth/revoke-token", data);
         if (res.status === 204) {
+            removeToken();
             window.location.reload();
         }
     }

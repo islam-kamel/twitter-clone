@@ -1,22 +1,27 @@
 import {useEffect, useState} from "react";
 import axios from "../apiProvider/axios";
+import {useUserContext} from "../context/userContext";
 
-function useGetProfileInfo(username: string) {
-    const [userInfo, setUserInfo] = useState({});
+function useGetProfileInfo() {
+    const {userInfo, setUserInfo} = useUserContext();
+    const [username, setUsername] = useState(false);
 
     useEffect(() => {
         const controller = new AbortController()
-        axios.get(`api/user/profile/${username}`, {signal: controller.signal})
-            .then(res => res.data)
-            .then(data => setUserInfo({...data}))
+
+        if (username) {
+            axios.get(`api/user/profile/${username}`, {signal: controller.signal})
+                .then(res => res.data)
+                .then(data => setUserInfo({...data}))
+        }
 
         return () => {
             controller.abort();
         }
 
-    }, [username]);
+    }, [setUserInfo, username]);
 
-    return userInfo;
+    return {userInfo, setUsername};
 }
 
 export default useGetProfileInfo;

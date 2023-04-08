@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import CustomUser, Profile
+from .models import CustomUser, Profile, Follow
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -32,8 +32,39 @@ class UserProfileSerializer(serializers.ModelSerializer):
         }
 
 
+class UserFollowersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = '__all__'
+
+    def to_representation(self, value):
+        # obj = CustomUser.objects.get(id=value.followee)
+        follower_image, followee_image = None, None
+        try:
+            follower_image = Profile.objects.get(user_id=value.user_id.id).image.url
+            followee_image = Profile.objects.get(user_id=value.following.id).image.url
+        except Profile.DoesNotExist:
+            pass
+
+        return {
+            "id": value.id,
+            "follower": {
+                "username": value.user_id.username,
+                "fullname": value.user_id.fullname,
+                "image": follower_image,
+            },
+            "following": {
+                "username": value.following.username,
+                "fullname": value.following.fullname,
+                "image": followee_image
+            },
+        }
+
+
 class UserInfoWithProfileSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(instance=serializers.CurrentUserDefault, required=False)
+    followers = UserFollowersSerializer(read_only=True, many=True)
+    following = UserFollowersSerializer(read_only=True, many=True)
 
     class Meta:
         model = CustomUser
@@ -47,8 +78,10 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         print(validated_data)
+
         profile_data = validated_data.pop('profile', {})
         profile_instance = instance.pop('profile')
+
         for key, value in profile_data.items():
             setattr(profile_instance, key, value)
         profile_instance.save()
@@ -66,4 +99,3 @@ class UserIdentitySerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email', 'fullname']
-
