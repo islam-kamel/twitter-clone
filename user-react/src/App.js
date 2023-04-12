@@ -21,6 +21,7 @@ import NewToTwitter from "./components/new-to-twitter/NewToTwitter";
 import RightSidebar from "./components/RightSidebar/RightSidebar";
 import useGetProfileInfo from "./hooks/useGetProfileInfo";
 import useCurrentUser from "./hooks/useCurrentUser";
+import TweetDetails from "./pages/tweetDetails";
 
 function ApiTest() {
     const [apiHealth, setApiHealth] = useState("Nothing");
@@ -122,6 +123,7 @@ function App() {
                             <Route path={"bookmarks"} element={<Bookmarks/>}/>
                             <Route path={"profile/:username"} element={<Profile/>}/>
                             <Route path={"explore"} element={<Explore/>}/>
+                            <Route path={"details/:slug"} element={<TweetDetails/>}/>
                         </Routes>
                     </main>
                     <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0 ">

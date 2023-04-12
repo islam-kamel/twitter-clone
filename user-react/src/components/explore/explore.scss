@@ -128,16 +128,19 @@
 #explore-group, #explore-group li {
   position: relative;
 }
+
 #explore-group button {
   border-radius: 0;
   font-weight: lighter;
 
 }
+
 #explore-group li button:active {
   //border-bottom: 4px solid #1d9bf0;
   color: var(--bs-secondary);
 
 }
+
 #explore-group li button.active {
   color: black;
 }

@@ -3,31 +3,31 @@ import {useEffect, useState} from "react";
 
 function noneLoginRequire(Component) {
 
-    const Wrapper = (props) => {
-        const apiClient = useAxiosPrivate();
-        const [renderState, setRenderState] = useState(false);
+  const Wrapper = (props) => {
+    const apiClient = useAxiosPrivate();
+    const [renderState, setRenderState] = useState(false);
 
-        useEffect(() => {
-            const controller = new AbortController()
-            apiClient.get("api/user/is_auth", {signal: controller.signal})
-                .then(res => {
-                    setRenderState(false);
-                })
-                .catch(error => {
-                    setRenderState(true)
-                })
+    useEffect(() => {
+      const controller = new AbortController()
+      apiClient.get("api/user/is_auth", {signal: controller.signal})
+        .then(res => {
+          setRenderState(false);
+        })
+        .catch(error => {
+          setRenderState(true)
+        })
 
-            return () => {
-                controller.abort();
-            }
+      return () => {
+        controller.abort();
+      }
 
-        }, [apiClient])
+    }, [apiClient])
 
 
-        return renderState && <Component {...props}/>
-    }
+    return renderState && <Component {...props}/>
+  }
 
-    return Wrapper;
+  return Wrapper;
 }
 
 export default noneLoginRequire;

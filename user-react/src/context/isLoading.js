@@ -1,18 +1,18 @@
 import {createContext, useContext, useState} from "react";
 
-type IsLoading = boolean
-const INITIAL_VALUE: IsLoading= false;
+
+const INITIAL_VALUE =  false;
 
 export const IsLoadingContext = createContext(INITIAL_VALUE);
 
 export const useIsLoading = () => useContext(IsLoadingContext);
 
 const IsLoadingContextProvider = ({children}) => {
-    const [isLoading, setIsLoading] = useState(INITIAL_VALUE);
+  const [loadingState, setLoadingSate] = useState(INITIAL_VALUE);
 
-    return (
-        <IsLoadingContext.Provider value={{isLoading, setIsLoading}}>{children}</IsLoadingContext.Provider>
-    );
+  return (
+    <IsLoadingContext.Provider value={{loadingState, setLoadingSate}}>{children}</IsLoadingContext.Provider>
+  );
 }
 
 export default IsLoadingContextProvider;

@@ -105,7 +105,6 @@
 }
 
 
-
 .float-right {
     float: right
 }
@@ -128,15 +127,19 @@
         left: -400px;
         display: none
     }
+
     .chat-app .people-list.open {
         left: 0
     }
+
     .chat-app .chat {
         margin: 0
     }
+
     .chat-app .chat .chat-header {
         border-radius: 0.55rem 0.55rem 0 0
     }
+
     .chat-app .chat-history {
         height: 300px;
         overflow-x: auto
@@ -148,6 +151,7 @@
         height: 650px;
         overflow-x: auto
     }
+
     .chat-app .chat-history {
         height: 600px;
         overflow-x: auto
@@ -159,6 +163,7 @@
         height: 480px;
         overflow-x: auto
     }
+
     .chat-app .chat-history {
         height: calc(100vh - 350px);
         overflow-x: auto

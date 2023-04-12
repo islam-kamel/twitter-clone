@@ -1,108 +1,116 @@
 .main-area {
-  height: 100vh !important;
+    height: 100vh !important;
 }
 
 /* Navbar Component */
 .tw-navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
 }
 
 .tw-navbar-icon {
-  width: 26px;
+    width: 26px;
 }
 
 .tw-navbar-link {
-  text-decoration: unset;
+    text-decoration: unset;
 }
 
 .tw-navbar-item {
-  width: fit-content;
-  font-size: 20px;
-  font-weight: 300;
-  text-decoration-style: unset;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  border-radius: 9999px;
-  transition: ease-in all 0.1s;
-}
-.tw-navbar-item:hover {
-  background-color: rgba(15, 20, 25, 0.1);
-}
-
-.tw-navbar-brand {
-  font-size: 28px;
-  height: 50px;
-  width: 50px;
-  padding: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 9999px;
-  transition: ease-in all 0.2s;
-  margin-top: 8px;
-}
-.tw-navbar-brand:hover {
-  background-color: rgba(13, 110, 253, 0.1);
-}
-
-.tw-navbar-item i:first-child {
-  margin-right: 10px;
-}
-@media screen and (max-width: 1281px){
-
-}
-@media (max-width: 1281px) {
-  .tw-navbar-text, .user-box-info, .user-box-dropdown {
-    display: none !important;
-  }
-  .user-box {
-    width: fit-content !important;
-  }
-
-  .user-box:hover {
-    background-color: unset !important;
-  }
-
-  .tw-navbar-item {
     width: fit-content;
+    font-size: 20px;
+    font-weight: 300;
     text-decoration-style: unset;
-    padding: 0 12px;
+    padding: 12px;
     display: flex;
     justify-content: center;
     border-radius: 9999px;
-    transition: ease-in all 0.2s;
-    min-height: 50px;
-  }
-  .tw-navbar-item:hover {
-    background-color: rgba(15, 20, 25, 0.1);
-  }
-  .tw-navbar-item a:hover {
-    /*color: black;*/
-  }
-
-  .tw-navbar-item i:first-child {
-    margin: 0;
-  }
-
-  .tw-navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    /*width: 100%;*/
-  }
+    transition: ease-in all 0.1s;
 }
+
+.tw-navbar-item:hover {
+    background-color: rgba(15, 20, 25, 0.1);
+}
+
+.tw-navbar-brand {
+    font-size: 28px;
+    height: 50px;
+    width: 50px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 9999px;
+    transition: ease-in all 0.2s;
+    margin-top: 8px;
+}
+
+.tw-navbar-brand:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.tw-navbar-item i:first-child {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 1281px) {
+
+}
+
+@media (max-width: 1281px) {
+    .tw-navbar-text, .user-box-info, .user-box-dropdown {
+        display: none !important;
+    }
+
+    .user-box {
+        width: fit-content !important;
+    }
+
+    .user-box:hover {
+        background-color: unset !important;
+    }
+
+    .tw-navbar-item {
+        width: fit-content;
+        text-decoration-style: unset;
+        padding: 0 12px;
+        display: flex;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: ease-in all 0.2s;
+        min-height: 50px;
+    }
+
+    .tw-navbar-item:hover {
+        background-color: rgba(15, 20, 25, 0.1);
+    }
+
+    .tw-navbar-item a:hover {
+        /*color: black;*/
+    }
+
+    .tw-navbar-item i:first-child {
+        margin: 0;
+    }
+
+    .tw-navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        /*width: 100%;*/
+    }
+}
+
 /* End Navbar Component*/
 .tw-new-tweet-btn {
-  border: none !important;
-  height: 52px !important;
-  width: 52px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding-top: 12px !important;
-  padding-bottom: 12px !important;
+    border: none !important;
+    height: 52px !important;
+    width: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
 }

@@ -1,18 +1,10 @@
 import Cookies from "js-cookie";
 
-type CookieKey = "access" | "refresh"
-
-type Token = {
-    access_token: string,
-    refresh_token: string,
-    expires_in: number,
-}
-
 export default function useToken() {
-    const calcTokenAge = (age: number) => new Date(new Date().getTime() + age * 60)
+    const calcTokenAge = (age) => new Date(new Date().getTime() + age * 60)
     const REFRESH_TOKEN_AGE = 365;
 
-    const setToken = (token: Token) => {
+    const setToken = (token) => {
         Cookies.set("access_token", token.access_token, {
             secure: true,
             sameSite: "lax",
@@ -26,7 +18,7 @@ export default function useToken() {
         })
     }
 
-    function getToken(cookieKey: CookieKey) {
+    function getToken(cookieKey) {
         return Cookies.get(`${cookieKey}_token`)
     }
 

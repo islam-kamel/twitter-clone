@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
-import NewMessageModal from './NewMessageModal';
-import ChatRoom from './ChatRoom';
+import React, {useState} from "react";
 
 const OneMessage = (props) => {
+  // eslint-disable-next-line
+  const [show, setShow] = useState(false);
 
-    const [show, setShow] = useState(false);
+  const handleClick = () => {
+    props.setActiveChat(props.chatId);
+    setShow(true);
+  }
 
-    const handleClick = () => {
-      props.setActiveChat(props.chatId);
-      setShow(true);
-    }
-  
-    return (
-        <>
-      
-           <div onClick={handleClick}>
+  return (
+    <>
 
-                <span className="row p-1 people-list ">
-                    <img alt={'...'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU" className="col-2 col-md-2 col-lg-2 " />
-                    <span className="col-1 col-lg-1  ps-1">Safaa </span>
-                    
+      <div onClick={handleClick}>
 
-                    <span className="col-3 col-lg-3 "> @safaa123 </span>
+        <span className="row p-1 people-list ">
+          <img
+            alt={"..."}
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU"
+            className="col-2 col-md-2 col-lg-2 "/>
+          <span className="col-1 col-lg-1  ps-1">Safaa </span>
 
-                    <span className="col-4  col-lg-4 ">Feb 2</span>
 
-                    <span className="col-2 col-lg-2"><i className="bi bi-three-dots more" title="More"></i></span>
-                    <p className="col-12 ps-5 ms-3">hi safaa </p>
-                </span>
-               
+          <span className="col-3 col-lg-3 "> @safaa123 </span>
 
-                </div>
+          <span className="col-4  col-lg-4 ">Feb 2</span>
 
-            
-          
-        </>
-    );
+          <span className="col-2 col-lg-2"><i className="bi bi-three-dots more" title="More"></i></span>
+          <p className="col-12 ps-5 ms-3">hi safaa </p>
+        </span>
+      </div>
+
+    </>
+  );
 }
 
 export default OneMessage;

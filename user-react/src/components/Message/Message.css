@@ -1,88 +1,98 @@
 /* @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css"; */
 .message a:hover {
-  border-radius: 50%;
-  background-color: rgb(238, 234, 234);
+    border-radius: 50%;
+    background-color: rgb(238, 234, 234);
 }
 
 .Message-Search {
-  border-radius: 25px;
-  height: 40px;
-  text-align: center;
+    border-radius: 25px;
+    height: 40px;
+    text-align: center;
 }
 
 .trysearch {
-  display: none;
+    display: none;
 }
 
 .Message-Search:focus {
-  text-align: left;
+    text-align: left;
 }
+
 .Message-Search:focus + .trysearch {
-  display: block;
+    display: block;
 
 }
 
 .Message-Search:focus > .Message div {
-  display: none;
+    display: none;
 }
 
 .msg1 {
-  width: 100%;
+    width: 100%;
 }
+
 .msg1 .more {
-  display: none;
+    display: none;
 }
+
 .msg1:hover {
-  background-color: #f4f4f6;
-  cursor: pointer;
+    background-color: #f4f4f6;
+    cursor: pointer;
 }
+
 .msg1:hover .more {
-  display: block;
+    display: block;
 }
+
 .msg1:hover .more:hover {
-  border-radius: 60px 20px 60px 20px;
-  background-color: #d2d3d3;
-  color: rgb(118, 118, 238);
+    border-radius: 60px 20px 60px 20px;
+    background-color: #d2d3d3;
+    color: rgb(118, 118, 238);
 }
 
 .newmessage {
-  line-height: 150px;
+    line-height: 150px;
 }
 
 .newmessage p {
-  line-height: 1.5;
-  display: inline-block;
-  justify-content: start;
+    line-height: 1.5;
+    display: inline-block;
+    justify-content: start;
 }
 
 #form1:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
+
 .modal-footer {
-  height: auto;
+    height: auto;
 }
+
 .modal-footer .searchpeople:hover {
-  background-color: #f4f4f6;
-  cursor: pointer;
+    background-color: #f4f4f6;
+    cursor: pointer;
 }
 
 @media (min-width: 481px) and (max-width: 989px) {
-  .newmessage {
-    display: none;
-  }
-  .message {
-    display: none;
-  }
+    .newmessage {
+        display: none;
+    }
+
+    .message {
+        display: none;
+    }
 }
+
 /* Media Query for Mobile Devices */
 @media (max-width: 480px) {
-  .newmessage {
-    display: none;
-  }
+    .newmessage {
+        display: none;
+    }
 }
+
 .people-list:hover {
-  background: #efefef;
-  cursor: pointer
+    background: #efefef;
+    cursor: pointer
 }
 

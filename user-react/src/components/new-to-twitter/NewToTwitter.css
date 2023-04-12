@@ -1,17 +1,15 @@
-.New-to-Twitter
-{
+.New-to-Twitter {
 
-/*width: 28%;*/
+    /*width: 28%;*/
 
 }
-.createAccount-button
-{
+
+.createAccount-button {
     align-items: center;
 }
 
 @media (max-width: 576px) {
-    .New-to-Twitter
-    {
+    .New-to-Twitter {
         display: none;
     }
 
@@ -19,9 +17,8 @@
 
 /* // Medium devices (tablets, 768px and up) */
 @media (max-width: 1200px) {
-    .New-to-Twitter
-    {
+    .New-to-Twitter {
         display: none;
     }
 
- }
+}
