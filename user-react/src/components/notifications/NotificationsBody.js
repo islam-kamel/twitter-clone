@@ -2,7 +2,6 @@ import React from "react";
 import "./Notifications.css"
 import Avatare from "../../Image/avatar.png"
 import notifications from "../../Image/notifications.jpg"
-import "@fortawesome/fontawesome-free/css/all.min.css"
 import authGuard from "../../guards/authGuard";
 
 

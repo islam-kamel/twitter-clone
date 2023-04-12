@@ -236,7 +236,7 @@ export default function MainSidebar() {
 
         <TwButton
           btnStyle={"primary"}
-          classes={"rounded-circle  tw-new-tweet-btn d-xl-none"}
+          classes={"rounded-circle tw-new-tweet-btn d-xl-none"}
         >
           <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
         </TwButton>

@@ -80,3 +80,9 @@ input,
     color: bootstrap.$form-feedback-invalid-color;
   }
 }
+
+.tw-profile-image {
+  object-fit: cover;
+  width: 48px;
+  height: 48px;
+}

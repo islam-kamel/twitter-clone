@@ -61,8 +61,8 @@ const Card = (props) => {
                 <span className={"ms-2 text-muted"}>@{props.username} </span>
               </Link>
               <span className={"text-muted fw-light ms-2"}>
-                                {moment(props.createAt).fromNow()}
-                            </span>
+                {moment(props.createAt).fromNow()}
+              </span>
             </div>
 
             <TwDropdown

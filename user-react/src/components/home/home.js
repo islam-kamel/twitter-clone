@@ -163,6 +163,7 @@ function Tweets() {
         return (
           <div
             role={"button"}
+            key={tweet.id}
             onClick={() => {
               navigation(`details/${tweet.content.slice(0, 100)}`,
                 {

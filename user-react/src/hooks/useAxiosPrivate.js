@@ -1,7 +1,7 @@
-import {useEffect} from "react";
 import useRefreshToken from "./useRefreshToken";
 import {axiosPrivate} from "../apiProvider/axios";
 import useToken from "./useToken";
+import {useEffect} from "react";
 
 
 function useAxiosPrivate() {
@@ -59,7 +59,7 @@ function useAxiosPrivate() {
 
     return () => {
       console.log("Axios Private Abort");
-      axiosPrivate.interceptors.response.eject(responseInterceptors);
+      // axiosPrivate.interceptors.response.eject(responseInterceptors);
       axiosPrivate.interceptors.request.eject(requestInterceptors);
     }
   }, [getToken, refresh])
