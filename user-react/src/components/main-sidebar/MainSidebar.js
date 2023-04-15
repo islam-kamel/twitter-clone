@@ -21,8 +21,8 @@ import {
   search_fill
 } from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
-import {useUserContext} from "../../context/userContext";
 import useLogout from "../../hooks/useLogout";
+import {useSelector} from "react-redux";
 
 
 const initialRouteValue = {
@@ -65,9 +65,8 @@ export function BuildIcon(props) {
 
 export function SmNavbar() {
   const {isActive, handelClick} = useActiveLink();
-  const {userInfo} = useUserContext()
   const logout = useLogout();
-
+  const userInfo = useSelector(state => state.currentUser.userProfile)
 
   return (
     <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
@@ -149,8 +148,7 @@ export function SmNavbar() {
 
 export default function MainSidebar() {
   const {isActive, handelClick} = useActiveLink();
-  const {userInfo} = useUserContext();
-
+  const userInfo = useSelector(state => state.currentUser.userProfile);
 
   const UserAction = () => {
 

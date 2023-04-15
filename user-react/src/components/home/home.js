@@ -148,14 +148,13 @@ function NewTweet() {
 
 
 function Tweets() {
-  const [tweets, setTweets] = useState([]);
-  const axiosPrivate = useAxiosPrivate();
   const navigation = useNavigate();
+  const dispatch = useDispatch();
+  const tweets = useSelector(state => state.tweets.tweets || []);
 
   useEffect(() => {
-    axiosPrivate.get("api/tweet/")
-      .then(res => setTweets(res.data))
-  }, [axiosPrivate])
+    dispatch(fetchTweets());
+  }, [dispatch])
 
   return (
     <>

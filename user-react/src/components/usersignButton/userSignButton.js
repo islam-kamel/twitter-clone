@@ -4,11 +4,11 @@ import TwDropdown from "../twDropdown/TwDropdown";
 import {threeDots} from "../../constants/icons";
 import {Link} from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
-import {useUserContext} from "../../context/userContext";
+import {useSelector} from "react-redux";
 
-const UserSignButton = (props) => {
+const UserSignButton = () => {
   const logout = useLogout();
-  const {userInfo} = useUserContext();
+  const userInfo = useSelector(state => state.currentUser.userProfile);
 
   return (
     <div className="mb-0" style={{paddingTop: "3"}}>

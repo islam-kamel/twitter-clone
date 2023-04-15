@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchTweets = createAsyncThunk("tweets/fetchTweets", async (_, thunkAPI) => {
   try {
-    return await axiosInstance.get("api/tweet/").then(res => res.data);
+    return await axiosInstance.get("/api/tweet/").then(res => res.data);
   } catch (error) {
     thunkAPI.rejectWithValue(error.response.message || error.response.data);
   }
@@ -26,7 +26,7 @@ const tweets = createSlice({
     },
 
     [fetchTweets.fulfilled]: (state, action) => {
-      state.tweets = action.payload.data
+      state.tweets = action.payload
       state.loading = false;
     },
     [fetchTweets.rejected]: (state, action) => {

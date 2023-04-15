@@ -25,15 +25,15 @@ export default createBrowserRouter([
       },
       {
         path: "Message",
-        element: <Suspense> <Message/></Suspense>
+        element: <Suspense><Message/></Suspense>
       },
       {
         path: "bookmarks",
-        element: <Suspense> <Bookmarks/></Suspense>
+        element: <Suspense><Bookmarks/></Suspense>
       },
       {
         path: "profile/:username",
-        element: <Suspense> <Profile/></Suspense>
+        element: <Suspense><Profile/></Suspense>
       },
       {
         path: "explore",

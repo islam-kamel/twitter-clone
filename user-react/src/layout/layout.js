@@ -6,21 +6,19 @@ import NewToTwitter from "../components/new-to-twitter/NewToTwitter";
 import RightSidebar from "../components/RightSidebar/RightSidebar";
 import Footer from "../components/footer/Footer";
 import {lazy, Suspense, useEffect} from "react";
-import useGetProfileInfo from "../hooks/useGetProfileInfo";
-import useCurrentUser from "../hooks/useCurrentUser";
+import {useDispatch} from "react-redux";
+import {fetchCurrentUserProfile} from "../store/features/auth/authentication";
 
 
 const MainSidebar = lazy(() => import("../components/main-sidebar/MainSidebar"));
+
 function Layout() {
-  const currentUser = useCurrentUser();
-  const {setUsername} = useGetProfileInfo();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentUser?.id) {
-      console.log("here")
-      setUsername(currentUser?.username);
-    }
-  }, [currentUser?.id, currentUser?.username, setUsername])
+    dispatch(fetchCurrentUserProfile());
+  }, [dispatch]);
+
 
   return (
     <div className={"app"}>
