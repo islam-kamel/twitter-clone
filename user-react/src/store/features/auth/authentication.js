@@ -26,7 +26,7 @@ export const fetchAuthState = createAsyncThunk('user/fetchAuthState', async (_, 
   }
 })
 
-export const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
+export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
   try {
     console.log(data)
     return await axiosInstance.post("/auth/token", {
@@ -39,6 +39,16 @@ export const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
   }
 })
 
+export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
+  try {
+    const token = new Token();
+    return await axiosInstance.post("/auth/revoke-token", {
+      token: token.getToken('access')
+    })
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
+  }
+})
 const user = createSlice({
   name: "user",
   initialState,
@@ -89,6 +99,20 @@ const user = createSlice({
       state.error = action.payload;
       state.loading = false;
       state.isLogin = false;
+    },
+    /* Logout */
+    [logout.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    [logout.fulfilled]: (_) => {
+      const token = new Token();
+      token.revokeAllToken();
+      window.location.reload();
+    },
+    [logout.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
     },
   }
 })

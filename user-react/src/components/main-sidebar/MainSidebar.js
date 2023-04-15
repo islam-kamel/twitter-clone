@@ -23,6 +23,8 @@ import {
 import TwDropdown from "../twDropdown/TwDropdown";
 import useLogout from "../../hooks/useLogout";
 import {useUserContext} from "../../context/userContext";
+import {useDispatch} from "react-redux";
+import {logout} from "../../store/features/auth/authentication";
 
 
 const initialRouteValue = {
@@ -67,7 +69,8 @@ export function SmNavbar() {
   const {isActive, handelClick} = useActiveLink();
   // const userInfo = useCurrentUser()
   const {userInfo} = useUserContext()
-  const logout = useLogout();
+  const dispatch = useDispatch();
+  const handleLogout = () => dispatch(logout());
 
   return (
     <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
@@ -131,7 +134,7 @@ export function SmNavbar() {
                   <span className={"text-bold"}>Profile @{userInfo?.username}</span>
                 </Link>
                 <Link
-                  onClick={logout}
+                  onClick={handleLogout}
                   to={"#"}
                   className={"text-decoration-none dropdown-item-text"}
                 >
