@@ -59,7 +59,7 @@ function useAxiosPrivate() {
 
     return () => {
       console.log("Axios Private Abort");
-      // axiosPrivate.interceptors.response.eject(responseInterceptors);
+      axiosPrivate.interceptors.response.eject(responseInterceptors);
       axiosPrivate.interceptors.request.eject(requestInterceptors);
     }
   }, [getToken, refresh])

@@ -32,7 +32,7 @@ function authGuard(Component) {
         controller.abort();
       }
 
-    }, [apiClient, goExplore])
+    }, [])
 
     return authState && <Component {...props} />;
   }

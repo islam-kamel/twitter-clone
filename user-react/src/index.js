@@ -6,12 +6,16 @@ import "@fortawesome/fontawesome-free/css/all.min.css"
 import UserContextProvider from "./context/userContext";
 import IsLoadingContextProvider from "./context/isLoading";
 import routes from "./router/routes";
+import {Provider} from "react-redux";
+import store from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserContextProvider>
     <IsLoadingContextProvider>
-      <RouterProvider router={routes}/>
+      <Provider store={store}>
+        <RouterProvider router={routes}/>
+      </Provider>
     </IsLoadingContextProvider>
   </UserContextProvider>
 );

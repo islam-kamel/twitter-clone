@@ -2,8 +2,9 @@ import React, {useEffect, useRef, useState} from "react";
 import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
-import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../Loading/loading-spinner";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../store/features/auth/authentication";
 
 
 const googleIconColors = {
@@ -66,32 +67,24 @@ export default function Login() {
   const [show, setShow] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [loginData, setLoginData] = useState(INITIAL_VALUE);
-  const {login} = useAuth();
-  const [errorState, setErrorState] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch()
+  const {loading, error} = useSelector(state => state.currentUser);
 
   const isFormValid = () => {
     const form = document.forms["loginForm"];
     setIsDisabled(!form.checkValidity())
   }
 
-
   const handelSubmit = (event) => {
     event.preventDefault()
-    setLoading(true)
-    login({username: loginData.username, password: loginData.password})
-      .then(res => {
-        setLoading(false);
-        window.location.reload();
-      })
-      .catch(error => {
-        if (error?.response?.status === 400) {
-          setErrorState(true);
-          setLoading(false);
-        }
-      })
-    setErrorState(false)
+    dispatch(login({
+      username: loginData.username,
+      password: loginData.password
+    }))
+      .unwrap()
+      .then(_ => window.location.reload())
   }
+
   const togglePasswordVisibility = () => setShow(!show);
 
   function getFrom() {
@@ -146,11 +139,11 @@ export default function Login() {
         </div>
         <div className="col">
           <div className={"position-relative"}>
-                                    <span
-                                      className="p-0 fs-6 fw-light text-secondary"
-                                    >
-                                        Make sure it’s 8 characters or more.
-                                    </span>
+            <span
+              className="p-0 fs-6 fw-light text-secondary"
+            >
+                Make sure it’s 8 characters or more.
+            </span>
             <TwInput
               labelText={"Password"}
               className="form-control py-3"
@@ -216,7 +209,7 @@ export default function Login() {
       <TwModal id={"login-modal"} modalStyle={"modal-dialog-scrollable"}>
         <TwModal.Header classes={"text-dark"} defaultHeader={true}/>
         <TwModal.Body>
-          {errorState && <ErrorToasts display={true} message={"Missing Username, Password !."}/>}
+          {error && <ErrorToasts display={true} message={error?.error_description}/>}
           {loading
             ? <LoadingSpinner/>
             : getFrom()

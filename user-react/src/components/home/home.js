@@ -7,9 +7,9 @@ import {useEffect, useRef, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useUserContext} from "../../context/userContext";
 import {useNavigate} from "react-router-dom";
-
+import {useDispatch, useSelector} from "react-redux";
+import {fetchTweets} from "../../store/features/tweets/tweets";
 const profileImage = require("../../assets/profile.image.jpg");
-
 
 function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
@@ -206,11 +206,9 @@ function Home() {
         </div>
       </div>
 
-      {/*New Tweet Start*/
-      }
+      {/*New Tweet Start*/ }
       <NewTweet/>
-      {/*New Tweet End*/
-      }
+      {/*New Tweet End*/}
       <Tweets/>
     </main>
   )

@@ -1,13 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
-// import Notifications from "../components/notifications/NotificationsBody";
-// import Message from "../components/Message/Message";
-// import Bookmarks from "../components/bookmarks/Bookmarks";
-// import Profile from "../components/profile/profile";
-// import TweetDetails from "../pages/tweetDetails";
 import Layout from "../layout/layout";
 import {lazy, Suspense} from "react";
-import Explore from "../components/explore/explore";
-// import Home from "../components/home/home";
 
 const Home = lazy(() => import("../components/home/home"));
 const TweetDetails = lazy(() => import("../pages/tweetDetails"));
@@ -15,6 +8,7 @@ const Profile = lazy(() => import("../components/profile/profile"));
 const Bookmarks = lazy(() => import("../components/bookmarks/Bookmarks"));
 const Message = lazy(() => import("../components/Message/Message"));
 const Notifications = lazy(() => import("../components/notifications/NotificationsBody"));
+const Explore = lazy(() => import("../components/explore/explore"));
 
 export default createBrowserRouter([
   {
