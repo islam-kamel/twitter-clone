@@ -18,6 +18,14 @@ const fetchCurrentUserProfile = createAsyncThunk("user/fetchCurrentUserProfile",
   }
 })
 
+export const fetchAuthState = createAsyncThunk('user/fetchAuthState', async (_, thunkAPI) => {
+  try {
+    return await axiosInstance.get("api/user/is_auth").then(res => res.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
+  }
+})
+
 export const login = createAsyncThunk("users/login", async (data, thunkAPI) => {
   try {
     console.log(data)
@@ -66,6 +74,21 @@ const user = createSlice({
     [login.rejected]: (state, action) => {
       state.error = action.payload;
       state.loading = false;
+    },
+    /* Fetch Auth State */
+    [fetchAuthState.pending]: (state) => {
+      state.loading = true;
+      state.error = null;
+      state.isLogin = false;
+    },
+    [fetchAuthState.fulfilled]: (state) => {
+      state.isLogin = true;
+      state.loading = false;
+    },
+    [fetchAuthState.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+      state.isLogin = false;
     },
   }
 })

@@ -1,40 +1,24 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import {useCallback, useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAuthState} from "../store/features/auth/authentication";
 
 function authGuard(Component) {
 
   const Wrapper = (props) => {
-    const apiClient = useAxiosPrivate();
-    const [authState, setAuthState] = useState(false);
-    const location = useLocation();
     const navigate = useNavigate();
-
-    const goExplore = useCallback(() => {
-      navigate("/explore", {state: {from: location}})
-    }, [location, navigate])
-
+    const dispatch = useDispatch()
+    const loginState = useSelector(state => state.currentUser.isLogin)
 
     useEffect(() => {
-      const controller = new AbortController()
-      apiClient.get("api/user/is_auth", {signal: controller.signal})
-        .then(res => {
-          res?.status === 200 && setAuthState(true)
-        })
-        .catch(error => {
-          if (!error?.message.includes("canceled")) {
-            setAuthState(false)
-            goExplore();
-          }
-        })
-
-      return () => {
-        controller.abort();
+      if (!loginState) {
+        dispatch(fetchAuthState())
+          .unwrap()
+          .catch(_ => navigate("/explore"));
       }
+    }, [dispatch, loginState, navigate])
 
-    }, [])
-
-    return authState && <Component {...props} />;
+    return loginState && <Component {...props} />;
   }
 
   return Wrapper;
