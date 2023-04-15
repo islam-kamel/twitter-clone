@@ -21,10 +21,8 @@ import {
   search_fill
 } from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
-import useLogout from "../../hooks/useLogout";
 import {useUserContext} from "../../context/userContext";
-import {useDispatch} from "react-redux";
-import {logout} from "../../store/features/auth/authentication";
+import useLogout from "../../hooks/useLogout";
 
 
 const initialRouteValue = {
@@ -67,10 +65,9 @@ export function BuildIcon(props) {
 
 export function SmNavbar() {
   const {isActive, handelClick} = useActiveLink();
-  // const userInfo = useCurrentUser()
   const {userInfo} = useUserContext()
-  const dispatch = useDispatch();
-  const handleLogout = () => dispatch(logout());
+  const logout = useLogout();
+
 
   return (
     <div className={"position-fixed backdrop-blur border-top start-0 bottom-0 w-100"}>
@@ -134,7 +131,7 @@ export function SmNavbar() {
                   <span className={"text-bold"}>Profile @{userInfo?.username}</span>
                 </Link>
                 <Link
-                  onClick={handleLogout}
+                  onClick={logout}
                   to={"#"}
                   className={"text-decoration-none dropdown-item-text"}
                 >
@@ -290,6 +287,5 @@ export default function MainSidebar() {
         </aside>
       </div>
     </div>
-
   );
 }

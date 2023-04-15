@@ -1,22 +1,9 @@
-import useAxiosPrivate from "./useAxiosPrivate";
-import useToken from "./useToken";
+import {useDispatch} from "react-redux";
+import {logout} from "../store/features/auth/authentication";
 
 function useLogout() {
-  const axiosPrivate = useAxiosPrivate();
-  const {getToken, removeToken} = useToken()
-
-  const logout = async () => {
-    const data = {
-      token: getToken("access")
-    }
-    const res = await axiosPrivate.post("auth/revoke-token", data);
-    if (res.status === 204) {
-      removeToken();
-      window.location.reload();
-    }
-  }
-
-  return logout;
+  const dispatch = useDispatch();
+  return () => dispatch(logout());
 }
 
 export default useLogout;
