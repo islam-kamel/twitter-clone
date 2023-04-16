@@ -3,7 +3,7 @@ import "./home.style.css";
 import {emoji, gif, imageIcon, poll} from "../../constants/icons";
 import TwButton from "../tw-button/tw-button";
 import authGuard from "../../guards/authGuard";
-import {useEffect, useRef, useState} from "react";
+import {cloneElement, useCallback, useEffect, useRef, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useUserContext} from "../../context/userContext";
 import {useNavigate} from "react-router-dom";
@@ -13,7 +13,7 @@ const profileImage = require("../../assets/profile.image.jpg");
 
 function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
-  const {userInfo} = useUserContext();
+  const userInfo = useSelector(state => state.currentUser.userProfile);
   const media = useRef();
   const [fileUrl, setFileUrl] = useState([]);
 

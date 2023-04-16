@@ -44,8 +44,9 @@ axiosInstance.interceptors.response.use(
   async error => {
     const prevRequest = error?.config;
     if (error?.response.status === 401 && !prevRequest?.send) {
+      console.log('here')
       prevRequest.send = true
-      const newAccessToken = token.refreshToken().then(res => res.data?.access_token);
+      const newAccessToken = token.refreshToken()().then(res => res.data?.access_token);
       prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
       return axiosPrivate(prevRequest)
     }

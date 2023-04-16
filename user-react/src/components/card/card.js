@@ -8,32 +8,30 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
 
 function BuildMedia(props) {
-
+  const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
+  const Video = () => {
+    return (
+      <video
+        controls={true}
+        className={"img-fluid rounded"}
+        preload={"metadata"}>
+        <source
+          src={`${process.env.REACT_APP_MEDIA_BASE_URL + props.item.file}`}
+        />
+      </video>
+    )
+  }
+  const Image = () => {
+    return (
+      <img
+        className={"img-fluid rounded"}
+        src={`${process.env.REACT_APP_MEDIA_BASE_URL + props.item.file}`}
+        alt={".."}
+      />
+    )
+  }
   return (
-    props.media?.map(item => {
-      const isVideo = /\.(mp4|webm|ogg)$/i.test(item.file);
-
-      if (isVideo) {
-        return (
-          <div key={item.id} className={"card p-0 px-1 border-0"}>
-            <video controls={true}
-                   className={"img-fluid card-img "}
-                   preload={"metadata"}>
-              <source
-                src={`${process.env.REACT_APP_MEDIA_BASE_URL + item.file}`}/>
-            </video>
-          </div>
-        )
-      } else {
-        return (
-          <div key={item.id} className={"card p-0 px-2 border-0"}>
-            <img className={"card-img img-fluid "}
-                 src={`${process.env.REACT_APP_MEDIA_BASE_URL + item.file}`}
-                 alt={".."}/>
-          </div>
-        );
-      }
-    })
+      isVideo ? <Video/> : <Image/>
   )
 }
 
@@ -103,8 +101,19 @@ const Card = (props) => {
         <div className={"d-flex flex-column mt-2"}>
           <div className={"row row-cols-1"}>
             <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}.</p>
-            <div className={"row row-cols-auto gy-2"}>
-              <BuildMedia media={props?.media}/>
+            <div
+              className={"tweet-image"}
+              onClick={(e) => {
+                e.stopPropagation()
+                console.log("hello")
+              }}
+            >
+              {props.media?.map((item, index) => {
+
+                return (
+                    <BuildMedia item={item}/>
+                )
+              })}
             </div>
           </div>
           <div className="tweet_icons text-muted">
