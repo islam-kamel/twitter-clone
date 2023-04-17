@@ -9,6 +9,9 @@ import routes from "./router/routes";
 import {Provider} from "react-redux";
 import store from "./store/store";
 
+// Shared Style
+import './components/explore/explore.scss';
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserContextProvider>

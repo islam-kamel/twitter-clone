@@ -2,7 +2,6 @@ import React from "react";
 import "./card.css"
 
 const Cardtrandy = (props) => {
-  console.log(props);
   return (
     <>
       <div className="trandy" style={{

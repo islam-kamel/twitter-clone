@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss"
 import {Link} from "react-router-dom";
 import {chart, comment, like, newFollow, replay, share, threeDots} from "../../constants/icons";
@@ -6,6 +6,7 @@ import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
+import {useSelector} from "react-redux";
 
 function BuildMedia(props) {
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
@@ -31,19 +32,40 @@ function BuildMedia(props) {
     )
   }
   return (
-      isVideo ? <Video/> : <Image/>
+    isVideo ? <Video/> : <Image/>
   )
 }
 
 const Card = (props) => {
   const axiosPrivate = useAxiosPrivate();
+  const likeBtn = useRef(null);
+  const userInfo = useSelector(state => state.currentUser.userProfile)
+  const [isLiked, setIsLiked] = useState(false)
+
+  useEffect(() => {
+    const find = props?.likes?.users_list.find(value => value === userInfo.id)
+    find && setIsLiked(true)
+  }, [props, userInfo])
+
+  const handleLike = (e) => {
+    e.stopPropagation()
+    likeBtn.current.classList.toggle("liked")
+    if (likeBtn.current.classList.contains("liked")) {
+      console.log("like")
+    } else {
+      console.log("disLike");
+    }
+  }
+
   const removeTweet = () => {
     const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweetId}`;
     axiosPrivate.delete(url)
       .then(res => console.log(res.data))
   }
+
   return (
-    <div className={"row p-3 border-top gx-0"}>
+    <div className={"row p-3 border-top gx-0 tweet-card-hover"}>
+      {isLiked}
       <div className={"col-12 me-3"}>
         <div className={"d-flex "}>
           <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props.img}`} alt=""
@@ -98,47 +120,54 @@ const Card = (props) => {
         </div>
       </div>
       <div className={"col-11 ms-5 ps-2 mt-2"}>
-        <div className={"d-flex flex-column mt-2"}>
-          <div className={"row row-cols-1"}>
-            <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}.</p>
-            <div
-              className={"tweet-image"}
-              onClick={(e) => {
-                e.stopPropagation()
-                console.log("hello")
-              }}
-            >
-              {props.media?.map((item, index) => {
+        <div className={"row row-cols-1 m-0"}>
+          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}.</p>
+          <div
+            className={"tweet-image p-0"}
+            onClick={(e) => {
+              e.stopPropagation()
+              console.log("hello")
+            }}
+          >
+            {props.media?.map((item, index) => {
 
-                return (
-                    <BuildMedia item={item}/>
-                )
-              })}
-            </div>
+              return (
+                <BuildMedia key={index} item={item}/>
+              )
+            })}
           </div>
-          <div className="tweet_icons text-muted">
-            <div className={"icon"}>
-              <i className={"icon icon-1"}>{comment}</i>
-              <span className={"ms-1"}>300</span>
+          <div className="tweet_icons text-muted ps-0 ">
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>{comment}</div>
+              <span className={"icon-amount"}>{props?.comments?.count}</span>
             </div>
 
-            <div className={"icon"}>
-              <i className={"icon-2 icon"}>{replay}</i>
-              <span className={"ms-1"}>300</span>
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-second"}>{replay}</div>
+              <span className={"icon-amount"}>{props?.replies?.count}</span>
             </div>
 
-            <div className={"icon"}>
-              <i className={"icon-3 icon"}>{like}</i>
-              <span className={"ms-1"}>300</span>
+            <div className={"icon-button"}>
+              <div
+                onClick={handleLike}
+                className={"icon-bg bg-heart"}
+              >
+                <div ref={likeBtn} className={`heart-icon ${isLiked && 'liked'}`}></div>
+              </div>
+              <div className={"like-amount icon-amount"}>{props?.likes?.count}</div>
             </div>
 
-            <div className={"icon"}>
-              <i className={"icon-4 icon"}>{chart}</i>
-              <span className={"ms-1"}>300</span>
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                {chart}
+              </div>
+              <div className={"view-amount icon-amount"}>300</div>
             </div>
-            <div className={"icon"}>
-              <i className={"icon-5 icon"}>{share}</i>
-              <span className={"ms-1"}>300</span>
+
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                {share}
+              </div>
             </div>
           </div>
         </div>

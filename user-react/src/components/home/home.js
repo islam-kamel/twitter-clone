@@ -160,20 +160,20 @@ function Tweets() {
     <>
       {tweets.map(tweet => {
         return (
-          <div
-            role={"button"}
-            key={tweet.id}
-            onClick={() => {
-              navigation(`details/${tweet.content.slice(0, 100)}`,
-                {
-                  state: {
-                    from: "/",
-                    tweet
-                  }
-                }
-              )
-            }}
-          >
+          // <div
+          //   role={"button"}
+          //   key={tweet.id}
+          //   onClick={() => {
+          //     navigation(`details/${tweet.content.slice(0, 100)}`,
+          //       {
+          //         state: {
+          //           from: "/",
+          //           tweet
+          //         }
+          //       }
+          //     )
+          //   }}
+          // >
             <Card
               key={tweet.id}
               tweetId={tweet.id}
@@ -183,8 +183,11 @@ function Tweets() {
               img={tweet.user.image}
               media={tweet.media}
               createAt={tweet.create_at}
+              comments={tweet.comments}
+              likes={tweet.likes}
+              replies={tweet.replies}
             />
-          </div>
+          // </div>
         )
       })}
     </>

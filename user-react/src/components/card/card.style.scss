@@ -1,3 +1,10 @@
+.tweet-card-hover {
+  background-color: transparent;
+  transition: all 100ms ease;
+  &:hover {
+    background-color: rgba(0,0,0, .03);
+  }
+}
 .feed_tweet {
   display: flex;
   width: 100% !important;
@@ -65,56 +72,95 @@
   display: flex;
   justify-content: space-between !important;
   width: 100% !important;
-  margin: 15px 0 !important;
+  margin: 5px auto !important;
   padding-right: 50px !important;
 }
 
-$primary-icon-hover-bg: rgba(28, 136, 210, .2);
-$primary-icon-hover-color: rgba(28, 136, 210, .7);
+$primary-icon-bg: rgba(29, 155, 240, .1);
+$primary-icon-color: rgba(29, 155, 240);
 
-$read-icon-hover-bg: rgba(211, 46, 110, .2);
-$read-icon-hover-color: rgba(211, 46, 110, .7);
+$heart-icon-bg: rgba(255, 192, 200, 0.7);
+$heart-icon-color: rgba(211, 46, 110, .7);
 
-$success-icon-hover-bg: rgba(0, 128, 0, .2);
-$success-icon-hover-color: rgba(0, 128, 0, .7);
+$second-icon-bg: rgba(0, 186, 124, .1);
+$second-icon-color: rgba(0, 186, 124);
 
-.icon {
-  &-1:hover,
-  &-4:hover,
-  &-5:hover,
-  &-0:hover {
-    background-color: $primary-icon-hover-bg !important;
-    color: $primary-icon-hover-color !important;
+
+@mixin i-bg($type) {
+  @if $type == primary {
+    background-color: transparent;
+    transition: all 100ms ease;
+    &:hover {
+      background-color: $primary-icon-bg;
+      color: $primary-icon-color;
+    }
   }
-
-  &-3:hover {
-    color: $read-icon-hover-color !important;
-    background-color: $read-icon-hover-bg !important;
-  }
-
-  &-2:hover {
-    color: $success-icon-hover-color !important;
-    background-color: $success-icon-hover-bg !important;
+  @else if($type == second) {
+    background-color: transparent;
+    transition: all 100ms ease;
+    &:hover {
+      background-color: $second-icon-bg;
+      color: $second-icon-color;
+    }
   }
 }
 
-.icon {
-  min-width: 25px !important;
-  min-height: 25px !important;
-  align-items: center !important;
-  width: fit-content !important;
-  display: flex !important;
-  align-content: center !important;
-  justify-content: center !important;
+
+.i-bg-primary {
+  @include i-bg(primary)
+}
+
+.i-bg-second {
+  @include i-bg(second)
+}
+
+.icon-bg {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
-  flex-shrink: 0;
-
-  svg {
-    width: 15.75px !important;
-    height: 15.75px !important;
-  }
-
-  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.icon-button svg {
+  width: 20px;
+}
 
+.icon-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.heart-icon {
+  background: url("../../assets/heart.png") left;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+
+}
+
+.heart-icon.liked {
+  animation: like-anim 0.7s steps(28) forwards;
+}
+
+@keyframes like-anim {
+  to {
+    background-position: right;
+  }
+}
+
+.bg-heart {
+  background-color: transparent;
+  transition: all 100ms ease;
+  &:hover {
+    background-color: rgba(255, 192, 200, 0.7);
+  }
+}
+
+.icon-amount {
+  margin-left: 5px;
+  font-weight: lighter;
+  font-size: 12px;
+}
