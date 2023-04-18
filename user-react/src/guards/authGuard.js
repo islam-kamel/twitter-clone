@@ -24,7 +24,7 @@ function authGuard(Component) {
     }, [dispatch, navigate])
 
     useEffect(() => {
-      debounce(getState, 1000)()
+      debounce(getState, 100)()
     }, [getState])
 
     return (

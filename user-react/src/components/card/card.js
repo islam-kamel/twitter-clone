@@ -64,10 +64,10 @@ const Card = (props) => {
   }
 
   return (
-    <div className={"row p-3 border-top gx-0 tweet-card-hover"}>
+    <div className={" p-3 border-top tweet-card-hover"}>
       {isLiked}
-      <div className={"col-12 me-3"}>
-        <div className={"d-flex "}>
+      <div className={"me-3"}>
+        <div className={"d-flex"}>
           <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props.img}`} alt=""
                className="tw-profile-image  rounded-circle"/>
           <div
@@ -119,7 +119,7 @@ const Card = (props) => {
           </div>
         </div>
       </div>
-      <div className={"col-11 ms-5 ps-2 mt-2"}>
+      <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
           <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}.</p>
           <div

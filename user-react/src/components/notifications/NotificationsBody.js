@@ -4,7 +4,6 @@ import Avatare from "../../Image/avatar.png"
 import notifications from "../../Image/notifications.jpg"
 import authGuard from "../../guards/authGuard";
 
-
 function Notifications() {
   return (
     <>

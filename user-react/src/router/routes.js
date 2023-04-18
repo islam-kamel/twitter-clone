@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import Layout from "../layout/layout";
-import {lazy, Suspense} from "react";
+import {lazy} from "react";
 
 const Home = lazy(() => import("../components/home/home"));
 const TweetDetails = lazy(() => import("../pages/tweetDetails"));
@@ -13,39 +13,40 @@ const Explore = lazy(() => import("../components/explore/explore"));
 export default createBrowserRouter([
   {
     path: "/",
-    element: <Suspense><Layout/></Suspense>,
+    element: <Layout/>,
     children: [
       {
         index: true,
-        element: <Suspense><Home/></Suspense>
+        element: <Home/>
       },
       {
         path: "notifications",
-        element: <Suspense><Notifications/></Suspense>
+        element: <Notifications/>
       },
       {
         path: "Message",
-        element: <Suspense><Message/></Suspense>
+        element: <Message/>
       },
       {
         path: "bookmarks",
-        element: <Suspense><Bookmarks/></Suspense>
+        element: <Bookmarks/>
+
       },
       {
         path: "profile/:username",
-        element: <Suspense><Profile/></Suspense>
+        element: <Profile/>
       },
       {
         path: "explore",
-        element: <Suspense><Explore/></Suspense>
+        element: <Explore/>
       },
       {
         path: "bookmarks",
-        element: <Suspense><Bookmarks/></Suspense>
+        element: <Bookmarks/>
       },
       {
         path: "details/:slug",
-        element: <Suspense> <TweetDetails/></Suspense>
+        element:  <TweetDetails/>
       }
     ]
   }

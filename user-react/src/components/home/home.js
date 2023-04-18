@@ -3,12 +3,12 @@ import "./home.style.css";
 import {emoji, gif, imageIcon, poll} from "../../constants/icons";
 import TwButton from "../tw-button/tw-button";
 import authGuard from "../../guards/authGuard";
-import {cloneElement, useCallback, useEffect, useRef, useState} from "react";
+import {Suspense, useEffect, useRef, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import {useUserContext} from "../../context/userContext";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
+
 const profileImage = require("../../assets/profile.image.jpg");
 
 function NewTweet() {
@@ -160,34 +160,19 @@ function Tweets() {
     <>
       {tweets.map(tweet => {
         return (
-          // <div
-          //   role={"button"}
-          //   key={tweet.id}
-          //   onClick={() => {
-          //     navigation(`details/${tweet.content.slice(0, 100)}`,
-          //       {
-          //         state: {
-          //           from: "/",
-          //           tweet
-          //         }
-          //       }
-          //     )
-          //   }}
-          // >
-            <Card
-              key={tweet.id}
-              tweetId={tweet.id}
-              name={tweet.user.fullname}
-              username={tweet.user.username}
-              text={tweet.content}
-              img={tweet.user.image}
-              media={tweet.media}
-              createAt={tweet.create_at}
-              comments={tweet.comments}
-              likes={tweet.likes}
-              replies={tweet.replies}
-            />
-          // </div>
+          <Card
+            key={tweet.id}
+            tweetId={tweet.id}
+            name={tweet.user.fullname}
+            username={tweet.user.username}
+            text={tweet.content}
+            img={tweet.user.image}
+            media={tweet.media}
+            createAt={tweet.create_at}
+            comments={tweet.comments}
+            likes={tweet.likes}
+            replies={tweet.replies}
+          />
         )
       })}
     </>
@@ -208,10 +193,10 @@ function Home() {
         </div>
       </div>
 
-      {/*New Tweet Start*/ }
+      {/*New Tweet Start*/}
       <NewTweet/>
       {/*New Tweet End*/}
-      <Tweets/>
+        <Tweets/>
     </main>
   )
     ;
