@@ -4,7 +4,7 @@ import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 import LoadingSpinner from "../Loading/loading-spinner";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../store/features/auth/authentication";
+import {login} from "../../store/features/user/user";
 
 
 const googleIconColors = {

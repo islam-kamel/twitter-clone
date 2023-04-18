@@ -1,31 +1,32 @@
 import React, {useEffect} from "react";
 import "./profile.scss";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import ProfileModal from "./profileModal";
 import Card from "../card/card";
 import authGuard from "../../guards/authGuard";
-import useGetProfileInfo from "../../hooks/useGetProfileInfo";
 import {SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchCurrentUserTweets} from "../../store/features/user/user";
 
 const mediaImage = require("../../Image/media.png")
 const profileImage = require("../../assets/profile.image.jpg");
 
 
 function Profile() {
-  const params = useParams();
-  const {userInfo, setUsername} = useGetProfileInfo();
   const location = useLocation();
   const navigate = useNavigate();
   const back = location.state?.from?.pathname || "/";
+  const userInfo = useSelector(state => state.currentUser.userProfile)
+  const userTweets = useSelector(state => state.currentUser.tweets)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setUsername(params?.username)
-  }, [params?.username, setUsername])
-
+    dispatch(fetchCurrentUserTweets({username: userInfo.username}))
+  }, [dispatch, userInfo.username])
   const ProfileSection = () => {
     return (
       <>
-        <div className="row row-cols-auto align-items-center gx-2 mt-3">
+        <div className="row row-cols-auto align-items-center mt-3 mx-0">
           <div className="mx-2">
             <i
               onClick={() => {
@@ -198,16 +199,23 @@ function Profile() {
           tabIndex="0"
         >
           <div className={"d-flex flex-column"}>
-            <Card
-              name=" Engy Mo"
-              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-              username="@engy5821 .2h" img={profileImage}
-            />
-            <Card
-              name=" Engy Mo"
-              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-              username="@engy5821 .2h" img={profileImage}
-            />
+            {userTweets.length && userTweets.map(tweet => {
+              return (
+                <Card
+                  key={tweet.id}
+                  tweetId={tweet.id}
+                  name={tweet.user.fullname}
+                  username={tweet.user.username}
+                  text={tweet.content}
+                  img={tweet.user.image}
+                  media={tweet.media}
+                  createAt={tweet.create_at}
+                  comments={tweet.comments}
+                  likes={tweet.likes}
+                  replies={tweet.replies}
+                />
+              )
+            })}
           </div>
         </div>
 
@@ -232,6 +240,7 @@ function Profile() {
               text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
               username="@engy5821 .2h" img={profileImage}
             />
+
           </div>
         </div>
 

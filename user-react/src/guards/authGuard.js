@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAuthState} from "../store/features/auth/authentication";
+import {fetchAuthState} from "../store/features/user/user";
 import LoadingSpinner from "../components/Loading/loading-spinner";
 import {debounce} from "../utility/utils";
 

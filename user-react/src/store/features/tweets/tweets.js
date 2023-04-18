@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {axiosInstance} from "../../API/axios";
-
 const initialState = {
   tweets: [],
   loading: false,
@@ -15,25 +14,25 @@ export const fetchTweets = createAsyncThunk("tweets/fetchTweets", async (_, thun
   }
 })
 
+
 const tweets = createSlice({
   name: "tweets",
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchTweets.pending]: (state) => {
+  extraReducers: builder => {
+    builder.addCase(fetchTweets.pending, (state) => {
       state.loading = true
       state.error = null;
-    },
-
-    [fetchTweets.fulfilled]: (state, action) => {
+    })
+    builder.addCase(fetchTweets.fulfilled, (state, action) => {
       state.tweets = action.payload
       state.loading = false;
-    },
-    [fetchTweets.rejected]: (state, action) => {
+    })
+    builder.addCase(fetchTweets.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
-    }
-  },
+    })
+  }
 })
 
 export default tweets.reducer

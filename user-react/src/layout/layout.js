@@ -7,7 +7,7 @@ import {Outlet} from "react-router-dom";
 // import Footer from "../components/footer/Footer";
 import {lazy, Suspense, useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {fetchCurrentUserProfile} from "../store/features/auth/authentication";
+import {fetchCurrentUserProfile} from "../store/features/user/user";
 import Chat from "../components/chat/Chat";
 import ChatRoom from "../components/Message/ChatRoom";
 
