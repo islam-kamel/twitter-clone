@@ -57,91 +57,89 @@ function NewTweet() {
   }
 
   return (
-    <>
-      <div className="card p-3 new_tweet border-0 col-12">
-        <div className="row g-0 justify-content-start align-items-start">
-          <div className={"col-1 me-3"}>
-            <img src={profileImage} alt="img" className="rounded-circle tw-profile-image"/>
-          </div>
-          <form className={"col w-100"} onSubmit={handelSubmit}>
-            <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
-              <div className={"w-100 ms-3"}>
+    <div className="card p-3 new_tweet border-0 col-12">
+      <div className="row g-0 justify-content-start align-items-start">
+        <div className={"col-1 me-3"}>
+          <img src={process.env.REACT_APP_MEDIA_BASE_URL + userInfo?.profile?.image} alt="img" className="rounded-circle tw-profile-image"/>
+        </div>
+        <form className={"col w-100"} onSubmit={handelSubmit}>
+          <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
+            <div className={"w-100 ms-3"}>
                 <textarea
                   name={"content"}
                   className={"form-control border-0  h-100"}
                   placeholder={"What's happening?"}
                   style={{resize: "none"}}
                 />
-                <div className={"d-flex overflow-x-scroll flex-nowrap flex-row  overflow-y-scroll "}
-                     style={{maxHeight: 200}}>
-                  {fileUrl.map(url => {
-                    if (url.type.includes("video")) {
-                      return (
-                        <div className={"position-relative"}>
-
-                          <button
-                            onClick={() => {
-                              setFileUrl(el => {
-                                return el.filter(item => item.preview !== url.preview)
-                              })
-                            }}
-                            className={"my-1 mx-2 position-absolute z-1 end-0  btn btn-sm  btn-light rounded-circle "}>
-                            <i className={"bi bi-x"}></i>
-                          </button>
-                          <div className={"card border-0 w-100"}>
-                            <video className={"card-img img-fluid "} controls>
-                              <source src={url.preview}></source>
-                            </video>
-                          </div>
-                        </div>
-                      );
-                    }
+              <div className={"d-flex overflow-x-scroll flex-nowrap flex-row  overflow-y-scroll "}
+                   style={{maxHeight: 200}}>
+                {fileUrl.map(url => {
+                  if (url.type.includes("video")) {
                     return (
                       <div className={"position-relative"}>
+
                         <button
                           onClick={() => {
                             setFileUrl(el => {
                               return el.filter(item => item.preview !== url.preview)
                             })
                           }}
-                          className={" my-1 mx-2 position-absolute z-1 end-0  btn btn-sm  btn-light rounded-circle "}>
+                          className={"my-1 mx-2 position-absolute z-1 end-0  btn btn-sm  btn-light rounded-circle "}>
                           <i className={"bi bi-x"}></i>
                         </button>
                         <div className={"card border-0 w-100"}>
-                          <img className={"card-img  px-1"}
-                               src={url.preview} alt=""/>
+                          <video className={"card-img img-fluid "} controls>
+                            <source src={url.preview}></source>
+                          </video>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
-                <div className={"mt-3 text-primary d-flex justify-content-between align-items-center"}>
+                    );
+                  }
+                  return (
+                    <div className={"position-relative"}>
+                      <button
+                        onClick={() => {
+                          setFileUrl(el => {
+                            return el.filter(item => item.preview !== url.preview)
+                          })
+                        }}
+                        className={" my-1 mx-2 position-absolute z-1 end-0  btn btn-sm  btn-light rounded-circle "}>
+                        <i className={"bi bi-x"}></i>
+                      </button>
+                      <div className={"card border-0 w-100"}>
+                        <img className={"card-img  px-1"}
+                             src={url.preview} alt=""/>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className={"mt-3 text-primary d-flex justify-content-between align-items-center"}>
 
-                  <div className={"row row-cols-4 g-0 w-50"}>
-                    <input onChange={handelInputChange} ref={media} hidden={true} type={"file"}
-                           name={"image"} multiple accept={"image/*, video/*"}/>
-                    <span onClick={() => media.current?.click()}
-                          role={"button"}> {imageIcon} </span>
-                    <span role={"button"}> {gif} </span>
-                    <span role={"button"}> {poll} </span>
-                    <span role={"button"}> {emoji} </span>
-                  </div>
-                  <TwButton
-                    other={{
-                      type: "submit"
-                    }}
-                    btnStyle={"primary"}
-                    classes={"rounded-pill w-25 align-self-end"}
-                  >
-                    Tweet
-                  </TwButton>
+                <div className={"row row-cols-4 g-0 w-50"}>
+                  <input onChange={handelInputChange} ref={media} hidden={true} type={"file"}
+                         name={"image"} multiple accept={"image/*, video/*"}/>
+                  <span onClick={() => media.current?.click()}
+                        role={"button"}> {imageIcon} </span>
+                  <span role={"button"}> {gif} </span>
+                  <span role={"button"}> {poll} </span>
+                  <span role={"button"}> {emoji} </span>
                 </div>
+                <TwButton
+                  other={{
+                    type: "submit"
+                  }}
+                  btnStyle={"primary"}
+                  classes={"rounded-pill w-25 align-self-end"}
+                >
+                  Tweet
+                </TwButton>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
 

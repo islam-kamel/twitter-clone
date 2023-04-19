@@ -127,7 +127,7 @@ const Card = ({border= true, ...props}) => {
       </div>
       <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
-          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}</p>
+          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props?.tweet?.content}</p>
           {props?.children}
           <div
             className={"tweet-image p-0"}
