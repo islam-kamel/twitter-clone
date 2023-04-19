@@ -15,6 +15,13 @@ export const fetchReplies = createAsyncThunk("replies/fetchReplies", async (data
   }
 })
 
+export const likeReply = createAsyncThunk('replies/likeReply', async (data, thunkAPI) => {
+  try {
+    return await axiosInstance.put(`/api/tweet/retweet/like/${data.replyId}`).then(res => res.data);
+  } catch (error) {
+    thunkAPI.rejectWithValue(error.response.message || error.response.data);
+  }
+})
 
 const replies = createSlice({
   name: "replies",
@@ -34,6 +41,18 @@ const replies = createSlice({
       state.loading = false;
     })
     builder.addCase(fetchReplies.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    })
+    /* Like Replay */
+    builder.addCase(likeReply.pending, (state) => {
+      state.loading = true
+      state.error = null;
+    })
+    builder.addCase(likeReply.fulfilled, (state, action) => {
+      state.loading = false;
+    })
+    builder.addCase(likeReply.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
     })

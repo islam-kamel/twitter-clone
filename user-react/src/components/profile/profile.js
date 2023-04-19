@@ -235,6 +235,7 @@ function Profile() {
                 <Card
                   key={reply.id}
                   tweet={reply}
+                  reply={true}
                 >
                   <Card
                     key={reply?.tweet.id}

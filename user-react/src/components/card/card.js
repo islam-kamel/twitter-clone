@@ -9,6 +9,7 @@ import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets, likeTweet, retweet} from "../../store/features/tweets/tweets";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
+import {fetchReplies, likeReply} from "../../store/features/replies/replies";
 
 function BuildMedia(props) {
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
@@ -55,10 +56,24 @@ const Card = ({border = true, ...props}) => {
 
   const handleLike = (e) => {
     e.stopPropagation()
+    const likeMethod = props?.reply ? likeReply : likeTweet
+    let obj;
+    if (props.reply) {
+      obj = {replyId: props?.tweet?.id}
+    } else {
+      obj = {tweetId: props?.tweet?.id}
+
+    }
     likeBtn.current.classList.toggle("liked")
-    dispatch(likeTweet({tweetId: props?.tweet.id}))
+    dispatch(likeMethod(obj))
       .unwrap()
-      .then(_ => dispatch(fetchTweets()))
+      .then(_ => {
+        dispatch(fetchTweets())
+          .unwrap()
+          .finally(() => {
+            dispatch(fetchReplies({username: userInfo.username}))
+          })
+      })
       .finally(() => {
         if (userInfo.id === props?.tweet.user.id) {
           dispatch(fetchCurrentUserTweets({username: userInfo.username}))
