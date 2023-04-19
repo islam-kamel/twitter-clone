@@ -13,7 +13,7 @@ const initialState = {
 
 export const fetchCurrentUserProfile = createAsyncThunk("user/fetchCurrentUserProfile", async (_, thunkAPI) => {
   try {
-    return await axiosInstance.get("api/user/current-user").then(res => res.data);
+    return await axiosInstance.get("/api/user/current-user").then(res => res.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.message || error.response.data)
   }
@@ -21,7 +21,7 @@ export const fetchCurrentUserProfile = createAsyncThunk("user/fetchCurrentUserPr
 
 export const fetchAuthState = createAsyncThunk("user/fetchAuthState", async (_, thunkAPI) => {
   try {
-    return await axiosInstance.get("api/user/is_auth").then(res => res.data);
+    return await axiosInstance.get("/api/user/is_auth").then(res => res.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.message || error.response.data)
   }
@@ -32,6 +32,18 @@ export const fetchCurrentUserTweets = createAsyncThunk("user/fetchUserTweets", a
     return await axiosInstance.get(`/api/tweet/${data.username}`).then(res => res.data);
   } catch (error) {
     thunkAPI.rejectWithValue(error.response.message || error.response.data);
+  }
+})
+
+export const updateUserProfile = createAsyncThunk("user/updateUserProfile", async (data, thunkAPI) => {
+  try {
+    console.log(data)
+    return await axiosInstance.put(`/api/user/profile/${data?.username}`,
+      data,
+      {headers: {"Content-Type": "multipart/form-data"}}
+    ).then(res => res.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
   }
 })
 
@@ -134,6 +146,22 @@ const user = createSlice({
 
     })
     builder.addCase(fetchCurrentUserProfile.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    })
+    /* Update user profile */
+    builder.addCase(updateUserProfile.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+      state.isLogin = false;
+    })
+    builder.addCase(updateUserProfile.fulfilled, (state, action) => {
+      state.userProfile = action.payload;
+      state.isLogin = true;
+      state.loading = false;
+
+    })
+    builder.addCase(updateUserProfile.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
     })

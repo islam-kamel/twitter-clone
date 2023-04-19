@@ -4,42 +4,29 @@ import TwModal from "../modal/modal";
 import TwButton from "../tw-button/tw-button";
 import TwInput from "../tw-input/tw-input";
 import {Birthdate} from "../sign-up/Stepper/Bithdata";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import {useUserContext} from "../../context/userContext";
 import LoadingSpinner from "../Loading/loading-spinner";
 import {useDate} from "../../hooks/useDate";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUserProfile} from "../../store/features/user/user";
 
 
 const ProfileModal = () => {
-  // const {userInfo, setUserInfo} = useUserContext();
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const [toggleState, setToggleState] = useState(false);
   const form = useRef();
-  const axiosPrivate = useAxiosPrivate();
   const imageInput = useRef();
   const coverImageInput = useRef();
-  const [loading, setLoading] = useState(false);
-
+  const loading = useSelector(state => state.currentUser.loading)
+  const dispatch = useDispatch();
   const {date, shortDate, setDate, formatDate, fromStringToObject} = useDate({})
 
 
   useEffect(() => {
     setDate(fromStringToObject(userInfo?.birthdate));
-    // eslint-disable-next-line
-  }, [setDate, userInfo?.birthdate])
+  }, [fromStringToObject, setDate, userInfo?.birthdate])
 
   const updateProfile = (data) => {
-    setLoading(true);
-    const url = `${process.env.REACT_APP_BASE_URL}/api/user/profile/${userInfo?.username}`
-    axiosPrivate.put(url, data, {headers: {"Content-Type": "multipart/form-data"}})
-      .then(res => {
-        if (res.status >= 200) {
-          // setUserInfo(res.data);
-        }
-      })
-      .finally(() => setLoading(false))
-
+    dispatch(updateUserProfile({...data, username: userInfo.username}))
   }
 
 
