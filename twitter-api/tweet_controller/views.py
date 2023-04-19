@@ -1,11 +1,11 @@
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from tweet_controller.models import Tweet
-from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, MediaSerializer
+from tweet_controller.models import Tweet, Reply, Like, LikeReply
+from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, MediaSerializer, ReplySerializer, LikeSerializer, LikeReplySerializer
 
 
 class TweetView(APIView):
@@ -16,6 +16,16 @@ class TweetView(APIView):
         tweets = Tweet.objects.all()
         serializer = TweetSerializer(tweets, many=True)
 
+        return Response(serializer.data)
+
+
+class TweetByUsernameView(APIView):
+    permission_classes = [IsAuthenticated]
+
+
+    def get(self, request, username):
+        tweets = Tweet.objects.filter(user__username=username)
+        serializer = TweetSerializer(tweets, many=True)
         return Response(serializer.data)
 
 
@@ -55,3 +65,73 @@ class DeleteTweetView(APIView):
         except Tweet.DoesNotExist:
             return Response({'data': 'not found'}, status=status.HTTP_404_NOT_FOUND)
             pass
+
+
+class TweetLikeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+
+    def put(self, request, tweet_id):
+        try:
+            like_state = Like.objects.filter(user_id=request.user.id, tweet_id=tweet_id).exists()
+            if like_state:
+                obj = Like.objects.filter(tweet_id=tweet_id, user_id=request.user.id)
+                obj.delete()
+                return Response({'state': 'dislike'})
+            serializer = LikeSerializer(data={'like': True, 'tweet': tweet_id, 'user': request.user.id})
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response({'state': 'like'})
+        except Like.DoesNotExist:
+            return Response({'state': 'not found'})
+
+
+class RepliesListView(APIView):
+    permission_classes = [AllowAny]
+
+
+    def get(self, request, username):
+        replies = Reply.objects.filter(user__username=username)
+        serializer = ReplySerializer(replies, many=True)
+        return Response(serializer.data)
+
+
+class RepliesCreateOrDeleteView(APIView):
+    permission_classes = [AllowAny]
+
+
+    def put(self, request, tweet_id):
+        try:
+            replay_state = Reply.objects.filter(user_id=request.user.id, tweet_id=tweet_id).exists()
+            if replay_state:
+                obj = Reply.objects.filter(tweet_id=tweet_id, user_id=request.user.id)
+                obj.delete()
+                return Response({'state': 'undo retweet'})
+            tweet = Tweet.objects.get(id=tweet_id)
+            print(dir(request.data))
+            obj = Reply.objects.create(content=request.data.get('content'), user_id=request.user.id, tweet=tweet)
+            serializer = ReplySerializer(obj)
+            return Response(serializer.data)
+
+        except Tweet.DoesNotExist:
+            return Response({'error': 'Tweet not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class ReplyLikeView(APIView):
+    permission_classes = [AllowAny]
+
+    def put(self, request, retweet_id):
+        try:
+            like_state = LikeReply.objects.filter(replay_id=retweet_id, user_id=request.user.id).exists()
+            if like_state:
+                obj = LikeReply.objects.filter(replay_id=retweet_id, user_id=request.user.id)
+                obj.delete()
+                return Response({'state': 'dislike'})
+
+            serializer = LikeReplySerializer(data={'like': True, 'replay': retweet_id, 'user': request.user.id})
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response({'state': 'like'})
+        except Like.DoesNotExist:
+            return Response({'state': 'not found'})
+#

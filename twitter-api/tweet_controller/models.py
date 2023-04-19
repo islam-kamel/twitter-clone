@@ -13,7 +13,23 @@ class Tweet(models.Model):
         return f"{self.user} - {self.content}"
 
     class Meta:
+        verbose_name = "Tweet"
+        verbose_name_plural = "Tweets"
         ordering = ['-create_at']
+
+
+class Like(models.Model):
+    tweet = models.ForeignKey(Tweet, related_name='tweet_likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='user_like', on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f"{self.user} {'liked' if self.like else 'disliked'} {self.tweet}"
+
+    class Meta:
+        verbose_name = "Like"
+        verbose_name_plural = "Likes"
 
 
 class Media(models.Model):
@@ -25,30 +41,68 @@ class Media(models.Model):
         return f"{self.tweet} - {self.file}"
 
 
-class Replay(models.Model):
-    user = models.ForeignKey(CustomUser, related_name="user_replay", on_delete=models.CASCADE)
-    tweet = models.ForeignKey(Tweet, related_name="tweet_replay", on_delete=models.CASCADE)
-    content = models.TextField(help_text="Tweet Content", null=False, blank=False)
-    create_at = models.DateTimeField(auto_now_add=True)
-    like = models.BooleanField(default=False, blank=True)
-
-
-    def __str__(self):
-        return f'{self.user}  -  {self.content}'
-
-
 class Comment(models.Model):
-    user = models.ForeignKey(CustomUser, related_name="user_comment", on_delete=models.CASCADE)
-    tweet = models.ForeignKey(Tweet, related_name="comment_for_tweet", on_delete=models.CASCADE, null=True, blank=True)
-    replay = models.ForeignKey(Tweet, related_name="comment_for_replay", on_delete=models.CASCADE, null=True, blank=True)
-    content = models.TextField(help_text="Tweet Content", null=False, blank=False)
+    tweet = models.ForeignKey(Tweet, related_name='tweet_comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='comments', on_delete=models.CASCADE)
+    content = models.TextField()
     create_at = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):
-        return f'{self.user}  -  {self.content}'
+        return f"{self.user} commented on {self.tweet}"
+
+    class Meta:
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+        ordering = ['-create_at']
 
 
 class CommentMedia(models.Model):
-    comment = models.ForeignKey(Tweet, related_name="media_for_comment", on_delete=models.CASCADE, null=True, blank=True)
-    media = models.ImageField(upload_to='comment_media/')
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='media')
+    file = models.FileField(upload_to='comment_media/')
+
+
+class Reply(models.Model):
+    tweet = models.ForeignKey(Tweet, related_name='tweet_replies', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='replies', on_delete=models.CASCADE)
+    content = models.TextField(blank=True, null=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.user} replied to {self.tweet}"
+
+    class Meta:
+        verbose_name = "Reply"
+        verbose_name_plural = "Replies"
+        ordering = ['-create_at']
+
+
+class LikeReply(models.Model):
+    replay = models.ForeignKey(Reply, related_name='replay_likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='user_like_replay', on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return f"{self.user} {'liked' if self.like else 'disliked'} {self.replay}"
+
+    class Meta:
+        verbose_name = "Like Replay"
+        verbose_name_plural = "Likes Replies"
+
+
+class CommentReplay(models.Model):
+    replay = models.ForeignKey(Reply, related_name='replies_comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='user_comments_replies', on_delete=models.CASCADE)
+    content = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.user} commented on {self.replay}"
+
+    class Meta:
+        verbose_name = "Comment Replay"
+        verbose_name_plural = "Comments Replies"
+        ordering = ['-create_at']

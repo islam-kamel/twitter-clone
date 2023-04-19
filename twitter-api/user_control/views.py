@@ -63,20 +63,19 @@ class UserIdentityView(APIView):
     def get(reqeust):
         try:
             user = CustomUser.objects.get(username=reqeust.user.username)
-            serializer = UserIdentitySerializer(user)
-
-            data = {}
-            for field in serializer.data.items():
-                data.setdefault(field[0], field[1])
-
-            try:
-
-                user_image = Profile.objects.get(user_id=user.id).image
-                data.setdefault('image', user_image.url)
-            except Exception as e:
-                pass
-
-            return Response(data)
+            serializer = UserInfoWithProfileSerializer(user)
+            return Response(serializer.data)
 
         except CustomUser.DoesNotExist:
-            return Response({'message': 'User NotFound 404!.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'NotFound User 404'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class AllUserView(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        try:
+            user = CustomUser.objects.all()
+            serializer = UserInfoWithProfileSerializer(user, many=True)
+            return Response(serializer.data)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'NotFound User 404'}, status=status.HTTP_404_NOT_FOUND)

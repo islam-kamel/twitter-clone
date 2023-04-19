@@ -7,5 +7,6 @@ urlpatterns = [
     path('register', views.RegisterView.as_view()),
     path('profile/<str:username>', views.UserProfileView.as_view()),
     path('current-user', views.UserIdentityView.as_view()),
-    path('is_auth', views.ValidToken.as_view())
+    path('is_auth', views.ValidToken.as_view()),
+    path('all', views.AllUserView.as_view())
 ]

@@ -3,6 +3,9 @@ from .models import *
 
 admin.site.register(Tweet)
 admin.site.register(Comment)
-admin.site.register(Replay)
+admin.site.register(Reply)
 admin.site.register(CommentMedia)
 admin.site.register(Media)
+admin.site.register(Like)
+admin.site.register(CommentReplay)
+admin.site.register(LikeReply)
