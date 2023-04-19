@@ -19,7 +19,11 @@ export const fetchReplies = createAsyncThunk("replies/fetchReplies", async (data
 const replies = createSlice({
   name: "replies",
   initialState,
-  reducers: {},
+  reducers: {
+    updateReplies: (state, action) => {
+      state.replies.push(action.payload)
+    }
+  },
   extraReducers: builder => {
     builder.addCase(fetchReplies.pending, (state) => {
       state.loading = true

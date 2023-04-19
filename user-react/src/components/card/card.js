@@ -7,7 +7,7 @@ import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTweets, likeTweet} from "../../store/features/tweets/tweets";
+import {fetchTweets, likeTweet, retweet} from "../../store/features/tweets/tweets";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 
 function BuildMedia(props) {
@@ -43,11 +43,14 @@ const Card = ({border = true, ...props}) => {
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const [isLiked, setIsLiked] = useState(false)
+  const [isRetweet, setIsRetweet] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
     const find = props?.tweet.likes?.users_list.find(value => value === userInfo.id)
     find && setIsLiked(true)
+    const isRetweet = props?.tweet.replies?.users_list.find(value => value === userInfo.id)
+      isRetweet && setIsRetweet(true)
   }, [props, userInfo])
 
   const handleLike = (e) => {
@@ -71,6 +74,13 @@ const Card = ({border = true, ...props}) => {
     }
   }
 
+  const handleRetweet = () => {
+    dispatch(retweet({tweetId: props.tweet.id}))
+      .unwrap()
+      .finally(() => {
+        dispatch(fetchTweets())
+      })
+  }
   return (
     <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
       <div className={"me-3"}>
@@ -132,7 +142,7 @@ const Card = ({border = true, ...props}) => {
       </div>
       <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
-          <p dir={'auto'} className={"fw-light p-0"} style={{fontSize: 15}}> {props?.tweet?.content}</p>
+          <p dir={"auto"} className={"fw-light p-0"} style={{fontSize: 15}}> {props?.tweet?.content}</p>
           {props?.children}
           <div
             className={"tweet-image p-0"}
@@ -154,10 +164,32 @@ const Card = ({border = true, ...props}) => {
               <span className={"icon-amount"}>{props?.tweet?.comments?.count}</span>
             </div>
 
-            <div className={"icon-button"}>
-              <div className={"icon-bg i-bg-second"}>{replay}</div>
-              <span className={"icon-amount"}>{props?.tweet?.replies?.count}</span>
-            </div>
+            <TwDropdown
+              down={true}
+              toggle={
+                <TwDropdown.Toggle>
+                  <div className={"icon-button"}>
+                    <div className={"icon-bg i-bg-second"}>{replay}</div>
+                    <span className={"icon-amount"}>{props?.tweet?.replies?.count}</span>
+                  </div>
+                </TwDropdown.Toggle>
+              }
+            >
+              <div
+                onClick={handleRetweet}
+                role={"button"}
+                className={"dropdown-item-text"}
+              >
+                <div
+                  className={"d-flex fw-bolder align-items-center flex-row-reverse justify-content-between"}>
+
+                  <span>{isRetweet ? 'Undo Retweet' : 'Retweet'}</span>
+                  <div className={"me-2"} style={{width: 20}}>
+                    {replay}
+                  </div>
+                </div>
+              </div>
+            </TwDropdown>
 
             <div className={"icon-button"}>
               <div

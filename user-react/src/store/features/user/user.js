@@ -37,7 +37,6 @@ export const fetchCurrentUserTweets = createAsyncThunk("user/fetchUserTweets", a
 
 export const updateUserProfile = createAsyncThunk("user/updateUserProfile", async (data, thunkAPI) => {
   try {
-    console.log(data)
     return await axiosInstance.put(`/api/user/profile/${data?.username}`,
       data,
       {headers: {"Content-Type": "multipart/form-data"}}
