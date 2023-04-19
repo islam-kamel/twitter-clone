@@ -73,7 +73,6 @@ const Card = ({border = true, ...props}) => {
 
   return (
     <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
-      {isLiked}
       <div className={"me-3"}>
         <div className={"d-flex"}>
           <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image}`} alt=""
@@ -133,7 +132,7 @@ const Card = ({border = true, ...props}) => {
       </div>
       <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
-          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props?.tweet?.content}</p>
+          <p dir={'auto'} className={"fw-light p-0"} style={{fontSize: 15}}> {props?.tweet?.content}</p>
           {props?.children}
           <div
             className={"tweet-image p-0"}

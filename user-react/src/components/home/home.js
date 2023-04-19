@@ -68,6 +68,7 @@ function NewTweet() {
           <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
             <div className={"w-100 ms-3"}>
                 <textarea
+                  dir={'auto'}
                   name={"content"}
                   className={"form-control border-0  h-100"}
                   placeholder={"What's happening?"}
