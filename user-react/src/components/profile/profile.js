@@ -7,6 +7,7 @@ import authGuard from "../../guards/authGuard";
 import {SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
+import {fetchReplies} from "../../store/features/replies/replies";
 
 const mediaImage = require("../../Image/media.png")
 const profileImage = require("../../assets/profile.image.jpg");
@@ -17,11 +18,12 @@ function Profile() {
   const navigate = useNavigate();
   const back = location.state?.from?.pathname || "/";
   const userInfo = useSelector(state => state.currentUser.userProfile)
-  const userTweets = useSelector(state => state.currentUser.tweets)
+  const {tweets: userTweets, replies} = useSelector(state => {return {...state.currentUser, ...state.replies}})
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchCurrentUserTweets({username: userInfo.username}))
+    dispatch(fetchReplies({username: userInfo.username}))
   }, [dispatch, userInfo.username])
   const ProfileSection = () => {
     return (
@@ -203,16 +205,17 @@ function Profile() {
               return (
                 <Card
                   key={tweet.id}
-                  tweetId={tweet.id}
-                  name={tweet.user.fullname}
-                  username={tweet.user.username}
-                  text={tweet.content}
-                  img={tweet.user.image}
-                  media={tweet.media}
-                  createAt={tweet.create_at}
-                  comments={tweet.comments}
-                  likes={tweet.likes}
-                  replies={tweet.replies}
+                  tweet={tweet}
+                  // tweetId={tweet.id}
+                  // name={tweet.user.fullname}
+                  // username={tweet.user.username}
+                  // text={tweet.content}
+                  // img={tweet.user.image}
+                  // media={tweet.media}
+                  // createAt={tweet.create_at}
+                  // comments={tweet.comments}
+                  // likes={tweet.likes}
+                  // replies={tweet.replies}
                 />
               )
             })}
@@ -230,17 +233,31 @@ function Profile() {
           tabIndex="0"
         >
           <div className={"d-flex flex-column"}>
+            {replies.length && replies.map(reply=> {
+              return (
+                <Card
+                  key={reply.id}
+                  tweet={reply}
+                >
+                  <Card
+                    key={reply?.tweet.id}
+                    tweet={reply?.tweet}
+                    border={false}
+                  />
+                </Card>
+              )
+            })}
+            <Card
+              name=" Engy Mo"
+              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
+              username="@engy5821 .2h" img={profileImage}
+            >
             <Card
               name=" Engy Mo"
               text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
               username="@engy5821 .2h" img={profileImage}
             />
-            <Card
-              name=" Engy Mo"
-              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-              username="@engy5821 .2h" img={profileImage}
-            />
-
+            </Card>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss"
 import {Link} from "react-router-dom";
-import {chart, comment, like, newFollow, replay, share, threeDots} from "../../constants/icons";
+import {chart, comment, newFollow, replay, share, threeDots} from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -36,7 +36,7 @@ function BuildMedia(props) {
   )
 }
 
-const Card = (props) => {
+const Card = ({border= true, ...props}) => {
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)
@@ -58,17 +58,19 @@ const Card = (props) => {
   }
 
   const removeTweet = () => {
-    const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweetId}`;
-    axiosPrivate.delete(url)
-      .then(res => console.log(res.data))
+    if (userInfo.id === props?.tweet.id) {
+      const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweet.id}`;
+      axiosPrivate.delete(url)
+        .then(res => console.log(res.data))
+    }
   }
 
   return (
-    <div className={" p-3 border-top tweet-card-hover"}>
+    <div className={` p-3 ${border ? 'border-top': ''} tweet-card-hover`}>
       {isLiked}
       <div className={"me-3"}>
         <div className={"d-flex"}>
-          <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props.img}`} alt=""
+          <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image}`} alt=""
                className="tw-profile-image  rounded-circle"/>
           <div
             className={"d-flex ms-2 justify-content-between align-items-start align-items-start w-100"}>
@@ -77,11 +79,11 @@ const Card = (props) => {
                 to="#"
                 className="tweeter_name text-decoration-none text-dark"
               >
-                {props.name}
-                <span className={"ms-2 text-muted"}>@{props.username} </span>
+                {props?.tweet?.user.fullname}
+                <span className={"ms-2 text-muted"}>@{props?.tweet?.user.username} </span>
               </Link>
               <span className={"text-muted fw-light ms-2"}>
-                {moment(props.createAt).fromNow()}
+                {moment(props?.tweet?.create_at).fromNow()}
               </span>
             </div>
 
@@ -91,37 +93,42 @@ const Card = (props) => {
                 <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
               }
             >
-              <Link
-                to={"#"}
-                className={"text-decoration-none dropdown-item-text"}
-              >
-                <div
-                  className={"d-flex align-items-center flex-row-reverse justify-content-between"}>
-                  <i className={"ms-2"} style={{width: 20}}>{newFollow}</i>
-                  <span>Follow {props?.username}</span>
-                </div>
-              </Link>
-              <Link
-                to={"#"}
-                onClick={e => {
-                  e.preventDefault();
-                  removeTweet();
-                }}
-                className={"text-decoration-none dropdown-item-text"}
-              >
-                <div
-                  className={"d-flex align-items-center text-danger flex-row-reverse justify-content-between"}>
-                  <i className={"ms-2 bi bi-trash"} style={{width: 20}}></i>
-                  <span>Remove</span>
-                </div>
-              </Link>
+              {userInfo.id !== props?.tweet?.user?.id ? (
+                <Link
+                  to={"#"}
+                  className={"text-decoration-none dropdown-item-text"}
+                >
+                  <div
+                    className={"d-flex align-items-center flex-row-reverse justify-content-between"}>
+                    <i className={"ms-2"} style={{width: 20}}>{newFollow}</i>
+                    <span>Follow {props?.tweet?.user.username}</span>
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  to={"#"}
+                  onClick={e => {
+                    e.preventDefault();
+                    removeTweet();
+                  }}
+                  className={"text-decoration-none dropdown-item-text"}
+                >
+                  <div
+                    className={"d-flex align-items-center text-danger flex-row-reverse justify-content-between"}>
+                    <i className={"ms-2 bi bi-trash"} style={{width: 20}}></i>
+                    <span>Remove</span>
+                  </div>
+                </Link>
+              )}
+
             </TwDropdown>
           </div>
         </div>
       </div>
       <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
-          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}.</p>
+          <p className={"fw-light  p-0"} style={{fontSize: 15}}> {props.text}</p>
+          {props?.children}
           <div
             className={"tweet-image p-0"}
             onClick={(e) => {
@@ -129,7 +136,7 @@ const Card = (props) => {
               console.log("hello")
             }}
           >
-            {props.media?.map((item, index) => {
+            {props?.tweet?.media?.map((item, index) => {
 
               return (
                 <BuildMedia key={index} item={item}/>
@@ -139,12 +146,12 @@ const Card = (props) => {
           <div className="tweet_icons text-muted ps-0 ">
             <div className={"icon-button"}>
               <div className={"icon-bg i-bg-primary"}>{comment}</div>
-              <span className={"icon-amount"}>{props?.comments?.count}</span>
+              <span className={"icon-amount"}>{props?.tweet?.comments?.count}</span>
             </div>
 
             <div className={"icon-button"}>
               <div className={"icon-bg i-bg-second"}>{replay}</div>
-              <span className={"icon-amount"}>{props?.replies?.count}</span>
+              <span className={"icon-amount"}>{props?.tweet?.replies?.count}</span>
             </div>
 
             <div className={"icon-button"}>
@@ -152,18 +159,18 @@ const Card = (props) => {
                 onClick={handleLike}
                 className={"icon-bg bg-heart"}
               >
-                <div ref={likeBtn} className={`heart-icon ${isLiked && 'liked'}`}></div>
+                <div ref={likeBtn} className={`heart-icon ${isLiked && "liked"}`}></div>
               </div>
-              <div className={"like-amount icon-amount"}>{props?.likes?.count}</div>
+              <div className={"like-amount icon-amount"}>{props?.tweet?.likes?.count}</div>
             </div>
-
-            <div className={"icon-button"}>
-              <div className={"icon-bg i-bg-primary"}>
-                {chart}
+            {userInfo.id === props?.tweet?.user.id && (
+              <div className={"icon-button"}>
+                <div className={"icon-bg i-bg-primary"}>
+                  {chart}
+                </div>
+                <div className={"view-amount icon-amount"}>300</div>
               </div>
-              <div className={"view-amount icon-amount"}>300</div>
-            </div>
-
+            )}
             <div className={"icon-button"}>
               <div className={"icon-bg i-bg-primary"}>
                 {share}

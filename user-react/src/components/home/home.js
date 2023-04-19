@@ -3,9 +3,8 @@ import "./home.style.css";
 import {emoji, gif, imageIcon, poll} from "../../constants/icons";
 import TwButton from "../tw-button/tw-button";
 import authGuard from "../../guards/authGuard";
-import {Suspense, useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
 
@@ -148,7 +147,6 @@ function NewTweet() {
 
 
 function Tweets() {
-  const navigation = useNavigate();
   const dispatch = useDispatch();
   const tweets = useSelector(state => state.tweets.tweets || []);
 
@@ -157,25 +155,14 @@ function Tweets() {
   }, [dispatch])
 
   return (
-    <>
-      {tweets.map(tweet => {
-        return (
-          <Card
-            key={tweet.id}
-            tweetId={tweet.id}
-            name={tweet.user.fullname}
-            username={tweet.user.username}
-            text={tweet.content}
-            img={tweet.user.image}
-            media={tweet.media}
-            createAt={tweet.create_at}
-            comments={tweet.comments}
-            likes={tweet.likes}
-            replies={tweet.replies}
-          />
-        )
-      })}
-    </>
+    tweets.map(tweet => {
+      return (
+        <Card
+          key={tweet.id}
+          tweet={tweet}
+        />
+      )
+    })
   )
 }
 
@@ -196,7 +183,7 @@ function Home() {
       {/*New Tweet Start*/}
       <NewTweet/>
       {/*New Tweet End*/}
-        <Tweets/>
+      <Tweets/>
     </main>
   )
     ;
