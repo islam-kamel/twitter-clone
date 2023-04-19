@@ -84,7 +84,7 @@ export function SmNavbar() {
             <div className={"tw-navbar-item"}>
               <Link
                 onClick={() => handelClick("home")}
-                to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
+                to={"explore"} className="tw-navbar-link d-flex align-items-center text-dark"
               >
                 {isActive?.search ? <BuildIcon icon={search_fill}/> :
                   <BuildIcon icon={search_fill}/>}
