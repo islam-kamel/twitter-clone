@@ -109,16 +109,13 @@ const user = createSlice({
     builder.addCase(fetchAuthState.pending, (state) => {
       state.loading = true;
       state.error = null;
-      state.isLogin = false;
     })
     builder.addCase(fetchAuthState.fulfilled, (state, action) => {
-      state.isLogin = true;
       state.loading = false;
     })
     builder.addCase(fetchAuthState.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
-      state.isLogin = false;
     })
     /* Fetch User Tweets Reducer */
     builder.addCase(fetchCurrentUserTweets.pending, (state) => {
