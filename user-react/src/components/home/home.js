@@ -8,14 +8,23 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
 import Header from "../header/header";
-
-const profileImage = require("../../assets/profile.image.jpg");
+import Picker from "emoji-picker-react";
 
 function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
   const media = useRef();
   const [fileUrl, setFileUrl] = useState([]);
+  const [showPicker, setShowPicker] = useState(false);
+  const inputValue = useRef(null);
+
+  const handleEmojiClick = (emojiObject) => {
+    inputValue.current.value += emojiObject.emoji
+  }
+
+  const togglePicker = () => {
+    setShowPicker(!showPicker)
+  }
 
   const handelInputChange = (e) => {
     const file = e.target.files;
@@ -68,8 +77,9 @@ function NewTweet() {
           <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
             <div className={"w-100 ms-3"}>
                 <textarea
-                  dir={'auto'}
+                  dir={"auto"}
                   name={"content"}
+                  ref={inputValue}
                   className={"form-control border-0  h-100"}
                   placeholder={"What's happening?"}
                   style={{resize: "none"}}
@@ -126,7 +136,24 @@ function NewTweet() {
                         role={"button"}> {imageIcon} </span>
                   <span role={"button"}> {gif} </span>
                   <span role={"button"}> {poll} </span>
-                  <span role={"button"}> {emoji} </span>
+                  <span
+                    role={"button"}
+                    onClick={togglePicker}
+                  > {emoji} </span>
+                  {showPicker && (
+                    <div className={"position-relative mt-1"}>
+                      <div className={"position-absolute"}>
+                        <Picker
+                          onEmojiClick={handleEmojiClick}
+                          emojiStyle={"twitter"}
+                          lazyLoadEmojis={true}
+                          autoFocusSearch={true}
+                          suggestedEmojisMode={"frequent"}
+                        />
+                      </div>
+                    </div>
+                  )}
+
                 </div>
                 <TwButton
                   other={{
@@ -183,7 +210,7 @@ function Home() {
 
       <Header>
         <Header.Top>
-          <h1 className={'p-4'} style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
+          <h1 className={"p-4"} style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
         </Header.Top>
         <Header.Down>
           <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>
