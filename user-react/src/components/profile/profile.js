@@ -8,6 +8,7 @@ import {SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies} from "../../store/features/replies/replies";
+import Header from "../header/header";
 
 const mediaImage = require("../../Image/media.png")
 const profileImage = require("../../assets/profile.image.jpg");
@@ -17,35 +18,41 @@ function Profile() {
   const location = useLocation();
   const navigate = useNavigate();
   const back = location.state?.from?.pathname || "/";
-  const userInfo = useSelector(state => state.currentUser.userProfile)
-  const {tweets: userTweets, replies} = useSelector(state => {return {...state.currentUser, ...state.replies}})
+  const {tweets: userTweets, replies, userProfile: userInfo} = useSelector(state => {
+    return {...state.currentUser, ...state.replies}
+  })
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchCurrentUserTweets({username: userInfo.username}))
     dispatch(fetchReplies({username: userInfo.username}))
   }, [dispatch, userInfo.username])
+
   const ProfileSection = () => {
     return (
       <>
-        <div className="row row-cols-auto align-items-center mt-3 mx-0">
-          <div className="mx-2">
-            <i
-              onClick={() => {
-                navigate(back, {state: {from: location.pathname}})
-              }}
-              role={"button"}
-              className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"
-            ></i>
-          </div>
-          <div className="mx-2">
-            <h6 className="fs-5 fw-2">{userInfo?.fullname}</h6>
-            <p className="text-secondary">2 tweets</p>
-          </div>
-        </div>
-        <div className="card mt-3 border-0">
+        <Header>
+          <Header.Top>
+            <div className="d-flex align-items-center mt-2">
+              <div className={'mx-3'}>
+                <i
+                  onClick={() => {
+                    navigate(back, {state: {from: location.pathname}})
+                  }}
+                  role={"button"}
+                  className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"
+                ></i>
+              </div>
+              <div>
+                <h6 className="fs-5 fw-2 m-0">{userInfo?.fullname}</h6>
+                <p className="text-secondary m-0">{userTweets.length} tweets</p>
+              </div>
+            </div>
+          </Header.Top>
+        </Header>
+        <div className="card border-0">
           <img src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.cover_image}`}
-               className="card-img-top profile-photo" alt="..."/>
+               className=" profile-photo" alt="..."/>
           <div className="card-body d-flex justify-content-between  ">
             <div>
               <img
@@ -206,16 +213,6 @@ function Profile() {
                 <Card
                   key={tweet.id}
                   tweet={tweet}
-                  // tweetId={tweet.id}
-                  // name={tweet.user.fullname}
-                  // username={tweet.user.username}
-                  // text={tweet.content}
-                  // img={tweet.user.image}
-                  // media={tweet.media}
-                  // createAt={tweet.create_at}
-                  // comments={tweet.comments}
-                  // likes={tweet.likes}
-                  // replies={tweet.replies}
                 />
               )
             })}
@@ -233,7 +230,7 @@ function Profile() {
           tabIndex="0"
         >
           <div className={"d-flex flex-column"}>
-            {replies.length && replies.map(reply=> {
+            {replies.length && replies.map(reply => {
               return (
                 <Card
                   key={reply.id}
@@ -247,17 +244,6 @@ function Profile() {
                 </Card>
               )
             })}
-            <Card
-              name=" Engy Mo"
-              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-              username="@engy5821 .2h" img={profileImage}
-            >
-            <Card
-              name=" Engy Mo"
-              text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-              username="@engy5821 .2h" img={profileImage}
-            />
-            </Card>
           </div>
         </div>
 

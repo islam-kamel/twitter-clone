@@ -8,10 +8,12 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useUserContext} from "../../context/userContext";
 import LoadingSpinner from "../Loading/loading-spinner";
 import {useDate} from "../../hooks/useDate";
+import {useSelector} from "react-redux";
 
 
 const ProfileModal = () => {
-  const {userInfo, setUserInfo} = useUserContext();
+  // const {userInfo, setUserInfo} = useUserContext();
+  const userInfo = useSelector(state => state.currentUser.userProfile)
   const [toggleState, setToggleState] = useState(false);
   const form = useRef();
   const axiosPrivate = useAxiosPrivate();
@@ -33,7 +35,7 @@ const ProfileModal = () => {
     axiosPrivate.put(url, data, {headers: {"Content-Type": "multipart/form-data"}})
       .then(res => {
         if (res.status >= 200) {
-          setUserInfo(res.data);
+          // setUserInfo(res.data);
         }
       })
       .finally(() => setLoading(false))

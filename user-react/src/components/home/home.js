@@ -7,6 +7,7 @@ import {useEffect, useRef, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
+import Header from "../header/header";
 
 const profileImage = require("../../assets/profile.image.jpg");
 
@@ -60,7 +61,8 @@ function NewTweet() {
     <div className="card p-3 new_tweet border-0 col-12">
       <div className="row g-0 justify-content-start align-items-start">
         <div className={"col-1 me-3"}>
-          <img src={process.env.REACT_APP_MEDIA_BASE_URL + userInfo?.profile?.image} alt="img" className="rounded-circle tw-profile-image"/>
+          <img src={process.env.REACT_APP_MEDIA_BASE_URL + userInfo?.profile?.image} alt="img"
+               className="rounded-circle tw-profile-image"/>
         </div>
         <form className={"col w-100"} onSubmit={handelSubmit}>
           <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
@@ -167,16 +169,26 @@ function Tweets() {
 function Home() {
 
   return (
-    <main className="main_style border">
-      <div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">
-        <div className="d-flex flex-row justify-content-between p-4">
-          <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
-        </div>
-        <div className="d-flex flex-row justify-content-around">
+    <main className=" border">
+      {/*<div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">*/}
+      {/*  <div className="d-flex flex-row justify-content-between p-4">*/}
+      {/*    <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>*/}
+      {/*  </div>*/}
+      {/*  <div className="d-flex flex-row justify-content-around">*/}
+      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>*/}
+      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>Following </h3>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+
+      <Header>
+        <Header.Top>
+          <h1 className={'p-4'} style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
+        </Header.Top>
+        <Header.Down>
           <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>
           <h3 style={{fontSize: "18px", fontWeight: "400"}}>Following </h3>
-        </div>
-      </div>
+        </Header.Down>
+      </Header>
 
       {/*New Tweet Start*/}
       <NewTweet/>
