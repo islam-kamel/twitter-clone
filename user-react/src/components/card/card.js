@@ -6,7 +6,9 @@ import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchTweets, likeTweet} from "../../store/features/tweets/tweets";
+import {fetchCurrentUserTweets} from "../../store/features/user/user";
 
 function BuildMedia(props) {
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
@@ -36,25 +38,29 @@ function BuildMedia(props) {
   )
 }
 
-const Card = ({border= true, ...props}) => {
+const Card = ({border = true, ...props}) => {
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const [isLiked, setIsLiked] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const find = props?.likes?.users_list.find(value => value === userInfo.id)
+    const find = props?.tweet.likes?.users_list.find(value => value === userInfo.id)
     find && setIsLiked(true)
   }, [props, userInfo])
 
   const handleLike = (e) => {
     e.stopPropagation()
     likeBtn.current.classList.toggle("liked")
-    if (likeBtn.current.classList.contains("liked")) {
-      console.log("like")
-    } else {
-      console.log("disLike");
-    }
+    dispatch(likeTweet({tweetId: props?.tweet.id}))
+      .unwrap()
+      .then(_ => dispatch(fetchTweets()))
+      .finally(() => {
+        if (userInfo.id === props?.tweet.user.id) {
+          dispatch(fetchCurrentUserTweets({username: userInfo.username}))
+        }
+      })
   }
 
   const removeTweet = () => {
@@ -66,7 +72,7 @@ const Card = ({border= true, ...props}) => {
   }
 
   return (
-    <div className={` p-3 ${border ? 'border-top': ''} tweet-card-hover`}>
+    <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
       {isLiked}
       <div className={"me-3"}>
         <div className={"d-flex"}>
