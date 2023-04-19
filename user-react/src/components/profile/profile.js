@@ -11,8 +11,6 @@ import {fetchReplies} from "../../store/features/replies/replies";
 import Header from "../header/header";
 
 const mediaImage = require("../../Image/media.png")
-const profileImage = require("../../assets/profile.image.jpg");
-
 
 function Profile() {
   const location = useLocation();
@@ -34,7 +32,7 @@ function Profile() {
         <Header>
           <Header.Top>
             <div className="d-flex align-items-center mt-2">
-              <div className={'mx-3'}>
+              <div className={"mx-3"}>
                 <i
                   onClick={() => {
                     navigate(back, {state: {from: location.pathname}})
@@ -45,7 +43,7 @@ function Profile() {
               </div>
               <div>
                 <h6 className="fs-5 fw-2 m-0">{userInfo?.fullname}</h6>
-                <p className="text-secondary m-0">{userTweets.length} tweets</p>
+                <p className="text-secondary m-0">{userTweets?.length} tweets</p>
               </div>
             </div>
           </Header.Top>
@@ -208,7 +206,7 @@ function Profile() {
           tabIndex="0"
         >
           <div className={"d-flex flex-column"}>
-            {userTweets.length && userTweets.map(tweet => {
+            {userTweets?.length && userTweets.map(tweet => {
               return (
                 <Card
                   key={tweet.id}
@@ -230,7 +228,7 @@ function Profile() {
           tabIndex="0"
         >
           <div className={"d-flex flex-column"}>
-            {replies.length && replies.map(reply => {
+            {replies?.length && replies.map(reply => {
               return (
                 <Card
                   key={reply.id}
