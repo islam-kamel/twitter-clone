@@ -17,12 +17,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return instance
 
 
-class UserLoginClaimsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ['username']
-
-
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
@@ -38,12 +32,11 @@ class UserFollowersSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, value):
-        # obj = CustomUser.objects.get(id=value.followee)
         follower_image, followee_image = None, None
         try:
             follower_image = Profile.objects.get(user_id=value.user_id.id).image.url
             followee_image = Profile.objects.get(user_id=value.following.id).image.url
-        except Profile.DoesNotExist:
+        except Exception:
             pass
 
         return {
@@ -62,7 +55,7 @@ class UserFollowersSerializer(serializers.ModelSerializer):
 
 
 class UserInfoWithProfileSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer(instance=serializers.CurrentUserDefault, required=False)
+    profile = UserProfileSerializer()
     followers = UserFollowersSerializer(read_only=True, many=True)
     following = UserFollowersSerializer(read_only=True, many=True)
 
@@ -75,6 +68,10 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
             'email': {'required': False},
             'fullname': {'required': False}
         }
+
+    def get_profile(self, obj):
+        serializer = UserProfileSerializer(Profile.objects.get(user=obj))
+        return serializer.data
 
     def update(self, instance, validated_data):
         print(validated_data)
@@ -96,6 +93,7 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
 
 
 class UserIdentitySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = CustomUser
         fields = ['id', 'username', 'email', 'fullname']
