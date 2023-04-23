@@ -10,6 +10,7 @@
 
 .messages-container.active {
   animation: open-messages ease-in 200ms forwards;
+
   .messages-details {
     visibility: visible;
   }

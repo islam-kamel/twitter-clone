@@ -3,6 +3,7 @@
 
 :root {
   --backdrop-bg: bootstrap.$backdrop-light;
+  --bs-bg-element: bootstrap.$bg-element;
 }
 
 .btn-primary {
@@ -219,5 +220,9 @@ $second-icon-color: rgba(0, 186, 124);
 }
 
 .bg-hover:hover {
-  background-color: #f3f3f3;
+  background-color: bootstrap.$bg-hover;
+}
+
+.bg-element {
+  background-color: bootstrap.$light;
 }

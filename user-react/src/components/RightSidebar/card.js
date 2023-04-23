@@ -16,7 +16,8 @@ const Cardtrandy = (props) => {
           <span style={{fontSize: "1.3", fontWeight: "400", paddingTop: "3px"}}> {props.trindname} </span>
           <i className="bi bi-three-dots icon_style"></i>
         </div>
-        <p style={{color: "black", margin: "0", padding: "3px 0", fontWeight: "500"}}>{props.trindy}</p>
+        <p className={"fw-bold text-light"}
+           style={{margin: "0", padding: "3px 0", fontWeight: "500"}}>{props.trindy}</p>
         <span style={{fontSize: "1.3", fontWeight: "400", paddingBottom: "3px"}}>{props.tweetnumber}</span>
       </div>
     </>

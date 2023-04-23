@@ -3,13 +3,10 @@ import {Link, Outlet} from "react-router-dom";
 import authGuard from "../../guards/authGuard";
 import Header from "../header/header";
 import "./Message.css"
-import OneMessage from "./OneMessage";
-import {useChatInfo} from "../../hooks/chat-hooks/chatHooks";
 import ChatList from "./chatList";
 
 
 const Message = () => {
-  const {userInfo, usersProfiles, chatsList} = useChatInfo()
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const searchInput = useRef(null);
 

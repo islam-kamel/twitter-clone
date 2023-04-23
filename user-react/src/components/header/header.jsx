@@ -2,7 +2,7 @@ import React from "react";
 
 class Header extends React.Component {
 
-  static Top (props) {
+  static Top(props) {
     return (
       <div className="d-flex flex-row justify-content-between ">
         {props?.children}
@@ -19,9 +19,12 @@ class Header extends React.Component {
       </div>
     )
   }
+
   render() {
     return (
-      <div className={`col-12 position-sticky top-0 z-1 main-div  ${ this.props.noBorder ? '' : 'border-bottom'} backdrop-blur`} style={{maxHeight: 'fit-content'}}>
+      <div
+        className={`col-12 position-sticky top-0 z-1 main-div  ${this.props.noBorder ? "" : "border-bottom"} backdrop-blur`}
+        style={{maxHeight: "fit-content"}}>
         {/*<div className="d-flex flex-row justify-content-between p-4">*/}
         {/*  <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>*/}
         {/*</div>*/}

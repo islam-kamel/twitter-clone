@@ -30,7 +30,7 @@ export default function ChatBtn(props) {
         </div>
         <input
           ref={inputRef}
-          dir={'auto'}
+          dir={"auto"}
           className={"form-control border-0 fw-light"}
           placeholder={"Start a new  message"}
         />

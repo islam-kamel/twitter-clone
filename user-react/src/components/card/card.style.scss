@@ -1,10 +1,12 @@
 .tweet-card-hover {
   background-color: transparent;
   transition: all 100ms ease;
+
   &:hover {
-    background-color: rgba(0,0,0, .03);
+    background-color: rgba(0, 0, 0, .03);
   }
 }
+
 .feed_tweet {
   display: flex;
   width: 100% !important;

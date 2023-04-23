@@ -1,11 +1,10 @@
 import React, {useCallback} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import BuildChatRoom from "./buildChatRoom";
 import ChatBtn from "./chatBtn";
 import {useSendMessage} from "../../hooks/chat-hooks/chatHooks";
 
 const ChatRoom = (props) => {
-  const navigate = useNavigate();
   const params = useParams();
   const sendMessage = useSendMessage({username: params.username})
 

@@ -51,7 +51,7 @@ const Card = ({border = true, ...props}) => {
     const find = props?.tweet.likes?.users_list.find(value => value === userInfo.id)
     find && setIsLiked(true)
     const isRetweet = props?.tweet.replies?.users_list.find(value => value === userInfo.id)
-      isRetweet && setIsRetweet(true)
+    isRetweet && setIsRetweet(true)
   }, [props, userInfo])
 
   const handleLike = (e) => {
@@ -198,7 +198,7 @@ const Card = ({border = true, ...props}) => {
                 <div
                   className={"d-flex fw-bolder align-items-center flex-row-reverse justify-content-between"}>
 
-                  <span>{isRetweet ? 'Undo Retweet' : 'Retweet'}</span>
+                  <span>{isRetweet ? "Undo Retweet" : "Retweet"}</span>
                   <div className={"me-2"} style={{width: 20}}>
                     {replay}
                   </div>

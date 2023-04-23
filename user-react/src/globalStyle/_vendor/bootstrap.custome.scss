@@ -53,6 +53,8 @@ $backdrop-light: rgba(255, 255, 255, .85);
 $backdrop-dark: rgba(0, 0, 0, .85);
 
 $dropdown-link-active-bg: unset;
+$bg-hover: rgba(29, 155, 240, 0.1);
+$bg-element-dark:  #16181c;
 
 .backdrop-blur {
   background-color: $backdrop-light;
@@ -74,6 +76,9 @@ $dropdown-link-active-bg: unset;
     }
   } @else {
     [data-bs-theme="#{$mode}"] {
+      .bg-element {
+        background-color: $bg-element-dark !important;
+      }
       .user-box:hover,
       .tw-navbar-item:hover {
         background-color: rgba(255, 255, 255, 0.15);

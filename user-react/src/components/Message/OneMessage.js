@@ -23,13 +23,14 @@ const OneMessage = (props) => {
           <div className="d-flex justify-content-between align-items-center w-100">
             <div className="d-flex align-items-center w-75">
               <img
-                src={`${props.user.profile?.image ? process.env.REACT_APP_MEDIA_BASE_URL + props.user.profile.image : 'https://picsum.photos/200/300?grayscale'}`}
+                src={`${props.user.profile?.image ? process.env.REACT_APP_MEDIA_BASE_URL + props.user.profile.image : "https://picsum.photos/200/300?grayscale"}`}
                 className="rounded-circle tw-profile-image flex-shrink-0"
                 alt="..."
               />
               <div className="ms-3 w-75">
                 <div className={"d-flex align-items-center "}>
-                  <h6 className={"m-0 fw-bold me-1 text-truncate"} style={{maxWidth: "100%"}}>{props?.user.fullname}</h6>
+                  <h6 className={"m-0 fw-bold me-1 text-truncate"}
+                      style={{maxWidth: "100%"}}>{props?.user.fullname}</h6>
                   <span
                     className="text-muted fw-light text-truncate"
                     style={{maxWidth: "100%"}}

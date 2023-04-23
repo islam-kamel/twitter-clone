@@ -99,6 +99,7 @@
 .chat-area {
     top: 0;
 }
+
 .chat-area.active {
     animation: slide-anim .2s ease-in forwards;
 }

@@ -8,7 +8,7 @@ function Chat(props) {
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const params = useParams()
   const username = props?.username || params.username;
-  const {messages, getChatId, chatsList, getMessages, setMessages} = useMessages(username)
+  const {messages, getMessages, setMessages} = useMessages(username)
 
   useEffect(() => {
     if (params || username) {

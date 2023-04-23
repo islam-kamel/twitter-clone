@@ -246,7 +246,7 @@ export default function MainSidebar() {
   return (
     <>
       <aside>
-        <div className={" overflow-y-auto position-fixed "} style={{maxHeight: '100vh'}}>
+        <div className={" overflow-y-auto position-fixed "} style={{maxHeight: "100vh"}}>
           <div className={"d-flex  h-100  justify-content-between flex-column"}>
             <div className="tw-navbar">
               <div className="tw-navbar-brand">
