@@ -6,6 +6,9 @@ const OneMessage = (props) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
+    if (props?.handleClick) {
+      return props?.handleClick({user: props?.user.username, chatId: props?.chatId})
+    }
     navigate(props?.user.username, {state: {key: props.chatId}})
   }
 

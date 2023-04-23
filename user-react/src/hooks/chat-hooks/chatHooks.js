@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-import {collection, getDocs, onSnapshot, or, orderBy, query, where} from "firebase/firestore";
+import {addDoc, collection, getDocs, onSnapshot, or, orderBy, query, serverTimestamp, where} from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
 import {fetchAllUsersProfiles, setChatsInfo} from "../../store/chat/chatV2";
 
@@ -76,5 +76,28 @@ export function useMessages(value) {
     })
   }, [chatsList, getChatId])
 
+
   return {messages, chatsList, getChatId, getMessages, setMessages}
+}
+
+export function useSendMessage(params) {
+  const {getChatId} = useMessages(params.username);
+  const {userInfo, chatsList} = useSelector(state => {
+    return {
+      chatsList: state.chatV2.chatsList,
+      userInfo: state.currentUser.userProfile
+    }
+  })
+
+  return useCallback(({value}) => {
+    const content = value
+    const messagesRef = collection(firebaseDb, "messages")
+    const chatId = getChatId({targetList: chatsList})[0].chatId
+    addDoc(messagesRef, {
+      chat_id: chatId,
+      sender: userInfo.username,
+      content: content,
+      sent_date: serverTimestamp()
+    })
+  }, [chatsList, getChatId, userInfo.username])
 }

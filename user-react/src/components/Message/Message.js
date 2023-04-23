@@ -5,6 +5,7 @@ import Header from "../header/header";
 import "./Message.css"
 import OneMessage from "./OneMessage";
 import {useChatInfo} from "../../hooks/chat-hooks/chatHooks";
+import ChatList from "./chatList";
 
 
 const Message = () => {
@@ -71,13 +72,7 @@ const Message = () => {
             </Header>
           </div>
           <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
-            {usersProfiles?.map((user, index) => {
-              return <OneMessage
-                key={index}
-                chatId={index}
-                user={user}
-              />
-            })}
+            <ChatList/>
           </div>
         </div>
         <div className={"col-xl-6 border p-0 m-0 z-1 d-none d-lg-block"}>

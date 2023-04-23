@@ -1,7 +1,7 @@
 .messages-container {
   height: 50px;
   max-width: 20%;
-  padding: .7% .7% 0 .7% !important;
+  //padding: .7% .7% 0 .7% !important;
   width: 100%;
   position: fixed !important;
   bottom: 0 !important;
@@ -17,6 +17,7 @@
 
 .messages-details {
   visibility: hidden;
+  height: fit-content;
 }
 
 @keyframes open-messages {

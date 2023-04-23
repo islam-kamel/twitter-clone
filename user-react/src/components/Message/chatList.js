@@ -1,20 +1,16 @@
 import React from "react";
-import {useSelector} from "react-redux";
 import OneMessage from "./OneMessage";
+import {useChatInfo} from "../../hooks/chat-hooks/chatHooks";
 
-export default function ChatList() {
-  const {usersList} = useSelector(state => {
-    return {
-      usersList: state.chatV2.chatsList,
-    }
-  })
-
+export default function ChatList(props) {
+  const {usersProfiles} = useChatInfo()
 
   return (
     <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
-      {usersList?.map((user, index) => {
+      {usersProfiles?.map((user, index) => {
         return <OneMessage
           key={index}
+          {...props}
           chatId={index}
           user={user}
         />

@@ -7,18 +7,18 @@ import {useMessages} from "../../hooks/chat-hooks/chatHooks";
 function Chat(props) {
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const params = useParams()
-  const username = params.username;
+  const username = props?.username || params.username;
   const {messages, getChatId, chatsList, getMessages, setMessages} = useMessages(username)
 
   useEffect(() => {
-    if (params) {
+    if (params || username) {
       getMessages()
     }
 
     return () => {
       setMessages([])
     }
-  }, [getMessages, params, setMessages])
+  }, [getMessages, params, setMessages, username])
 
   const MessageCreator = ({formYou = true, children}) => {
     return (
@@ -33,10 +33,13 @@ function Chat(props) {
     );
   }
   return (
-    <div className={"d-flex p-0 justify-content-center overflow-y-auto align-items-center w-100"}
-         style={{maxHeight: "50vh"}}>
+    // <div className={"d-flex p-0 justify-content-center overflow-y-auto align-items-center w-100"}
+    //      style={{maxHeight: "50vh"}}>
+
+    <div className={"d-flex p-0 justify-content-center  align-items-center w-100"}>
       <div className={"my-2 w-100"}>
-        <div className={"card-body"} id={"chatList"} style={{height: "50vh"}}>
+        {/*<div className={"card-body"} id={"chatList"} style={{height: "50vh"}}>*/}
+        <div className={"card-body"} id={"chatList"}>
           {messages.map((item, index) => {
             if (item?.sender === userInfo.username) {
               return (
