@@ -76,91 +76,91 @@
   padding-right: 50px !important;
 }
 
-$primary-icon-bg: rgba(29, 155, 240, .1);
-$primary-icon-color: rgba(29, 155, 240);
-
-$heart-icon-bg: rgba(255, 192, 200, 0.7);
-$heart-icon-color: rgba(211, 46, 110, .7);
-
-$second-icon-bg: rgba(0, 186, 124, .1);
-$second-icon-color: rgba(0, 186, 124);
-
-
-@mixin i-bg($type) {
-  @if $type == primary {
-    background-color: transparent;
-    transition: all 100ms ease;
-    &:hover {
-      background-color: $primary-icon-bg;
-      color: $primary-icon-color;
-    }
-  }
-  @else if($type == second) {
-    background-color: transparent;
-    transition: all 100ms ease;
-    &:hover {
-      background-color: $second-icon-bg;
-      color: $second-icon-color;
-    }
-  }
-}
-
-
-.i-bg-primary {
-  @include i-bg(primary)
-}
-
-.i-bg-second {
-  @include i-bg(second)
-}
-
-.icon-bg {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.icon-button svg {
-  width: 20px;
-}
-
-.icon-button {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.heart-icon {
-  background: url("../../assets/heart.png") left;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-
-}
-
-.heart-icon.liked {
-  animation: like-anim 0.7s steps(28) forwards;
-}
-
-@keyframes like-anim {
-  to {
-    background-position: right;
-  }
-}
-
-.bg-heart {
-  background-color: transparent;
-  transition: all 100ms ease;
-  &:hover {
-    background-color: rgba(255, 192, 200, 0.7);
-  }
-}
-
-.icon-amount {
-  margin-left: 5px;
-  font-weight: lighter;
-  font-size: 12px;
-}
+//$primary-icon-bg: rgba(29, 155, 240, .1);
+//$primary-icon-color: rgba(29, 155, 240);
+//
+//$heart-icon-bg: rgba(255, 192, 200, 0.7);
+//$heart-icon-color: rgba(211, 46, 110, .7);
+//
+//$second-icon-bg: rgba(0, 186, 124, .1);
+//$second-icon-color: rgba(0, 186, 124);
+//
+//
+//@mixin i-bg($type) {
+//  @if $type == primary {
+//    background-color: transparent;
+//    transition: all 100ms ease;
+//    &:hover {
+//      background-color: $primary-icon-bg;
+//      color: $primary-icon-color;
+//    }
+//  }
+//  @else if($type == second) {
+//    background-color: transparent;
+//    transition: all 100ms ease;
+//    &:hover {
+//      background-color: $second-icon-bg;
+//      color: $second-icon-color;
+//    }
+//  }
+//}
+//
+//
+//.i-bg-primary {
+//  @include i-bg(primary)
+//}
+//
+//.i-bg-second {
+//  @include i-bg(second)
+//}
+//
+//.icon-bg {
+//  height: 30px;
+//  width: 30px;
+//  border-radius: 50%;
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//}
+//
+//.icon-button svg {
+//  width: 20px;
+//}
+//
+//.icon-button {
+//  display: flex;
+//  align-items: center;
+//  cursor: pointer;
+//}
+//
+//.heart-icon {
+//  background: url("../../assets/heart.png") left;
+//  width: 50px;
+//  height: 50px;
+//  position: absolute;
+//
+//}
+//
+//.heart-icon.liked {
+//  animation: like-anim 0.7s steps(28) forwards;
+//}
+//
+//@keyframes like-anim {
+//  to {
+//    background-position: right;
+//  }
+//}
+//
+//.bg-heart {
+//  background-color: transparent;
+//  transition: all 100ms ease;
+//  &:hover {
+//    background-color: rgba(255, 192, 200, 0.7);
+//  }
+//}
+//
+//.icon-amount {
+//  margin-left: 5px;
+//  font-weight: lighter;
+//  font-size: 12px;
+//}

@@ -1,36 +1,52 @@
-import React, {useState} from "react";
+import React from "react";
+import {threeDots, verifyBlue} from "../../constants/icons";
+import {useNavigate} from "react-router-dom";
 
 const OneMessage = (props) => {
-  // eslint-disable-next-line
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate()
 
   const handleClick = () => {
-    props.setActiveChat(props.chatId);
-    setShow(true);
+    navigate(props?.user.username, {state: {key: props.chatId}})
   }
 
   return (
     <>
+      <div
+        role={"button"}
+        onClick={handleClick}
+        className={"bg-hover"}>
+        <div className={"d-flex flex-column p-3"}>
 
-      <div onClick={handleClick}>
-
-        <span className="row p-1 people-list ">
-          <img
-            alt={"..."}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU"
-            className="col-2 col-md-2 col-lg-2 "/>
-          <span className="col-1 col-lg-1  ps-1">Safaa </span>
-
-
-          <span className="col-3 col-lg-3 "> @safaa123 </span>
-
-          <span className="col-4  col-lg-4 ">Feb 2</span>
-
-          <span className="col-2 col-lg-2"><i className="bi bi-three-dots more" title="More"></i></span>
-          <p className="col-12 ps-5 ms-3">hi safaa </p>
-        </span>
+          <div className="d-flex justify-content-between align-items-center w-100">
+            <div className="d-flex align-items-center w-75">
+              <img
+                src={`${props.user.profile?.image ? process.env.REACT_APP_MEDIA_BASE_URL + props.user.profile.image : 'https://picsum.photos/200/300?grayscale'}`}
+                className="rounded-circle tw-profile-image flex-shrink-0"
+                alt="..."
+              />
+              <div className="ms-3 w-75">
+                <div className={"d-flex align-items-center "}>
+                  <h6 className={"m-0 fw-bold me-1 text-truncate"} style={{maxWidth: "100%"}}>{props?.user.fullname}</h6>
+                  <span
+                    className="text-muted fw-light text-truncate"
+                    style={{maxWidth: "100%"}}
+                  >@{props?.user.username}
+                  </span>
+                  <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
+                </div>
+                <div className={"d-flex flex-column"}>
+                  <span className={"fs-6 text-muted fw-light"}>hello</span>
+                </div>
+              </div>
+            </div>
+            <div className={"icon-button"}>
+              <div className="icon-bg i-bg-primary">
+                {threeDots}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
     </>
   );
 }

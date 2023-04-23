@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import axios from "axios";
 
-
 class Token {
   static REFRESH_TOKEN_AGE = 365;
 
@@ -54,9 +53,7 @@ class Token {
 
 }
 
-export {
-  Token
-}
+
 
 let flag = true;
 let timer;
@@ -73,3 +70,10 @@ export function debounce(callback, wait) {
     }, wait)
   }
 }
+
+
+export {
+  Token
+}
+
+

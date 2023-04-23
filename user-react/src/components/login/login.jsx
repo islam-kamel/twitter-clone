@@ -82,7 +82,9 @@ export default function Login() {
       password: loginData.password
     }))
       .unwrap()
-      .then(_ => window.location.reload())
+      .then(_ => {
+        window.location.reload()
+      })
   }
 
   const togglePasswordVisibility = () => setShow(!show);

@@ -19,8 +19,7 @@ const token = new Token();
 
 axiosInstance.interceptors.request.use(
   config => {
-
-    if (!config.headers["Authorization"] && !config["withoutAuth"]) {
+    if (!config.headers["Authorization"] && token.getToken('access')) {
 
       config.headers["Authorization"] = `Bearer ${token.getToken("access")}`
     }
@@ -43,10 +42,9 @@ axiosInstance.interceptors.response.use(
   response => response,
   async error => {
     const prevRequest = error?.config;
-    if (error?.response.status === 401 && !prevRequest?.send) {
+    if (error?.response.status === 401 && token.getToken('refresh')) {
       console.log('here')
-      prevRequest.send = true
-      const newAccessToken = token.refreshToken()().then(res => res.data?.access_token);
+      const newAccessToken = await token.refreshToken()().then(res => res.data?.access_token);
       prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
       return axiosPrivate(prevRequest)
     }

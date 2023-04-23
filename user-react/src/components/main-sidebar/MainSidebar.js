@@ -244,46 +244,40 @@ export default function MainSidebar() {
 
 
   return (
-    <div className={"container"}>
-      <div className="" style={{width: 0}}>
-        <aside
-          className="position-relative  d-flex flex-column align-items-center justify-content-between"
-        >
-          <div
-            className={"top-0 overflow-y-auto position-fixed d-flex mt-0 h-100 flex-column align-items-start mx-auto justify-content-start"}
-          >
-            <div className={"d-flex  h-100  justify-content-between flex-column"}>
-              <div className="tw-navbar">
-                <div className="tw-navbar-brand">
-                  <Link to="#" className="tw-navbar-link text-primary">
-                    <i className="bi bi-twitter"></i>
+    <>
+      <aside>
+        <div className={" overflow-y-auto position-fixed "} style={{maxHeight: '100vh'}}>
+          <div className={"d-flex  h-100  justify-content-between flex-column"}>
+            <div className="tw-navbar">
+              <div className="tw-navbar-brand">
+                <Link to="#" className="tw-navbar-link text-primary">
+                  <i className="bi bi-twitter"></i>
+                </Link>
+              </div>
+              {userInfo?.id ? <UserAction/> : (
+                <div className="tw-navbar-item">
+                  <Link
+                    onClick={() => handelClick("explore")}
+                    to={"/explore"}
+                    className="tw-navbar-link d-flex align-items-center text-dark"
+                  >
+                    {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
+                      <BuildIcon icon={explore}/>}
+                    <span className="tw-navbar-text">Explore</span>
                   </Link>
                 </div>
-                {userInfo?.id ? <UserAction/> : (
-                  <div className="tw-navbar-item">
-                    <Link
-                      onClick={() => handelClick("explore")}
-                      to={"/explore"}
-                      className="tw-navbar-link d-flex align-items-center text-dark"
-                    >
-                      {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
-                        <BuildIcon icon={explore}/>}
-                      <span className="tw-navbar-text">Explore</span>
-                    </Link>
-                  </div>
-                )
-                }
-              </div>
-
-              {userInfo?.id && (
-                <div className={"d-flex align-self-center align-items-center"}>
-                  <UserSignButton userInfo={userInfo}/>
-                </div>
-              )}
+              )
+              }
             </div>
+
+            {userInfo?.id && (
+              <div className={"d-flex align-self-center align-items-center"}>
+                <UserSignButton userInfo={userInfo}/>
+              </div>
+            )}
           </div>
-        </aside>
-      </div>
-    </div>
+        </div>
+      </aside>
+    </>
   );
 }

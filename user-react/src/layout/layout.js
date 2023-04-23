@@ -31,9 +31,9 @@ function Layout() {
       <div className={"app w-100"}>
         <Login/>
         <SignUp/>
-        <main className="container-fluid container-xl p-0 px-sm-5">
+        <main className="container-fluid container-xl p-0 px-sm-5 m-0 mx-auto">
           <section className="row mx-auto">
-            <nav className={"col-2 d-none d-sm-flex"}>
+            <nav className={"col-2 d-none col-xl-3 d-sm-flex"}>
               <MainSidebar/>
             </nav>
             <main className="col p-0 mb-auto">
@@ -46,11 +46,11 @@ function Layout() {
               </div>
             </aside>
           </section>
-          <nav className={"d-sm-none mt-auto"} style={{margin: "58px 0!important"}}>
+          <nav className={"d-sm-none mt-auto"}>
+            <div style={{height: '58px'}}></div>
             <SmNavbar/>
           </nav>
         </main>
-
         {/*protected*/}
         <div style={{margin: "72px 0 !important"}}>
           <Footer/>

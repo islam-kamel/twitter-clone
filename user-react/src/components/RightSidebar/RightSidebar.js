@@ -6,6 +6,7 @@ import Links from "./links";
 import authGuard from "../../guards/authGuard";
 import {SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
 import {Link} from "react-router-dom";
+import FloatingMessages from "../Message/floatingMessages";
 
 const RightSidebar = () => {
   return (
@@ -55,15 +56,7 @@ const RightSidebar = () => {
           </div>
           <p className="copywrite">&copy; 2023 Twitter, Inc.</p>
         </div>
-        <div className="masseg ms-5 w-50">
-          <div className="masseg-details d-flex justify-content-between flex-row rounded-top-4 shadow">
-            <h1 style={{fontSize: "20px", fontWeight: "700"}}>Masseges</h1>
-            <div className="icon-massege d-flex flex-row">
-              <Link className="a-icon" to="#"><i className="fa-regular fa-envelope"></i></Link>
-              <Link className="a-icon" to="#"><i className="fa-solid fa-chevron-up"></i></Link>
-            </div>
-          </div>
-        </div>
+        <FloatingMessages/>
       </aside>
     </>
   );

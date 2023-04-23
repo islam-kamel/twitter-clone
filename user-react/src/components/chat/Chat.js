@@ -1,25 +1,62 @@
-import {io} from "socket.io-client";
-import api from "api_sdk";
+import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
+import {useMessages} from "../../hooks/chat-hooks/chatHooks";
 
-export default function Chat() {
-  const socket = io("http://localhost:3008")
 
-  socket.on("message", args => {
-    console.log(args)
-  })
+function Chat(props) {
+  const userInfo = useSelector(state => state.currentUser.userProfile)
+  const params = useParams()
+  const username = params.username;
+  const {messages, getChatId, chatsList, getMessages, setMessages} = useMessages(username)
 
-  function handleConnect() {
-    // login('islam.admin', '123')
-    //     .then(res => console.log(res.data))
-    //     .catch(err => console.log(err.message))
-    api.get("/api/is_auth").then(res => {
-      console.log(res.data)
-    })
+  useEffect(() => {
+    if (params) {
+      getMessages()
+    }
 
-    socket.emit("message", "hello")
+    return () => {
+      setMessages([])
+    }
+  }, [getMessages, params, setMessages])
+
+  const MessageCreator = ({formYou = true, children}) => {
+    return (
+      <div
+        className={`d-flex justify-content-${formYou ? "end" : "start"} rounded mb-2`}
+      >
+        <div className={`${formYou ? "bg-primary" : "bg-secondary-subtle text-dark"} p-2 rounded text-light fw-light`}
+             style={{width: "fit-content"}}>
+          {children}
+        </div>
+      </div>
+    );
   }
-
   return (
-    <button className="btn btn-primary" onClick={handleConnect}>Connect</button>
+    <div className={"d-flex p-0 justify-content-center overflow-y-auto align-items-center w-100"}
+         style={{maxHeight: "50vh"}}>
+      <div className={"my-2 w-100"}>
+        <div className={"card-body"} id={"chatList"} style={{height: "50vh"}}>
+          {messages.map((item, index) => {
+            if (item?.sender === userInfo.username) {
+              return (
+                <MessageCreator key={index}>
+                  <span>{item.content}</span>
+                </MessageCreator>
+
+              );
+            }
+            return (
+              <MessageCreator key={index} formYou={false}>
+                <span>{item.content}</span>
+              </MessageCreator>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   )
 }
+
+export default Chat;
+

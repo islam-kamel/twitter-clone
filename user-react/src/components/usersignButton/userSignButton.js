@@ -11,8 +11,8 @@ const UserSignButton = () => {
   const userInfo = useSelector(state => state.currentUser.userProfile);
 
   return (
-    <div className="mb-0" style={{paddingTop: "3"}}>
-      <div role={"button"} className="user-box mb-5 px-2">
+    <div className="mb-0 " style={{paddingTop: "3"}}>
+      <div role={"button"} className="user-box mb-5 p-0">
         <img
           src={`${process.env.REACT_APP_BASE_URL + "/api" + userInfo.profile?.image}`}
           className="rounded-circle float-start tw-profile-image"

@@ -1,85 +1,133 @@
-import React from "react";
-import "./ChatRoom.css"
-import "../Message/Message.css"
+import React, {useCallback, useRef} from "react";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import Header from "../header/header";
+import {useSelector} from "react-redux";
+import {addDoc, collection, serverTimestamp} from "firebase/firestore";
+import {firebaseDb} from "../../store/API/firebase";
+import {emoji, gif, imageIcon} from "../../constants/icons";
+import Chat from "../chat/Chat";
+import {useMessages} from "../../hooks/chat-hooks/chatHooks";
 
-const ChatRoom = (props) => {
+const ChatRoom = () => {
+  const navigate = useNavigate();
+  const params = useParams()
+  const {getChatId} = useMessages(params.username);
+  const location = useLocation()
+  const inputRef = useRef(null);
+
+  const receiver = useSelector(state => {
+    if (location.state?.key) {
+      return state.chatV2.usersProfiles[location.state?.key]
+    }
+    return state.chatV2.usersProfiles.filter(user => user.username === params.username)[0]
+  })
+
+  const {chatInfo, userInfo, chatsList} = useSelector(state => {
+    return {
+      chatInfo: state.chatInfo,
+      chatsList: state.chatV2.chatsList,
+      userInfo: state.currentUser.userProfile
+    }
+  })
+
+  const sentMessage = useCallback((value) => {
+    const content = inputRef.current.value
+    const messagesRef = collection(firebaseDb, "messages")
+    const chatId = getChatId({targetList: chatsList})[0].chatId
+    addDoc(messagesRef, {
+      chat_id: chatId,
+      sender: userInfo.username,
+      content: content,
+      sent_date: serverTimestamp()
+    })
+  }, [chatsList, getChatId, userInfo.username]);
+
   return (
-    <>
-
-      <div className="col-12  col-md-10 col-lg-7 mt-2">
-        <div>
-          <div class="">
-            <div class="chat">
-              <div class="chat-header clearfix">
-                <div class="row">
-                  <div class="col-lg-11">
-                    <a href="#i" data-toggle="modal" data-target="#view_info">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"/>
-                    </a>
-                    <div class="chat-about">
-                      <h6 class="m-b-0"> {props.chatId} </h6>
-                      <small>Last seen: 2 hours ago</small>
-                    </div>
-                  </div>
-                  <div class="col-lg-1 mt-2">
-                    <a href="#!" class="text-dark "><i class="bi bi-exclamation-circle "></i></a>
-                  </div>
-                </div>
+    <div className={"w-100 "}>
+      <Header noBorder>
+        <Header.Top>
+          <div className="d-flex px-2 justify-content-between w-100">
+            <div className={""}>
+              <i onClick={() => {
+                navigate("/Message")
+              }}
+                 role={"button"}
+                 className="bi bi-arrow-left cursor-pointer bi-fw-bolder fs-4"
+              ></i>
+            </div>
+            <div className="icon-button">
+              <div className="icon-bg i-bg-primary">
+                <i className="bi bi-exclamation-circle "></i>
               </div>
-              <div class="chat-history">
-                <ul class="m-b-0">
-                  <li class="clearfix ">
+            </div>
+          </div>
+        </Header.Top>
+      </Header>
 
-                    <div class="message other-message float-right "> Hi Aiden, how are you? How is the project coming
-                      along?
-                    </div>
-                    <div class="message-data">
-                      <span class="message-data-time float-right">10:10 AM,Yesterday</span>
-                    </div>
+      <div className="bg-hover py-3 d-flex justify-content-center align-items-center flex-column">
+        <img
+          className={"tw-profile-image rounded-circle"}
+          src={`${receiver?.profile?.image ? process.env.REACT_APP_MEDIA_BASE_URL + receiver?.profile.image : "https://picsum.photos/200/300?grayscale"}`}
+          alt="avatar"
+        />
+        <div className={"d-flex flex-column align-items-center justify-content-center mt-2"}>
+          <h6 className="m-0"> {receiver?.fullname}</h6>
+          <span className={"text-muted"}>@{receiver?.username}</span>
+        </div>
+        <p className={"text-center fs-6 fw-light text-muted"}>
+          {receiver?.profile?.bio}
+        </p>
+        <div className={"d-flex align-items-center justify-content-center"}>
+          <span
+            style={{fontSize: 12}}
+            className={"bg-secondary-subtle px-2 rounded-pill  fw-light me-3"}
+          >
+            Followers: {receiver?.followers?.length}
+          </span>
+          <span
+            style={{fontSize: 12}}
+            className={"bg-secondary-subtle px-2 rounded-pill  fw-light "}
+          >
+            Following: {receiver?.following?.length}
+          </span>
+        </div>
+      </div>
 
-                  </li>
+      <div className={"p-3 h-100 position-relative"}>
+        <Chat username={"islam-kamel"}/>
 
-                  <li class="clearfix">
-
-                    <div class="message my-message">Are we meeting today?</div>
-                    <div class="message-data">
-                      <span class="message-data-time">10:12 AM</span>
-                    </div>
-                  </li>
-                  <li class="clearfix">
-
-                    <div class="message my-message">Project has been already finished and I have results to show you.
-                    </div>
-                    <div class="message-data">
-                      <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                  </li>
-                </ul>
+        <div className={"p-2 w-100"}>
+          <div className={"d-flex bg-secondary-subtle px-2 rounded-3"}>
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                {emoji}
               </div>
-
-              <div class="input-group mt-3 rounded">
-                                <span class="input-group-text ">
-
-                                    <a className="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
-                                    <a className="ms-3 text-muted" href="#!"><i className="bi bi-emoji-smile-fill"></i></a>
-
-                                </span>
-
-                <input type="text" className="form-control w-75 form-control-lg "
-                       placeholder="Start a new message"/>
-
-                <span class="input-group-text "><a href="#!"><i className="bi bi-send-fill"></i></a></span>
-              </div>
-
-
             </div>
 
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                {gif}
+              </div>
+            </div>
+            <div className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                {imageIcon}
+              </div>
+            </div>
+            <input ref={inputRef} className={"form-control border-0 fw-light"}
+                   placeholder={"Start a new  message"}></input>
+            <div
+              onClick={sentMessage}
+              className={"icon-button"}>
+              <div className={"icon-bg i-bg-primary"}>
+                <i className={"bi bi-send"}></i>
+              </div>
+            </div>
           </div>
-
         </div>
 
       </div>
-    </>
+    </div>
   );
 }
 
