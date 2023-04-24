@@ -84,7 +84,7 @@ function NewTweet() {
                   placeholder={"What's happening?"}
                   style={{resize: "none"}}
                 />
-              <div className={"d-flex overflow-x-scroll flex-nowrap flex-row  overflow-y-scroll "}
+              <div className={"d-flex overflow-x-auto flex-nowrap flex-row  overflow-y-auto "}
                    style={{maxHeight: 200}}>
                 {fileUrl.map(url => {
                   if (url.type.includes("video")) {
@@ -197,7 +197,7 @@ function Tweets() {
 function Home() {
 
   return (
-    <main className=" border">
+    <main className="">
       {/*<div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">*/}
       {/*  <div className="d-flex flex-row justify-content-between p-4">*/}
       {/*    <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>*/}
