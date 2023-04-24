@@ -21,7 +21,7 @@ function ChatLayout() {
       <SignUp/>
       <main className="container-fluid container-xl p-0 px-sm-5 m-0 mx-auto overflow-hidden">
         <section className="row mx-auto">
-          <nav className={"col-2 d-none col-xl-3 d-sm-flex"}>
+          <nav className={"col-2 d-none col-xl-3 d-sm-flex flex-column p-0"}>
             <MainSidebar/>
           </nav>
           <main className="col p-0 col-xl mb-auto">

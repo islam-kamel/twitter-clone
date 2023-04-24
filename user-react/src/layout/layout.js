@@ -33,14 +33,14 @@ function Layout() {
         <SignUp/>
         <main className="container-fluid container-xl p-0 px-sm-5 m-0 mx-auto">
           <section className="row mx-auto">
-            <nav className={"col-2 d-none col-xl-3 d-sm-flex"}>
-              <MainSidebar/>
+            <nav className={"col-2 d-none col-xl-3 d-sm-flex flex-column p-0"}>
+                <MainSidebar/>
             </nav>
             <main className="col p-0 mb-auto">
                 <Outlet/>
             </main>
-            <aside className="col-4 d-none d-lg-flex flex-grow-0 p-0 ">
-              <div className={"position-fixed h-100"} style={{width: 350}}>
+            <aside className="col-4 d-none d-lg-flex flex-grow-0 ">
+              <div className={"position-fixed h-100"} style={{maxWidth: 350}}>
                 <NewToTwitter/>
                 <RightSidebar/>
               </div>
@@ -51,11 +51,9 @@ function Layout() {
             <SmNavbar/>
           </nav>
         </main>
-        {/*protected*/}
         <div style={{margin: "72px 0 !important"}}>
           <Footer/>
         </div>
-        {/*protected*/}
       </div>
   );
 }

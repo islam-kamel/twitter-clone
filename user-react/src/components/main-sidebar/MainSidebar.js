@@ -245,9 +245,9 @@ export default function MainSidebar() {
 
   return (
     <>
-      <aside>
-        <div className={" overflow-y-auto position-fixed "} style={{maxHeight: "100vh"}}>
-          <div className={"d-flex  h-100  justify-content-between flex-column"}>
+      <aside className={'position-sticky top-0'} style={{width: 'fit-content'}}>
+        <div className={" overflow-y-auto"} style={{maxHeight: "100vh", maxWidth: '290px'}}>
+          <div className={"d-flex align-items-start  h-100  justify-content-between flex-column"}>
             <div className="tw-navbar">
               <div className="tw-navbar-brand">
                 <Link to="#" className="tw-navbar-link text-primary">
@@ -271,7 +271,8 @@ export default function MainSidebar() {
             </div>
 
             {userInfo?.id && (
-              <div className={"d-flex align-self-center align-items-center"}>
+
+              <div className={"d-flex align-self-center align-items-center w-100"}>
                 <UserSignButton userInfo={userInfo}/>
               </div>
             )}
