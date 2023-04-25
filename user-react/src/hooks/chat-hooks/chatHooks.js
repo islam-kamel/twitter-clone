@@ -56,9 +56,9 @@ export function useMessages(value) {
     return targetList.filter(chat => chat.receiver === q);
   }, [params])
 
-  const getMessages = useCallback(async () => {
+  const getMessages = useCallback(() => {
     const messagesRef = collection(firebaseDb, "messages");
-    const chatId = getChatId({targetList: chatsList})[0]?.chatId
+    const chatId = getChatId({targetList: chatsList})[0]?.chatId;
     if (!chatId) {
       return;
     }
@@ -67,14 +67,24 @@ export function useMessages(value) {
       where("chat_id", "==", chatId),
       orderBy("sent_date")
     );
-    return onSnapshot(q, (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === "added") {
-          setMessages(item => [...item, change.doc.data()])
-        }
-      });
-    })
-  }, [chatsList, getChatId])
+
+    return onSnapshot(q, {
+      next: (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "modified") {
+            const source = change.doc.metadata.hasPendingWrites ? "Local" : "Server";
+            console.log(source, change.doc.data());
+          }
+          if (change.type === "added") {
+            setMessages((item) => [...item, change.doc.data()]);
+          }
+        });
+      },
+      complete: () => {
+        console.log("done")
+      }
+    });
+  }, [chatsList, getChatId]);
 
 
   return {messages, chatsList, getChatId, getMessages, setMessages}
@@ -89,15 +99,16 @@ export function useSendMessage(params) {
     }
   })
 
-  return useCallback(({value}) => {
+  return useCallback(async ({value}) => {
     const content = value
     const messagesRef = collection(firebaseDb, "messages")
     const chatId = getChatId({targetList: chatsList})[0].chatId
-    addDoc(messagesRef, {
+    await addDoc(messagesRef, {
       chat_id: chatId,
       sender: userInfo.username,
       content: content,
       sent_date: serverTimestamp()
     })
+    return chatId
   }, [chatsList, getChatId, userInfo.username])
 }

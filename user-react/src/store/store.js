@@ -6,6 +6,9 @@ import chatV2 from "./chat/chatV2";
 
 const store = configureStore({
   reducer: {tweets, currentUser, replies, chatV2},
+  // middleware: getDefaultMiddleware => {
+  //
+  // }
 })
 
 export default store;

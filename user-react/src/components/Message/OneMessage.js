@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {threeDots, verifyBlue} from "../../constants/icons";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const OneMessage = (props) => {
   const navigate = useNavigate()
-
+  const [displayLastMessage, setDisplayLastMessage] = useState(null)
+  const latestMessages = useSelector(state => state.chatV2.latestMessages)
   const handleClick = () => {
     if (props?.handleClick) {
       return props?.handleClick({user: props?.user.username, chatId: props?.chatId})
@@ -12,6 +14,17 @@ const OneMessage = (props) => {
     navigate(props?.user.username, {state: {key: props.chatId}})
   }
 
+  useEffect(() => {
+    const lastMessage = latestMessages[props?.index].message;
+    if (props?.user?.profile?.username === lastMessage?.sender) {
+      setDisplayLastMessage(lastMessage?.content)
+    } else  {
+      setDisplayLastMessage(`You: ${lastMessage?.content}`)
+    }
+  }, [latestMessages])
+
+  useEffect(() => {
+  }, [latestMessages])
   return (
     <>
       <div
@@ -39,7 +52,7 @@ const OneMessage = (props) => {
                   <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
                 </div>
                 <div className={"d-flex flex-column"}>
-                  <span className={"fs-6 text-muted fw-light"}>hello</span>
+                  <span className={"fs-6 text-muted fw-light"}>{displayLastMessage}</span>
                 </div>
               </div>
             </div>

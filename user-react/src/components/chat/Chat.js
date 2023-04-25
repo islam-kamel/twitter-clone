@@ -11,11 +11,17 @@ function Chat(props) {
   const {messages, getMessages, setMessages} = useMessages(username)
 
   useEffect(() => {
+    let unSubscribe;
     if (params || username) {
-      getMessages()
+      unSubscribe = getMessages()
     }
 
     return () => {
+      try {
+        unSubscribe()
+      } catch (e) {
+        console.log("filled to unSubscribe")
+      }
       setMessages([])
     }
   }, [getMessages, params, setMessages, username])

@@ -1,11 +1,33 @@
 import {createAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {axiosInstance} from "../API/axios";
+import {collection, getDocs, limit, orderBy, query, where} from "firebase/firestore";
+import {firebaseDb} from "../API/firebase";
 
 const initialState = {
   chatsList: [],
+  latestMessages: [],
   usersProfiles: [],
   messages: [],
 }
+
+export const fetchAllLatestMessages = createAsyncThunk('chat/fetchAllLatestMessages', async (data, thunkAPI) => {
+  const messagesRef = collection(firebaseDb, "messages");
+  // TODO: fix dedicated data and update state
+  const chatId = data.chatId
+  const receiver = data.receiver;
+  if (!chatId) {
+    return;
+  }
+  const q = query(
+    messagesRef,
+    where("chat_id", "==", chatId),
+    orderBy("sent_date", 'desc'),
+    limit(1)
+  );
+  const message = await getDocs(q)
+  const messageDate = message.docs[0].data()?.sent_date.toJSON()
+  return {user: receiver, message: {...message.docs[0].data(), sent_date : messageDate}}
+})
 export const fetchAllUsersProfiles = createAsyncThunk('chat/fetchAllUserChatInfo', async (data, thunkAPI) => {
   try {
     try {
@@ -34,6 +56,9 @@ const chatV2 = createSlice({
       state.usersProfiles = action.payload
       state.loading = false;
       state.error = null;
+    })
+    builder.addCase(fetchAllLatestMessages.fulfilled, (state, action) => {
+      state.latestMessages.push(action.payload)
     })
   },
   reducers: {
