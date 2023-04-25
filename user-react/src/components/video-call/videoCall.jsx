@@ -2,27 +2,32 @@ import io from "socket.io-client";
 import Peer from "simple-peer";
 import {useEffect, useRef, useState} from "react";
 
-const socket = io.connect("http://localhost:3008")
+const socket = io.connect("http://192.168.1.10:3008")
 
 export default function VideoCall() {
-  const [ me, setMe ] = useState("")
-  const [ stream, setStream ] = useState()
-  const [ receivingCall, setReceivingCall ] = useState(false)
-  const [ caller, setCaller ] = useState("")
-  const [ callerSignal, setCallerSignal ] = useState()
-  const [ callAccepted, setCallAccepted ] = useState(false)
-  const [ idToCall, setIdToCall ] = useState("")
-  const [ callEnded, setCallEnded] = useState(false)
-  const [ name, setName ] = useState("")
+  const [me, setMe] = useState("")
+  const [stream, setStream] = useState()
+  const [receivingCall, setReceivingCall] = useState(false)
+  const [caller, setCaller] = useState("")
+  const [callerSignal, setCallerSignal] = useState()
+  const [callAccepted, setCallAccepted] = useState(false)
+  const [idToCall, setIdToCall] = useState("")
+  const [callEnded, setCallEnded] = useState(false)
+  const [name, setName] = useState("")
+
   const myVideo = useRef()
   const userVideo = useRef()
-  const connectionRef= useRef()
+  const connectionRef = useRef()
+
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+
+    navigator.mediaDevices.getUserMedia({audio: true}).then((stream) => {
       setStream(stream)
-      myVideo.current.srcObject = stream
-    })
+      if (myVideo.current) {
+        myVideo.current.srcObject = stream;
+      }
+    });
 
     socket.on("me", (id) => {
       setMe(id)
@@ -42,6 +47,7 @@ export default function VideoCall() {
       trickle: false,
       stream: stream
     })
+
     peer.on("signal", (data) => {
       socket.emit("callUser", {
         userToCall: id,
@@ -50,11 +56,11 @@ export default function VideoCall() {
         name: name
       })
     })
+
     peer.on("stream", (stream) => {
-
       userVideo.current.srcObject = stream
-
     })
+
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true)
       peer.signal(signal)
@@ -63,16 +69,19 @@ export default function VideoCall() {
     connectionRef.current = peer
   }
 
-  const answerCall =() =>  {
+  const answerCall = () => {
     setCallAccepted(true)
+
     const peer = new Peer({
       initiator: false,
       trickle: false,
       stream: stream
     })
+
     peer.on("signal", (data) => {
-      socket.emit("answerCall", { signal: data, to: caller })
+      socket.emit("answerCall", {signal: data, to: caller})
     })
+
     peer.on("stream", (stream) => {
       userVideo.current.srcObject = stream
     })
@@ -88,16 +97,17 @@ export default function VideoCall() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center", color: '#fff' }}>Zoomish</h1>
+      <h1 style={{textAlign: "center", color: "#fff"}}>Zoomish</h1>
       <div className="container">
         <div className="video-container">
           <div className="video">
-            {stream &&  <audio controls playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
+            {stream && <audio controls playsInline muted ref={myVideo} autoPlay style={{width: "300px"}}/>}
           </div>
           <div className="video">
             {callAccepted && !callEnded ?
-              <audio controls playsInline ref={userVideo} autoPlay style={{ width: "300px"}} />:
+              <audio controls playsInline ref={userVideo} autoPlay style={{width: "300px"}}/> :
               null}
+
           </div>
         </div>
         <div className="myId">
@@ -105,10 +115,9 @@ export default function VideoCall() {
             id="filled-basic"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={{ marginBottom: "20px" }}
+            style={{marginBottom: "20px"}}
           />
           <div>{me}</div>
-
           <input
             id="filled-basic"
             value={idToCall}
@@ -130,8 +139,8 @@ export default function VideoCall() {
         <div>
           {receivingCall && !callAccepted ? (
             <div className="caller">
-              <h1 >{name} is calling...</h1>
-              <button className={'btn btn-primary'} onClick={answerCall}>
+              <h1>{name} is calling...</h1>
+              <button className={"btn btn-primary"} onClick={answerCall}>
                 Answer
               </button>
             </div>
