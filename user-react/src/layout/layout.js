@@ -3,6 +3,7 @@ import {lazy, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchCurrentUserProfile} from "../store/features/user/user";
 import {SmNavbar} from "../components/main-sidebar/MainSidebar";
+import VideoCall from "../components/video-call/videoCall";
 
 const MainSidebar = lazy(() => import("../components/main-sidebar/MainSidebar"));
 const Login = lazy(() => import("../components/login/login"));
@@ -30,6 +31,7 @@ function Layout() {
           </nav>
           <main className="col p-0 mb-auto border">
             <Outlet/>
+            {/*<VideoCall/>*/}
           </main>
           <aside className="col-4 d-none d-lg-flex flex-grow-0 ">
             <div className={"position-fixed h-100"} style={{maxWidth: 350}}>
