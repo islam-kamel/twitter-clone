@@ -15,7 +15,7 @@ export default function VideoCall() {
   const [callEnded, setCallEnded] = useState(false)
   const [name, setName] = useState("")
 
-  const myVideo = useRef()
+  const myVideo = useRef(null)
   const userVideo = useRef()
   const connectionRef = useRef()
 
@@ -39,6 +39,7 @@ export default function VideoCall() {
       setName(data.name)
       setCallerSignal(data.signal)
     })
+
   }, [])
 
   const callUser = (id) => {
@@ -57,8 +58,9 @@ export default function VideoCall() {
       })
     })
 
-    peer.on("stream", (stream) => {
-      userVideo.current.srcObject = stream
+    peer.on("stream", (incomingStream) => {
+      userVideo.current.srcObject = incomingStream
+      myVideo.current.srcObject = stream;
     })
 
     socket.on("callAccepted", (signal) => {
@@ -101,7 +103,7 @@ export default function VideoCall() {
       <div className="container">
         <div className="video-container">
           <div className="video">
-            {stream && <audio controls playsInline muted ref={myVideo} autoPlay style={{width: "300px"}}/>}
+            {stream && <audio controls playsInline  muted ref={myVideo} autoPlay style={{width: "300px"}}/>}
           </div>
           <div className="video">
             {callAccepted && !callEnded ?
