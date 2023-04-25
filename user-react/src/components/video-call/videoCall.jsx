@@ -22,12 +22,69 @@ export default function VideoCall() {
   const cameraNumber = 0
 
 
+  const getListOfVideoInputs = async () => {
+    // Get the details of audio and video output of the device
+    const enumerateDevices = await navigator.mediaDevices.enumerateDevices();
+
+    //Filter video outputs (for devices with multiple cameras)
+    return enumerateDevices.filter((device) => device.kind === "videoinput");
+  };
+
+  const initializeMedia = async () => {
+    // this.setState({imageDataURL: null});
+
+    if (!("mediaDevices" in navigator)) {
+      navigator.mediaDevices = {};
+    }
+
+    if (!("getUserMedia" in navigator.mediaDevices)) {
+      navigator.mediaDevices.getUserMedia = function (constraints) {
+        var getUserMedia =
+          navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.mediaDevices;
+
+        if (!getUserMedia) {
+          return Promise.reject(new Error("getUserMedia Not Implemented"));
+        }
+
+        return new Promise((resolve, reject) => {
+          getUserMedia.call(navigator, constraints, resolve, reject);
+        });
+      };
+    }
+
+    //Get the details of video inputs of the device
+    const videoInputs = await getListOfVideoInputs();
+
+    //The device has a camera
+    if (videoInputs.length) {
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            deviceId: {
+              exact: videoInputs[cameraNumber].deviceId,
+            },
+          },
+        })
+        .then((stream) => {
+          myVideo.current.srcObjcet = stream;
+          setStream(stream)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      alert("The device does not have a camera");
+    }
+  };
+
+
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({audio: true, video: true})
-      .then((stream) => {
-        setStream(stream);
-        myVideo.current.srcObject = stream;
-      });
+    // navigator.mediaDevices.getUserMedia({audio: true})
+    //   .then((stream) => {
+    //     setStream(stream);
+    //     myVideo.current.srcObject = stream;
+    //   });
+    initializeMedia()
     socket.on("me", (id) => {
       setMe(id)
     });
