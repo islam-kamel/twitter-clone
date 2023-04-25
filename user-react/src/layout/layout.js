@@ -30,8 +30,8 @@ function Layout() {
             <MainSidebar/>
           </nav>
           <main className="col p-0 mb-auto border">
-            {/*<Outlet/>*/}
-            <VideoCall/>
+            <Outlet/>
+            {/*<VideoCall/>*/}
           </main>
           <aside className="col-4 d-none d-lg-flex flex-grow-0 ">
             <div className={"position-fixed h-100"} style={{maxWidth: 350}}>

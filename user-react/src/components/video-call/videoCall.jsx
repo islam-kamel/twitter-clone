@@ -60,7 +60,7 @@ export default function VideoCall() {
 
     peer.on("stream", (incomingStream) => {
       userVideo.current.srcObject = incomingStream
-      myVideo.current.srcObject = stream;
+      // myVideo.current.srcObject = stream;
     })
 
     socket.on("callAccepted", (signal) => {
