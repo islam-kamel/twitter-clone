@@ -271,7 +271,6 @@ export default function MainSidebar() {
             </div>
 
             {userInfo?.id && (
-
               <div className={"d-flex align-self-center align-items-center w-100"}>
                 <UserSignButton userInfo={userInfo}/>
               </div>

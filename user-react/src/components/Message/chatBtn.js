@@ -4,11 +4,20 @@ import React, {useRef} from "react";
 export default function ChatBtn(props) {
   const inputRef = useRef();
 
+  const clearInput = () => inputRef.current.value = '';
   const handleClick = () => {
     if (props?.handleSendMessage) {
       props?.handleSendMessage(inputRef?.current?.value)
+      clearInput();
     }
   }
+
+  const handleEnter = (e) => {
+    if (e.key === 'Enter') {
+      handleClick();
+    }
+  }
+
   return (
     <div className={"p-2 w-100"}>
       <div className={"d-flex bg-secondary-subtle px-2 rounded-3"}>
@@ -30,6 +39,7 @@ export default function ChatBtn(props) {
         </div>
         <input
           ref={inputRef}
+          onKeyDown={handleEnter}
           dir={"auto"}
           className={"form-control border-0 fw-light"}
           placeholder={"Start a new  message"}

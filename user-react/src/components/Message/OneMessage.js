@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const OneMessage = (props) => {
   const navigate = useNavigate()
-  const [displayLastMessage, setDisplayLastMessage] = useState(null)
+  const [displayLastMessage, setDisplayLastMessage] = useState('')
 
   const handleClick = () => {
     if (props?.handleClick) {
@@ -15,11 +15,15 @@ const OneMessage = (props) => {
 
   useEffect(() => {
     const lastMessage = props.lastMessage;
+
+    if(!lastMessage) return;
+
     if (props?.user?.username === lastMessage?.sender) {
       setDisplayLastMessage(lastMessage?.content)
     } else {
       setDisplayLastMessage(`You: ${lastMessage?.content}`)
     }
+
   }, [props.lastMessage, props?.user?.username])
 
 

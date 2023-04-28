@@ -8,6 +8,7 @@ const initialState = {
   latestMessages: {},
   usersProfiles: [],
   messages: [],
+  unreadMessages: [],
 }
 
 export const fetchAllLatestMessages = createAsyncThunk('chat/fetchAllLatestMessages', async (data, thunkAPI) => {
@@ -25,9 +26,15 @@ export const fetchAllLatestMessages = createAsyncThunk('chat/fetchAllLatestMessa
     limit(1)
   );
   const message = await getDocs(q)
+
+  if (!message.docs[0]) {
+    return thunkAPI.rejectWithValue()
+  }
+
   const messageDate = message.docs[0].data()?.sent_date.toJSON()
   return {user: receiver, message: {...message.docs[0].data(), sent_date : messageDate}}
 })
+
 export const fetchAllUsersProfiles = createAsyncThunk('chat/fetchAllUserChatInfo', async (data, thunkAPI) => {
   try {
     try {

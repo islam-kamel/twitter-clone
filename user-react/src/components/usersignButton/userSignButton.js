@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
 import {useSelector} from "react-redux";
 
-const UserSignButton = () => {
+const UserSignButton = ({toggle}) => {
   const logout = useLogout();
   const userInfo = useSelector(state => state.currentUser.userProfile);
 
@@ -27,7 +27,7 @@ const UserSignButton = () => {
           <TwDropdown
             down={false}
             classes={"tw-dropdown-top-center tw-dropdown-arrow-down mb-5"}
-            toggle={
+            toggle={ toggle ||
               <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
             }
           >
