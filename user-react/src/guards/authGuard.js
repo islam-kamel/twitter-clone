@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuthState} from "../store/features/user/user";
 import LoadingSpinner from "../components/Loading/loading-spinner";
-import {debounce} from "../utility/utils";
+import {throttle} from "../utility/utils";
 
 
 function authGuard(Component) {
@@ -24,7 +24,7 @@ function authGuard(Component) {
     }, [dispatch, navigate])
 
     useEffect(() => {
-      debounce(getState, 50)()
+      throttle(getState, 50)()
     }, [getState])
 
     return (

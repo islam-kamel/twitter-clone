@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
 import {fetchAllUsersProfiles, setChatsInfo} from "../../store/chat/chatV2";
+import {debounce} from "../../utility/utils";
 
 
 class MessageModel {
@@ -45,6 +46,8 @@ export function useMessages(value) {
   const [currentChatId, setCurrentChatId] = useState();
   const [unreadMessages, setUnreadMessages] = useState([]);
 
+  const unSubscribe = useCallback((callback) => callback, []);
+
   const chatsList = useSelector(state => state.chatV2.chatsList);
   const params = value;
 
@@ -71,7 +74,6 @@ export function useMessages(value) {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "modified") {
           const message = {...change.doc.data(), id: change.doc.id};
-
           updateMessages(message);
         }
 
@@ -102,18 +104,35 @@ export function useMessages(value) {
       orderBy("sent_date")
     );
 
-    return trackUpdates(q)
-  }, [chatsList, getChatId, trackUpdates]);
+    return unSubscribe(trackUpdates(q));
+  }, [chatsList, getChatId, trackUpdates, unSubscribe]);
 
-  const readMessage = useCallback((messageId) => {
-    const messagesRef = doc(firebaseDb, "messages", messageId);
-    updateDoc(messagesRef, {
-      seen: true
+  const readMessage = useCallback(({username}) => {
+    const update = (messageId) => {
+      const messagesRef = doc(firebaseDb, "messages", messageId);
+      updateDoc(messagesRef, {
+        seen: true
+      })
+    }
+
+    setUnreadMessages(prev => {
+      if (!prev.length) return prev;
+
+      prev.forEach(item => {
+        if (item?.sender !== username) {
+          debounce(() => update(item.id), 500)();
+          readMessage(item.id)
+        }
+      })
+      return [];
     })
-
-    setUnreadMessages([]);
-
   }, []);
+
+  useEffect(() => {
+    return () => {
+      unSubscribe();
+    }
+  }, [unSubscribe])
 
   return {
     messages,

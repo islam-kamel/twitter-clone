@@ -57,8 +57,18 @@ class Token {
 
 let flag = true;
 let timer;
+let debId;
 
 export function debounce(callback, wait) {
+  return function () {
+    if (debId) {
+      clearTimeout(debId);
+    }
+
+    debId = setTimeout(() => callback(), wait)
+  }
+}
+export function throttle(callback, wait) {
   return function () {
     if (timer && flag) {
       clearTimeout(timer);

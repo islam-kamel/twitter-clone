@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {useMessages} from "../../hooks/chat-hooks/chatHooks";
@@ -34,34 +34,29 @@ const MessageCreator = ({formYou = true, children, time, message, seen}) => {
 }
 
 function Chat(props) {
+  const messagesContainerRef = useRef(null);
+
   const userInfo = useSelector(state => state.currentUser.userProfile)
+
   const params = useParams()
+
   const username = props?.username || params.username;
-  const {messages, getMessages, setMessages, unreadMessages, readMessage} = useMessages(username)
+
+  const {messages, getMessages, unreadMessages, readMessage} = useMessages(username)
 
   useEffect(() => {
-    let unSubscribe;
-    if (params || username) {
-      unSubscribe = getMessages()
+    if (Object.entries(messages).length) {
+      messagesContainerRef.current.scrollIntoView({block: "end", behavior: "smooth"})
     }
+  }, [messages])
 
-    return () => {
-      try {
-        unSubscribe()
-      } catch (e) {
-        console.log("filled to unSubscribe")
-      }
-      setMessages([])
-    }
-  }, [getMessages, params, setMessages, username])
+  useEffect(() => {
+    getMessages()
+  }, [getMessages])
 
   useEffect(() => {
     if (unreadMessages.length) {
-      unreadMessages.forEach(item => {
-        if (item?.sender !== userInfo?.username) {
-          readMessage(item.id)
-        }
-      })
+      readMessage({username: userInfo?.username})
     }
   }, [readMessage, unreadMessages, userInfo?.username])
 
@@ -70,7 +65,7 @@ function Chat(props) {
   }
 
   return (
-    <div className={"d-flex p-0 justify-content-center  align-items-center w-100"}>
+    <div ref={messagesContainerRef} className={"d-flex p-0 justify-content-center  align-items-center w-100"}>
       <div className={"my-2 w-100"}>
         <div className={"card-body"} id={"chatList"}>
           {Object.values(messages).map((item, index) => {
@@ -83,9 +78,7 @@ function Chat(props) {
                 message={item.content}
                 seen={item.seen}
                 time={moment(x.toDate()).fromNow()}
-              >
-                <span className={"text-danger fw-light fs-6"}>{item.chat_id} </span>
-              </MessageCreator>
+              />
             );
           })}
         </div>
