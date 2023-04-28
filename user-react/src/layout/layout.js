@@ -3,7 +3,6 @@ import {lazy, useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchCurrentUserProfile} from "../store/features/user/user";
 import {SmNavbar} from "../components/main-sidebar/MainSidebar";
-import VideoCall from "../components/video-call/videoCall";
 
 const MainSidebar = lazy(() => import("../components/main-sidebar/MainSidebar"));
 const Login = lazy(() => import("../components/login/login"));
@@ -11,6 +10,7 @@ const SignUp = lazy(() => import("../components/sign-up/SignUp"));
 const NewToTwitter = lazy(() => import("../components/new-to-twitter/NewToTwitter"));
 const RightSidebar = lazy(() => import("../components/RightSidebar/RightSidebar"));
 const Footer = lazy(() => import("../components/footer/Footer"));
+
 
 function Layout() {
   const dispatch = useDispatch();

@@ -54,6 +54,7 @@ class Token {
 }
 
 
+// export const socket = io.connect("http://192.168.1.10:3008", );
 
 let flag = true;
 let timer;
@@ -68,6 +69,7 @@ export function debounce(callback, wait) {
     debId = setTimeout(() => callback(), wait)
   }
 }
+
 export function throttle(callback, wait) {
   return function () {
     if (timer && flag) {

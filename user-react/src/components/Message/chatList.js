@@ -10,13 +10,13 @@ export default function ChatList(props) {
   const dispatch = useDispatch();
   const lastMessages = useSelector(state => state.chatV2.latestMessages);
 
+
   useEffect(() => {
     setLoading(true)
     const promiseList = []
-    chatsList.forEach(chat => {
-      promiseList.push(dispatch(fetchAllLatestMessages({chatId: chat.chatId, receiver: chat.receiver})).unwrap())
+    Object.keys(chatsList).forEach(key => {
+      promiseList.push(dispatch(fetchAllLatestMessages(chatsList[key])).unwrap())
     })
-
     Promise.all(promiseList)
       .finally(() => {
         setLoading(false)
@@ -26,7 +26,7 @@ export default function ChatList(props) {
   return (
     <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
 
-      {!loading && lastMessages && usersProfiles?.map((user, index) => {
+      {!loading && lastMessages && Object.values(usersProfiles)?.map((user, index) => {
         return <OneMessage
           key={index}
           {...props}

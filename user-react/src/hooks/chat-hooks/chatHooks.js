@@ -1,18 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  or,
-  orderBy,
-  query,
-  Timestamp,
-  updateDoc,
-  where
-} from "firebase/firestore";
+import {addDoc, collection, doc, onSnapshot, or, orderBy, query, Timestamp, updateDoc, where} from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
 import {fetchAllUsersProfiles, setChatsInfo} from "../../store/chat/chatV2";
 import {debounce} from "../../utility/utils";
@@ -48,7 +36,7 @@ export function useMessages(value) {
 
   const unSubscribe = useCallback((callback) => callback, []);
 
-  const chatsList = useSelector(state => state.chatV2.chatsList);
+  const chatsObj = useSelector(state => state.chatV2.chatsObj);
   const params = value;
 
   const getChatId = useCallback(({value, targetList}) => {
@@ -92,8 +80,8 @@ export function useMessages(value) {
 
   const getMessages = useCallback((chat_id) => {
     const messagesRef = getMessagesRef();
-    const chatId = chat_id || getChatId({targetList: chatsList})[0]?.chatId;
-
+    const chatId = chat_id || getChatId({targetList: Object.values(chatsObj)})[0]?.chatId;
+    // const chatId = chatsObj[params].chatId
     if (!chatId) return;
 
     setCurrentChatId(chatId)
@@ -105,7 +93,7 @@ export function useMessages(value) {
     );
 
     return unSubscribe(trackUpdates(q));
-  }, [chatsList, getChatId, trackUpdates, unSubscribe]);
+  }, [chatsObj, getChatId, trackUpdates, unSubscribe]);
 
   const readMessage = useCallback(({username}) => {
     const update = (messageId) => {
@@ -136,7 +124,7 @@ export function useMessages(value) {
 
   return {
     messages,
-    chatsList,
+    chatsObj,
     getChatId,
     getMessages,
     setMessages,
@@ -149,13 +137,29 @@ export function useMessages(value) {
 export function useChatInfo() {
   const dispatch = useDispatch();
 
-  const {userInfo, usersProfiles, chatsList} = useSelector(state => {
+  const {userInfo, usersProfiles, chatsObj: chatsList} = useSelector(state => {
     return {
       userInfo: state.currentUser.userProfile,
       usersProfiles: state.chatV2.usersProfiles,
       chatsList: state.chatV2.chatsList,
+      chatsObj: state.chatV2.chatsObj
     }
   });
+
+  const trackUpdates = useCallback((q) => {
+    return onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          const chat = change.doc.data();
+          const receiver = change.doc.data().users[0] !== userInfo.username ? 0 : 1;
+          const chatObj = {receiver: chat.users[receiver], chatId: change.doc.id};
+          dispatch(setChatsInfo(chatObj))
+          dispatch(fetchAllUsersProfiles({username: chatObj.receiver}))
+        }
+      });
+    })
+  }, [dispatch, userInfo.username]);
+
 
   const chatsQuery = useCallback((chatRef) => {
     return query(
@@ -168,26 +172,11 @@ export function useChatInfo() {
     const chat = collection(firebaseDb, "chat");
 
     const q = chatsQuery(chat);
-
-    const chatSnapShot = await getDocs(q);
-
-    return chatSnapShot.docs.map(doc => {
-      const item = doc.data();
-
-      const receiver = item.users[0] !== userInfo.username ? 0 : 1;
-
-      return {receiver: item.users[receiver], chatId: doc.id};
-    });
-  }, [chatsQuery, userInfo.username])
+    return trackUpdates(q);
+  }, [chatsQuery, trackUpdates])
 
   useEffect(() => {
-    fetchChats().then(chatList => {
-      dispatch(setChatsInfo(chatList))
-
-      const usersList = chatList.map(item => item.receiver)
-
-      dispatch(fetchAllUsersProfiles({usersList: usersList}))
-    })
+    fetchChats();
   }, [dispatch, fetchChats])
 
   return {userInfo, usersProfiles, chatsList};
@@ -198,7 +187,7 @@ export function useSendMessage(params) {
 
   const {userInfo, chatsList} = useSelector(state => {
     return {
-      chatsList: state.chatV2.chatsList,
+      chatsList: state.chatV2.chatsObj,
       userInfo: state.currentUser.userProfile
     }
   })
@@ -206,7 +195,7 @@ export function useSendMessage(params) {
   return useCallback(async ({value}) => {
     const content = value
     const messagesRef = collection(firebaseDb, "messages")
-    const chatId = getChatId({targetList: chatsList})[0].chatId
+    const chatId = getChatId({targetList: Object.values(chatsList)})[0].chatId
 
     const message = new MessageModel({
       chatId,

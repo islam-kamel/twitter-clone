@@ -4,9 +4,10 @@ import {collection, getDocs, limit, orderBy, query, where} from "firebase/firest
 import {firebaseDb} from "../API/firebase";
 
 const initialState = {
+  chatsObj: {},
   chatsList: [],
   latestMessages: {},
-  usersProfiles: [],
+  usersProfiles: {},
   messages: [],
   unreadMessages: [],
 }
@@ -36,20 +37,15 @@ export const fetchAllLatestMessages = createAsyncThunk('chat/fetchAllLatestMessa
 })
 
 export const fetchAllUsersProfiles = createAsyncThunk('chat/fetchAllUserChatInfo', async (data, thunkAPI) => {
-  try {
     try {
-      const userList = [];
-      for (let user of data.usersList) {
-        await axiosInstance.get(`/api/user/profile/${user}`).then(res => userList.push(res.data));
-      }
-      return userList;
+      const profile = await axiosInstance.get(`/api/user/profile/${data.username}`);
+      return profile.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.response.message || error.response.data);
     }
-  } catch (e) {
-
-  }
 })
+
+
 const chatV2 = createSlice({
   name: 'chatV2',
   initialState,
@@ -60,7 +56,7 @@ const chatV2 = createSlice({
     })
 
     builder.addCase(fetchAllUsersProfiles.fulfilled, (state, action) => {
-      state.usersProfiles = action.payload
+      state.usersProfiles[action.payload.username] = action.payload
       state.loading = false;
       state.error = null;
     })
@@ -76,7 +72,7 @@ const chatV2 = createSlice({
     usersChatStateFulfilled: (state, action) => {
       state.loading = false;
       state.error = null;
-      state.chatsList = action.payload;
+      state.chatsObj[action.payload.chatId] = action.payload;
     }
   }
 })

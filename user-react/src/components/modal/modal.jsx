@@ -96,24 +96,27 @@ class TwModal extends React.Component {
    * @param props
    * */
   static ModalButton(props) {
+    const modalRole = {
+      "data-bs-toggle": "modal",
+      "data-bs-target": `#${props.targetId}`
+    }
     const elementRole = {
       type: "button",
-      className: `btn btn-${props.btnStyle ?? "primary"} ${props.classes ?? ""}`,
-      "data-bs-toggle": "modal",
-      "data-bs-target": `#${props.targetId}`,
+      className: `btn btn-${props.btnStyle ?? "primary"} ${props.classes ?? ""}`
     }
     return (
       <>
         {!props?.withOutButton
           ? (
             <button
+              {...modalRole}
               {...elementRole}
               {...props.other}
             >
               {props.title ? props.title : props.children ? props.children : "Tw Model"}
             </button>
           ) : (
-            <span  {...elementRole} className={""}>{props?.children}</span>
+            <span {...modalRole} >{props?.children}</span>
           )
         }
 

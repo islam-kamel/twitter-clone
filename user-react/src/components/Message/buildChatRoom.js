@@ -1,8 +1,8 @@
+import React, {useCallback} from "react";
 import {useSelector} from "react-redux";
 import {useLocation, useNavigate} from "react-router-dom";
 import Header from "../header/header";
 import Chat from "../chat/Chat";
-import {useCallback} from "react";
 
 
 function BuildChatRoom(props) {
@@ -10,11 +10,15 @@ function BuildChatRoom(props) {
   const params = props.params;
   const location = useLocation()
 
+  // const {getChatId} = useMessages();
+  // const chatsObj = useSelector(state => state.chatV2.chatsObj)
+  // const dispatch = useDispatch();
+
   const receiver = useSelector(state => {
     if (location.state?.key) {
       return state.chatV2.usersProfiles[location.state?.key]
     }
-    return state.chatV2.usersProfiles.filter(user => user.username === params.username)[0]
+    return state.chatV2.usersProfiles[params.username]
   })
 
   const mainBack = useCallback(() => {
@@ -27,6 +31,11 @@ function BuildChatRoom(props) {
     }
     navigate("/Message", {replace: true})
   }
+
+  // const handleStartCall = useCallback(() => {
+  //   const {chatId} = getChatId({value: params.username, targetList: Object.values(chatsObj)})[0] || {}
+  //   dispatch(setCallId(chatId))
+  // }, [chatsObj, dispatch, getChatId, params.username])
 
   return (
     <div className={"w-100 "}>
@@ -45,11 +54,7 @@ function BuildChatRoom(props) {
                 </div>
 
               </div>
-              <div className="icon-button">
-                <div className="icon-bg i-bg-primary">
-                  <i className="bi bi-exclamation-circle"></i>
-                </div>
-              </div>
+              {/*<AudioCall handleStartCall={handleStartCall}/>*/}
             </div>
           </Header.Top>
         </Header>
@@ -94,3 +99,177 @@ function BuildChatRoom(props) {
 }
 
 export default BuildChatRoom;
+
+
+// const ringtone = require("../../assets/audio/ringtone.mp3");
+//
+// const modalId = "audio-modal";
+//
+//
+// socket.on("connect_error", (err) => {
+//   console.log(`connect_error due to ${err.message}`);
+// });
+//
+// export function AudioCallModal() {
+//
+//   const {callId} = useSelector(state => state.audioCall);
+//   const [stream, setStream] = useState()
+//   const [receivingCall, setReceivingCall] = useState(false)
+//   const [callerSignal, setCallerSignal] = useState()
+//   const [callAccepted, setCallAccepted] = useState(false)
+//   const [callEnded, setCallEnded] = useState(false)
+//   const [name, setName] = useState("")
+//
+//   const userAudioRef = useRef()
+//   const myAudioRef = useRef();
+//   const ringtoneRef = useRef();
+//   const connectionRef = useRef()
+//
+//   const getUserMedia = useCallback(async () => {
+//     return navigator.mediaDevices.getUserMedia({audio: true});
+//   }, [])
+//
+//   useEffect(() => {
+//     if (receivingCall) {
+//       ringtoneRef.current.play()
+//     }
+//   }, [receivingCall])
+//
+//   useEffect(() => {
+//     if (callId) {
+//       getUserMedia().then(stream => {
+//         setStream(stream);
+//          myAudioRef.current.srcObject = stream;
+//       });
+//
+//       socket.emit('join', callId);
+//     }
+//
+//     socket.on("callUser", (data) => {
+//       setReceivingCall(true)
+//       setName(data.name)
+//       setCallerSignal(data.signal)
+//     })
+//
+//   }, [callId, getUserMedia])
+//
+//   const callUser = (id) => {
+//     const peer = new Peer({
+//       initiator: true,
+//       trickle: false,
+//       stream: stream
+//     })
+//
+//     peer.on("signal", (data) => {
+//       socket.emit("callUser", {
+//         userToCall: callId,
+//         signalData: data,
+//         from: callId,
+//         name: 'Static name'
+//       })
+//     })
+//
+//     peer.on("stream", (incomingStream) => {
+//       userAudioRef.current.srcObject = incomingStream
+//     })
+//
+//     socket.on("callAccepted", (signal) => {
+//       setCallAccepted(true)
+//       peer.signal(signal)
+//     })
+//
+//     connectionRef.current = peer
+//   }
+//
+//   const answerCall = () => {
+//     setCallAccepted(true)
+//
+//     const peer = new Peer({
+//       initiator: false,
+//       trickle: false,
+//       stream: stream
+//     })
+//
+//     peer.on("signal", (data) => {
+//       socket.emit("answerCall", {signal: data, to: callId})
+//     })
+//
+//     peer.on("stream", (stream) => {
+//       userAudioRef.current.srcObject = stream
+//     })
+//
+//     peer.signal(callerSignal)
+//     connectionRef.current = peer
+//   }
+//
+//   const leaveCall = () => {
+//     setCallEnded(true)
+//     connectionRef.current.destroy()
+//   }
+//
+//
+//   return (
+//     <TwModal id={modalId} modalStyle={"modal-dialog-scrollable"}>
+//       <TwModal.Header classes={"text-dark"} defaultHeader={true}/>
+//       <TwModal.Body>
+//         <audio ref={myAudioRef} playsInline controls muted autoPlay></audio>
+//         <audio ref={userAudioRef} playsInline controls autoPlay></audio>
+//         <audio ref={ringtoneRef} src={ringtone} playsInline hidden></audio>
+//         <span>Hi</span>
+//
+//         <div className="call-button">
+//           {callAccepted && !callEnded ? (
+//             <button className="btn btn-secondary" onClick={leaveCall}>
+//               End Call
+//             </button>
+//           ) : (
+//             <button className="btn btn-primary" aria-label="call" onClick={callUser}>
+//               Call
+//             </button>
+//           )}
+//         </div>
+//
+//         <div>
+//           {receivingCall && !callAccepted ? (
+//             <div className="caller">
+//               <h1>{name} is calling...</h1>
+//               <button className={"btn btn-primary"} onClick={answerCall}>
+//                 Answer
+//               </button>
+//             </div>
+//           ) : null}
+//         </div>
+//       </TwModal.Body>
+//     </TwModal>
+//   )
+// }
+//
+// function AudioCall(props) {
+//
+//   const handleStartCall = () => {
+//     const fn = props?.handleStartCall || function () {
+//     }
+//     fn();
+//   }
+//
+//   return (
+//     <div>
+//       <TwModal.ModalButton
+//         withOutButton={true}
+//         targetId={modalId}
+//         btnStyle={"p-2 border-none"}
+//         classes={"text-primary fw-light"}
+//       >
+//         <div
+//           onClick={handleStartCall}
+//           className="icon-button"
+//         >
+//           <div className="icon-bg i-bg-primary">
+//             <i className="bi bi-mic"></i>
+//           </div>
+//         </div>
+//       </TwModal.ModalButton>
+//     </div>
+//   )
+//
+// }
