@@ -5,7 +5,7 @@ import {firebaseDb} from "../API/firebase";
 
 const initialState = {
   chatsList: [],
-  latestMessages: [],
+  latestMessages: {},
   usersProfiles: [],
   messages: [],
 }
@@ -58,7 +58,7 @@ const chatV2 = createSlice({
       state.error = null;
     })
     builder.addCase(fetchAllLatestMessages.fulfilled, (state, action) => {
-      state.latestMessages.push(action.payload)
+      state.latestMessages[action.payload.user] = action.payload;
     })
   },
   reducers: {

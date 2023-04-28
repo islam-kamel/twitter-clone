@@ -46,7 +46,7 @@ function ErrorToasts(props) {
       aria-atomic="true"
     >
       <div className="d-flex">
-        <div className="toast-body">
+        <div className="toast-body text-light">
           {props?.message}
         </div>
         <span

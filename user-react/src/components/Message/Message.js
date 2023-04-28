@@ -1,14 +1,18 @@
-import React, {useRef, useState} from "react";
-import {Link, Outlet} from "react-router-dom";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import {Link, useLocation, useParams} from "react-router-dom";
 import authGuard from "../../guards/authGuard";
 import Header from "../header/header";
 import "./Message.css"
 import ChatList from "./chatList";
-
+import ChatRoom from "./ChatRoom";
 
 const Message = () => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [show, setShow] = useState(false);
+  const params = useParams();
+  const [chatTop, setChatTop] = useState(false);
   const searchInput = useRef(null);
+  const location = useLocation();
 
   const handleShowPlaceholder = () => {
     if (!searchInput.current.value) {
@@ -16,10 +20,42 @@ const Message = () => {
     }
   }
 
+  useEffect(() => {
+    if (params?.username) {
+      setShow(prev => !prev);
+    }
+  }, [location.pathname, params?.username])
+
+  useEffect(() => {
+    const clientWidth = (event) => {
+      if (event.target.innerWidth >= 1280) {
+        setChatTop(false)
+      } else {
+        setChatTop(true)
+      }
+    }
+
+    window.addEventListener("resize", clientWidth);
+
+    if (window.innerWidth < 1281) {
+      setChatTop(true)
+    }
+
+    return () => {
+      window.removeEventListener("resize", clientWidth)
+    }
+  }, []);
+
+  const handleBack = useCallback(({mainBack}) => {
+    mainBack()
+    setShow(prev => !prev);
+  }, [])
+
   return (
-    <>
-      <div className={"row m-0 p-0"} style={{height: "100vh"}}>
-        <div className={"col-12 p-0 border border-end-0 col-xl-6 h-100 z-0 "}>
+    <div className={"overflow-hidden"} style={{maxHeight: "100vh"}}>
+      {show && chatTop && <ChatRoom onBack={handleBack}/>}
+      <div className={"row m-0 p-0 overflow-hidden"} style={{height: "100vh", maxHeight: "100vh"}}>
+        <div className={"col-12 p-0 border border-end-0 col-xl-6 h-100"}>
           <div className={"d-flex flex-column py-3"}>
             <Header noBorder>
               <Header.Top>
@@ -68,17 +104,15 @@ const Message = () => {
               </Header.Down>
             </Header>
           </div>
-          <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
+          <div className="col overflow-y-auto " style={{maxHeight: "80vh"}}>
             <ChatList/>
           </div>
         </div>
-        <div className={"col-xl-6 border p-0 m-0 z-1 d-none d-lg-block"}>
-          <div className={""}>
-            <Outlet/>
-          </div>
+        <div className={"col-6 border p-0 m-0 d-none d-lg-block"}>
+          {show && !chatTop && <ChatRoom onBack={handleBack}/>}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

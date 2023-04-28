@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {threeDots, verifyBlue} from "../../constants/icons";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
 
 const OneMessage = (props) => {
   const navigate = useNavigate()
   const [displayLastMessage, setDisplayLastMessage] = useState(null)
-  const latestMessages = useSelector(state => state.chatV2.latestMessages)
+
   const handleClick = () => {
     if (props?.handleClick) {
       return props?.handleClick({user: props?.user.username, chatId: props?.chatId})
@@ -15,16 +14,15 @@ const OneMessage = (props) => {
   }
 
   useEffect(() => {
-    const lastMessage = latestMessages[props?.index].message;
-    if (props?.user?.profile?.username === lastMessage?.sender) {
+    const lastMessage = props.lastMessage;
+    if (props?.user?.username === lastMessage?.sender) {
       setDisplayLastMessage(lastMessage?.content)
-    } else  {
+    } else {
       setDisplayLastMessage(`You: ${lastMessage?.content}`)
     }
-  }, [latestMessages])
+  }, [props.lastMessage, props?.user?.username])
 
-  useEffect(() => {
-  }, [latestMessages])
+
   return (
     <>
       <div

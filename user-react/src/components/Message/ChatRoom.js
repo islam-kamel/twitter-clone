@@ -15,14 +15,16 @@ const ChatRoom = (props) => {
     sendMessage({value}).then((chatId) => {
       dispatch(fetchAllLatestMessages({chatId, receiver: params.username}))
     })
-  }, [sendMessage])
+  }, [dispatch, params.username, sendMessage])
 
   return (
     <div className={"d-flex flex-column justify-content-between"} style={{height: "100vh"}}>
       <div className={"overflow-y-auto"} style={{maxHeight: "100vh"}}>
-        <BuildChatRoom params={{username: params.username}}/>
+        <BuildChatRoom {...props} params={{username: params.username}} withoutBtn={true}/>
       </div>
-      <ChatBtn handleSendMessage={handleSendMessage}/>
+      <div className={"position-sticky bottom-0 bg-light"}>
+        <ChatBtn handleSendMessage={handleSendMessage}/>
+      </div>
     </div>
   );
 

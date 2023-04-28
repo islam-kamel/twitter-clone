@@ -226,3 +226,11 @@ $second-icon-color: rgba(0, 186, 124);
 .bg-element {
   background-color: bootstrap.$light;
 }
+
+@media screen and (max-width: 1004px) {
+  .border {
+    border-right: unset  !important;
+    border-top: unset !important;
+    border-left: bootstrap.$border-width bootstrap.$border-color bootstrap.$border-style;
+  }
+}

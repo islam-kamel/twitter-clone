@@ -21,19 +21,18 @@ export default function ChatList(props) {
       .finally(() => {
         setLoading(false)
       })
-
   }, [chatsList, dispatch])
 
   return (
     <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
 
-      {!loading && usersProfiles?.map((user, index) => {
+      {!loading && lastMessages && usersProfiles?.map((user, index) => {
         return <OneMessage
           key={index}
           {...props}
           chatId={index}
           index={index}
-          lastMessage={lastMessages[index]?.message}
+          lastMessage={lastMessages[user.username]?.message}
           user={user}
         />
       })}

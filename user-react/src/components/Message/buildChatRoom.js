@@ -2,6 +2,7 @@ import {useSelector} from "react-redux";
 import {useLocation, useNavigate} from "react-router-dom";
 import Header from "../header/header";
 import Chat from "../chat/Chat";
+import {useCallback} from "react";
 
 
 function BuildChatRoom(props) {
@@ -15,12 +16,18 @@ function BuildChatRoom(props) {
     }
     return state.chatV2.usersProfiles.filter(user => user.username === params.username)[0]
   })
+
+  const mainBack = useCallback(() => {
+    navigate("/Message", {replace: true})
+  }, [navigate])
+
   const handleBack = () => {
     if (props?.onBack) {
-      return props.onBack()
+      return props.onBack({mainBack})
     }
-    navigate("/Message")
+    navigate("/Message", {replace: true})
   }
+
   return (
     <div className={"w-100 "}>
       <div className={" position-sticky top-0 z-1"}>

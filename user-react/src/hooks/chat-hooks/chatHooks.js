@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-import {addDoc, collection, getDocs, onSnapshot, or, orderBy, query, serverTimestamp, where} from "firebase/firestore";
+import {addDoc, collection, getDocs, onSnapshot, or, orderBy, query, Timestamp, where} from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
 import {fetchAllUsersProfiles, setChatsInfo} from "../../store/chat/chatV2";
 
@@ -79,9 +79,6 @@ export function useMessages(value) {
             setMessages((item) => [...item, change.doc.data()]);
           }
         });
-      },
-      complete: () => {
-        console.log("done")
       }
     });
   }, [chatsList, getChatId]);
@@ -107,7 +104,7 @@ export function useSendMessage(params) {
       chat_id: chatId,
       sender: userInfo.username,
       content: content,
-      sent_date: serverTimestamp()
+      sent_date: Timestamp.fromDate(new Date())
     })
     return chatId
   }, [chatsList, getChatId, userInfo.username])
