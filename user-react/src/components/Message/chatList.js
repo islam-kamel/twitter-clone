@@ -1,32 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import OneMessage from "./OneMessage";
 import {useChatInfo} from "../../hooks/chat-hooks/chatHooks";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllLatestMessages} from "../../store/chat/chatV2";
 
 export default function ChatList(props) {
-  const {usersProfiles, chatsList} = useChatInfo()
-  const [loading, setLoading] = useState(false);
+  const {usersProfiles, fetchChats} = useChatInfo()
   const dispatch = useDispatch();
   const lastMessages = useSelector(state => state.chatV2.latestMessages);
 
 
   useEffect(() => {
-    setLoading(true)
-    const promiseList = []
-    Object.keys(chatsList).forEach(key => {
-      promiseList.push(dispatch(fetchAllLatestMessages(chatsList[key])).unwrap())
-    })
-    Promise.all(promiseList)
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [chatsList, dispatch])
+    try {
+      const getChats = async () => await fetchChats()
+      getChats()
+
+    } catch (e) {
+      console.log("some Error in fetch chat")
+    }
+
+  }, [dispatch, fetchChats])
 
   return (
     <div className="overflow-y-auto" style={{maxHeight: "80vh"}}>
 
-      {!loading && lastMessages && Object.values(usersProfiles)?.map((user, index) => {
+      {Object.values(usersProfiles)?.map((user, index) => {
         return <OneMessage
           key={index}
           {...props}

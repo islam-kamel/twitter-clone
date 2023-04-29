@@ -1,8 +1,23 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback, useEffect, useState} from "react";
-import {addDoc, collection, doc, onSnapshot, or, orderBy, query, Timestamp, updateDoc, where} from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  Timestamp,
+  updateDoc,
+  where
+} from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
-import {fetchAllUsersProfiles, setChatsInfo} from "../../store/chat/chatV2";
+import {
+  addNewLastMessage,
+  fetchAllUsersProfiles,
+  setChatsInfo,
+} from "../../store/chat/chatV2";
 import {debounce} from "../../utility/utils";
 
 
@@ -35,13 +50,12 @@ export function useMessages(value) {
   const [unreadMessages, setUnreadMessages] = useState([]);
 
   const unSubscribe = useCallback((callback) => callback, []);
-
+  const dispatch = useDispatch();
   const chatsObj = useSelector(state => state.chatV2.chatsObj);
   const params = value;
 
   const getChatId = useCallback(({value, targetList}) => {
     const q = value || params
-
     return targetList.filter(chat => chat.receiver === q);
   }, [params])
 
@@ -63,6 +77,13 @@ export function useMessages(value) {
         if (change.type === "modified") {
           const message = {...change.doc.data(), id: change.doc.id};
           updateMessages(message);
+
+          // you can improve this
+          const receiver = chatsObj[message.chat_id].receiver;
+          const messageDate = change.doc.data()?.sent_date.toJSON()
+          const messageObj = {user: receiver, id:change.doc.id , message: {...change.doc.data(), sent_date: messageDate}}
+          dispatch(addNewLastMessage(messageObj))
+          // end here
         }
 
         if (change.type === "added") {
@@ -71,17 +92,15 @@ export function useMessages(value) {
           if (!message?.seen) {
             setUnreadMessages(item => [...item, message])
           }
-
           updateMessages(message);
         }
       });
     })
-  }, [updateMessages]);
+  }, [chatsObj, dispatch, updateMessages]);
 
   const getMessages = useCallback((chat_id) => {
     const messagesRef = getMessagesRef();
     const chatId = chat_id || getChatId({targetList: Object.values(chatsObj)})[0]?.chatId;
-    // const chatId = chatsObj[params].chatId
     if (!chatId) return;
 
     setCurrentChatId(chatId)
@@ -141,10 +160,33 @@ export function useChatInfo() {
     return {
       userInfo: state.currentUser.userProfile,
       usersProfiles: state.chatV2.usersProfiles,
-      chatsList: state.chatV2.chatsList,
       chatsObj: state.chatV2.chatsObj
     }
   });
+
+  const getLatestMessage = useCallback(({chatId, receiver}) => {
+    const messagesRef = collection(firebaseDb, "messages");
+    if (!chatId) return;
+
+    const q = query(
+      messagesRef,
+      where("chat_id", "==", chatId),
+      orderBy("sent_date", "desc"),
+      limit(1)
+    );
+
+    return onSnapshot(q,
+      (snapshot) => {
+        snapshot.docChanges().forEach(change => {
+          if (change.type === "added") {
+            const messageDate = change.doc.data()?.sent_date.toJSON()
+            const messageObj = {user: receiver, id:change.doc.id , message: {...change.doc.data(), sent_date: messageDate}}
+            dispatch(addNewLastMessage(messageObj))
+          }
+        })
+      }
+    )
+  }, [dispatch])
 
   const trackUpdates = useCallback((q) => {
     return onSnapshot(q, (snapshot) => {
@@ -155,16 +197,17 @@ export function useChatInfo() {
           const chatObj = {receiver: chat.users[receiver], chatId: change.doc.id};
           dispatch(setChatsInfo(chatObj))
           dispatch(fetchAllUsersProfiles({username: chatObj.receiver}))
+          getLatestMessage(chatObj)
         }
       });
     })
-  }, [dispatch, userInfo.username]);
+  }, [dispatch, getLatestMessage, userInfo.username]);
 
 
   const chatsQuery = useCallback((chatRef) => {
     return query(
       chatRef,
-      or(where("users", "array-contains-any", [userInfo.username]))
+      where("users", "array-contains-any", [userInfo.username])
     );
   }, [userInfo.username])
 
@@ -175,11 +218,8 @@ export function useChatInfo() {
     return trackUpdates(q);
   }, [chatsQuery, trackUpdates])
 
-  useEffect(() => {
-    fetchChats();
-  }, [dispatch, fetchChats])
 
-  return {userInfo, usersProfiles, chatsList};
+  return {userInfo, usersProfiles, chatsList, fetchChats};
 }
 
 export function useSendMessage(params) {

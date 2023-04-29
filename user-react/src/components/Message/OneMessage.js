@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {threeDots, verifyBlue} from "../../constants/icons";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useMessages} from "../../hooks/chat-hooks/chatHooks";
 
 const OneMessage = (props) => {
   const navigate = useNavigate()
-  const [displayLastMessage, setDisplayLastMessage] = useState('')
+  const [displayLastMessage, setDisplayLastMessage] = useState("")
+  const [isUnread, setIsUnread] = useState(false);
+  const lastMessages = useSelector(state => state.chatV2.latestMessages);
+  const {unreadMessages} = useMessages();
 
   const handleClick = () => {
     if (props?.handleClick) {
@@ -14,17 +19,18 @@ const OneMessage = (props) => {
   }
 
   useEffect(() => {
-    const lastMessage = props.lastMessage;
+    const lastMessage = lastMessages[props?.user.username]?.message;
 
-    if(!lastMessage) return;
+    if (!lastMessage) return;
 
     if (props?.user?.username === lastMessage?.sender) {
       setDisplayLastMessage(lastMessage?.content)
     } else {
       setDisplayLastMessage(`You: ${lastMessage?.content}`)
     }
+    setIsUnread(lastMessage?.seen)
 
-  }, [props.lastMessage, props?.user?.username])
+  }, [lastMessages, props?.user.username, unreadMessages])
 
 
   return (
@@ -53,9 +59,18 @@ const OneMessage = (props) => {
                   </span>
                   <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
                 </div>
-                <div className={"d-flex flex-column"}>
-                  <span className={"fs-6 text-muted fw-light"}>{displayLastMessage}</span>
-                </div>
+                {displayLastMessage &&
+                  <div className={"d-flex align-items-center"}>
+                    <span className={`fs-6 text-muted fw-light me-1`}>{displayLastMessage}</span>
+
+                    {
+                      isUnread
+                        ? <i className={"bi bi-check2-all text-primary"}></i>
+                        : <i className={"bi bi-check2"}></i>
+                    }
+                  </div>
+                }
+
               </div>
             </div>
             <div className={"icon-button"}>
