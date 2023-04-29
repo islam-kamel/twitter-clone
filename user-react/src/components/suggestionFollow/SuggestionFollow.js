@@ -52,9 +52,9 @@ export function SuggestionFollow(props) {
   }, [dispatch])
   return (
     <>
-      {suggestionList?.length && suggestionList.map((user, index) => {
+      {suggestionList?.length && suggestionList.map(user => {
         return (
-          <div className={"trend-card"}>
+          <div key={user.id} className={"trend-card"}>
             <div className="p-4 w-100 d-flex justify-content-between align-items-center">
               <div className="d-flex align-items-center justify-content-center ">
                 <img
@@ -70,8 +70,8 @@ export function SuggestionFollow(props) {
                     >
                       {user?.fullname}
                     </h6>
-                    <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
-                  </div>
+                    {user?.is_verify &&  <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>}
+                    </div>
                   <span className="text-muted fw-light">@{user?.username}</span>
                 </div>
               </div>
