@@ -30,14 +30,7 @@ const RightSidebar = () => {
           <div className="follow d-flex flex-column  card border-0 mt-3 bg-element">
             <h1 style={{fontSize: "20px", fontWeight: "700", padding: "13px 12px", margin: "0"}}>Who to
               follow</h1>
-            <SuggestionFollow username={"mostafaAbdElHady"} fullname={"Mostafa Abd ElHady 🧑‍💻"}
-                              profileImage={"https://picsum.photos/220"}/>
-            <SuggestionFollow username={"ahmedKhaled"} fullname={"Ahmed Khaled 💪"}
-                              profileImage={"https://picsum.photos/220"}/>
-            <SuggestionFollow username={"safaAbdElNaser"} fullname={"Safa Abd ElNaser ❤️"}
-                              profileImage={"https://picsum.photos/220"}/>
-            <SuggestionFollow username={"engyMohamed"} fullname={"Engy Mohamed 🍂"}
-                              profileImage={"https://picsum.photos/220"}/>
+            <SuggestionFollow/>
             <Link to="#" className="show_more">Show more</Link>
           </div>
         </div>
