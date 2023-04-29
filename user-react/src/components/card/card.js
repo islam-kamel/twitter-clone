@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss"
 import {Link} from "react-router-dom";
-import {chart, comment, newFollow, replay, share, threeDots} from "../../constants/icons";
+import {chart, comment, newFollow, replay, share, threeDots, verifyBlue} from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -103,14 +103,15 @@ const Card = ({border = true, ...props}) => {
           <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image}`} alt=""
                className="tw-profile-image  rounded-circle"/>
           <div
-            className={"d-flex ms-2 justify-content-between align-items-start align-items-start w-100"}>
-            <div>
+            className={"d-flex ms-2 justify-content-between align-items-start w-100"}>
+            <div className={'d-flex justify-content-center align-items-center'}>
               <Link
                 to="#"
                 className="tweeter_name text-decoration-none text-dark"
               >
                 {props?.tweet?.user.fullname}
-                <span className={"ms-2 text-muted"}>@{props?.tweet?.user.username} </span>
+                <span className={"ms-2 text-muted"}>@{props?.tweet?.user.username}</span>
+                {props?.tweet?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
               </Link>
               <span className={"text-muted fw-light ms-2"}>
                 {moment(props?.tweet?.create_at).fromNow()}

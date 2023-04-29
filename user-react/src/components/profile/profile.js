@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies} from "../../store/features/replies/replies";
 import Header from "../header/header";
+import {verifyBlue} from "../../constants/icons";
 
 const mediaImage = require("../../Image/media.png")
 
@@ -65,9 +66,11 @@ function Profile() {
         </div>
 
         <div className="px-3 mx-2 ">
-          <h4 className="card-title">{userInfo?.fullname}</h4>
-          <p className="card-text"><small className="text-body-secondary">@{userInfo?.username}</small>
-          </p>
+          <h4 className="card-title">
+            {userInfo?.fullname}
+            {userInfo?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
+          </h4>
+          <p className="card-text"><small className="text-body-secondary">@{userInfo?.username}</small></p>
           {userInfo?.profile?.bio !== "" && (
             <div>
               <p>{userInfo?.profile?.bio}</p>

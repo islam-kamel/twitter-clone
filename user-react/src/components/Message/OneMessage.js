@@ -8,6 +8,8 @@ const OneMessage = (props) => {
   const navigate = useNavigate()
   const [displayLastMessage, setDisplayLastMessage] = useState("")
   const [isUnread, setIsUnread] = useState(false);
+  const [you, setYou] = useState(false);
+
   const lastMessages = useSelector(state => state.chatV2.latestMessages);
   const {unreadMessages} = useMessages();
 
@@ -24,10 +26,14 @@ const OneMessage = (props) => {
     if (!lastMessage) return;
 
     if (props?.user?.username === lastMessage?.sender) {
+      setYou(false);
       setDisplayLastMessage(lastMessage?.content)
+
     } else {
+      setYou(true)
       setDisplayLastMessage(`You: ${lastMessage?.content}`)
     }
+
     setIsUnread(lastMessage?.seen)
 
   }, [lastMessages, props?.user.username, unreadMessages])
@@ -57,11 +63,27 @@ const OneMessage = (props) => {
                     style={{maxWidth: "100%"}}
                   >@{props?.user.username}
                   </span>
-                  <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>
+                  {props?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
                 </div>
-                {displayLastMessage &&
+                {
+                  displayLastMessage &&
                   <div className={"d-flex align-items-center"}>
-                    <span className={`fs-6 text-muted fw-light me-1`}>{displayLastMessage}</span>
+                    {you ? (
+                      <span
+                        dir={"auto"}
+                        className={`fs-6 text-muted fw-light me-1`}
+                      >
+                        {displayLastMessage}
+                      </span>
+
+                    ) : (
+                      <span
+                        dir={"auto"}
+                        className={`fs-6 text-${isUnread ? "muted" : "dark"} fw-${isUnread ? "light" : "bold"} me-1`}
+                      >
+                        {displayLastMessage}
+                      </span>
+                    )}
 
                     {
                       isUnread
@@ -70,7 +92,6 @@ const OneMessage = (props) => {
                     }
                   </div>
                 }
-
               </div>
             </div>
             <div className={"icon-button"}>
