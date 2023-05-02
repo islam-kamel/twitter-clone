@@ -4,12 +4,12 @@ import React, {useCallback, useEffect, useState} from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useDispatch, useSelector} from "react-redux";
 import {getNewSuggestion} from "../../store/features/suggestionFollow/suggetstionFollow";
-
+import {useTranslation} from "react-i18next";
 export function FollowButton({username}) {
   const axios = useAxiosPrivate();
   const [isFollowing, setIsFollowing] = useState();
   const [disabled, setDisabled] = useState(false);
-
+  const [t , translate]= useTranslation();
   const handleFollow = useCallback(async () => {
     setDisabled(true)
     try {
@@ -37,7 +37,7 @@ export function FollowButton({username}) {
       btnStyle={"dark"}
       classes={"rounded-pill"}
     >
-      {isFollowing ? "Unfollow" : "Follow"}
+      {isFollowing ?  t("explore.how_follow_not") : t("explore.how_follow_f")}
     </TwButton>
   );
 }

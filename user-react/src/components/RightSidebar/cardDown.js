@@ -1,7 +1,8 @@
 import React from "react";
 import "./cardDown.css"
-
+import {useTranslation} from "react-i18next";
 const CardDown = (props) => {
+  const [t , translate]= useTranslation();
   return (
     <>
       <div className="follow_profile d-flex justify-content-between align-items-center">
@@ -14,7 +15,7 @@ const CardDown = (props) => {
             <span> {props.username} </span>
           </div>
         </div>
-        <button className="tweet_button rounded-pill border-0 ">Follow</button>
+        <button className="tweet_button rounded-pill border-0 ">{t("explore.how_follow_f")}</button>
       </div>
     </>
   );

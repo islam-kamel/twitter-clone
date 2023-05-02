@@ -5,14 +5,14 @@ import ChatList from "./chatList";
 import BuildChatRoom from "./buildChatRoom";
 import {useSendMessage} from "../../hooks/chat-hooks/chatHooks";
 import ChatBtn from "./chatBtn";
-
+import {useTranslation} from "react-i18next";
 export default function FloatingMessages() {
   const messagesRef = useRef(null);
   const [arrow, setArrow] = useState("bi-chevron-up")
   const [chatRoomOrMessages, setChatRoomOrMessages] = useState(false)
   const [receiver, setReceiver] = useState(null)
   const sendMessage = useSendMessage({username: receiver})
-
+  const [t , translate]= useTranslation();
   const toggleMessages = () => {
 
     if (messagesRef.current.classList.toggle("active")) {
@@ -36,10 +36,10 @@ export default function FloatingMessages() {
   }, [sendMessage])
 
   return (
-    <div className="position-relative w-100">
-      <div ref={messagesRef} className="messages-container bg-light d-flex  flex-column rounded-top-4 shadow">
+    <div className="position-relative w-100" >
+      <div ref={messagesRef} className="messages-container bg-light d-flex  flex-column rounded-top-4 shadow" dir={t("dir")}>
         <div className={"d-flex p-3 justify-content-between position-sticky  top-0"}>
-          <h1 style={{fontSize: "20px", fontWeight: "700"}}>Messages</h1>
+          <h1 style={{fontSize: "20px", fontWeight: "700"}}>{t("message.messages")}</h1>
           <div className="d-flex" style={{height: "fit-content"}}>
             <Link className="icon-button text-dark" to="#">
               <div className={"icon-bg i-bg-primary"}>
