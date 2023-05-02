@@ -1,6 +1,9 @@
 .item-Notifications .nav-link {
     transition: all 900ms;
 }
+::-webkit-scrollbar {
+    width: 0;
+  }
 
 .item-Notifications .nav-link:hover {
     background-color: rgba(123, 117, 117, 0.2862745098) !important;
