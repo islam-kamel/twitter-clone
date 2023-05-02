@@ -104,16 +104,25 @@ const Card = ({border = true, ...props}) => {
                className="tw-profile-image  rounded-circle"/>
           <div
             className={"d-flex ms-2 justify-content-between align-items-start w-100"}>
-            <div className={'d-flex justify-content-center align-items-center'}>
+            <div className={'d-flex justify-content-between w-100 align-items-center'}>
               <Link
                 to="#"
-                className="tweeter_name text-decoration-none text-dark"
+                className="tweeter_name text-decoration-none text-dark flex-grow-0 flex-shrink-0"
               >
-                {props?.tweet?.user.fullname}
-                <span className={"ms-2 text-muted"}>@{props?.tweet?.user.username}</span>
-                {props?.tweet?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
+                <div className={'d-flex'}>
+                  <span>{props?.tweet?.user.fullname}</span>
+                  <span className={"ms-2 text-muted text-truncate d-block"} style={{maxWidth: '90%'}}>@{props?.tweet?.user.username}</span>
+                  {props?.tweet?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
+                </div>
+
               </Link>
-              <span className={"text-muted fw-light ms-2"}>
+              <span
+                className={"text-muted fw-light ms-2 text-truncate flex-shrink-1 flex-grow-0 me-1"}
+                style={{
+                  maxWidth: 60,
+                  fontSize: 12
+              }}
+              >
                 {moment(props?.tweet?.create_at).fromNow()}
               </span>
             </div>

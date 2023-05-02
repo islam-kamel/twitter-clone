@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -31,7 +31,7 @@ class TweetByUsernameView(APIView):
 
 class CreateTweetView(APIView):
     permission_classes = [IsAuthenticated]
-    parser_classes = [MultiPartParser, FormParser]
+    parser_classes = [MultiPartParser, FormParser, FileUploadParser]
 
 
     def post(self, request):
@@ -40,6 +40,7 @@ class CreateTweetView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
+        print(request.FILES)
         # Upload tweet Media
         for key, value in request.FILES.items():
             data = {
@@ -49,7 +50,7 @@ class CreateTweetView(APIView):
             media_serializer = MediaSerializer(data=data)
             media_serializer.is_valid(raise_exception=True)
             media_serializer.save()
-
+        
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

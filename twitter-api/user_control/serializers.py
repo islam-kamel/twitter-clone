@@ -25,7 +25,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'user': {'read_only': True},
         }
 
-
 class UserFollowersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
@@ -55,7 +54,7 @@ class UserFollowersSerializer(serializers.ModelSerializer):
 
 
 class UserInfoWithProfileSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer()
+    profile = serializers.SerializerMethodField()
     followers = UserFollowersSerializer(read_only=True, many=True)
     following = UserFollowersSerializer(read_only=True, many=True)
 
@@ -70,12 +69,20 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
         }
 
     def get_profile(self, obj):
-        serializer = UserProfileSerializer(Profile.objects.get(user=obj))
-        return serializer.data
+        try:
+            obj = Profile.objects.get(user=obj)
+            serializer = UserProfileSerializer(obj)
+
+            if not serializer.data.get('image'):
+                return {**serializer.data, 'image': '/media/default_profile_image.png'}
+            return serializer.data
+
+        except Profile.DoesNotExist:
+            return {'image': '/media/default_profile_image.png'}
+
+
 
     def update(self, instance, validated_data):
-        print(validated_data)
-
         profile_data = validated_data.pop('profile', {})
         profile_instance = instance.pop('profile')
 
@@ -93,7 +100,18 @@ class UserInfoWithProfileSerializer(serializers.ModelSerializer):
 
 
 class UserIdentitySerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'fullname']
+        fields = ['id', 'username', 'email', 'fullname', 'is_verify', 'image']
+
+    def get_image(self, obj):
+        try:
+            profile = Profile.objects.get(user=obj)
+            if profile.image:
+                return profile.image.url
+            else:
+                return '/media/default_profile_image.png'
+        except Profile.DoesNotExist:
+            return '/media/default_profile_image.png'

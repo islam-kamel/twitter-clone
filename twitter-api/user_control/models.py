@@ -79,6 +79,7 @@ class CustomUser(AbstractBaseUser):
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_verify = models.BooleanField(default=False)
     objects = CustomUserManager()
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", "fullname"]
@@ -139,7 +140,8 @@ class Profile(models.Model):
     image = models.ImageField(
         verbose_name='Image',
         blank=True,
-        upload_to='user_profile/'
+        upload_to='user_profile/',
+        default='default_profile_image.png'
     )
     cover_image = models.ImageField(
         verbose_name='Cover Image',
@@ -168,10 +170,3 @@ class Follow(models.Model):
 
     def __str__(self):
         return f'{self.user_id} Following {self.following}'
-
-
-    def save(self, *args, **kwargs):
-        try:
-            obj = Follow.objects.get(Q(following=self.following) and Q(user_id=self.user_id))
-        except Follow.DoesNotExist:
-            super(Follow, self).save(*args, **kwargs)

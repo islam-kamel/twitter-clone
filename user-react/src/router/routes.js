@@ -1,4 +1,4 @@
-import {createBrowserRouter, Outlet} from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import Layout from "../layout/layout";
 import {lazy} from "react";
 import ChatLayout from "../layout/chatLayout";
@@ -45,7 +45,7 @@ export default createBrowserRouter([
       },
       {
         path: "details/:slug",
-        element:  <TweetDetails/>
+        element: <TweetDetails/>
       },
       {
         path: "chat/:username",
@@ -57,7 +57,7 @@ export default createBrowserRouter([
     path: "Message",
     element: <ChatLayout/>,
     children: [
-      {path: '', element: <Message/>, children:[{path: ':username', element:<ChatRoom/>}]}
+      {path: '', element: <Message/>, children: [{path: ':username', element: <ChatRoom/>}]}
     ]
   },
 ])

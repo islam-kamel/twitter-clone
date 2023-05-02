@@ -33,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'fullname', 'username', 'image']
+        fields = ['id', 'fullname', 'username', 'image', 'is_verify']
 
     def get_image(self, obj):
         try:
