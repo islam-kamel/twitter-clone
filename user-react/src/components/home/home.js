@@ -9,14 +9,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
 import Header from "../header/header";
 import Picker from "emoji-picker-react";
+import {useTranslation} from "react-i18next";
 
-function NewTweet() {
+
+export function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
   const media = useRef();
   const [fileUrl, setFileUrl] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
   const inputValue = useRef(null);
+
+  const [t , translate]= useTranslation();
 
   const handleEmojiClick = (emojiObject) => {
     inputValue.current.value += emojiObject.emoji
@@ -77,11 +81,11 @@ function NewTweet() {
           <div className={"d-flex align-self-start align-items-center justify-content-center w-100"}>
             <div className={"w-100 ms-3"}>
                 <textarea
-                  dir={"auto"}
+                  dir={t("dir")}
                   name={"content"}
                   ref={inputValue}
                   className={"form-control border-0  h-100"}
-                  placeholder={"What's happening?"}
+                  placeholder={t("home.what_happening")}
                   style={{resize: "none"}}
                 />
               <div className={"d-flex overflow-x-auto flex-nowrap flex-row  overflow-y-auto "}
@@ -162,7 +166,7 @@ function NewTweet() {
                   btnStyle={"primary"}
                   classes={"rounded-pill w-25 align-self-end"}
                 >
-                  Tweet
+                  {t("home.tweet")}
                 </TwButton>
               </div>
             </div>
@@ -195,26 +199,17 @@ function Tweets() {
 }
 
 function Home() {
-
+  const [t , translate]= useTranslation();
   return (
     <main className="">
-      {/*<div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">*/}
-      {/*  <div className="d-flex flex-row justify-content-between p-4">*/}
-      {/*    <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>*/}
-      {/*  </div>*/}
-      {/*  <div className="d-flex flex-row justify-content-around">*/}
-      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>*/}
-      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>Following </h3>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
 
       <Header>
         <Header.Top>
-          <h1 className={"p-4"} style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>
+          <h1 className={"p-4"} style={{fontSize: "20px", fontWeight: "600"}}>{t("home.title")}</h1>
         </Header.Top>
         <Header.Down>
-          <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>
-          <h3 style={{fontSize: "18px", fontWeight: "400"}}>Following </h3>
+          <h3 style={{fontSize: "18px", fontWeight: "400"}}>{t("home.foru")} </h3>
+          <h3 style={{fontSize: "18px", fontWeight: "400"}}>{t("home.following")} </h3>
         </Header.Down>
       </Header>
 

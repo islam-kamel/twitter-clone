@@ -29,6 +29,7 @@
     "foru_placeName":"Trending in Egypt",
     "how_follow":"How To Follow",
     "how_follow_f":"Follow",
+    "how_follow_not":"Unfollow",
 
     "title_trending":"Trending",
     "title_trending_txt":"World Wide Trends",
@@ -54,7 +55,10 @@
     "mentions":"Mentions",
     "mentions_head":"Nothing to see here — yet",
     "mentions_txt":"When someone mentions you, you’ll find it here.",
-    "learnMore":"Learn more"
+    "learnMore":"Learn more",
+    "Others":"Others",
+    "New Tweet Notifications for":"New Tweet Notifications for",
+    "And":"And"
 },
 "message":{
     "messages":"Messages",
@@ -64,7 +68,12 @@
     "next":"Next",
     "search_people":"Search People",
     "create_group":"Create a group",
-    "u_follow":"You follow each other"
+    "u_follow":"You follow each other",
+    "Followers":"Followers",
+    "Following":"Following",
+    "Start_a_new_messag":"Start a new  messag",
+    "You":"You",
+    "Search Direct Messages":"Search Direct Messages"
 },
 "bookmarks":{
     "bookmarks":"Bookmarks",
@@ -102,6 +111,11 @@
 "terms_service":"Terms of Service",
 "privacy_policy":"Privacy Policy",
 "cookie_use":"Cookie Use."
-}
-
+},
+"rightsidebar":{
+    "what_happening":"What's happening",
+    "trendy":"World Cup",
+    "show_more":"show more ",
+    "remove":"remove"
+    }
 }

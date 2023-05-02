@@ -126,7 +126,7 @@ function Profile() {
 
 
   return (
-    <section className={"border h-100"}>
+    <section className={"h-100"}>
       <ProfileSection/>
       <div
         className="mt-1"

@@ -1,0 +1,27 @@
+.messages-container {
+  height: 50px;
+  max-width: 20%;
+  width: 100%;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 69% !important;
+}
+
+.messages-container.active {
+  animation: open-messages ease-in 200ms forwards;
+}
+.messages-container.active .messages-details {
+  visibility: visible;
+}
+
+.messages-details {
+  visibility: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+@keyframes open-messages {
+  to {
+    height: 50vh;
+  }
+}/*# sourceMappingURL=floatingMessages.style.css.map */

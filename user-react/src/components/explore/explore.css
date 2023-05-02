@@ -1,0 +1,258 @@
+.sserch {
+  background-color: rgba(218, 217, 217, 0.768627451);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+}
+
+.nav-link a {
+  display: flex;
+  align-items: center;
+  padding: 8px 25px 8px 8px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.nav-link a i {
+  margin-right: 15px;
+}
+
+.nav-link a:hover, .main_account a:hover {
+  background-color: rgba(110, 118, 125, 0.3);
+  border-radius: 9999px;
+}
+
+.nav-link a:first-child {
+  padding: 8px 8px;
+}
+
+.nav-link a:first-child i {
+  margin: 0;
+  color: #1C88d2;
+}
+
+.tweet_button {
+  height: 55px;
+  border-radius: 9999px;
+  margin-top: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  border: 1px solid white;
+  padding: 5%;
+  transition-duration: 0.2s;
+}
+
+.tweet_button:hover {
+  background-color: rgba(29, 155, 240, 0.7);
+}
+
+.main_account {
+  height: 30%;
+  padding-top: 115px;
+}
+
+.main_account a {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px 8px 15px;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.img_profile {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.account_details {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 60%;
+  margin-left: 10px;
+  font-size: 1.5rem;
+  line-height: 20px;
+}
+
+.account_name {
+  font-weight: 500;
+}
+
+.account_handle {
+  color: rgb(110, 118, 125);
+}
+
+#search-icon {
+  background-color: rgba(218, 217, 217, 0.768627451);
+}
+
+#input-bar {
+  width: 82%;
+  border-radius: 25%;
+  height: 41px;
+  outline: none;
+  background-color: rgba(218, 217, 217, 0.768627451);
+  font-size: 1.5rem;
+}
+
+#setting {
+  margin-left: 4rem;
+  width: 30px;
+  height: 30px;
+}
+
+#setting:hover {
+  background-color: rgba(218, 217, 217, 0.768627451);
+  border-radius: 50%;
+}
+
+#explore-group li button {
+  color: #777;
+  border: 0;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+#explore-group li button:hover {
+  background-color: #EEE;
+}
+
+#explore-group, #explore-group li {
+  position: relative;
+}
+
+#explore-group button {
+  border-radius: 0;
+  font-weight: lighter;
+}
+
+#explore-group li button:active {
+  color: var(--bs-secondary);
+}
+
+#explore-group li button.active {
+  color: black;
+}
+
+#explore-group li button.active::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 25%;
+  height: 4px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-bottom: 4px solid var(--bs-primary);
+  border-radius: 9999px;
+}
+
+.trend-card:hover {
+  background-color: #f3f3f3;
+}
+
+.trends {
+  transform: translate3d(-26px, -4px, 0px) !important;
+  width: 213px;
+  border-radius: 6px;
+}
+
+.trends ul {
+  padding: 0;
+}
+
+.trends div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trends div:hover {
+  background-color: rgba(218, 217, 217, 0.768627451);
+}
+
+.side_feed {
+  padding: 0 2%;
+}
+
+.search {
+  display: flex;
+  height: 55px;
+  max-width: 355px;
+  position: sticky;
+  top: 0;
+  padding-top: 5px;
+  background-color: white;
+}
+
+.search input {
+  background-color: white;
+  border-radius: 9999px;
+  height: 45px;
+  width: 100%;
+  border: 1px solid rgba(110, 118, 125, 0.4);
+  padding-left: 30px;
+  font-size: 1.5rem;
+  color: white;
+  line-height: 20px;
+  font-weight: 400;
+  background-color: rgba(110, 118, 125, 0.1);
+}
+
+@media (max-width: 880px) {
+  #side_feed {
+    display: none;
+  }
+  .nav_links {
+    width: 80%;
+  }
+  .spn {
+    display: none;
+  }
+  .nav-item {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+@media (max-width: 585px) {
+  #side_feed {
+    display: none;
+  }
+  .spn {
+    display: none;
+  }
+  .trending-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 16px;
+  }
+  .trending-part h4 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end !important;
+  }
+  .trends {
+    width: 100%;
+  }
+  .trends li {
+    width: 100%;
+  }
+  .trend-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .followers {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+    font-weight: bold;
+  }
+}/*# sourceMappingURL=explore.css.map */

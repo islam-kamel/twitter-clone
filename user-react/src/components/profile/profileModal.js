@@ -9,6 +9,7 @@ import {useDate} from "../../hooks/useDate";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserProfile} from "../../store/features/user/user";
 import { useTranslation } from "react-i18next";
+import {axiosInstance} from "../../store/API/axios";
 
 
 const ProfileModal = () => {
@@ -29,7 +30,7 @@ const ProfileModal = () => {
     setDate(fromStringToObject(userInfo?.birthdate));
   }, [fromStringToObject, setDate, userInfo?.birthdate])
 
-  const updateProfile = (data) => {
+  const updateProfile = async (data) => {
     dispatch(updateUserProfile({...data, username: userInfo.username}))
   }
 

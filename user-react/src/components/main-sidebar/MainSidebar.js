@@ -59,8 +59,14 @@ function useActiveLink() {
 }
 
 export function BuildIcon(props) {
+  const [t] = useTranslation()
+
   return (
-    <i className="d-flex tw-navbar-icon">{props?.icon}</i>
+      t('dir') === 'ltr' ? (
+        <i className="d-flex tw-navbar-icon">{props?.icon}</i>
+      ) : (
+        <i className="d-flex tw-navbar-icon" style={{marginLeft: '10px', marginRight: 0}} >{props?.icon}</i>
+      )
   );
 }
 
@@ -103,7 +109,7 @@ export function SmNavbar() {
             <div className={"tw-navbar-item"}>
               <Link
                 onClick={() => handelClick("home")}
-                to={"/Message"} className="tw-navbar-link d-flex align-items-center text-dark"
+                to={"/Message"} replace={true} className="tw-navbar-link d-flex align-items-center text-dark"
               >
                 {isActive?.message ? <BuildIcon icon={messages_fill}/> :
                   <BuildIcon icon={messages}/>}
@@ -126,6 +132,8 @@ export function SmNavbar() {
               >
                 <Link
                   to={`profile/${userInfo?.username}`}
+                  replace={true}
+                  preventScrollReset={true}
                   className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
                 >
                   <span className={"text-bold"}>Profile @{userInfo?.username}</span>
@@ -150,7 +158,8 @@ export function SmNavbar() {
 export default function MainSidebar() {
   const {isActive, handelClick} = useActiveLink();
   const userInfo = useSelector(state => state.currentUser.userProfile);
-  const [t, translate] = useTranslation();
+  const [t] = useTranslation();
+
   const UserAction = () => {
 
     return (
@@ -161,7 +170,7 @@ export default function MainSidebar() {
             to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
           >
             {isActive?.home ? <BuildIcon icon={home_fill}/> : <BuildIcon icon={home}/>}
-            <span className="tw-navbar-text">{t("mainSideBar.home_S")}</span>
+            <span className={`tw-navbar-text ${isActive?.home && 'fw-medium'}`}>{t("mainSideBar.home_S")}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">
@@ -172,7 +181,7 @@ export default function MainSidebar() {
           >
             {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
               <BuildIcon icon={explore}/>}
-            <span className="tw-navbar-text">Explore</span>
+            <span className={`tw-navbar-text ${isActive?.explore && 'fw-medium'}`}>{t('mainSideBar.explore_S')}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">
@@ -183,7 +192,7 @@ export default function MainSidebar() {
           >
             {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :
               <BuildIcon icon={notifications}/>}
-            <span className="tw-navbar-text">Notifications</span>
+            <span className={`tw-navbar-text ${isActive?.notifications && 'fw-medium'}`}>{t('mainSideBar.notifications_S')}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">
@@ -195,7 +204,7 @@ export default function MainSidebar() {
 
             {isActive?.message ? <BuildIcon icon={messages_fill}/> :
               <BuildIcon icon={messages}/>}
-            <span className="tw-navbar-text">Messages</span>
+            <span className={`tw-navbar-text ${isActive?.message && 'fw-medium'}`}>{t('mainSideBar.messages_S')}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">
@@ -206,7 +215,7 @@ export default function MainSidebar() {
           >
             {isActive?.bookmarks ? <BuildIcon icon={bookmarks_fill}/> :
               <BuildIcon icon={bookmarks}/>}
-            <span className="tw-navbar-text">Bookmarks</span>
+            <span className={`tw-navbar-text ${isActive?.explore && 'fw-medium'}`}>{t('mainSideBar.bookmarks_S')}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">
@@ -217,25 +226,47 @@ export default function MainSidebar() {
           >
             {isActive?.profile ? <BuildIcon icon={profile_fill}/> :
               <BuildIcon icon={profile}/>}
-            <span className="tw-navbar-text">Profile</span>
+            <span className={`tw-navbar-text ${isActive?.profile && 'fw-medium'}`}>{t('mainSideBar.profile_S')}</span>
           </Link>
         </div>
+
         <div className="tw-navbar-item">
-          <Link to="#" className="tw-navbar-link d-flex align-items-center text-dark">
+          <Link
+            data-bs-toggle = "modal"
+            data-bs-target = "#settingsModal"
+            to="#"
+            className="tw-navbar-link d-flex align-items-center text-dark"
+          >
             <BuildIcon icon={more}/>
-            <span className="tw-navbar-text">More</span>
+            <span className={`tw-navbar-text`}>{t('mainSideBar.more_S')}</span>
           </Link>
         </div>
+
+
+      
+
         <TwButton
           btnStyle={"primary"}
           classes={"rounded-pill py-2 w-100 d-none d-xl-block"}
+          other={{
+            "data-bs-toggle": "modal",
+           "data-bs-target" :"#NewTweetModal"
+          }}
+          
         >
-          Tweet
+
+          <span className={`tw-navbar-text`}>{t('mainSideBar.tweet_S')}</span>
         </TwButton>
+
+
 
         <TwButton
           btnStyle={"primary"}
           classes={"rounded-circle tw-new-tweet-btn d-xl-none"}
+          other={{
+            "data-bs-toggle": "modal",
+           "data-bs-target" :"#NewTweetModal"
+          }}
         >
           <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
         </TwButton>
