@@ -10,6 +10,7 @@ import {fetchTweets} from "../../store/features/tweets/tweets";
 import Header from "../header/header";
 import Picker from "emoji-picker-react";
 import {useTranslation} from "react-i18next";
+
 function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
@@ -18,7 +19,7 @@ function NewTweet() {
   const [showPicker, setShowPicker] = useState(false);
   const inputValue = useRef(null);
 
-  const [t , translate]= useTranslation();
+  const [t] = useTranslation();
 
   const handleEmojiClick = (emojiObject) => {
     inputValue.current.value += emojiObject.emoji
@@ -197,7 +198,7 @@ function Tweets() {
 }
 
 function Home() {
-  const [t , translate]= useTranslation();
+  const [t] = useTranslation();
   return (
     <main className="">
 

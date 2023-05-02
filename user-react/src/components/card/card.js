@@ -11,6 +11,7 @@ import {fetchTweets, likeTweet, retweet} from "../../store/features/tweets/tweet
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies, likeReply} from "../../store/features/replies/replies";
 import {useTranslation} from "react-i18next";
+
 function BuildMedia(props) {
    
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
@@ -41,7 +42,7 @@ function BuildMedia(props) {
 }
 
 const Card = ({border = true, ...props}) => {
-  const [t , translate]= useTranslation();
+  const [t ]= useTranslation();
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)

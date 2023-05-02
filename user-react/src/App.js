@@ -1,11 +1,10 @@
 import {RouterProvider} from "react-router-dom";
-import {Suspense, useEffect, useState} from "react";
+import {Suspense, useEffect} from "react";
 import "./i18n";
 import config from "./config";
 import routes from './router/routes'
 import {useTranslation} from "react-i18next";
 import Settings from "./components/settings/settings";
-import {LANG_KEY} from "./i18n";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -26,7 +25,7 @@ function App() {
   const [t] = useTranslation();
 
   useEffect(() => {
-    document.body.dir = t('dir');
+    document.body.parentElement.dir = t('dir');
     document.body.setAttribute('data-bs-theme', localStorage.getItem(config.colorKey))
   }, [t])
 
