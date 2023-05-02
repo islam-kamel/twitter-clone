@@ -27,12 +27,12 @@ function Bookmarks() {
             <span className={"text-muted"}>@islam.admin</span>
           </div>
         </div>
-        <Card
-          name=" Engy Mo"
-          text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."
-          username="@engy5821 .2h"
-          img={profileImage}
-        />
+        {/*<Card*/}
+        {/*  name=" Engy Mo"*/}
+        {/*  text="The simple truths hurt the most. One must have been very optimistic investing in Tesla, even being considered as a tech company in 2021. The company is great and run well. It has just been overvalued and supported by macro trends."*/}
+        {/*  username="@engy5821 .2h"*/}
+        {/*  img={profileImage}*/}
+        {/*/>*/}
       </div>
     </div>
   );

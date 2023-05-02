@@ -1,12 +1,12 @@
 import {RouterProvider} from "react-router-dom";
 import {Suspense, useEffect, useState} from "react";
-import routes from "./router/routes";
 import "./i18n";
-
+import config from "./config";
+import routes from './router/routes'
 // import useRefreshToken from "./hooks/useRefreshToken";
-import io from "socket.io-client";
-import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import Settings from "./components/settings/settings";
+import {LANG_KEY} from "./i18n";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -23,16 +23,8 @@ import {useTranslation} from "react-i18next";
 //   static fromJson(stringBody) {
 //     return new Notification(JSON.parse(stringBody));
 //   }
-// }
-
 function App() {
-  ///localization
-
-  const LANG_KEY = 'selectedLanguage';
-
-  // const initialLanguage = localStorage.getItem(LANG_KEY) || 'en';
-
-  const [t , translate]= useTranslation();
+  const [t, translate] = useTranslation();
   const [en, setEn] = useState(true);
 
   const handleLanguageChange = () => {
@@ -45,8 +37,9 @@ function App() {
 
   useEffect(() => {
     document.body.dir = t('dir');
+    document.body.setAttribute('data-bs-theme', localStorage.getItem(config.colorKey))
   }, [en, t])
-  
+
   // const userInfo = useSelector(state => state.currentUser.userProfile);
   //
   // useEffect(() => {
@@ -73,6 +66,7 @@ function App() {
 
   return (
     <Suspense fallback={null}>
+      <Settings/>
       <button className={'btn btn-primary'} onClick={handleLanguageChange}>Change Lang</button>
       <RouterProvider router={routes}/>
     </Suspense>

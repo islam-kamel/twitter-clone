@@ -10,6 +10,10 @@
         "more_S":"المزيد",
         "tweet_S":"غرد"
     },
+    "settings": {
+      "choiceLang": "أختر لغتك",
+      "choiceColor": "أختر لونك المفضل"
+    },
     "home":{ 
         "title" : "الرئيسيّة",
         "foru":"لك",

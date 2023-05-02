@@ -54,10 +54,10 @@ export default createBrowserRouter([
     ],
   },
   {
-    path: "Message",
+    path: "",
     element: <ChatLayout/>,
     children: [
-      {path: '', element: <Message/>, children: [{path: ':username', element: <ChatRoom/>}]}
+      {path: '/Message', element: <Message/>, children: [{path: ':username', element: <ChatRoom/>}]}
     ]
   },
 ])

@@ -200,15 +200,6 @@ function Home() {
   const [t , translate]= useTranslation();
   return (
     <main className="">
-      {/*<div className="col-12 position-sticky top-0 z-1 main-div border-bottom backdrop-blur ">*/}
-      {/*  <div className="d-flex flex-row justify-content-between p-4">*/}
-      {/*    <h1 style={{fontSize: "20px", fontWeight: "600"}}>Home</h1>*/}
-      {/*  </div>*/}
-      {/*  <div className="d-flex flex-row justify-content-around">*/}
-      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>For you </h3>*/}
-      {/*    <h3 style={{fontSize: "18px", fontWeight: "400"}}>Following </h3>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
 
       <Header>
         <Header.Top>
