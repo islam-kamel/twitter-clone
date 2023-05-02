@@ -10,8 +10,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets, likeTweet, retweet} from "../../store/features/tweets/tweets";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies, likeReply} from "../../store/features/replies/replies";
-
+import {useTranslation} from "react-i18next";
 function BuildMedia(props) {
+   
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
   const Video = () => {
     return (
@@ -40,6 +41,7 @@ function BuildMedia(props) {
 }
 
 const Card = ({border = true, ...props}) => {
+  const [t , translate]= useTranslation();
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)
@@ -96,6 +98,7 @@ const Card = ({border = true, ...props}) => {
         dispatch(fetchTweets())
       })
   }
+  
   return (
     <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
       <div className={"me-3"}>
@@ -116,7 +119,7 @@ const Card = ({border = true, ...props}) => {
                 </div>
 
               </Link>
-              <span
+              <span  dir={"auto"}
                 className={"text-muted fw-light ms-2 text-truncate flex-shrink-1 flex-grow-0 me-1"}
                 style={{
                   maxWidth: 60,
@@ -156,7 +159,7 @@ const Card = ({border = true, ...props}) => {
                   <div
                     className={"d-flex align-items-center text-danger flex-row-reverse justify-content-between"}>
                     <i className={"ms-2 bi bi-trash"} style={{width: 20}}></i>
-                    <span>Remove</span>
+                    <span>{t("rightsidebar.remove")}</span>
                   </div>
                 </Link>
               )}

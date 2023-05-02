@@ -2,13 +2,16 @@ import TwModal from "../modal/modal";
 import {useTranslation} from "react-i18next";
 import {LANG_KEY} from "../../i18n";
 import {useEffect, useState} from "react";
+import config from '../../config';
 
 
 function ChangeColor() {
 
   const handleSelected = (e) => {
     document.body.setAttribute('data-bs-theme', e.target.value)
+    localStorage.setItem(config.colorKey, e.target.value)
   }
+
   return (
     <div>
       <div className="form-check form-check-inline">
@@ -91,9 +94,9 @@ function ChangeLang(props) {
   }
 
   return (
-    <select onChange={handleSelected} dir={'auto'} className="form-select" aria-label="Default select example">
+    <select defaultValue={props.currentLang} onChange={handleSelected} dir={'auto'} className="form-select" aria-label="Default select example">
       <option selected value={props?.currentLang}>{props?.currentLang}</option>
-      <option value={props?.availableLang}>{props?.availableLang}</option>
+      <option  value={props?.availableLang}>{props?.availableLang}</option>
     </select>
   );
 }

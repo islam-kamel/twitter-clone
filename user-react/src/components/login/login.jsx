@@ -5,7 +5,7 @@ import TwInput from "../tw-input/tw-input";
 import LoadingSpinner from "../Loading/loading-spinner";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/features/user/user";
-
+import {useNavigate} from "react-router-dom";
 
 const googleIconColors = {
   background: "conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat",
@@ -69,6 +69,7 @@ export default function Login() {
   const [loginData, setLoginData] = useState(INITIAL_VALUE);
   const dispatch = useDispatch()
   const {loading, error} = useSelector(state => state.currentUser);
+  const navigate = useNavigate();
 
   const isFormValid = () => {
     const form = document.forms["loginForm"];
@@ -83,6 +84,7 @@ export default function Login() {
     }))
       .unwrap()
       .then(_ => {
+        navigate('/', {replace: true})
         window.location.reload()
       })
   }
