@@ -29,6 +29,7 @@
     "foru_placeName":"Trending in Egypt",
     "how_follow":"How To Follow",
     "how_follow_f":"Follow",
+    "how_follow_not":"Unfollow",
 
     "title_trending":"Trending",
     "title_trending_txt":"World Wide Trends",
@@ -102,6 +103,11 @@
 "terms_service":"Terms of Service",
 "privacy_policy":"Privacy Policy",
 "cookie_use":"Cookie Use."
-}
-
+},
+"rightsidebar":{
+    "what_happening":"What's happening",
+    "trendy":"World Cup",
+    "show_more":"show more ",
+    "remove":"remove"
+    }
 }
