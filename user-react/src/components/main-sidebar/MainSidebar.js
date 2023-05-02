@@ -227,6 +227,7 @@ export default function MainSidebar() {
             <span className={`tw-navbar-text ${isActive?.profile && 'fw-medium'}`}>{t('mainSideBar.profile_S')}</span>
           </Link>
         </div>
+
         <div className="tw-navbar-item">
           <Link
             data-bs-toggle = "modal"
@@ -238,17 +239,33 @@ export default function MainSidebar() {
             <span className={`tw-navbar-text`}>{t('mainSideBar.more_S')}</span>
           </Link>
         </div>
+
+
+      
+
         <TwButton
           btnStyle={"primary"}
           classes={"rounded-pill py-2 w-100 d-none d-xl-block"}
+          other={{
+            "data-bs-toggle": "modal",
+           "data-bs-target" :"#NewTweetModal"
+          }}
+          
         >
 
           <span className={`tw-navbar-text`}>{t('mainSideBar.tweet_S')}</span>
         </TwButton>
 
+
+
         <TwButton
           btnStyle={"primary"}
           classes={"rounded-circle tw-new-tweet-btn d-xl-none"}
+          other={{
+            "data-bs-toggle": "modal",
+           "data-bs-target" :"#NewTweetModal"
+          }}
+       
         >
           <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
         </TwButton>

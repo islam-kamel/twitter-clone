@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import Settings from "./components/settings/settings";
 import {LANG_KEY} from "./i18n";
+import NewTweetModal from "./components/NewTweetModal";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -70,6 +71,7 @@ function App() {
   return (
     <Suspense fallback={null}>
       <Settings/>
+      <NewTweetModal/>
       <button className={'btn btn-primary'} onClick={handleLanguageChange}>Change Lang</button>
       <RouterProvider router={routes}/>
     </Suspense>

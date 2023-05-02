@@ -9,8 +9,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets} from "../../store/features/tweets/tweets";
 import Header from "../header/header";
 import Picker from "emoji-picker-react";
-
-function NewTweet() {
+import * as bootstrap from 'bootstrap/dist/js/bootstrap.esm'
+// import { bootstrap } from 'bootstrap';
+export function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
   const media = useRef();
@@ -58,7 +59,7 @@ function NewTweet() {
       ]
     }
     createTweet(validDate)
-      .then(res => console.log(res))
+      .then(res =>console.log('Tweet created'))
       .catch(error => console.log(error.response.data))
       .finally(() => {
         event.target?.reset();
