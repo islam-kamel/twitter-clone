@@ -5,6 +5,7 @@ import config from "./config";
 import routes from './router/routes'
 import {useTranslation} from "react-i18next";
 import Settings from "./components/settings/settings";
+import NewTweetModal from "./components/NewTweetModal";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -56,6 +57,7 @@ function App() {
   return (
     <Suspense fallback={null}>
       <Settings/>
+      <NewTweetModal/>
       <RouterProvider router={routes}/>
     </Suspense>
   );

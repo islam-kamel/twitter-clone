@@ -267,7 +267,6 @@ export default function MainSidebar() {
             "data-bs-toggle": "modal",
            "data-bs-target" :"#NewTweetModal"
           }}
-       
         >
           <span className={"text-light "}><BuildIcon icon={newTweet}/></span>
         </TwButton>
