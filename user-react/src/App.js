@@ -43,6 +43,10 @@ function App() {
     translate.changeLanguage(lang).then(() => setEn(!en));
   };
 
+  useEffect(() => {
+    document.body.dir = t('dir');
+  }, [en, t])
+  
   // const userInfo = useSelector(state => state.currentUser.userProfile);
   //
   // useEffect(() => {

@@ -151,7 +151,6 @@ export default function MainSidebar() {
   const {isActive, handelClick} = useActiveLink();
   const userInfo = useSelector(state => state.currentUser.userProfile);
   const [t, translate] = useTranslation();
-
   const UserAction = () => {
 
     return (
