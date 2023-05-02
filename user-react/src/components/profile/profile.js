@@ -10,10 +10,14 @@ import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies} from "../../store/features/replies/replies";
 import Header from "../header/header";
 import {verifyBlue} from "../../constants/icons";
+import { useTranslation } from "react-i18next";
 
 const mediaImage = require("../../Image/media.png")
 
 function Profile() {
+
+  const[t, translate]=useTranslation();
+
   const location = useLocation();
   const navigate = useNavigate();
   const back = location.state?.from?.pathname || "/";
@@ -44,7 +48,7 @@ function Profile() {
               </div>
               <div>
                 <h6 className="fs-5 fw-2 m-0">{userInfo?.fullname}</h6>
-                <p className="text-secondary m-0">{userTweets?.length} tweets</p>
+                <p className="text-secondary m-0">{userTweets?.length} {t('profile.tweets')}</p>
               </div>
             </div>
           </Header.Top>
@@ -86,14 +90,14 @@ function Profile() {
             {userInfo?.profile?.birthdate !== "" && (
               <div className={"text-muted d-flex align-items-center"}>
                 <i className={"bi bi-balloon me-1"}></i>
-                <span>Born {new Date(userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</span>
+                <span>{t('profile.born')} {new Date(userInfo?.birthdate).toLocaleString(true, {dateStyle: "medium"})}</span>
               </div>
             )}
 
             {userInfo?.profile?.create_at !== "" && (
               <div className={"text-muted d-flex align-items-center"}>
                 <i className={"bi bi-calendar3 me-1"}></i>
-                <span>Joined {new Date(userInfo?.create_at).toLocaleString(true, {dateStyle: "medium"})}</span>
+                <span>{t('profile.joined')} {new Date(userInfo?.create_at).toLocaleString(true, {dateStyle: "medium"})}</span>
               </div>
             )}
             {userInfo?.profile?.website !== "" && (
@@ -108,11 +112,11 @@ function Profile() {
           <div className="">
             <small className="following-N">
               <span className=" mx-1">{userInfo?.following?.length}</span><span
-              className="me-1 text-body-secondary">Following</span>
+              className="me-1 text-body-secondary">{t('profile.following')}</span>
             </small>
             <small className="following-N">
               <span className=" mx-1">{userInfo?.followers?.length}</span><span
-              className="ms-12 text-body-secondary">Followers</span>
+              className="ms-12 text-body-secondary">{t('profile.followers')}</span>
             </small>
           </div>
         </div>
@@ -146,7 +150,7 @@ function Profile() {
               aria-controls="pills-Tweets"
               aria-selected="true"
             >
-              Tweet
+              {t('profile.tweet')}
             </button>
           </li>
 
@@ -161,7 +165,7 @@ function Profile() {
               aria-controls="pills-Replies"
               aria-selected="false"
             >
-              Replies
+              {t('profile.replies')}
             </button>
           </li>
 
@@ -176,7 +180,7 @@ function Profile() {
               aria-controls="pills-Media"
               aria-selected="false"
             >
-              Media
+              {t('profile.media')}
             </button>
           </li>
 
@@ -191,7 +195,7 @@ function Profile() {
               aria-controls="pills-Likes"
               aria-selected="false"
             >
-              Likes
+              {t('profile.likes')}
             </button>
           </li>
         </ul>
@@ -229,6 +233,7 @@ function Profile() {
           role="tabpanel"
           aria-labelledby="pills-Replies-tab"
           tabIndex="0"
+          
         >
           <div className={"d-flex flex-column"}>
             {replies?.length && replies.map(reply => {
@@ -263,10 +268,9 @@ function Profile() {
             <img src={mediaImage} style={{width: "60%", height: "60%"}}
                  className="rounded-circle " alt="..."/>
             <h2>
-              Lights, camera … attachments!
+            {t('profile.media_head')} 
             </h2>
-            <p className={"text-muted text-wrap fw-light text-center"}>When you send Tweets with photos or
-              videos in them, they will show up here.</p>
+            <p className={"text-muted text-wrap fw-light text-center"}>{t('profile.media_txt')}</p>
           </div>
         </div>
 
@@ -278,10 +282,11 @@ function Profile() {
           role="tabpanel"
           aria-labelledby="pills-Likes-tab"
           tabIndex="0"
+          dir='auto'
         >
           <div className={"d-flex flex-column p-0"}>
             <div className={"px-4"}>
-              <h2 className={"fw-bold"}> Who to follow</h2>
+              <h2 className={"fw-bold"}> {t('explore.how_follow')}</h2>
             </div>
             <SuggestionFollow username={"mostafaAbdElHady"} fullname={"Mostafa Abd ElHady 🧑‍💻"}
                               profileImage={"https://picsum.photos/220"}/>
