@@ -23,6 +23,7 @@ import {
 import TwDropdown from "../twDropdown/TwDropdown";
 import useLogout from "../../hooks/useLogout";
 import {useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 
 const initialRouteValue = {
@@ -149,6 +150,7 @@ export function SmNavbar() {
 export default function MainSidebar() {
   const {isActive, handelClick} = useActiveLink();
   const userInfo = useSelector(state => state.currentUser.userProfile);
+  const [t, translate] = useTranslation();
 
   const UserAction = () => {
 
@@ -160,7 +162,7 @@ export default function MainSidebar() {
             to={"/"} className="tw-navbar-link d-flex align-items-center text-dark"
           >
             {isActive?.home ? <BuildIcon icon={home_fill}/> : <BuildIcon icon={home}/>}
-            <span className="tw-navbar-text">Home</span>
+            <span className="tw-navbar-text">{t("mainSideBar.home_S")}</span>
           </Link>
         </div>
         <div className="tw-navbar-item">

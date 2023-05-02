@@ -1,0 +1,107 @@
+{
+    "dir":"rtl",
+    "mainSideBar":{
+        "home_S":"الرئيسيّة",
+        "explore_S":"استكشف",
+        "notifications_S":"التنبيهات",
+        "messages_S":"الرسائل",
+        "bookmarks_S":"العلامات المرجعية",
+        "profile_S":"الملف الشخصي",
+        "more_S":"المزيد",
+        "tweet_S":"غرد"
+    },
+    "home":{ 
+        "title" : "الرئيسيّة",
+        "foru":"لك",
+        "following":"متابعون",
+        "what_happening":"ماذا يحدث ؟",
+        "tweet":"غرد"
+    },
+    "explore":{
+        "explore":"الرئيسيّة",
+        "search_twitter":" البحث في تويتر",
+        "modal_trends_title":"المواضيع المتداولة",
+        "modal_trends_head":"مواضيع مُتداولة خُصّصت لك",
+        "modal_trends_body":"إضفاء الطابع الشخصي على المواضيع المتداولة بناءً على موقعك ومن تتابعهم.",
+
+        "title_foru":"لك",
+        "foru_placeName":"المتداول في مصر",
+        "how_follow":"مقترحات المتابعة",
+        "how_follow_f":"متابعة",
+
+        "title_trending":"الموضوعات المتداولة",
+        "title_trending_txt":"المتداول حول العالم",
+        "trending_placeName":"رياضة· متداول",
+
+        "title_news":"أخبار",
+        "news_placeName":"كود",
+
+        "title_sports":"رياضة",
+
+        "title_entertainment":"ترفيه",
+        "entertainment_placeName":"متداول في الترفيه",
+
+        "interestedTrend":"لست مهتما بذلك",
+        "harmfulTrend":"هذا المتداول ضار"
+        
+    },
+    "notification":{
+        "notifications":"التنبيهات",
+        "all":"الكل",
+        "verified":"موثق",
+        "verified_head":"لا شيء هنا - حتى الآن.",
+        "verified_txt":"ستظهر هنا تسجيلات الإعجاب، والإشارات، وإعادات التغريد، وغيرها الكثير من الإجراءات التي تتخذها الحسابات الموَثّقة.  ",
+        "mentions":"الاشارات",
+        "mentions_head":"لا شيء هنا - حتى الآن.",
+        "mentions_txt":"عندما يقوم أحد الأشخاص بالإشارة إليك، سوف تجد ذلك هنا.",
+        "learnMore":"المزيد"
+    },
+    "message":{
+        "messages":"الرسائل",
+        "select_message":"تحديد رسالة ",
+        "select_message_txt":"اختر من محادثاتك الحالية، أو ابدأ رسالة جديدة، أو يمكنك مواصلة ما بدأته فحسب.",
+        "new_message":"رسالة جديدة",
+        "next":"التالي",
+        "search_people":"أبحث عن الأشخاص",
+        "create_group":"أنشأ مجموعة",
+        "u_follow":"متابع"
+    },
+    "bookmarks":{
+        "bookmarks":"العلامات المرجعية",
+        "remove_bookmarks":"حذف كل العلامات المرجعية"
+    },
+    "profile":{
+        "tweets":"تغريدة",
+        "edit_profile":"تعديل الملف الشخصي",
+        "born":"ولد عام",
+        "joined":"انضم في",
+        "following":"متابَعًا",
+        "followers":"متابِع",
+        "tweet":"التغريدات",
+    "replies":"الردود",
+    "media":"الوسائط",
+    "media_head":"الأضواء، الكاميرا... المرفقات!",
+    "media_txt":" عندما ترسل تغريدات تحتوي على صور أو مقاطع فيديو، ستظهر هنا.",
+    "likes":"الاعجابات",
+    "save":"حفظ",
+    "name":"الاسم",
+    "bio":" النبذة التعريفّية",
+    "location":"الموقع الجغرافيّ",
+    "website":"الموقع الإلكترونيّ",
+    "birth_date":"تاريخ الميلاد· تعديل"
+    },
+    "newToTwitter":{
+        "n_to_twitter":"هل أنت جديد في تويتر؟",
+        "signup":"سجّل الآن لتحصل على خطك الزمني الذي له طابعك الشخصي!",
+        "google_signin":"التسجيل باستخدام جوجل",
+        "github_signin":"التسجيل باستخدام Github",
+        "creat_account":"انشاء حساب",
+        "signin_condition_txt":"بالتسجيل,انت توافق علي",
+        "signin_condition_txt2":"و",
+        "signin_condition_txt3":",بما في ذلك",
+        "terms_service":"شروط الخدمة",
+        "privacy_policy":"سياسة الخصوصيّة",
+        "cookie_use":"استخدام الكوكيز."
+        }
+
+}

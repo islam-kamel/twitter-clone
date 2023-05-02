@@ -1,0 +1,107 @@
+{
+    "dir":"ltr",
+    "mainSideBar":{
+        "home_S":"Home",
+        "explore_S":"Explore",
+        "notifications_S":"Notification",
+        "messages_S":"Messages",
+        "bookmarks_S":"Bookmarks",
+        "profile_S":"Profile",
+        "more_S":"more",
+        "tweet_S":"Tweet"
+    },
+    "home":{
+    "title" : "Home",
+    "foru":"For you",
+    "following":"Following",
+    "what_happening":"What's happening?",
+    "tweet":"Tweet"
+   
+},
+"explore":{
+    "explore":"Explore",
+    "search_twitter":"Search Twitter",
+    "modal_trends_title":"Trends",
+    "modal_trends_head":"Trends for you",
+    "modal_trends_body":"Personalize trends based on your location and who you follow.",
+
+    "title_foru":"For You",
+    "foru_placeName":"Trending in Egypt",
+    "how_follow":"How To Follow",
+    "how_follow_f":"Follow",
+
+    "title_trending":"Trending",
+    "title_trending_txt":"World Wide Trends",
+    "trending_placeName":"Sports.Trending",
+
+    "title_news":"News",
+    "news_placeName":"Coding",
+
+    "title_sports":"Sports",
+
+    "title_entertainment":"Entertainment",
+    "entertainment_placeName":"Trending in Entertainment",
+    
+    "interestedTrend":"Not Interested in this",
+    "harmfulTrend":"This Trend is harmful"
+},
+"notification":{
+    "notifications":"Notifications",
+    "all":"All",
+    "verified":"Verified",
+    "verified_head":"Nothing to see here — yet",
+    "verified_txt":"Likes, mentions, Retweets, and a whole lot more — when it comes from a verified account, you’ll find it here.",
+    "mentions":"Mentions",
+    "mentions_head":"Nothing to see here — yet",
+    "mentions_txt":"When someone mentions you, you’ll find it here.",
+    "learnMore":"Learn more"
+},
+"message":{
+    "messages":"Messages",
+    "select_message":"Select a message",
+    "select_message_txt":"Choose from your existing conversations, start new one, or just keep swimming.",
+    "new_message":"New Message",
+    "next":"Next",
+    "search_people":"Search People",
+    "create_group":"Create a group",
+    "u_follow":"You follow each other"
+},
+"bookmarks":{
+    "bookmarks":"Bookmarks",
+    "remove_bookmarks":"Remove All Bookmarks"
+},
+"profile":{
+    "tweets":"tweets",
+    "edit_profile":"Edit Profile",
+    "born":"Born",
+    "joined":"Joined",
+    "following":"Following",
+    "followers":"Followers",
+    "tweet":"Tweet",
+    "replies":"Replies",
+    "media":"Media",
+    "media_head":"Lights, camera … attachments!",
+    "media_txt":" When you send Tweets with photos or videos in them, they will show up here.",
+    "likes":"Likes",
+    "save":"Save",
+    "name":"Name",
+    "bio":"Bio",
+    "location":"Location",
+    "website":"Website",
+    "birth_date":"Birth Date.Edite"
+},
+"newToTwitter":{
+"n_to_twitter":"New to Twitter?",
+"signup":" Sign up now to get your own personalized timeline!",
+"google_signin":"Sign in with Google",
+"github_signin":"Sign in with Github",
+"creat_account":"Create Account",
+"signin_condition_txt":"By signing up, you agree to the",
+"signin_condition_txt2":"and",
+"signin_condition_txt3":", including",
+"terms_service":"Terms of Service",
+"privacy_policy":"Privacy Policy",
+"cookie_use":"Cookie Use."
+}
+
+}

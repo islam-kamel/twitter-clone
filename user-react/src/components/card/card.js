@@ -82,7 +82,7 @@ const Card = ({border = true, ...props}) => {
   }
 
   const removeTweet = () => {
-    if (userInfo.id === props?.tweet.id) {
+    if (userInfo?.id === props?.tweet?.user?.id) {
       const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweet.id}`;
       axiosPrivate.delete(url)
         .then(res => console.log(res.data))
