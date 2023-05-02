@@ -51,7 +51,10 @@
     "mentions": "Mentions",
     "mentions_head": "Nothing to see here — yet",
     "mentions_txt": "When someone mentions you, you’ll find it here.",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "Others":"Others",
+    "New Tweet Notifications for":"New Tweet Notifications for",
+    "And":"And"
   },
   "message": {
     "messages": "Messages",

@@ -58,7 +58,10 @@
         "mentions":"الاشارات",
         "mentions_head":"لا شيء هنا - حتى الآن.",
         "mentions_txt":"عندما يقوم أحد الأشخاص بالإشارة إليك، سوف تجد ذلك هنا.",
-        "learnMore":"المزيد"
+        "learnMore":"المزيد",
+        "Others":" آخرين",
+        "New Tweet Notifications for":"إخطارات تغريدة جديدة لـ",
+        "And":" و" 
     },
     "message":{
         "messages":"الرسائل",
