@@ -1,0 +1,78 @@
+.tweet-card-hover {
+  background-color: transparent;
+  transition: all 100ms ease;
+}
+.tweet-card-hover:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.feed_tweet {
+  display: flex;
+  width: 100% !important;
+  min-height: 100px !important;
+  padding: 12px 16px 0 16px !important;
+  border-top: 1px solid rgba(110, 118, 125, 0.4) !important;
+  border-bottom: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  cursor: pointer !important;
+}
+
+.feed_tweet_details {
+  display: flex;
+  flex-direction: column !important;
+  width: 100% !important;
+  margin-left: 12px !important;
+}
+
+.feed_tweet .img_profile {
+  cursor: pointer;
+  width: 9%;
+  height: 9%;
+  border-radius: 50%;
+}
+
+.feed_tweet {
+  color: rgb(110, 118, 125) !important;
+}
+
+.tweeter_details {
+  display: flex;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+}
+
+.tweeter_details .tweeter_name {
+  padding-top: 2% !important;
+}
+
+.tweeter_details a {
+  text-decoration: none;
+  color: black;
+  font-weight: 700 !important;
+  font-size: 15px;
+}
+
+.tweeter_details a:hover {
+  text-decoration: underline;
+}
+
+.tweeter_details span {
+  color: rgb(110, 118, 125) !important;
+  font-weight: 400 !important;
+  margin-left: 3px !important;
+}
+
+.tweet_text {
+  color: black !important;
+  width: 100% !important;
+  padding-top: 1% !important;
+}
+
+.tweet_icons {
+  display: flex;
+  justify-content: space-between !important;
+  width: 100% !important;
+  margin: 5px auto !important;
+  padding-right: 50px !important;
+}/*# sourceMappingURL=card.style.css.map */

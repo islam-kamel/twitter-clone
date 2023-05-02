@@ -1,0 +1,48 @@
+.user-box {
+  width: 260px;
+  height: 75px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50% auto;
+  transition: background-color ease-in 0.1s;
+}
+
+.user-box:hover {
+  background-color: rgba(15, 20, 25, 0.1);
+}
+
+.trends-option {
+  position: absolute;
+  top: 0;
+  right: 50%;
+}
+
+.tw-dropdown-top-center {
+  transform: translate(0, -30%) !important;
+}
+
+.tw-dropdown-arrow-down::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  border: 10px solid transparent;
+  border-top-color: var(--bs-dropdown-bg);
+}
+
+.tw-dropdown-arrow-down::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 49%;
+  top: 100%;
+  border: 12px solid transparent;
+  border-top-color: var(--bs-border-color);
+}/*# sourceMappingURL=userSignButton.css.map */
