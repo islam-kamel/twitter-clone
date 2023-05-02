@@ -7,6 +7,8 @@ import "./i18n";
 import io from "socket.io-client";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
+import Settings from "./components/settings/settings";
+import {LANG_KEY} from "./i18n";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -26,12 +28,6 @@ import {useTranslation} from "react-i18next";
 // }
 
 function App() {
-  ///localization
-
-  const LANG_KEY = 'selectedLanguage';
-
-  // const initialLanguage = localStorage.getItem(LANG_KEY) || 'en';
-
   const [t , translate]= useTranslation();
   const [en, setEn] = useState(true);
 
@@ -46,7 +42,7 @@ function App() {
   useEffect(() => {
     document.body.dir = t('dir');
   }, [en, t])
-  
+
   // const userInfo = useSelector(state => state.currentUser.userProfile);
   //
   // useEffect(() => {
@@ -73,6 +69,7 @@ function App() {
 
   return (
     <Suspense fallback={null}>
+      <Settings/>
       <button className={'btn btn-primary'} onClick={handleLanguageChange}>Change Lang</button>
       <RouterProvider router={routes}/>
     </Suspense>
