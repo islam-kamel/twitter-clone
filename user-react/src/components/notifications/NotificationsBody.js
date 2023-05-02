@@ -17,7 +17,7 @@ function Notifications() {
         <div className="content ">
           <div className="item-Notifications container px-3 py-2 ">
             <div className="d-flex justify-content-between mt-2">
-              <h4>Notifications</h4>
+              <h4> {t('notification.notifications')} </h4>
               <i className="fa-solid fa-gear"></i>
             </div>
             <nav className="container py-3">

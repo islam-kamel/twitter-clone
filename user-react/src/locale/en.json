@@ -64,7 +64,12 @@
     "next": "Next",
     "search_people": "Search People",
     "create_group": "Create a group",
-    "u_follow": "You follow each other"
+    "u_follow": "You follow each other",
+    "Followers":"Followers",
+    "Following":"Following",
+    "Start_a_new_messag":"Start a new  messag",
+    "You":"You",
+    "Search Direct Messages":"Search Direct Messages"
   },
   "bookmarks": {
     "bookmarks": "Bookmarks",

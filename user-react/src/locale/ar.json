@@ -71,7 +71,12 @@
         "next":"التالي",
         "search_people":"أبحث عن الأشخاص",
         "create_group":"أنشأ مجموعة",
-        "u_follow":"متابع"
+        "u_follow":"متابع",
+        "Followers":"متابعون",
+        "Following":"يتابع",
+        "Start_a_new_messag":"ابدأ رسالة جديدة",
+        "You":"انت",
+        "Search Direct Messages":"البحث في الرسائل الخاصّة"
     },
     "bookmarks":{
         "bookmarks":"العلامات المرجعية",
