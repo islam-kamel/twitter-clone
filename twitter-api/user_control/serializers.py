@@ -54,7 +54,7 @@ class UserFollowersSerializer(serializers.ModelSerializer):
 
 
 class UserInfoWithProfileSerializer(serializers.ModelSerializer):
-    profile = serializers.SerializerMethodField()
+    profile = UserProfileSerializer()
     followers = UserFollowersSerializer(read_only=True, many=True)
     following = UserFollowersSerializer(read_only=True, many=True)
 

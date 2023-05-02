@@ -109,7 +109,7 @@ export function SmNavbar() {
             <div className={"tw-navbar-item"}>
               <Link
                 onClick={() => handelClick("home")}
-                to={"/Message"} className="tw-navbar-link d-flex align-items-center text-dark"
+                to={"/Message"} replace={true} className="tw-navbar-link d-flex align-items-center text-dark"
               >
                 {isActive?.message ? <BuildIcon icon={messages_fill}/> :
                   <BuildIcon icon={messages}/>}
@@ -132,6 +132,8 @@ export function SmNavbar() {
               >
                 <Link
                   to={`profile/${userInfo?.username}`}
+                  replace={true}
+                  preventScrollReset={true}
                   className="tw-navbar-link d-flex align-items-center text-dark text-decoration-none dropdown-item-text"
                 >
                   <span className={"text-bold"}>Profile @{userInfo?.username}</span>
