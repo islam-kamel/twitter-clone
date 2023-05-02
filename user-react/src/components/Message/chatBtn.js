@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {emoji, gif, imageIcon} from "../../constants/icons";
 import React, {useRef} from "react";
 
@@ -17,6 +18,9 @@ export default function ChatBtn(props) {
       handleClick();
     }
   }
+
+  const [t,setT] = useTranslation();
+
 
   return (
     <div className={"p-2 w-100"}>
@@ -42,7 +46,7 @@ export default function ChatBtn(props) {
           onKeyDown={handleEnter}
           dir={"auto"}
           className={"form-control border-0 fw-light"}
-          placeholder={"Start a new  message"}
+          placeholder={t('message.Start_a_new_messag')}
         />
         <div
           onClick={handleClick}

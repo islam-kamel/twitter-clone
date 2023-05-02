@@ -5,6 +5,7 @@ import Header from "../header/header";
 import "./Message.css"
 import ChatList from "./chatList";
 import ChatRoom from "./ChatRoom";
+import { useTranslation } from "react-i18next";
 
 const Message = () => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -51,6 +52,8 @@ const Message = () => {
     setShow(prev => !prev);
   }, [])
 
+  const [t,setT] = useTranslation();
+
   return (
     <div className={"overflow-hidden"} style={{maxHeight: "100vh"}}>
       {show && chatTop && <ChatRoom onBack={handleBack}/>}
@@ -60,7 +63,7 @@ const Message = () => {
             <Header noBorder>
               <Header.Top>
                 <div className={"px-2 d-flex align-items-center justify-content-between w-100"}>
-                  <span className="navbar-brand fw-bold fs-4">Message</span>
+                  <span className="navbar-brand fw-bold fs-4">{t('message.messages')}</span>
                   <div className="d-flex">
                     <Link className="nav-link  me-2 p-2" to="#" title="Settings"><i
                       className="bi bi-gear"></i></Link>
@@ -81,12 +84,12 @@ const Message = () => {
                       }}
                     >
                       <div className={"d-flex align-items-center w-75 mx-auto"}>
-                        <i className={"bi bi-search fs-6 text-muted me-2"}></i>
+                        <i className={"bi bi-search fs-6 text-muted  mx-2"}></i>
                         <span
                           className={"p-0 m-0 text-muted d-inline-block text-truncate"}
                           style={{maxWidth: "100%"}}
                         >
-                      Search Direct Messages
+                      {t('message.Search Direct Messages')}
                     </span>
                       </div>
                     </div>
