@@ -149,28 +149,29 @@ class CommentView(APIView):
         return Response(serializer.data)
 
 
-class CreateCommentView(APIView):
-    permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser]
+class CreateCommentView(CreateTweetView):
+    pass
+    # permission_classes = [AllowAny]
+    # parser_classes = [MultiPartParser, FormParser]
 
 
-    def post(self, request, tweet_id=None):
-        # Create new comment
-        serializer = CreateCommentSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        print(request.FILES)
-        # Upload Comment Media
-        for key, value in request.FILES.items():
-            data = {
-                'file': value,
-                'comment': serializer.data.get('id')
-            }
-            media_serializer = CommentMediaSerializer(data=data)
-            media_serializer.is_valid(raise_exception=True)
-            media_serializer.save()
-
-        obj = Comment.objects.get(id=serializer.data.get('id'));
-        final = CommentSerializer(obj)
-        return Response(final.data, status=status.HTTP_201_CREATED)
+    # def post(self, request, tweet_id=None):
+    #     # Create new comment
+    #     serializer = CreateCommentSerializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #
+    #     print(request.FILES)
+    #     # Upload Comment Media
+    #     for key, value in request.FILES.items():
+    #         data = {
+    #             'file': value,
+    #             'comment': serializer.data.get('id')
+    #         }
+    #         media_serializer = CommentMediaSerializer(data=data)
+    #         media_serializer.is_valid(raise_exception=True)
+    #         media_serializer.save()
+    #
+    #     obj = Comment.objects.get(id=serializer.data.get('id'));
+    #     final = CommentSerializer(obj)
+    #     return Response(final.data, status=status.HTTP_201_CREATED)
