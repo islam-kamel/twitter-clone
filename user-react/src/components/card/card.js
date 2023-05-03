@@ -65,6 +65,7 @@ const Card = ({border = true, ...props}) => {
     isRetweet && setIsRetweet(true);
   }, [props, userInfo]);
 
+
   const handleLike = (e) => {
     e.stopPropagation();
     const likeMethod = props?.reply ? likeReply : likeTweet;
@@ -98,6 +99,17 @@ const Card = ({border = true, ...props}) => {
 
     }
   };
+
+   
+
+  const handleBookmark=async()=>{
+    console.log('engy');
+     await axiosInstance.get("/api/tweet/")
+      .then(res=> console.log(res.data)).catch((error)=>{
+          console.log(error);
+      })
+
+  }
 
   const handleRetweet = () => {
     dispatch(retweet({tweetId: props.tweet.id}))
@@ -328,6 +340,11 @@ const Card = ({border = true, ...props}) => {
                 <div className={"icon-button"}>
                   <div className={"icon-bg i-bg-primary"}>{share}</div>
                 </div>
+              </div>
+            </div>
+            <div className={"icon-button"} onClick={()=>{handleBookmark()}}>
+              <div className={"icon-bg i-bg-primary"}>
+                {bookmarks}
               </div>
             </div>
           </div>

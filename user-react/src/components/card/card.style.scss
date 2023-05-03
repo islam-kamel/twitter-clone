@@ -77,7 +77,12 @@
   margin: 5px auto !important;
   padding-right: 50px !important;
 }
-
+.tw-navbar-link-card {
+  text-decoration: none !important;
+  &:hover{
+    text-decoration: underline !important;
+  }
+}
 //$primary-icon-bg: rgba(29, 155, 240, .1);
 //$primary-icon-color: rgba(29, 155, 240);
 //
