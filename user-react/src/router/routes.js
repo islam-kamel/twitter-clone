@@ -5,7 +5,7 @@ import ChatLayout from "../layout/chatLayout";
 import ChatRoom from "../components/Message/ChatRoom";
 
 const Home = lazy(() => import("../components/home/home"));
-const TweetDetails = lazy(() => import("../pages/tweetDetails"));
+const TweetDetails = lazy(() => import("../components/showTweet/TweetDetails "));
 const Profile = lazy(() => import("../components/profile/profile"));
 const Bookmarks = lazy(() => import("../components/bookmarks/Bookmarks"));
 const Message = lazy(() => import("../components/Message/Message"));

@@ -143,8 +143,8 @@ class CommentView(APIView):
 
 
     def get(self, request, tweet_id):
-        obj = Tweet.objects.filter(comment_id=tweet_id).all()
-        serializer = TweetSerializer(obj, many=True)
+        obj = Comment.objects.filter(tweet_id=tweet_id).all()
+        serializer = CommentSerializer(obj, many=True)
 
         return Response(serializer.data)
 

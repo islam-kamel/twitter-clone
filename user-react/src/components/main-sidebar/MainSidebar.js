@@ -118,7 +118,6 @@ export function SmNavbar() {
             <div className="tw-navbar-item px-1">
 
               <TwDropdown
-                down={false}
                 classes={"tw-dropdown-top-center mb-4"}
                 toggle={
                   <TwDropdown.Toggle>
