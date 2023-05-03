@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss"
 import {Link} from "react-router-dom";
-import {chart, comment, newFollow, replay, share, threeDots, verifyBlue} from "../../constants/icons";
+import {bookmarks, chart, comment, newFollow, replay, share, threeDots, verifyBlue} from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -11,6 +11,8 @@ import {fetchTweets, likeTweet, retweet} from "../../store/features/tweets/tweet
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies, likeReply} from "../../store/features/replies/replies";
 import {useTranslation} from "react-i18next";
+import {axiosInstance} from "../../store/API/axios";
+
 function BuildMedia(props) {
    
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
@@ -44,7 +46,8 @@ const Card = ({border = true, ...props}) => {
   const [t , translate]= useTranslation();
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
-  const userInfo = useSelector(state => state.currentUser.userProfile)
+  const userInfo = useSelector(state => state.currentUser.userProfile);
+  
   const [isLiked, setIsLiked] = useState(false)
   const [isRetweet, setIsRetweet] = useState(false)
   const dispatch = useDispatch()
@@ -55,6 +58,7 @@ const Card = ({border = true, ...props}) => {
     const isRetweet = props?.tweet.replies?.users_list.find(value => value === userInfo.id)
     isRetweet && setIsRetweet(true)
   }, [props, userInfo])
+
 
   const handleLike = (e) => {
     e.stopPropagation()
@@ -87,8 +91,19 @@ const Card = ({border = true, ...props}) => {
     if (userInfo?.id === props?.tweet?.user?.id) {
       const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweet.id}`;
       axiosPrivate.delete(url)
-        .then(res => console.log(res.data))
+        .then(res =>  res.data)
     }
+  }
+
+   
+
+  const handleBookmark=async()=>{
+    console.log('engy');
+     await axiosInstance.get("/api/tweet/")
+      .then(res=> console.log(res.data)).catch((error)=>{
+          console.log(error);
+      })
+
   }
 
   const handleRetweet = () => {
@@ -239,6 +254,11 @@ const Card = ({border = true, ...props}) => {
             <div className={"icon-button"}>
               <div className={"icon-bg i-bg-primary"}>
                 {share}
+              </div>
+            </div>
+            <div className={"icon-button"} onClick={()=>{handleBookmark()}}>
+              <div className={"icon-bg i-bg-primary"}>
+                {bookmarks}
               </div>
             </div>
           </div>

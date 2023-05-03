@@ -75,4 +75,11 @@
   width: 100% !important;
   margin: 5px auto !important;
   padding-right: 50px !important;
+}
+
+.tw-navbar-link-card {
+  text-decoration: none !important;
+}
+.tw-navbar-link-card:hover {
+  text-decoration: underline !important;
 }/*# sourceMappingURL=card.style.css.map */

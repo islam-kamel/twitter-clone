@@ -10,6 +10,7 @@ import {fetchTweets} from "../../store/features/tweets/tweets";
 import Header from "../header/header";
 import Picker from "emoji-picker-react";
 import {useTranslation} from "react-i18next";
+
 function NewTweet() {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
@@ -45,6 +46,8 @@ function NewTweet() {
       }
     });
   }
+ 
+
 
   const handelSubmit = (event) => {
     event.preventDefault();
