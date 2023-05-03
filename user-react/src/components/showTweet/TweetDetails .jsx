@@ -5,26 +5,26 @@ import ShowRepliesTweet from "./showRepliesTweet";
 import { useLocation, useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
-const TweetDetails = () => {
-  const parms = useLocation();
+const TweetDetails = (props) => {
+  const parms =props|| useLocation().state;
   console.log(parms);
   const axios = useAxiosPrivate();
   const [commentsList, setcommentsList] = useState([]);
 
   const getComments = useCallback(async () => {
     const data = await axios
-      .get(`/api/tweet/comment/${parms?.state?.tweet.id}`)
+      .get(`/api/tweet/comment/${parms?.tweet.id}`)
       .then((response) => response.data);
     setcommentsList(data);
   
-  }, [parms?.state?.tweet?.id, axios]);
+  }, [parms?.tweet?.id, axios]);
 
   const createComment = useCallback((vaildata) => {
     console.log(vaildata);
     axios
       .post(
         "/api/tweet/comment",
-        { ...vaildata, tweet: parms?.state?.tweet?.id },
+        { ...vaildata, tweet: parms?.tweet?.id },
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
@@ -39,7 +39,7 @@ const TweetDetails = () => {
   }, []);
 
   useEffect(()=>{
-    if(parms?.state?.tweet)
+    if(parms?.tweet)
     {
         getComments();
     }
@@ -48,11 +48,11 @@ const TweetDetails = () => {
   return (
     <>
       <div className={`mt-3`}></div>
-      <Card tweet={parms?.state?.tweet} withoutRoute />
+      <Card tweet={parms?.tweet} withoutRoute />
       <div className={`border-top`}></div>
       <NewTweet
         placeholder={"Write comment"}
-        buttonText={"Comment"}
+        buttonText={"reply"}
         callBackFunction={createComment}
       />
       {commentsList.length && commentsList.map((comment) => {
