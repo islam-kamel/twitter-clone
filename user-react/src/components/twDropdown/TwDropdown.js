@@ -8,6 +8,7 @@ class TwDropdown extends React.Component {
         className=""
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        
       >
         {props.children}
       </span>
@@ -16,7 +17,9 @@ class TwDropdown extends React.Component {
 
   render() {
     return (
-      <div className={this.props.down ? "dropdown" : "dropup"}>
+      <div className={this.props.down ? "dropdown" : "dropup"}
+      {...this.props}
+      >
         {this.props.toggle}
         <ul className={`dropdown-menu rounded-4 ${this.props.classes}`}>
           {this.props.children?.length

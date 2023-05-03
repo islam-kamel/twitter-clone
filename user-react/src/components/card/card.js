@@ -100,6 +100,7 @@ const Card = ({ border = true, ...props }) => {
     if (userInfo?.id === props?.tweet?.user?.id) {
       const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweet.id}`;
       axiosPrivate.delete(url).then((res) => console.log(res.data));
+      
     }
   };
 
@@ -111,28 +112,42 @@ const Card = ({ border = true, ...props }) => {
       });
   };
 
-  const [showComponent, setShowComponent] = useState(false);
-
-  const handleDivClick = () => {
-    setShowComponent(!showComponent);
-  };
   const navigate = useNavigate();
   const showDetailsOfCard = () => {
     console.log("hi safaaaaaaaaaa");
-    if(props?.tweet && !props?.withoutRoute)
-    {
-      navigate(`details/${props?.tweet?.content.split(' ',10).join("-")}`,{state:{tweet:props?.tweet}});
-      
+    if (props?.tweet && !props?.withoutRoute) {
+      navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-")}`, {
+        state: { tweet: props?.tweet },
+      });
+      console.log(props)
     }
-    
-    console.log(props?.tweet)
+
+    // console.log(props?.tweet);
   };
+//   useEffect(()=>{
+// if(!props?.tweet)
+// {
+// navigate("/");
+// }
+//   },[])
+
+  
   return (
     <div
       className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}
       onClick={showDetailsOfCard}
     >
-      <div className={"me-3"}>
+      <div
+        className={"me-3"}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!props?.withoutRoutProfile) {
+            navigate(`/profile/${props?.tweet?.user.fullname}`,{replace:true});
+            console.log("profile of user");
+          }
+        
+        }}
+      >
         <div className={"d-flex"}>
           <img
             src={`${
@@ -182,50 +197,59 @@ const Card = ({ border = true, ...props }) => {
                 {moment(props?.tweet?.create_at).fromNow()}
               </span>
             </div>
-
-            <TwDropdown
-              down={true}
-              toggle={<TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>}
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
             >
-              {userInfo.id !== props?.tweet?.user?.id ? (
-                <Link
-                  to={"#"}
-                  className={"text-decoration-none dropdown-item-text"}
-                >
-                  <div
-                    className={
-                      "d-flex align-items-center flex-row-reverse justify-content-between"
-                    }
+              <TwDropdown
+                down={true}
+                toggle={<TwDropdown.Toggle>{threeDots} </TwDropdown.Toggle>}
+              >
+                {userInfo.id !== props?.tweet?.user?.id ? (
+                  <Link
+                    to={"#"}
+                    className={"text-decoration-none dropdown-item-text"}
                   >
-                    <i className={"ms-2"} style={{ width: 20 }}>
-                      {newFollow}
-                    </i>
-                    <span>Follow {props?.tweet?.user.username}</span>
-                  </div>
-                </Link>
-              ) : (
-                <Link
-                  to={"#"}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    removeTweet();
-                  }}
-                  className={"text-decoration-none dropdown-item-text"}
-                >
-                  <div
-                    className={
-                      "d-flex align-items-center text-danger flex-row-reverse justify-content-between"
-                    }
+                    <div
+                      className={
+                        "d-flex align-items-center flex-row-reverse justify-content-between"
+                      }
+                    >
+                      <i className={"ms-2"} style={{ width: 20 }}>
+                        {newFollow}
+                      </i>
+                      <span>Follow {props?.tweet?.user.username}</span>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link
+                    to={"#"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeTweet();
+                    }}
+                    className={"text-decoration-none dropdown-item-text"}
                   >
-                    <i className={"ms-2 bi bi-trash"} style={{ width: 20 }}></i>
-                    <span>Remove</span>
-                  </div>
-                </Link>
-              )}
-            </TwDropdown>
+                    <div
+                      className={
+                        "d-flex align-items-center text-danger flex-row-reverse justify-content-between"
+                      }
+                    >
+                      <i
+                        className={"ms-2 bi bi-trash"}
+                        style={{ width: 20 }}
+                      ></i>
+                      <span>Remove</span>
+                    </div>
+                  </Link>
+                )}
+              </TwDropdown>
+            </div>
           </div>
         </div>
       </div>
+
       <div className={"ms-5 ps-2 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
           <p dir={"auto"} className={"fw-light p-0"} style={{ fontSize: 15 }}>
@@ -245,8 +269,24 @@ const Card = ({ border = true, ...props }) => {
               return <BuildMedia key={index} item={item} />;
             })}
           </div>
-          <div className="tweet_icons text-muted ps-0 ">
-            <div className={"icon-button"}>
+          <div
+            className="tweet_icons text-muted ps-0 "
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <div className={"icon-button"} 
+            onClick={()=>{
+              if (!props?.withoutRoute) {
+                navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-")}`, {
+                  state: { tweet: props?.tweet },
+                });
+                
+              }
+            }
+             
+            }
+            >
               <div className={"icon-bg i-bg-primary"}>{comment}</div>
               <span className={"icon-amount"}>
                 {props?.tweet?.comments?.count}

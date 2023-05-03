@@ -218,6 +218,8 @@ function Profile() {
                 <Card
                   key={tweet.id}
                   tweet={tweet}
+                  
+                  withoutRoutProfile
                 />
               )
             })}
@@ -242,13 +244,14 @@ function Profile() {
                   key={reply.id}
                   tweet={reply}
                   reply={true}
+                  withoutRoute
                 >
                   <Card
                     key={reply?.tweet.id}
                     tweet={reply?.tweet}
                     border={false}
                   />
-                </Card>
+                </Card >
               )
             })}
           </div>

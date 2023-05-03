@@ -1,29 +1,20 @@
 import React from 'react';
 import './showReplies.css';
-const ShowRepliesTweet = () => {
+import Card from '../card/card';
+import { useLocation } from 'react-router-dom';
+const ShowRepliesTweet = (reply) => {
+  const parms=useLocation();
+  console.log(parms?.state?.tweet)
     return (
-        <div>
-
-<div className="reply-container">
-      <div className="user-info">
-        <img
-          src=""
-          alt="my name"
-          className="profile-image"
-        />
-        <div>
-          <div className="user-name">safaa</div>
-          <div className="user-screen-name">@safaaaaaaaaaa</div>
-        </div>
-      </div>
-      <div className="reply-text">your reply</div>
-      
-    </div>
-          
-            
-        </div>
+      <>
+  
+    <Card tweet={reply} withoutRoute/>
+      </>
+        
     );
 }
 
 export default ShowRepliesTweet;
+
+
 
