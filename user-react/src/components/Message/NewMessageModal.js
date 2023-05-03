@@ -26,8 +26,7 @@ const NewMessageModal = () => {
               <button type="button" className="btn-close col-sm-1 pt-4" data-bs-dismiss="modal"
                       aria-label="Close"></button>
 
-              <h1 className="modal-title fs-5 col-sm-9 ps-3" id="staticBackdropLabel"> New
-                Message</h1>
+              <h1 className="modal-title fs-5 col-sm-9 ps-3" id="staticBackdropLabel"> New Message</h1>
 
               <button type="button" className="btn btn-light col-sm-2">Next</button>
             </div>

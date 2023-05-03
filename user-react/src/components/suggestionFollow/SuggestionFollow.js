@@ -5,11 +5,13 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {useDispatch, useSelector} from "react-redux";
 import {getNewSuggestion} from "../../store/features/suggestionFollow/suggetstionFollow";
 import {useTranslation} from "react-i18next";
+
 export function FollowButton({username}) {
   const axios = useAxiosPrivate();
   const [isFollowing, setIsFollowing] = useState();
   const [disabled, setDisabled] = useState(false);
-  const [t , translate]= useTranslation();
+  const [t] = useTranslation();
+
   const handleFollow = useCallback(async () => {
     setDisabled(true)
     try {
@@ -37,7 +39,7 @@ export function FollowButton({username}) {
       btnStyle={"dark"}
       classes={"rounded-pill"}
     >
-      {isFollowing ?  t("explore.how_follow_not") : t("explore.how_follow_f")}
+      {isFollowing ? t("explore.how_follow_not") : t("explore.how_follow_f")}
     </TwButton>
   );
 }
@@ -54,7 +56,7 @@ export function SuggestionFollow(props) {
     <>
       {suggestionList?.length && suggestionList.map(user => {
         return (
-          <div key={user.id} className={"trend-card"}>
+          <div key={user.id} className={"tweet-card-hover"} role={'button'}>
             <div className="p-4 w-100 d-flex justify-content-between align-items-center">
               <div className="d-flex align-items-center justify-content-center ">
                 <img
@@ -70,8 +72,8 @@ export function SuggestionFollow(props) {
                     >
                       {user?.fullname}
                     </h6>
-                    {user?.is_verify &&  <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>}
-                    </div>
+                    {user?.is_verify && <span className={"text-primary tw-navbar-icon"}>{verifyBlue}</span>}
+                  </div>
                   <span className="text-muted fw-light">@{user?.username}</span>
                 </div>
               </div>

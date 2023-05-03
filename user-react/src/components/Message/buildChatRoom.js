@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {useLocation, useNavigate} from "react-router-dom";
 import Header from "../header/header";
 import Chat from "../chat/Chat";
+import { useTranslation } from "react-i18next";
 
 
 function BuildChatRoom(props) {
@@ -31,6 +32,7 @@ function BuildChatRoom(props) {
     }
     navigate("/Message", {replace: true})
   }
+  const [t,setT] = useTranslation();
 
   // const handleStartCall = useCallback(() => {
   //   const {chatId} = getChatId({value: params.username, targetList: Object.values(chatsObj)})[0] || {}
@@ -42,7 +44,7 @@ function BuildChatRoom(props) {
       <div className={" position-sticky top-0 z-1"}>
         <Header noBorder>
           <Header.Top>
-            <div className="d-flex p-2 justify-content-between w-100">
+            <div dir="auto" className="d-flex p-2 justify-content-between w-100">
               <div className={"d-flex align-items-center "}>
                 <i onClick={handleBack}
                    role={"button"}
@@ -79,13 +81,13 @@ function BuildChatRoom(props) {
             style={{fontSize: 12}}
             className={"bg-secondary-subtle px-2 rounded-pill  fw-light me-3"}
           >
-            Followers: {receiver?.followers?.length}
+            {t('message.Followers')} : {receiver?.followers?.length}
           </span>
             <span
               style={{fontSize: 12}}
               className={"bg-secondary-subtle px-2 rounded-pill  fw-light "}
             >
-            Following: {receiver?.following?.length}
+            {t('message.Following')}: {receiver?.following?.length}
           </span>
           </div>
         </div>

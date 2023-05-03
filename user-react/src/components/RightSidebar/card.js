@@ -13,7 +13,7 @@ const Cardtrandy = (props) => {
         fontSize: ".9em",
         fontWeight: "600"
       }}>
-        <div className="div-trandy " >
+        <div className="div-trandy">
           <span style={{fontSize: "1.3", fontWeight: "400", paddingTop: "3px"}}> { props.trindname} </span>
           <i className="bi bi-three-dots icon_style"></i>
         </div>

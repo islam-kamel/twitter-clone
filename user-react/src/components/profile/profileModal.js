@@ -8,10 +8,14 @@ import LoadingSpinner from "../Loading/loading-spinner";
 import {useDate} from "../../hooks/useDate";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserProfile} from "../../store/features/user/user";
+import { useTranslation } from "react-i18next";
 import {axiosInstance} from "../../store/API/axios";
 
 
 const ProfileModal = () => {
+
+  const[t, translate]=useTranslation();
+
   const userInfo = useSelector(state => state.currentUser.userProfile)
   const [toggleState, setToggleState] = useState(false);
   const form = useRef();
@@ -54,7 +58,7 @@ const ProfileModal = () => {
       <TwModal.ModalButton
         targetId={"editProfileModal"}
         btnStyle={"light"}
-        title={"Edit Profile"}
+        title={t('profile.edit_profile')}
         classes={"rounded-5 border"}
       />
       <TwModal id={"editProfileModal"} modalStyle={"rounded-4"}>
@@ -67,10 +71,10 @@ const ProfileModal = () => {
                 aria-label="Close"
                 className={"bi bi-x fs-4 me-3"}
               ></i>
-              <span className={"fw-bold"}>Edit Profile</span>
+              <span className={"fw-bold"}>{t('profile.edit_profile')}</span>
             </div>
             <TwButton other={{type: "submit", onClick: handelSubmit}} btnStyle={"dark btn-sm"}
-                      classes={"rounded-5 mt-1"}>Save</TwButton>
+                      classes={"rounded-5 mt-1"}>{t('profile.save')}</TwButton>
           </div>
         </TwModal.Header>
         <TwModal.Body classes={"overflow-scroll"}>
@@ -98,7 +102,7 @@ const ProfileModal = () => {
               </div>
             </div>
             <div className="row row-cols-1 mt-5  gy-4 gx-0">
-              <TwInput id={"fullname"} labelText={"Name"} other={{
+              <TwInput id={"fullname"} labelText={t('profile.name')} other={{
                 name: "fullname",
                 defaultValue: userInfo?.fullname,
               }
@@ -109,16 +113,16 @@ const ProfileModal = () => {
                 defaultValue: userInfo?.profile?.bio,
               }
               }>
-                <label htmlFor={"bio"}>Bio</label>
+                <label htmlFor={"bio"}>{t('profile.bio')}</label>
               </TwInput>
 
-              <TwInput id={"location"} labelText={"Location"} other={{
+              <TwInput id={"location"} labelText={t('profile.location')} other={{
                 name: "location",
                 defaultValue: userInfo?.profile?.location,
               }
               }/>
 
-              <TwInput id={"website"} labelText={"Website"} other={{
+              <TwInput id={"website"} labelText={t('profile.website')} other={{
                 name: "website",
                 type: "url",
                 defaultValue: userInfo?.profile?.website
@@ -141,7 +145,7 @@ const ProfileModal = () => {
                   </div>
                 ) : (
                   <div role={"button"}>
-                    <p className="text-muted mb-2">Birth date.</p>
+                    <p className="text-muted mb-2">{t('profile.birth_date')}</p>
                     <p
                       onClick={handelClickToggle}
                       className="fs-5"

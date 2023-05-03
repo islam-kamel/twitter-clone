@@ -29,7 +29,7 @@ function Layout() {
           <nav className={"col-2 d-none col-xl-3 d-sm-flex flex-column p-0"}>
             <MainSidebar/>
           </nav>
-          <main className="col p-0 mb-auto border">
+          <main style={{width:'80%'}} className="col p-0 mb-auto border">
             <Outlet/>
             {/*<VideoCall/>*/}
           </main>

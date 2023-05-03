@@ -1,9 +1,11 @@
 import React from "react";
 import "../Trends/trends.scss";
 import TrendsOpinion from "../TrendsOpenion/trendsOpinion";
+import { useTranslation } from "react-i18next";
 
 const Trends = (props) => {
 
+  const [t , translate]=useTranslation();
 
   return (
     <div className="trend-card py-2 ">
@@ -12,13 +14,13 @@ const Trends = (props) => {
         {/* <!-- <div class="text-center"> --> */}
 
         {/* <!-- Default dropstart button --> */}
-        <div className=" dropstart d-flex flex-column align-items-end ">
+        <div className=" dropstart d-flex flex-column align-items-end " dir={t('dir')}>
 
-          <TrendsOpinion className="trends-option" interestedTrend="Not Interested in this"
-                         harmfulTrend="This Trend is harmful"></TrendsOpinion>
+          <TrendsOpinion className="trends-option" interestedTrend={t('explore.interestedTrend')}
+                         harmfulTrend={t('explore.harmfulTrend')}></TrendsOpinion>
 
 
-          <h4 className="me-2 fs-6">{props.trendName}</h4>
+          <h4 className="me-2 fs-6" dir={t('dir')}>{props.trendName}</h4>
         </div>
 
         {/* <!-- </div> --> */}

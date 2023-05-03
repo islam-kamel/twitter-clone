@@ -1,8 +1,12 @@
 import React from "react";
 import "./explore.scss";
 import Trends from "../Trends/trends";
+import {useTranslation} from 'react-i18next';
 
 export default function Explore() {
+
+        const [t, translate] = useTranslation();
+
   const handleSearcher = () => {
 
     document.getElementById("input-bar").addEventListener("blur", () => {
@@ -23,6 +27,9 @@ export default function Explore() {
       <div className="row">
 
         <div id="explore" className=" col-12  border-end p-3">
+        <div className="d-flex justify-content-between mb-3 mt-2">
+                        <h4>{t('explore.explore')}</h4>
+                    </div>
           {/* <!--  --------------------------------search-Bar-------------- --> */}
           <div id="searchBar" className="t-center col-10">
             <div className=" mb-1  justify-content-between align-items-center d-flex " id="search-group">
@@ -35,7 +42,7 @@ export default function Explore() {
                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
                 <input type="text" className=" bg-transparent   border border-0 fs-6 " id="input-bar"
-                       placeholder="Search Twitter"
+                       placeholder={t('explore.search_twitter')}
                        aria-label="search" aria-describedby="basic-addon1"
                        onClick={() => handleSearcher()}/>
               </div>
@@ -63,16 +70,14 @@ export default function Explore() {
                                     aria-label="Close"></button>
                             <h5 className="modal-title fs-5 fw-4 ms-3"
                                 id="staticBackdropLabel">
-                              Trends</h5>
+                               {t('explore.modal_trends_title')}</h5>
                           </div>
                         </div>
                         <div className="modal-body py-3 d-flex justify-content-between "
                              style={{height: "500px"}}>
                           <div>
-                            <h6 className="d-flex justify-content-start">Trends for you</h6>
-                            <p className="" style={{fontSize: 13}}>Personalize trends based
-                              on your location and who you
-                              follow.</p>
+                            <h6 className="d-flex justify-content-start">{t('explore.modal_trends_head')}</h6>
+                            <p className="" style={{fontSize: 13}}>{t('explore.modal_trends_body')}</p>
                           </div>
                           <div className="form-check">
                             <input className="form-check-input px-2" type="checkbox"
@@ -102,7 +107,7 @@ export default function Explore() {
                         aria-controls="pills-foryou"
                         aria-selected="false">
 
-                  For You
+                        {t('explore.title_foru')}
                 </button>
 
 
@@ -115,7 +120,7 @@ export default function Explore() {
                         data-bs-target="#pills-Trending" type="button" role="tab"
                         aria-controls="pills-Trending"
                         aria-selected="false">
-                  Trending
+                 {t('explore.title_trending')}
 
                 </button>
               </li>
@@ -123,7 +128,8 @@ export default function Explore() {
               <li className="nav-item" role="presentation">
                 <button className="nav-link  nav-links trend-bar nav-tabs border-color"
                         id="pills-News-tab" data-bs-toggle="pill" data-bs-target="#pills-News"
-                        type="button" role="tab" aria-controls="pills-News" aria-selected="false">News
+                        type="button" role="tab" aria-controls="pills-News" aria-selected="false">
+                                 {t('explore.title_news')}
                 </button>
               </li>
 
@@ -132,7 +138,8 @@ export default function Explore() {
                         data-bs-toggle="pill"
                         id="pills-Sports-tab" data-bs-target="#pills-Sports" type="button" role="tab"
                         aria-controls="pills-Sports"
-                        aria-selected="false">Sports
+                        aria-selected="false">
+                                 {t('explore.title_sports')}
                 </button>
               </li>
 
@@ -141,50 +148,51 @@ export default function Explore() {
                         data-bs-toggle="pill"
                         id="pills-Entertainment-tab" data-bs-target="#pills-Entertainment" type="button"
                         role="tab"
-                        aria-controls="pills-Entertainment-tab" aria-selected="false">Entertainment
+                        aria-controls="pills-Entertainment-tab" aria-selected="false">
+                                {t('explore.title_entertainment')}
                 </button>
               </li>
 
             </ul>
 
           </div>
-          <div className="tab-content show" id="pills-tabContent">
+          <div className="tab-content show" id="pills-tabContent" dir={t('dir')}>
             {/* <!----------------- ForYou-Trends-------------> */}
             <div className="tab-pane fade   pt-2 show active" id="pills-foryou" role="tabpanel"
                  aria-labelledby="pills-foryou-tab" tabIndex="0">
 
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="أفريقيا يا زمالك"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="أفريقيا يا زمالك"
                       trendTweets="24,2K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="عارف كام"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="عارف كام"
                       trendTweets="24,2K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="شيكابالا"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="شيكابالا"
                       trendTweets="1,996K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="الاهلي#"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="الاهلي#"
                       trendTweets="21,5K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="الزمالك#"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="الزمالك#"
                       trendTweets="54,8K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="كاس العالم للأندية#"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="كاس العالم للأندية#"
                       trendTweets="Trending With كاس العالم "></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="تضامن مصر"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="تضامن مصر"
                       trendTweets="25,1K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="الهداف التاريخي"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="الهداف التاريخي"
                       trendTweets="26.0K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Egypt" trendName="يحدث الان #"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="يحدث الان #"
                       trendTweets="55.3K Tweets"></Trends>
 
               <hr/>
               <div className="row">
                 <div className="col-12 border-bottom py-2">
-                  <h3 className=" ms-4">How To Follow</h3>
+                  <h3 className=" ms-4">{t('explore.how_follow')}</h3>
                   <div className="trend-card mt-1 d-flex justify-content-between align-items-center">
                     <div className="followers ms-3 d-flex align-items-center ">
                       <img src="../assets/images/moon3.jpg" width="50" height="50"
@@ -197,7 +205,7 @@ export default function Explore() {
 
                     </div>
                     <button type="button"
-                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
+                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">{t('explore.how_follow_f')}
                     </button>
                   </div>
                 </div>
@@ -217,7 +225,7 @@ export default function Explore() {
 
                     </div>
                     <button type="button"
-                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
+                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">{t('explore.how_follow_f')}
                     </button>
                   </div>
                 </div>
@@ -234,7 +242,7 @@ export default function Explore() {
 
                     </div>
                     <button type="button"
-                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">Follow
+                            className="btn btn-dark rounded-pill fs-6 fw-bold px-2 me-3">{t('explore.how_follow_f')}
                     </button>
                   </div>
                 </div>
@@ -244,27 +252,27 @@ export default function Explore() {
             {/* <!--------------------- Trending-Trends--> */}
             <div className="tab-pane fade" id="pills-Trending" role="tabpanel"
                  aria-labelledby="pills-Trending-tab" tabIndex="0">
-              <h5 className="mt-3 ms-4">World Wide Trends</h5>
+              <h5 className="mt-3 ms-4">{t('explore.title_trending_txt')}</h5>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.trending_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
             </div>
@@ -273,28 +281,28 @@ export default function Explore() {
             <div className="tab-pane fade" id="pills-News" role="tabpanel" aria-labelledby="pills-News-tab"
                  tabIndex="0">
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Coding" trendName="Javascript"
+              <Trends className="trendss" trendPlace={t('explore.news_placeName')} trendName="Javascript"
                       trendTweets="55.3K Tweets"></Trends>
 
             </div>
@@ -303,28 +311,28 @@ export default function Explore() {
             <div className="tab-pane fade" id="pills-Sports" role="tabpanel"
                  aria-labelledby="pills-Sports-tab" tabIndex="0">
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Sports.Trending" trendName="Baseball"
+              <Trends className="trendss" trendPlace={t('explore.foru_placeName')} trendName="Baseball"
                       trendTweets="55.3K Tweets"></Trends>
 
             </div>
@@ -333,28 +341,28 @@ export default function Explore() {
             <div className="tab-pane fade" id="pills-Entertainment" role="tabpanel"
                  aria-labelledby="pills-Entertainment-tab" tabIndex="0">
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
-              <Trends className="trendss" trendPlace="Trending in Entertainment"
+              <Trends className="trendss" trendPlace={t('explore.entertainment_placeName')}
                       trendName="Marvel Studios" trendTweets="55.3K Tweets"></Trends>
 
 

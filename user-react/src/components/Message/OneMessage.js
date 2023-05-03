@@ -3,6 +3,7 @@ import {threeDots, verifyBlue} from "../../constants/icons";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useMessages} from "../../hooks/chat-hooks/chatHooks";
+import { useTranslation } from "react-i18next";
 
 const OneMessage = (props) => {
   const navigate = useNavigate()
@@ -19,8 +20,10 @@ const OneMessage = (props) => {
     }
     navigate(props?.user.username, {state: {key: props.user.username}})
   }
+  const [t,setT] = useTranslation();
 
   useEffect(() => {
+
     const lastMessage = lastMessages[props?.user.username]?.message;
 
     if (!lastMessage) return;
@@ -31,12 +34,13 @@ const OneMessage = (props) => {
 
     } else {
       setYou(true)
-      setDisplayLastMessage(`You: ${lastMessage?.content}`)
+      setDisplayLastMessage(` ${t('message.You')}: ${lastMessage?.content}`)
     }
 
     setIsUnread(lastMessage?.seen)
 
   }, [lastMessages, props?.user.username, unreadMessages])
+
 
 
   return (

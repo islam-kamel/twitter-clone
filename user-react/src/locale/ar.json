@@ -22,7 +22,7 @@
         "tweet":"غرد"
     },
     "explore":{
-        "explore":"الرئيسيّة",
+        "explore":"أستكشف",
         "search_twitter":" البحث في تويتر",
         "modal_trends_title":"المواضيع المتداولة",
         "modal_trends_head":"مواضيع مُتداولة خُصّصت لك",
@@ -59,7 +59,10 @@
         "mentions":"الاشارات",
         "mentions_head":"لا شيء هنا - حتى الآن.",
         "mentions_txt":"عندما يقوم أحد الأشخاص بالإشارة إليك، سوف تجد ذلك هنا.",
-        "learnMore":"المزيد"
+        "learnMore":"المزيد",
+        "Others":" آخرين",
+        "New Tweet Notifications for":"إخطارات تغريدة جديدة لـ",
+        "And":" و" 
     },
     "message":{
         "messages":"الرسائل",
@@ -69,7 +72,12 @@
         "next":"التالي",
         "search_people":"أبحث عن الأشخاص",
         "create_group":"أنشأ مجموعة",
-        "u_follow":"متابع"
+        "u_follow":"متابع",
+        "Followers":"متابعون",
+        "Following":"يتابع",
+        "Start_a_new_messag":"ابدأ رسالة جديدة",
+        "You":"انت",
+        "Search Direct Messages":"البحث في الرسائل الخاصّة"
     },
     "bookmarks":{
         "bookmarks":"العلامات المرجعية",

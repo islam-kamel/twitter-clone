@@ -234,3 +234,12 @@ $second-icon-color: rgba(0, 186, 124);
     border-left: bootstrap.$border-width bootstrap.$border-color bootstrap.$border-style;
   }
 }
+
+.overflow-y-auto::-webkit-scrollbar {
+  scrollbar-width: none;
+  display: none;
+}
+
+.h-10 {
+  height: 75% !important;
+}

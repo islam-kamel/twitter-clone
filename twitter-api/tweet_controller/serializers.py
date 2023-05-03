@@ -1,31 +1,7 @@
 from rest_framework import serializers
 
-from tweet_controller.models import Tweet, Media, Like, Comment, Reply, LikeReply
+from tweet_controller.models import Tweet, Media, Like, Comment, Reply, LikeReply, CommentMedia
 from user_control.models import Profile, CustomUser
-
-
-class LikeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Like
-        fields = '__all__'
-
-
-class LikeReplySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LikeReply
-        fields = '__all__'
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = "__all__"
-
-
-class MediaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Media
-        fields = ["id", "file", "tweet"]
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -45,8 +21,80 @@ class UserSerializer(serializers.ModelSerializer):
         except Profile.DoesNotExist:
             return "None"
 
+
     def get_id(self, obj):
         return obj.id
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = '__all__'
+
+
+class LikeReplySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LikeReply
+        fields = '__all__'
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    media = serializers.SerializerMethodField()
+    user = UserSerializer()
+    likes = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+    replies = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'user', 'create_at', 'content', 'comments', 'tweet', 'media', 'replies', 'likes']
+
+    def get_media(self, obj):
+        obj = CommentMedia.objects.filter(comment=obj).all()
+        serializer = CommentMediaSerializer(obj, many=True)
+        return serializer.data
+
+
+    def get_likes(self, obj):
+        likes = obj.comment_likes.all()
+        return {
+            'count': likes.count(),
+            'users_list': likes.values_list('user_id', flat=True)
+        }
+
+
+    def get_comments(self, obj):
+        return {
+            'count': 0,
+            'users_list': []
+        }
+
+
+    def get_replies(self, obj):
+        replies = obj.replies_comments.all()
+        return {
+            'count': replies.count(),
+            'users_list': replies.values_list('user_id', flat=True)
+        }
+
+
+class CreateCommentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = ['id', 'user', 'create_at', 'content', 'tweet']
+
+
+class MediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Media
+        fields = ["id", "file", "tweet"]
+
+
+class CommentMediaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommentMedia
+        fields = ['id', 'file', 'comment']
 
 
 class TweetSerializer(serializers.ModelSerializer):

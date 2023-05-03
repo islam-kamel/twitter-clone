@@ -31,7 +31,7 @@ function Bookmarks() {
               </TwDropdown.Toggle>
             }
           >
-            <Link to={"#"} className={"text-danger text-decoration-none"}>Remove All Bookmarks</Link>
+            <Link to={"#"} className={"text-danger text-decoration-none"}>{t('bookmarks.remove_bookmarks')}</Link>
           </TwDropdown>
           <div className={"d-flex flex-column"}>
             <h1 className={"fw-bold m-0"}>Bookmarks</h1>

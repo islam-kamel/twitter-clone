@@ -1,12 +1,11 @@
 import {RouterProvider} from "react-router-dom";
-import {Suspense, useEffect, useState} from "react";
+import {Suspense, useEffect} from "react";
 import "./i18n";
 import config from "./config";
 import routes from './router/routes'
-// import useRefreshToken from "./hooks/useRefreshToken";
 import {useTranslation} from "react-i18next";
 import Settings from "./components/settings/settings";
-import {LANG_KEY} from "./i18n";
+import NewTweetModal from "./components/NewTweetModal";
 
 // const socket = io.connect('http://localhost:3008');
 //
@@ -24,21 +23,12 @@ import {LANG_KEY} from "./i18n";
 //     return new Notification(JSON.parse(stringBody));
 //   }
 function App() {
-  const [t, translate] = useTranslation();
-  const [en, setEn] = useState(true);
-
-  const handleLanguageChange = () => {
-    // Update the selected language in localStorage
-    const lang = en ? 'en' : 'ar'
-    localStorage.setItem(LANG_KEY, lang);
-    // Call the i18n object to update the language
-    translate.changeLanguage(lang).then(() => setEn(!en));
-  };
+  const [t] = useTranslation();
 
   useEffect(() => {
-    document.body.dir = t('dir');
+    document.body.parentElement.dir = t('dir');
     document.body.setAttribute('data-bs-theme', localStorage.getItem(config.colorKey))
-  }, [en, t])
+  }, [t])
 
   // const userInfo = useSelector(state => state.currentUser.userProfile);
   //
@@ -67,7 +57,7 @@ function App() {
   return (
     <Suspense fallback={null}>
       <Settings/>
-      <button className={'btn btn-primary'} onClick={handleLanguageChange}>Change Lang</button>
+      <NewTweetModal/>
       <RouterProvider router={routes}/>
     </Suspense>
   );
