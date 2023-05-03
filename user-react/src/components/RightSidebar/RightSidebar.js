@@ -19,7 +19,7 @@ const RightSidebar = () => {
                    placeholder={t("explore.search_twitter")} aria-label=".form-control-lg example"/>
           </div>
         </div>
-        <div className="p-0 mt-3 ms-3 h-100 overflow-scroll">
+        <div className="p-0 mt-3 ms-3 overflow-y-auto h-10">
           <div className="maindiv bg-element">
             <h1 style={{
               fontSize: "20px",

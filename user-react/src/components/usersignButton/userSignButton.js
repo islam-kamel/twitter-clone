@@ -27,9 +27,7 @@ const UserSignButton = ({toggle}) => {
           <TwDropdown
             down={false}
             classes={"tw-dropdown-top-center tw-dropdown-arrow-down mb-5"}
-            toggle={ toggle ||
-              <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle>
-            }
+            toggle={ toggle || <TwDropdown.Toggle>{threeDots}</TwDropdown.Toggle> }
           >
             <Link
               to={`profile/${userInfo?.username}`}

@@ -1,11 +1,11 @@
 from rest_framework import status
-from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser 
+from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from tweet_controller.models import Tweet, Reply, Like, LikeReply
-from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, MediaSerializer, ReplySerializer, LikeSerializer, LikeReplySerializer
+from tweet_controller.models import Tweet, Reply, Like, LikeReply, Comment
+from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, CommentMediaSerializer, MediaSerializer, ReplySerializer, LikeSerializer, LikeReplySerializer, CommentSerializer, CreateCommentSerializer
 
 
 class TweetView(APIView):
@@ -50,7 +50,7 @@ class CreateTweetView(APIView):
             media_serializer = MediaSerializer(data=data)
             media_serializer.is_valid(raise_exception=True)
             media_serializer.save()
-        
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -121,6 +121,7 @@ class RepliesCreateOrDeleteView(APIView):
 class ReplyLikeView(APIView):
     permission_classes = [AllowAny]
 
+
     def put(self, request, retweet_id):
         try:
             like_state = LikeReply.objects.filter(replay_id=retweet_id, user_id=request.user.id).exists()
@@ -135,4 +136,41 @@ class ReplyLikeView(APIView):
             return Response({'state': 'like'})
         except Like.DoesNotExist:
             return Response({'state': 'not found'})
-#
+
+
+class CommentView(APIView):
+    permission_classes = [AllowAny]
+
+
+    def get(self, request, tweet_id):
+        obj = Tweet.objects.filter(comment_id=tweet_id).all()
+        serializer = TweetSerializer(obj, many=True)
+
+        return Response(serializer.data)
+
+
+class CreateCommentView(APIView):
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+
+    def post(self, request, tweet_id=None):
+        # Create new comment
+        serializer = CreateCommentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        print(request.FILES)
+        # Upload Comment Media
+        for key, value in request.FILES.items():
+            data = {
+                'file': value,
+                'comment': serializer.data.get('id')
+            }
+            media_serializer = CommentMediaSerializer(data=data)
+            media_serializer.is_valid(raise_exception=True)
+            media_serializer.save()
+
+        obj = Comment.objects.get(id=serializer.data.get('id'));
+        final = CommentSerializer(obj)
+        return Response(final.data, status=status.HTTP_201_CREATED)

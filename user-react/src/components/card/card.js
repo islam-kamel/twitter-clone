@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {chart, comment, newFollow, replay, share, threeDots, verifyBlue} from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css"
@@ -40,6 +40,7 @@ function BuildMedia(props) {
 }
 
 const Card = ({border = true, ...props}) => {
+  const navigate = useNavigate()
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector(state => state.currentUser.userProfile)
@@ -81,7 +82,7 @@ const Card = ({border = true, ...props}) => {
       })
   }
 
-  const removeTweet = () => {
+  const removeTweet = (e) => {
     if (userInfo?.id === props?.tweet?.user?.id) {
       const url = `${process.env.REACT_APP_BASE_URL}/api/tweet/remove/${props?.tweet.id}`;
       axiosPrivate.delete(url)
@@ -97,11 +98,11 @@ const Card = ({border = true, ...props}) => {
       })
   }
   return (
-    <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
+    <div  className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
       <div className={"me-3"}>
         <div className={"d-flex"}>
           <img src={`${process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image}`} alt=""
-               className="tw-profile-image  rounded-circle"/>
+               className="tw-profile-image  rounded-circle "/>
           <div
             className={"d-flex ms-2 justify-content-between align-items-start w-100"}>
             <div className={'d-flex justify-content-between w-100 align-items-center'}>
@@ -109,10 +110,10 @@ const Card = ({border = true, ...props}) => {
                 to="#"
                 className="tweeter_name text-decoration-none text-dark flex-grow-0 flex-shrink-0"
               >
-                <div className={'d-flex'}>
-                  <span>{props?.tweet?.user.fullname}</span>
-                  <span className={"ms-2 text-muted text-truncate d-block"} style={{maxWidth: '90%'}}>@{props?.tweet?.user.username}</span>
-                  {props?.tweet?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon ms-1"}>{verifyBlue}</span>}
+                <div   className={'d-flex mx-1'}>
+                  <span  dir={'auto'}>{props?.tweet?.user.fullname}</span>
+                  <span dir={'auto'} className={"text-muted text-truncate d-block mx-1"} style={{maxWidth: '90%'}}>@{props?.tweet?.user.username}</span>
+                  {props?.tweet?.user?.is_verify &&  <span className={"text-primary tw-navbar-icon mx-1"}>{verifyBlue}</span>}
                 </div>
 
               </Link>
@@ -122,6 +123,7 @@ const Card = ({border = true, ...props}) => {
                   maxWidth: 60,
                   fontSize: 12
               }}
+                dir={'auto'}
               >
                 {moment(props?.tweet?.create_at).fromNow()}
               </span>

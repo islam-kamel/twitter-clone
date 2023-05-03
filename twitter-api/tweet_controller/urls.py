@@ -8,13 +8,17 @@ from .views import (
     RepliesListView,
     TweetLikeView,
     RepliesCreateOrDeleteView,
-    ReplyLikeView
+    ReplyLikeView,
+    CommentView,
+    CreateCommentView
 )
 
 app_name = 'tweet'
 
 urlpatterns = [
     path('', TweetView.as_view(), name="tweet-list"),
+    path('comment', CreateCommentView.as_view(), name='comment-view'),
+    path('comment/<str:tweet_id>', CommentView.as_view(), name='comment-view'),
     path('create', CreateTweetView.as_view(), name="crate-tweet"),
     path('replies/<str:username>', RepliesListView.as_view(), name='replies-filter-by-username'),
     path('retweet/like/<str:retweet_id>', ReplyLikeView.as_view()),

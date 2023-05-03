@@ -7,15 +7,16 @@ function TweetDetails(props) {
 
     return (
         <>
-            <Card
-                key={tweet?.id}
-                tweetId={tweet?.id}
-                name={tweet?.user?.fullname}
-                username={tweet?.user?.username}
-                text={tweet?.content}
-                img={tweet?.user?.image}
-                media={tweet?.media}
-            />
+          {JSON.stringify(tweet)}
+            {/*<Card*/}
+            {/*    key={tweet?.id}*/}
+            {/*    tweetId={tweet?.id}*/}
+            {/*    name={tweet?.user?.fullname}*/}
+            {/*    username={tweet?.user?.username}*/}
+            {/*    text={tweet?.content}*/}
+            {/*    img={tweet?.user?.image}*/}
+            {/*    media={tweet?.media}*/}
+            {/*/>*/}
         </>
     )
 }

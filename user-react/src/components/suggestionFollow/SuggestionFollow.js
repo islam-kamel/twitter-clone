@@ -56,7 +56,7 @@ export function SuggestionFollow(props) {
     <>
       {suggestionList?.length && suggestionList.map(user => {
         return (
-          <div key={user.id} className={"trend-card"}>
+          <div key={user.id} className={"tweet-card-hover"} role={'button'}>
             <div className="p-4 w-100 d-flex justify-content-between align-items-center">
               <div className="d-flex align-items-center justify-content-center ">
                 <img
