@@ -79,7 +79,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CreateCommentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = ['id', 'user', 'create_at', 'content', 'tweet']
@@ -125,7 +124,7 @@ class TweetSerializer(serializers.ModelSerializer):
 
 
     def get_replies(self, obj):
-        replies = obj.tweet_replies.all()
+        replies = obj.tweet_replay.all()
         return {
             'count': replies.count(),
             'users_list': replies.values_list('user_id', flat=True)
@@ -142,16 +141,16 @@ class CreateTweetSerializer(serializers.ModelSerializer):
 
 class ReplySerializer(serializers.ModelSerializer):
     tweet = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
     user = serializers.SerializerMethodField()
     likes = serializers.SerializerMethodField()
-    comments = serializers.SerializerMethodField()
 
     class Meta:
         model = Reply
-        fields = ['id', 'content', 'create_at', 'tweet', 'user', 'likes', 'comments']
+        fields = ['id', 'content', 'create_at', 'tweet', 'user', 'comments', 'likes']
 
     def get_tweet(self, obj):
-        return TweetSerializer(obj.tweet).data
+        return TweetSerializer(obj.replay).data
 
 
     def get_user(self, obj):
@@ -159,7 +158,7 @@ class ReplySerializer(serializers.ModelSerializer):
 
 
     def get_likes(self, obj):
-        likes = obj.replay_likes.all()
+        likes = obj.tweet_likes.all()
         return {
             'count': likes.count(),
             'users_list': likes.values_list('user_id', flat=True)
@@ -167,7 +166,7 @@ class ReplySerializer(serializers.ModelSerializer):
 
 
     def get_comments(self, obj):
-        comments = obj.replies_comments.all()
+        comments = obj.tweet_comments.all()
         return {
             'count': comments.count(),
             'users_list': comments.values_list('user_id', flat=True)

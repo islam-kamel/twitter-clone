@@ -25,11 +25,15 @@ export const likeTweet = createAsyncThunk("tweets/likeTweets", async (data, thun
 
 export const retweet = createAsyncThunk("tweets/retweet", async (data, thunkAPI) => {
   try {
+    if (data.delete) {
+      return await axiosInstance.delete(`/api/tweet/retweet/${data.tweetId}`).then(res => res.data);
+    }
     return await axiosInstance.put(`/api/tweet/retweet/${data.tweetId}`).then(res => res.data);
   } catch (error) {
     thunkAPI.rejectWithValue(error.response.message || error.response.data);
   }
 })
+
 const tweets = createSlice({
   name: "tweets",
   initialState,

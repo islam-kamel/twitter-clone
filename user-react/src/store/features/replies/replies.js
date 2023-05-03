@@ -17,7 +17,7 @@ export const fetchReplies = createAsyncThunk("replies/fetchReplies", async (data
 
 export const likeReply = createAsyncThunk('replies/likeReply', async (data, thunkAPI) => {
   try {
-    return await axiosInstance.put(`/api/tweet/retweet/like/${data.replyId}`).then(res => res.data);
+    return await axiosInstance.put(`/api/tweet/like/${data.replyId}`).then(res => res.data);
   } catch (error) {
     thunkAPI.rejectWithValue(error.response.message || error.response.data);
   }

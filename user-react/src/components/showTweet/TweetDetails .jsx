@@ -4,62 +4,68 @@ import { NewTweet } from "../home/home";
 import ShowRepliesTweet from "./showRepliesTweet";
 import { useLocation, useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import {useDispatch, useSelector} from "react-redux";
+import {createComment, fetchCommentsList} from "../../store/features/comments/comments";
+import LoadingSpinner from "../Loading/loading-spinner";
+import {fetchTweets} from "../../store/features/tweets/tweets";
+import {fetchReplies} from "../../store/features/replies/replies";
+import {fetchCurrentUserTweets} from "../../store/features/user/user";
+import {likeTweet} from "../../store/features/tweets/tweets";
 
 const TweetDetails = () => {
-  const parms = useLocation();
-  console.log(parms);
+  const params = useLocation();
+  console.log(params);
   const axios = useAxiosPrivate();
-  const [commentsList, setcommentsList] = useState([]);
+  const comments = useSelector(state => state.comments);
+  const dispatch = useDispatch();
 
-  const getComments = useCallback(async () => {
-    const data = await axios
-      .get(`/api/tweet/comment/${parms?.state?.tweet.id}`)
-      .then((response) => response.data);
-    setcommentsList(data);
-  
-  }, [parms?.state?.tweet?.id, axios]);
 
-  const createComment = useCallback((vaildata) => {
-    console.log(vaildata);
-    axios
-      .post(
-        "/api/tweet/comment",
-        { ...vaildata, tweet: parms?.state?.tweet?.id },
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        getComments();
+  // const getComments = useCallback(async () => {
+  //   const data = await axios
+  //     .get(`/api/tweet/comment/${params?.state?.tweet.id}`)
+  //     .then((response) => response.data);
+  //
+  // }, [params?.state?.tweet?.id, axios]);
+
+  const handleCreateComment = useCallback((validate) => {
+    const date = {...validate, comment: params?.state?.tweet?.id}
+    dispatch(createComment(date))
+      .unwrap()
+      .finally(() => {
+        dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}))
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  }, [dispatch, params?.state?.tweet?.id]);
 
   useEffect(()=>{
-    if(parms?.state?.tweet)
+    if(params?.state?.tweet)
     {
-        getComments();
+       dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}))
     }
    
-  },[])
+  },[dispatch, params?.state?.tweet])
+  
+  
+    const handleLike = useCallback((e) => {
+      console.log("like")
+      dispatch(likeTweet({tweetId: params?.state?.tweet?.id}))
+      // dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}));
+    }, [dispatch, params?.state?.tweet?.id]);
   return (
     <>
       <div className={`mt-3`}></div>
-      <Card tweet={parms?.state?.tweet} withoutRoute />
+      <Card tweet={params?.state?.tweet} withoutRoute />
       <div className={`border-top`}></div>
       <NewTweet
         placeholder={"Write comment"}
         buttonText={"Comment"}
-        callBackFunction={createComment}
+        callBackFunction={handleCreateComment}
       />
-      {commentsList.length && commentsList.map((comment) => {
-       
-       return <Card tweet={comment}/>
-        
-      })}
+
+      {
+        comments?.loading ? <LoadingSpinner/> : (
+          comments?.list?.length && comments?.list?.map(comment => <Card key={comment?.id} handleLike={handleLike} tweet={comment}/>)
+        )
+      }
     </>
   );
 };

@@ -5,9 +5,10 @@ from user_control.models import CustomUser
 
 class Tweet(models.Model):
     user = models.ForeignKey(CustomUser, related_name="tweets", on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
-    comment = models.ForeignKey('self', null=True, related_name='tweet_comments', on_delete=models.CASCADE)
+    comment = models.ForeignKey('self', null=True, related_name='tweet_comments', blank=True, on_delete=models.CASCADE)
+    replay = models.ForeignKey('self', null=True, related_name='tweet_replay', blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user} - {self.content}"

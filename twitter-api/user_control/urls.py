@@ -10,5 +10,6 @@ urlpatterns = [
     path('is_auth', views.ValidToken.as_view()),
     path('follow/<str:username>', views.FollowOrUnFollowView.as_view()),
     path('suggestion-followings', views.SuggestionFollowings.as_view()),
-    path('all', views.AllUserView.as_view())
+    path('all', views.AllUserView.as_view()),
+    path('statstic/<str:from_date>/<str:to>', views.UsersByDate.as_view())
 ]

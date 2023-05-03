@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from tweet_controller.models import Tweet, Reply, Like, LikeReply, Comment
-from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, CommentMediaSerializer, MediaSerializer, ReplySerializer, LikeSerializer, LikeReplySerializer, CommentSerializer, CreateCommentSerializer
+from tweet_controller.models import Tweet, Like, LikeReply
+from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, MediaSerializer, LikeSerializer, LikeReplySerializer, ReplySerializer
 
 
 class TweetView(APIView):
@@ -13,7 +13,7 @@ class TweetView(APIView):
 
 
     def get(self, request):
-        tweets = Tweet.objects.all()
+        tweets = Tweet.objects.filter(comment=None, replay=None).all()
         serializer = TweetSerializer(tweets, many=True)
 
         return Response(serializer.data)
@@ -24,13 +24,13 @@ class TweetByUsernameView(APIView):
 
 
     def get(self, request, username):
-        tweets = Tweet.objects.filter(user__username=username)
+        tweets = Tweet.objects.filter(comment=None, replay=None,user__username=username)
         serializer = TweetSerializer(tweets, many=True)
         return Response(serializer.data)
 
 
 class CreateTweetView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser, FileUploadParser]
 
 
@@ -50,7 +50,6 @@ class CreateTweetView(APIView):
             media_serializer = MediaSerializer(data=data)
             media_serializer.is_valid(raise_exception=True)
             media_serializer.save()
-
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -69,17 +68,19 @@ class DeleteTweetView(APIView):
 
 
 class TweetLikeView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
     def put(self, request, tweet_id):
+        # user = request.user.id
+        user = 1
         try:
-            like_state = Like.objects.filter(user_id=request.user.id, tweet_id=tweet_id).exists()
+            like_state = Like.objects.filter(user_id=user, tweet_id=tweet_id).exists()
             if like_state:
-                obj = Like.objects.filter(tweet_id=tweet_id, user_id=request.user.id)
+                obj = Like.objects.filter(tweet_id=tweet_id, user_id=user)
                 obj.delete()
                 return Response({'state': 'dislike'})
-            serializer = LikeSerializer(data={'like': True, 'tweet': tweet_id, 'user': request.user.id})
+            serializer = LikeSerializer(data={'like': True, 'tweet': tweet_id, 'user': user})
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response({'state': 'like'})
@@ -92,8 +93,9 @@ class RepliesListView(APIView):
 
 
     def get(self, request, username):
-        replies = Reply.objects.filter(user__username=username)
+        replies = Tweet.objects.filter(replay__user__username=username)
         serializer = ReplySerializer(replies, many=True)
+
         return Response(serializer.data)
 
 
@@ -102,20 +104,25 @@ class RepliesCreateOrDeleteView(APIView):
 
 
     def put(self, request, tweet_id):
+        user_id = request.user.id
         try:
-            replay_state = Reply.objects.filter(user_id=request.user.id, tweet_id=tweet_id).exists()
-            if replay_state:
-                obj = Reply.objects.filter(tweet_id=tweet_id, user_id=request.user.id)
-                obj.delete()
-                return Response({'state': 'undo retweet'})
             tweet = Tweet.objects.get(id=tweet_id)
-            print(dir(request.data))
-            obj = Reply.objects.create(content=request.data.get('content'), user_id=request.user.id, tweet=tweet)
-            serializer = ReplySerializer(obj)
+            obj = Tweet.objects.create(content=request.data.get('content'), user_id=user_id, replay=tweet)
+            serializer = TweetSerializer(obj)
             return Response(serializer.data)
 
         except Tweet.DoesNotExist:
             return Response({'error': 'Tweet not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+    def delete(self, request, tweet_id):
+        try:
+            obj = Tweet.objects.get(replay=tweet_id)
+            print(obj.content)
+            obj.delete()
+            return Response({"state": "Deleted"})
+        except Tweet.DoesNotExist:
+            return Response({"error": "Not Found"})
 
 
 class ReplyLikeView(APIView):
@@ -123,17 +130,20 @@ class ReplyLikeView(APIView):
 
 
     def put(self, request, retweet_id):
+        # user = request.user.id
+        user = 1
         try:
-            like_state = LikeReply.objects.filter(replay_id=retweet_id, user_id=request.user.id).exists()
+            like_state = Like.objects.filter(tweet_id=retweet_id, user_id=user).exists()
             if like_state:
-                obj = LikeReply.objects.filter(replay_id=retweet_id, user_id=request.user.id)
+                obj = Like.objects.filter(tweet_id=retweet_id, user_id=user)
                 obj.delete()
                 return Response({'state': 'dislike'})
 
-            serializer = LikeReplySerializer(data={'like': True, 'replay': retweet_id, 'user': request.user.id})
+            serializer = LikeSerializer(data={'like': True, 'tweet': retweet_id, 'user': user})
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response({'state': 'like'})
+
         except Like.DoesNotExist:
             return Response({'state': 'not found'})
 
@@ -143,35 +153,25 @@ class CommentView(APIView):
 
 
     def get(self, request, tweet_id):
-        obj = Comment.objects.filter(tweet_id=tweet_id).all()
-        serializer = CommentSerializer(obj, many=True)
+        obj = Tweet.objects.filter(comment_id=tweet_id).all()
+        serializer = TweetSerializer(obj, many=True)
 
         return Response(serializer.data)
 
 
 class CreateCommentView(CreateTweetView):
-    pass
-    # permission_classes = [AllowAny]
-    # parser_classes = [MultiPartParser, FormParser]
+    def post(self, request):
+        is_valid = request.data.get('comment', None)
+        if not is_valid:
+            return Response({"comment": "is required field"}, status=status.HTTP_400_BAD_REQUEST)
+        return super().post(request)
 
 
-    # def post(self, request, tweet_id=None):
-    #     # Create new comment
-    #     serializer = CreateCommentSerializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     serializer.save()
-    #
-    #     print(request.FILES)
-    #     # Upload Comment Media
-    #     for key, value in request.FILES.items():
-    #         data = {
-    #             'file': value,
-    #             'comment': serializer.data.get('id')
-    #         }
-    #         media_serializer = CommentMediaSerializer(data=data)
-    #         media_serializer.is_valid(raise_exception=True)
-    #         media_serializer.save()
-    #
-    #     obj = Comment.objects.get(id=serializer.data.get('id'));
-    #     final = CommentSerializer(obj)
-    #     return Response(final.data, status=status.HTTP_201_CREATED)
+class TweetByDate(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, from_date, to):
+        obj = Tweet.objects.filter(create_at__range=(from_date, to)).count()
+        return Response({"count": obj, 'from': from_date, 'to':to})
+
+

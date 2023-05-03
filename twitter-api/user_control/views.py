@@ -119,3 +119,11 @@ class SuggestionFollowings(APIView):
         serializer = UserIdentitySerializer(new_followings, many=True)
         return Response(serializer.data)
 
+
+class UsersByDate(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, from_date, to):
+        obj = CustomUser.objects.filter(create_at__range=(from_date, to)).count()
+        return Response({"count": obj, 'from': from_date, 'to': to})
+

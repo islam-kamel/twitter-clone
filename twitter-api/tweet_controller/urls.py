@@ -10,7 +10,8 @@ from .views import (
     RepliesCreateOrDeleteView,
     ReplyLikeView,
     CommentView,
-    CreateCommentView
+    CreateCommentView,
+    TweetByDate,
 )
 
 app_name = 'tweet'
@@ -26,4 +27,5 @@ urlpatterns = [
     path('remove/<str:tweet_id>', DeleteTweetView.as_view(), name="delete-tweet"),
     path('like/<str:tweet_id>', TweetLikeView.as_view()),
     path('<str:username>', TweetByUsernameView.as_view(), name="tweet-filter-by-username"),
+    path('statstic/<str:from_date>/<str:to>', TweetByDate.as_view())
 ]

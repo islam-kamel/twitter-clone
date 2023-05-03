@@ -5,9 +5,10 @@ import replies from "./features/replies/replies";
 import chatV2 from "./chat/chatV2";
 import suggestionFollow from "./features/suggestionFollow/suggetstionFollow";
 import notifications from "./features/notifcations/notifications";
+import comments from './features/comments/comments'
 
 const store = configureStore({
-  reducer: {tweets, currentUser, replies, chatV2, suggestionFollow, notifications},
+  reducer: {tweets, currentUser, replies, chatV2, suggestionFollow, notifications, comments},
 })
 
 export default store;

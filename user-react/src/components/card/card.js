@@ -67,6 +67,7 @@ const Card = ({border = true, ...props}) => {
       obj = {tweetId: props?.tweet?.id};
     }
     likeBtn.current.classList.toggle("liked");
+    // if (props?.handleLike) return props?.handleLike(props?tweet?.id);
     dispatch(likeMethod(obj))
       .unwrap()
       .then((_) => {
@@ -91,11 +92,13 @@ const Card = ({border = true, ...props}) => {
     }
   };
 
-  const handleRetweet = () => {
-    dispatch(retweet({tweetId: props.tweet.id}))
+  const handleRetweet = (e) => {
+    const isDelete = props?.tweet?.replies?.users_list.includes(userInfo.id)
+    dispatch(retweet({tweetId: props.tweet.id, delete: isDelete}))
       .unwrap()
       .finally(() => {
         dispatch(fetchTweets());
+        dispatch(fetchReplies())
       });
   };
 
@@ -108,23 +111,16 @@ const Card = ({border = true, ...props}) => {
       });
       console.log(props)
     }
-
-    // console.log(props?.tweet);
   };
-//   useEffect(()=>{
-// if(!props?.tweet)
-// {
-// navigate("/");
-// }
-//   },[])
-
 
   return (
     <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
       <div className={"me-3"}>
         <div className={"d-flex"}>
           <img
-            onClick={() => {console.log(' user image click')}}
+            onClick={() => {
+              console.log(' user image click')
+            }}
             src={`${
               process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image
             }`}
@@ -145,7 +141,9 @@ const Card = ({border = true, ...props}) => {
                 className="tweeter_name text-decoration-none text-dark flex-grow-0 flex-shrink-0"
               >
                 <div className={"d-flex"}>
-                  <Link onClick={() => {console.log("fullname click")}} to='#' className={'nav-link'}>{props?.tweet?.user.fullname}</Link>
+                  <Link onClick={() => {
+                    console.log("fullname click")
+                  }} to='#' className={'nav-link'}>{props?.tweet?.user.fullname}</Link>
                   <span
                     className={"ms-2 text-muted text-truncate d-block"}
                     style={{maxWidth: "90%"}}
@@ -196,8 +194,7 @@ const Card = ({border = true, ...props}) => {
                 <Link
                   to={"#"}
                   onClick={(e) => {
-                    console.log('reomve tweet')
-                    // removeTweet();
+                    removeTweet();
                   }}
                   className={"text-decoration-none dropdown-item-text"}
                 >
@@ -220,7 +217,7 @@ const Card = ({border = true, ...props}) => {
         </div>
       </div>
 
-      <div onClick={(e) => {console.log("tweet body click")}} className={"ps-5 mt-2"}>
+      <div  className={"ps-5 mt-2"}>
         <div className={"row row-cols-1 m-0"}>
           <p dir={"auto"} className={"fw-light p-0"} style={{fontSize: 15}}>
             {" "}
@@ -240,22 +237,20 @@ const Card = ({border = true, ...props}) => {
             })}
           </div>
           <div
-            className="tweet_icons text-muted ps-0 "
+            className="tweet_icons text-muted ps-0"
             onClick={(e) => {
               // e.stopPropagation();
             }}
           >
             <div className={"icon-button"}
-                 onClick={() => {
+                 onClick={(e) => {
+                    e.stopPropagation()
                    if (!props?.withoutRoute) {
-                     navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-")}`, {
+                     navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-") || props?.tweet?.id}`, {
                        state: {tweet: props?.tweet},
                      });
-
                    }
-                 }
-
-                 }
+                 }}
             >
               <div className={"icon-bg i-bg-primary"}>{comment}</div>
               <span className={"icon-amount"}>
