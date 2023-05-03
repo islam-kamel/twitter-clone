@@ -12,7 +12,7 @@ import Picker from "emoji-picker-react";
 import {useTranslation} from "react-i18next";
 
 
-export function NewTweet() {
+export function NewTweet(props) {
   const axiosPrivate = useAxiosPrivate();
   const userInfo = useSelector(state => state.currentUser.userProfile);
   const media = useRef();
@@ -85,7 +85,7 @@ export function NewTweet() {
                   name={"content"}
                   ref={inputValue}
                   className={"form-control border-0  h-100"}
-                  placeholder={t("home.what_happening")}
+                  placeholder={ t(props?.placeholder||"home.what_happening")}
                   style={{resize: "none"}}
                 />
               <div className={"d-flex overflow-x-auto flex-nowrap flex-row  overflow-y-auto "}
@@ -166,7 +166,7 @@ export function NewTweet() {
                   btnStyle={"primary"}
                   classes={"rounded-pill w-25 align-self-end"}
                 >
-                  {t("home.tweet")}
+                  {t(props?.buttonText||"home.tweet")}
                 </TwButton>
               </div>
             </div>
