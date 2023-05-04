@@ -1,12 +1,13 @@
 export interface User {
   username: string,
-  fullName: string,
+  fullname: string,
   photo: string,
   email: string,
-  birthDate: string,
+  birthdate: string,
   password: string,
-  accountStatus: boolean,
-
+  create_at:number,
+  is_active: boolean,
+  count:number,
   [key: string]: any,
 }
 

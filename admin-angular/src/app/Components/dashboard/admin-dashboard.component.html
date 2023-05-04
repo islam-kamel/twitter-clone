@@ -1,4 +1,5 @@
-<div class="container mt-5">
+
+<div class="container mt-5 pt-5">
   <table class="table table-striped table-hover">
     <thead>
     <tr>
@@ -7,7 +8,7 @@
       <th scope="col">Full Name</th>
       <th scope="col">Email</th>
       <th scope="col">Birth Date</th>
-      <th scope="col">Password</th>
+      <th scope="col">create_at</th>
       <th scope="col">Status</th>
       <th scope="col">Actions</th>
     </tr>
@@ -17,11 +18,11 @@
       <tr *ngFor="let user of users; trackBy: userTrackBy">
         <th scope="row">{{user["id"]}}</th>
         <td>{{user.username}}</td>
-        <td>{{user.fullName}}</td>
+        <td>{{user.fullname}}</td>
         <td>{{user.email}}</td>
-        <td>{{user.birthDate}}</td>
-        <td>{{user.password}}</td>
-        <td>{{user.accountStatus}}</td>
+        <td>{{user.birthdate}}</td>
+        <td>{{user.create_at}}</td>
+        <td>{{user.is_active}}</td>
         <td>
           <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user['id'])">Delete</button>
         </td>
@@ -30,3 +31,50 @@
     </tbody>
   </table>
 </div>
+
+
+<!-- <div class=" container my-5 py-5 border-1 border ">
+  <table class="table  table-striped table-hover table-bordered table-borderless border-danger">
+    <thead>
+      <tr>
+        <th scope="colgroup">#</th>
+        <th>Time period</th>
+        <th scope="col">User</th>
+        <th scope="col">Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="users">
+        <tr >
+          <th scope="row">1</th>
+          <th>all</th>
+          <td>{{users.length}}</td>
+          <td>15</td>
+        </tr>
+
+      </ng-container>
+      <ng-container *ngIf="users">
+        <tr  *ngFor="let user of users; trackBy: userTrackBy" >
+          <th scope="row">2</th>
+          <th>day</th>
+          <td >{{user.create_at | date: 'dd-MM-yyyy'}}</td>
+          <td>45</td>
+        </tr>
+      </ng-container>
+      
+      <tr>
+        <th scope="row">3</th>
+        <th>Monthe</th>
+        <td>50</td>
+        <td>255</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <th>year</th>
+        <td>120</td>
+        <td>5000</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div> -->

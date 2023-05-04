@@ -1,0 +1,49 @@
+<div class="container mt-5 pt-4">
+    <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()" >
+    
+        <div class="mb-3">
+            <label for="username" class="form-label">User Name</label>
+            <input type="text" class="form-control" name="username" id="userName" placeholder="username" value="user Name" formControlName="userName"
+            [class.is-valid]="userFormGroup.get('userName')?.valid" [class.is-invalid]="userFormGroup.get('userName')?.invalid">
+            <div class="alert alert-danger mt-1" [hidden]="userName?.valid||userName?.untouched">
+                <small *ngIf="userName?.errors?.['required']">User Name is required</small>
+                <small *ngIf="userName?.errors?.['minlength']">User Name muste be at least 3 characters</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="email" value="user Name" formControlName="email" 
+            [class.is-valid]="userFormGroup.get('email')?.valid" [class.is-invalid]="userFormGroup.get('email')?.invalid">
+            <div class="alert alert-danger mt-1" [hidden]="email?.valid||email?.untouched">
+                <small *ngIf="email?.errors?.['required']">email is required</small>
+                <small *ngIf="email?.errors?.['email']">email muste be at least 3 characters</small>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="password" value="password" formControlName="password"
+            [class.is-valid]="userFormGroup.get('password')?.valid" [class.is-invalid]="userFormGroup.get('password')?.invalid">
+            <div class="alert alert-danger mt-1" [hidden]="password?.valid||password?.untouched">
+                <small *ngIf="password?.errors?.['required']">password is required</small>
+                <small *ngIf="password?.errors?.['minlength']">password muste be at least 3 characters</small>
+                <!-- <small *ngIf="password?.errors?.['characters']"> pas</small> -->
+            </div>
+        </div>    
+        
+        <button type="submit" class="btn btn-outline-success" >Login</button>
+     </form>
+    
+
+</div>
+
+<!-- 
+    <h1> validt{{userFormGroup.value | json}}</h1>
+    <ng-container *ngIf="users">
+        <div *ngFor="let user of users; ">
+        <h3>{{user["id"]}}</h3>
+        <h3>{{user.username}}</h3>
+        <h3>{{user.email}}</h3>
+        <h3>{{user.password}}</h3>        
+        </div>
+    </ng-container> -->
+ 
