@@ -11,6 +11,16 @@ export function FollowButton({username}) {
   const [isFollowing, setIsFollowing] = useState();
   const [disabled, setDisabled] = useState(false);
   const [t] = useTranslation();
+  const currentUser = useSelector(state => state.currentUser.userProfile);
+
+  useEffect(() => {
+    const exist = currentUser.following.find(item => {
+      return item.following.username === username
+    })
+    if (exist) {
+      setIsFollowing(true)
+    }
+  }, [currentUser.following, username])
 
   const handleFollow = useCallback(async () => {
     setDisabled(true)

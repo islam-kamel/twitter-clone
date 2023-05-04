@@ -1,39 +1,60 @@
 import React, {useEffect} from "react";
 import "./profile.scss";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import ProfileModal from "./profileModal";
 import Card from "../card/card";
 import authGuard from "../../guards/authGuard";
-import {SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
+import {FollowButton, SuggestionFollow} from "../suggestionFollow/SuggestionFollow";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies} from "../../store/features/replies/replies";
 import Header from "../header/header";
 import {verifyBlue} from "../../constants/icons";
 import { useTranslation } from "react-i18next";
+import {fetchProfileInfo, fetchTweetsForUser} from "../../store/features/profile/profile";
+import {collection, limit, orderBy, query, where} from "firebase/firestore";
+import {firebaseDb} from "../../store/API/firebase";
 
 const mediaImage = require("../../Image/media.png")
 
-function Profile() {
-
-  const[t, translate]=useTranslation();
-
+function Profile(props) {
   const location = useLocation();
+  const params = useParams();
   const navigate = useNavigate();
   const back = location.state?.from?.pathname || "/";
-  const {tweets: userTweets, replies, userProfile: userInfo} = useSelector(state => {
-    return {...state.currentUser, ...state.replies}
+  const[t] = useTranslation();
+
+  let {tweets: userTweets, replies, profile: userInfo} = useSelector(state => {
+    return {...state.profile, ...state.replies}
   })
+  const currentUser = useSelector(state => state.currentUser.userProfile)
+
   const dispatch = useDispatch()
 
+  const handleMessage = () => {
+    collection(firebaseDb, 'chat').add({
+      users: [params.username, currentUser.username]
+    })
+  }
+
   useEffect(() => {
-    dispatch(fetchCurrentUserTweets({username: userInfo.username}))
-    dispatch(fetchReplies({username: userInfo.username}))
-  }, [dispatch, userInfo.username])
+    async function getAll() {
+      await dispatch(fetchProfileInfo({username: params.username})).unwrap()
+      await dispatch(fetchTweetsForUser({username: params.username})).unwrap()
+      await dispatch(fetchCurrentUserTweets({username: params.username})).unwrap()
+      await dispatch(fetchReplies({username: params.username})).unwrap()
+    }
+    try {
+      getAll()
+    } catch (e) {
+      console.log("error")
+    }
+
+  }, [dispatch, location.pathname, params.username])
 
   const ProfileSection = () => {
     return (
-      <>
+      <div>
         <Header>
           <Header.Top>
             <div className="d-flex align-items-center mt-2">
@@ -61,11 +82,21 @@ function Profile() {
               <img
                 src={`${process.env.REACT_APP_BASE_URL}/api${userInfo?.profile?.image}`}
                 className=" person-image" alt="..."
+                style={{objectFit: "cover"}}
               />
             </div>
 
             {/* <!-- Modal --> */}
-            <ProfileModal userInfo={userInfo}/>
+            {userInfo.id === currentUser.id ?  <ProfileModal userInfo={userInfo}/> : (
+              <div onClick={handleMessage} className={'d-flex align-items-center'}>
+                <div className={'icon-button mx-3'}>
+                  <div className={'icon-bg i-bg-primary'}>
+                    <span className={'bi bi-envelope-plus fs-5'}></span>
+                  </div>
+                </div>
+                <FollowButton username={userInfo?.username}></FollowButton>
+              </div>
+            )}
           </div>
         </div>
 
@@ -120,7 +151,7 @@ function Profile() {
             </small>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 

@@ -10,15 +10,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets, likeTweet, retweet,} from "../../store/features/tweets/tweets";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies, likeReply} from "../../store/features/replies/replies";
+import SlideImage from "../post-Detalis/SlideImage";
 
-function BuildMedia(props) {
+export function BuildMedia(props) {
   const isVideo = /\.(mp4|webm|ogg)$/i.test(props.item.file);
   const Video = () => {
     return (
       <video
         controls={true}
-        className={"img-fluid rounded"}
+        className={`${props?.classes || 'img-fluid'} rounded`}
         preload={"metadata"}
+        style={props?.style || {}}
       >
         <source
           src={`${process.env.REACT_APP_MEDIA_BASE_URL + props.item.file}`}
@@ -29,7 +31,8 @@ function BuildMedia(props) {
   const Image = () => {
     return (
       <img
-        className={"img-fluid rounded"}
+        style={props?.style || {}}
+        className={`${props?.classes || 'img-fluid'} rounded`}
         src={`${process.env.REACT_APP_MEDIA_BASE_URL + props.item.file}`}
         alt={".."}
       />
@@ -39,6 +42,13 @@ function BuildMedia(props) {
 }
 
 const Card = ({border = true, ...props}) => {
+  const [showImage, setShowImage] = useState(false);
+
+  function displayImg() {
+    setShowImage(!showImage);
+    document.getElementsByTagName("*")[0].style.overflow = "hidden";
+  }
+
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector((state) => state.currentUser.userProfile);
@@ -68,7 +78,6 @@ const Card = ({border = true, ...props}) => {
       obj = {tweetId: props?.tweet?.id};
     }
     likeBtn.current.classList.toggle("liked");
-    // if (props?.handleLike) return props?.handleLike(props?tweet?.id);
     dispatch(likeMethod(obj))
       .unwrap()
       .then((_) => {
@@ -93,9 +102,10 @@ const Card = ({border = true, ...props}) => {
     }
   };
 
-   
 
-  const handleBookmark = ()=> {console.log('engy')}
+  const handleBookmark = () => {
+    console.log('engy')
+  }
 
   const handleRetweet = (e) => {
     const isDelete = props?.tweet?.replies?.users_list.includes(userInfo.id)
@@ -119,210 +129,219 @@ const Card = ({border = true, ...props}) => {
   };
 
   return (
-    <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
-      <div className={"me-3"}>
-        <div className={"d-flex"}>
-          <img
-            onClick={() => {
-              console.log(' user image click')
-            }}
-            src={`${
-              process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image
-            }`}
-            alt=""
-            className="tw-profile-image  rounded-circle"
-          />
-          <div
-            className={
-              "d-flex ms-2 justify-content-between align-items-start w-100"
-            }
-          >
+    <>
+      {showImage && <SlideImage updateState={setShowImage} tweet={props?.tweet}/>}
+      <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
+        <div className={"me-3"}>
+          <div className={"d-flex"}>
+            <img
+              onClick={() => {
+                console.log(' user image click')
+              }}
+              src={`${
+                process.env.REACT_APP_BASE_URL + "/api" + props?.tweet?.user.image
+              }`}
+              alt=""
+              className="tw-profile-image  rounded-circle"
+            />
             <div
               className={
-                "d-flex justify-content-between w-100 align-items-center"
+                "d-flex ms-2 justify-content-between align-items-start w-100"
               }
             >
               <div
-                className="tweeter_name text-decoration-none text-dark flex-grow-0 flex-shrink-0"
+                className={
+                  "d-flex justify-content-between w-100 align-items-center"
+                }
               >
-                <div className={"d-flex"}>
-                  <Link onClick={() => {
-                    console.log("fullname click")
-                  }} to='#' className={'nav-link'}>{props?.tweet?.user.fullname}</Link>
-                  <span
-                    className={"ms-2 text-muted text-truncate d-block"}
-                    style={{maxWidth: "90%"}}
-                  >
+                <div
+                  className="tweeter_name text-decoration-none text-dark flex-grow-0 flex-shrink-0"
+                >
+                  <div className={"d-flex"}>
+                    <Link
+                      to={`/profile/${props?.tweet?.user?.username}`}
+                      state={props?.tweet?.user}
+                      className={'nav-link'}
+                    >
+                      {props?.tweet?.user.fullname}
+                    </Link>
+                    <span
+                      className={"ms-2 text-muted text-truncate d-block"}
+                      style={{maxWidth: "90%"}}
+                    >
                     @{props?.tweet?.user.username}
                   </span>
-                  {props?.tweet?.user?.is_verify && (
-                    <span className={"text-primary tw-navbar-icon ms-1"}>
+                    {props?.tweet?.user?.is_verify && (
+                      <span className={"text-primary tw-navbar-icon ms-1"}>
                       {verifyBlue}
                     </span>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-              <span
-                className={
-                  "text-muted fw-light ms-2 text-truncate flex-shrink-1 flex-grow-0 me-1"
-                }
-                style={{
-                  maxWidth: 60,
-                  fontSize: 12,
-                }}
-              >
+                <span
+                  className={
+                    "text-muted fw-light ms-2 text-truncate flex-shrink-1 flex-grow-0 me-1"
+                  }
+                  style={{
+                    maxWidth: 60,
+                    fontSize: 12,
+                  }}
+                >
                 {moment(props?.tweet?.create_at).fromNow()}
               </span>
+              </div>
+
+              <TwDropdown
+                down
+                toggle={<TwDropdown.Toggle>{threeDots} </TwDropdown.Toggle>}
+              >
+                {userInfo.id !== props?.tweet?.user?.id ? (
+                  <Link
+                    to={"#"}
+                    className={"text-decoration-none dropdown-item-text"}
+                  >
+                    <div
+                      className={
+                        "d-flex align-items-center flex-row-reverse justify-content-between"
+                      }
+                    >
+                      <i className={"ms-2"} style={{width: 20}}>
+                        {newFollow}
+                      </i>
+                      <span>Follow {props?.tweet?.user.username}</span>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link
+                    to={"#"}
+                    onClick={(e) => {
+                      removeTweet();
+                    }}
+                    className={"text-decoration-none dropdown-item-text"}
+                  >
+                    <div
+                      className={
+                        "d-flex align-items-center text-danger flex-row-reverse justify-content-between"
+                      }
+                    >
+                      <i
+                        className={"ms-2 bi bi-trash"}
+                        style={{width: 20}}
+                      ></i>
+                      <span>Remove</span>
+                    </div>
+                  </Link>
+                )}
+              </TwDropdown>
             </div>
 
-            <TwDropdown
-              down
-              toggle={<TwDropdown.Toggle>{threeDots} </TwDropdown.Toggle>}
-            >
-              {userInfo.id !== props?.tweet?.user?.id ? (
-                <Link
-                  to={"#"}
-                  className={"text-decoration-none dropdown-item-text"}
-                >
-                  <div
-                    className={
-                      "d-flex align-items-center flex-row-reverse justify-content-between"
-                    }
-                  >
-                    <i className={"ms-2"} style={{width: 20}}>
-                      {newFollow}
-                    </i>
-                    <span>Follow {props?.tweet?.user.username}</span>
-                  </div>
-                </Link>
-              ) : (
-                <Link
-                  to={"#"}
-                  onClick={(e) => {
-                    removeTweet();
-                  }}
-                  className={"text-decoration-none dropdown-item-text"}
-                >
-                  <div
-                    className={
-                      "d-flex align-items-center text-danger flex-row-reverse justify-content-between"
-                    }
-                  >
-                    <i
-                      className={"ms-2 bi bi-trash"}
-                      style={{width: 20}}
-                    ></i>
-                    <span>Remove</span>
-                  </div>
-                </Link>
-              )}
-            </TwDropdown>
           </div>
-
         </div>
-      </div>
 
-      <div  className={"ps-5 mt-2"}>
-        <div className={"row row-cols-1 m-0"}>
-          <p dir={"auto"} className={"fw-light p-0"} style={{fontSize: 15}}>
-            {" "}
-            {props?.tweet?.content}
-          </p>
-          {props?.children}
+        <div className={"ps-5 mt-2"}>
+          <div className={"row row-cols-1 m-0"}>
+            <p dir={"auto"} className={"fw-light p-0"} style={{fontSize: 15}}>
+              {" "}
+              {props?.tweet?.content}
+            </p>
+            {props?.children}
 
-          <div
-            className={"tweet-image p-0"}
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log("image click");
-            }}
-          >
-            {props?.tweet?.media?.map((item, index) => {
-              return <BuildMedia key={index} item={item}/>;
-            })}
-          </div>
-          <div
-            className="tweet_icons text-muted ps-0"
-            onClick={(e) => {
-              // e.stopPropagation();
-            }}
-          >
-            <div className={"icon-button"}
-                 onClick={(e) => {
-                    e.stopPropagation()
-                   if (!props?.withoutRoute) {
-                     navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-") || props?.tweet?.id}`, {
-                       state: {tweet: props?.tweet},
-                     });
-                   }
-                 }}
+            <div
+              className={"tweet-image p-0"}
+              onClick={(e) => {
+                displayImg()
+                console.log("image click");
+              }}
             >
-              <div className={"icon-bg i-bg-primary"}>{comment}</div>
-              <span className={"icon-amount"}>
+              {props?.tweet?.media?.map((item, index) => {
+                return <BuildMedia key={index} item={item}/>;
+              })}
+            </div>
+            <div
+              className="tweet_icons text-muted ps-0"
+              onClick={(e) => {
+                // e.stopPropagation();
+              }}
+            >
+              <div className={"icon-button"}
+                   onClick={(e) => {
+                     e.stopPropagation()
+                     if (!props?.withoutRoute) {
+                       navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-") || props?.tweet?.id}`, {
+                         state: {tweet: props?.tweet},
+                       });
+                     }
+                   }}
+              >
+                <div className={"icon-bg i-bg-primary"}>{comment}</div>
+                <span className={"icon-amount"}>
                 {props?.tweet?.comments?.count}
               </span>
-            </div>
+              </div>
 
-            <TwDropdown
-              down={true}
-              toggle={
-                <TwDropdown.Toggle>
-                  <div className={"icon-button"}>
-                    <div className={"icon-bg i-bg-second"}>{replay}</div>
-                    <span className={"icon-amount"}>
+              <TwDropdown
+                down={true}
+                toggle={
+                  <TwDropdown.Toggle>
+                    <div className={"icon-button"}>
+                      <div className={"icon-bg i-bg-second"}>{replay}</div>
+                      <span className={"icon-amount"}>
                       {props?.tweet?.replies?.count}
                     </span>
-                  </div>
-                </TwDropdown.Toggle>
-              }
-            >
-              <div
-                onClick={handleRetweet}
-                role={"button"}
-                className={"dropdown-item-text"}
+                    </div>
+                  </TwDropdown.Toggle>
+                }
               >
                 <div
-                  className={
-                    "d-flex fw-bolder align-items-center flex-row-reverse justify-content-between"
-                  }
+                  onClick={handleRetweet}
+                  role={"button"}
+                  className={"dropdown-item-text"}
                 >
-                  <span>{isRetweet ? "Undo Retweet" : "Retweet"}</span>
-                  <div className={"me-2"} style={{width: 20}}>
-                    {replay}
+                  <div
+                    className={
+                      "d-flex fw-bolder align-items-center flex-row-reverse justify-content-between"
+                    }
+                  >
+                    <span>{isRetweet ? "Undo Retweet" : "Retweet"}</span>
+                    <div className={"me-2"} style={{width: 20}}>
+                      {replay}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </TwDropdown>
+              </TwDropdown>
 
-            <div className={"icon-button"}>
-              <div onClick={handleLike} className={"icon-bg bg-heart"}>
-                <div
-                  ref={likeBtn}
-                  className={`heart-icon ${isLiked && "liked"}`}
-                ></div>
-              </div>
-              <div className={"like-amount icon-amount"}>
-                {props?.tweet?.likes?.count}
-              </div>
-            </div>
-            {userInfo.id === props?.tweet?.user.id && (
               <div className={"icon-button"}>
-                <div className={"icon-bg i-bg-primary"}>{chart}</div>
-                <div className={"view-amount icon-amount"}>300</div>
+                <div onClick={handleLike} className={"icon-bg bg-heart"}>
+                  <div
+                    ref={likeBtn}
+                    className={`heart-icon ${isLiked && "liked"}`}
+                  ></div>
+                </div>
+                <div className={"like-amount icon-amount"}>
+                  {props?.tweet?.likes?.count}
+                </div>
               </div>
-            )}
-            <div className={"icon-button"}>
-              <div className={"icon-bg i-bg-primary"}>{share}</div>
-            </div>
-            <div className={"icon-button"} onClick={()=>{handleBookmark()}}>
-              <div className={"icon-bg i-bg-primary"}>
-                {bookmarks}
+              {userInfo.id === props?.tweet?.user.id && (
+                <div className={"icon-button"}>
+                  <div className={"icon-bg i-bg-primary"}>{chart}</div>
+                  <div className={"view-amount icon-amount"}>300</div>
+                </div>
+              )}
+              <div className={"icon-button"}>
+                <div className={"icon-bg i-bg-primary"}>{share}</div>
+              </div>
+              <div className={"icon-button"} onClick={() => {
+                handleBookmark()
+              }}>
+                <div className={"icon-bg i-bg-primary"}>
+                  {bookmarks}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

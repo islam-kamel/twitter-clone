@@ -12,8 +12,8 @@ import {fetchReplies} from "../../store/features/replies/replies";
 import {fetchCurrentUserTweets} from "../../store/features/user/user";
 import {likeTweet} from "../../store/features/tweets/tweets";
 
-const TweetDetails = () => {
-  const params = useLocation();
+const TweetDetails = (props) => {
+  const params = useLocation().state || props;
   console.log(params);
   const axios = useAxiosPrivate();
   const comments = useSelector(state => state.comments);
@@ -22,13 +22,13 @@ const TweetDetails = () => {
 
   // const getComments = useCallback(async () => {
   //   const data = await axios
-  //     .get(`/api/tweet/comment/${params?.state?.tweet.id}`)
+  //     .get(`/api/tweet/comment/${params?.tweet.id}`)
   //     .then((response) => response.data);
   //
-  // }, [params?.state?.tweet?.id, axios]);
+  // }, [params?.tweet?.id, axios]);
 
   const handleCreateComment = useCallback((validate) => {
-    const date = {...validate, comment: params?.state?.tweet?.id}
+    const date = {...validate, comment: params?.tweet?.id}
     dispatch(createComment(date))
       .unwrap()
       .finally(() => {
@@ -37,14 +37,14 @@ const TweetDetails = () => {
   }, [dispatch, params?.state?.tweet?.id]);
 
   useEffect(()=>{
-    if(params?.state?.tweet)
+    if(params?.tweet)
     {
        dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}))
     }
    
   },[dispatch, params?.state?.tweet])
-  
-  
+
+
     const handleLike = useCallback((e) => {
       console.log("like")
       dispatch(likeTweet({tweetId: params?.state?.tweet?.id}))
@@ -53,11 +53,11 @@ const TweetDetails = () => {
   return (
     <>
       <div className={`mt-3`}></div>
-      <Card tweet={params?.state?.tweet} withoutRoute />
+      <Card tweet={params?.tweet} withoutRoute />
       <div className={`border-top`}></div>
       <NewTweet
         placeholder={"Write comment"}
-        buttonText={"Comment"}
+        buttonText={"reply"}
         callBackFunction={handleCreateComment}
       />
 
