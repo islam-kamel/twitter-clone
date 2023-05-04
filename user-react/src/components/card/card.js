@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./card.style.scss";
 import {Link, useNavigate} from "react-router-dom";
-import {chart, comment, newFollow, replay, share, threeDots, verifyBlue,} from "../../constants/icons";
+import {bookmarks, chart, comment, newFollow, replay, share, threeDots, verifyBlue,} from "../../constants/icons";
 import TwDropdown from "../twDropdown/TwDropdown";
 import "../main-sidebar/twitter.main.css";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -57,6 +57,7 @@ const Card = ({border = true, ...props}) => {
     isRetweet && setIsRetweet(true);
   }, [props, userInfo]);
 
+
   const handleLike = (e) => {
     e.stopPropagation();
     const likeMethod = props?.reply ? likeReply : likeTweet;
@@ -91,6 +92,10 @@ const Card = ({border = true, ...props}) => {
 
     }
   };
+
+   
+
+  const handleBookmark = ()=> {console.log('engy')}
 
   const handleRetweet = (e) => {
     const isDelete = props?.tweet?.replies?.users_list.includes(userInfo.id)
@@ -308,6 +313,11 @@ const Card = ({border = true, ...props}) => {
             )}
             <div className={"icon-button"}>
               <div className={"icon-bg i-bg-primary"}>{share}</div>
+            </div>
+            <div className={"icon-button"} onClick={()=>{handleBookmark()}}>
+              <div className={"icon-bg i-bg-primary"}>
+                {bookmarks}
+              </div>
             </div>
           </div>
         </div>
