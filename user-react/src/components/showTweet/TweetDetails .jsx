@@ -32,17 +32,17 @@ const TweetDetails = (props) => {
     dispatch(createComment(date))
       .unwrap()
       .finally(() => {
-        dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}))
+        dispatch(fetchCommentsList({tweetId: params?.tweet?.id}))
       })
-  }, [dispatch, params?.state?.tweet?.id]);
+  }, [dispatch, params]);
 
   useEffect(()=>{
     if(params?.tweet)
     {
-       dispatch(fetchCommentsList({tweetId: params?.state?.tweet?.id}))
+       dispatch(fetchCommentsList({tweetId: params?.tweet?.id}))
     }
    
-  },[dispatch, params?.state?.tweet])
+  },[dispatch, params?.state?.tweet, params?.tweet])
 
 
     const handleLike = useCallback((e) => {

@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from tweet_controller.models import Tweet, Like, LikeReply
-from tweet_controller.serializers import TweetSerializer, CreateTweetSerializer, MediaSerializer, LikeSerializer, LikeReplySerializer, ReplySerializer
+from tweet_controller.models import Tweet, Like, Bookmarks
+from tweet_controller.serializers import TweetSerializer, BookmarkSerializer, CreateTweetSerializer, MediaSerializer, LikeSerializer, ReplySerializer, CreateBookmarkSerializer
 
 
 class TweetView(APIView):
@@ -24,23 +24,24 @@ class TweetByUsernameView(APIView):
 
 
     def get(self, request, username):
-        tweets = Tweet.objects.filter(comment=None, replay=None,user__username=username)
+        tweets = Tweet.objects.filter(comment=None, replay=None, user__username=username)
         serializer = TweetSerializer(tweets, many=True)
         return Response(serializer.data)
 
 
 class CreateTweetView(APIView):
     permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser, FileUploadParser]
+    parser_classes = [MultiPartParser, FormParser]
 
 
     def post(self, request):
+
         # Create new tweet
         serializer = CreateTweetSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        print(serializer)
         serializer.save()
 
-        print(request.FILES)
         # Upload tweet Media
         for key, value in request.FILES.items():
             data = {
@@ -151,7 +152,6 @@ class ReplyLikeView(APIView):
 class CommentView(APIView):
     permission_classes = [AllowAny]
 
-
     def get(self, request, tweet_id):
         obj = Tweet.objects.filter(comment_id=tweet_id).all()
         serializer = TweetSerializer(obj, many=True)
@@ -161,6 +161,7 @@ class CommentView(APIView):
 
 class CreateCommentView(CreateTweetView):
     def post(self, request):
+        print(request.data)
         is_valid = request.data.get('comment', None)
         if not is_valid:
             return Response({"comment": "is required field"}, status=status.HTTP_400_BAD_REQUEST)
@@ -170,8 +171,56 @@ class CreateCommentView(CreateTweetView):
 class TweetByDate(APIView):
     permission_classes = [AllowAny]
 
+
     def get(self, request, from_date, to):
         obj = Tweet.objects.filter(create_at__range=(from_date, to)).count()
-        return Response({"count": obj, 'from': from_date, 'to':to})
+        return Response({"count": obj, 'from': from_date, 'to': to})
 
 
+class BookmarksView(APIView):
+    permission_classes = [AllowAny]
+
+
+    def get(self, request):
+        obj = Bookmarks.objects.filter(user_id=request.user.id).all()
+        serializer = BookmarkSerializer(obj, many=True)
+
+        return Response(serializer.data)
+
+
+    def post(self, request):
+        if request.data.get("method") == "delete":
+            return self.delete(request)
+
+        is_exists = Bookmarks.objects.filter(tweet_id=request.data.get("tweet")).exists()
+
+        if is_exists:
+            return Response({"already Created"})
+
+        serializer = CreateBookmarkSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        obj = Bookmarks.objects.get(id=serializer.data.get('id'))
+
+        final = BookmarkSerializer(obj)
+        return Response(final.data)
+
+
+    def delete(self, request):
+        print(request.data)
+        is_valid = request.data.get('tweet', None)
+        if not is_valid:
+            return Response({"tweet": "this is required field"})
+
+        delete_all = request.data.get('all', False)
+
+        if delete_all:
+            bookmarks = Bookmarks.objects.filter(user_id=request.user.id).all()
+            print(bookmarks)
+            for bookmark in bookmarks:
+                bookmark.delete()
+            return Response("Deleted")
+
+        bookmarks = Bookmarks.objects.get(tweet_id=request.data.get("tweet"))
+        bookmarks.delete()
+        return Response("Deleted")

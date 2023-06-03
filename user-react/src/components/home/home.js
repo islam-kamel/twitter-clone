@@ -18,6 +18,7 @@ export function NewTweet(props) {
   const [fileUrl, setFileUrl] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
   const inputValue = useRef(null);
+  const dispatch = useDispatch();
 
   const [t] = useTranslation();
 
@@ -68,7 +69,7 @@ export function NewTweet(props) {
       return props.callBackFunction(validDate)
     }
     createTweet(validDate)
-      .then((res) => console.log(res))
+      .then((res) => dispatch(fetchTweets()))
       .catch((error) => console.log(error.response.data))
       .finally(() => {
         event.target?.reset();

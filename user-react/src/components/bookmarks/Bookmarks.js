@@ -3,25 +3,28 @@ import Card from "../card/card";
 import TwDropdown from "../twDropdown/TwDropdown";
 import {Link} from "react-router-dom";
 import authGuard from "../../guards/authGuard";
-import React, {useEffect, useState} from "react";
-import {axiosInstance} from "../../store/API/axios";
-import {useSelector} from "react-redux";
+import React, {useCallback, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import Header from "../header/header";
+import {deleteBookmark, fetchBookmarks} from "../../store/features/user/user";
 
 
 function Bookmarks() {
-  const [tweets, settweets] = useState([]);
   const [t] = useTranslation();
-
+  const bookmarks = useSelector(state => state.currentUser.bookmarks)
   const userInfo = useSelector(state => state.currentUser.userProfile);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axiosInstance.get("/api/tweet/")
-      .then(res =>
-        settweets(res.data)).catch((error) => {
-      console.log(error);
-    })
-  }, [])
+    dispatch(fetchBookmarks())
+  }, [dispatch])
+
+  const handleDeleteAllBookmarks = useCallback(() => {
+    dispatch(deleteBookmark({tweet: true, all: true, method: "delete"}))
+    dispatch(fetchBookmarks())
+  }, [dispatch])
+
   return (
     <>
       <Header>
@@ -47,7 +50,8 @@ function Bookmarks() {
                   </TwDropdown.Toggle>
                 }
               >
-                <Link to={"#"} className={"text-danger text-decoration-none"}>{t('bookmarks.remove_bookmarks')}</Link>
+                <Link onClick={handleDeleteAllBookmarks} to={"#"}
+                      className={"text-danger text-decoration-none"}>{t('bookmarks.remove_bookmarks')}</Link>
               </TwDropdown>
             </div>
           </div>
@@ -56,28 +60,9 @@ function Bookmarks() {
       <div className={"container h-100 border p-0"}>
 
         <div className={"d-flex flex-column p-0"}>
-          <div className={"d-flex p-3 flex-row-reverse justify-content-between align-items-center"}>
-            <TwDropdown
-              down={true}
-              toggle={
-                <TwDropdown.Toggle>
-                  <span role={"button"}>{threeDots}</span>
-                </TwDropdown.Toggle>
-              }
-            >
-              <Link to={"#"} className={"text-danger text-decoration-none"}>{t('bookmarks.remove_bookmarks')}</Link>
-            </TwDropdown>
-          </div>
 
-          {
-            tweets.length &&
-            tweets.map((tweet) => {
-              return <Card
-                key={tweet.id}
-                tweet={tweet}
-              />
-            })
-          }
+
+          {bookmarks.map((bookmark) => <Card key={bookmark.id} tweet={bookmark.tweet}/>) }
         </div>
       </div>
     </>

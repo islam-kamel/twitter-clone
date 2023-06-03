@@ -5,7 +5,8 @@ import Header from "../header/header";
 import "./Message.css"
 import ChatList from "./chatList";
 import ChatRoom from "./ChatRoom";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import {useChatInfo} from "../../hooks/chat-hooks/chatHooks";
 
 const Message = () => {
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -52,7 +53,7 @@ const Message = () => {
     setShow(prev => !prev);
   }, [])
 
-  const [t,setT] = useTranslation();
+  const [t, setT] = useTranslation();
 
   return (
     <div className={"overflow-hidden"} style={{maxHeight: "100vh"}}>

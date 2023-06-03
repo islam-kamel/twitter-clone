@@ -12,7 +12,7 @@ import Header from "../header/header";
 import {verifyBlue} from "../../constants/icons";
 import { useTranslation } from "react-i18next";
 import {fetchProfileInfo, fetchTweetsForUser} from "../../store/features/profile/profile";
-import {collection, limit, orderBy, query, where} from "firebase/firestore";
+import {collection, limit, orderBy, query, where, getDocs, addDoc} from "firebase/firestore";
 import {firebaseDb} from "../../store/API/firebase";
 
 const mediaImage = require("../../Image/media.png")
@@ -28,13 +28,39 @@ function Profile(props) {
     return {...state.profile, ...state.replies}
   })
   const currentUser = useSelector(state => state.currentUser.userProfile)
-
+  const chatsInfo = useSelector(state => state.chatV2.chatsObj)
   const dispatch = useDispatch()
 
-  const handleMessage = () => {
-    collection(firebaseDb, 'chat').add({
-      users: [params.username, currentUser.username]
-    })
+  const handleMessage = async () => {
+
+
+
+    try {
+      const chatsList  = Object.values(chatsInfo)
+      const exist = chatsList.find(item => item.receiver === params.username)
+
+      if (Object.hasOwn(exist, 'receiver')) {
+        return navigate(`/Message`)
+      }
+
+      const chatRef = collection(firebaseDb, 'chat')
+      await addDoc(chatRef, {
+        users: [currentUser.username, params.username]
+      })
+      navigate(`/Message`)
+    } catch (e) {
+
+      const chatRef = collection(firebaseDb, 'chat')
+      await addDoc(chatRef, {
+        users: [currentUser.username, params.username]
+      })
+      navigate(`/Message`)
+    }
+
+
+    // collection(firebaseDb, 'chat').add({
+    //   users: [params.username, currentUser.username]
+    // })
   }
 
   useEffect(() => {
@@ -88,8 +114,8 @@ function Profile(props) {
 
             {/* <!-- Modal --> */}
             {userInfo.id === currentUser.id ?  <ProfileModal userInfo={userInfo}/> : (
-              <div onClick={handleMessage} className={'d-flex align-items-center'}>
-                <div className={'icon-button mx-3'}>
+              <div  className={'d-flex align-items-center'}>
+                <div onClick={handleMessage} className={'icon-button mx-3'}>
                   <div className={'icon-bg i-bg-primary'}>
                     <span className={'bi bi-envelope-plus fs-5'}></span>
                   </div>

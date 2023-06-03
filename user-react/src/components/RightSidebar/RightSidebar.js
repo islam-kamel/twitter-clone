@@ -13,12 +13,12 @@ const RightSidebar = () => {
   return (
     <>
       <aside className="w-100 h-100">
-        <div className="position-sticky top-0 z-1 search-details">
-          <div className="d-flex justify-content-around">
-            <input className="form-control bg-element form-control-md rounded-pill search-div" type="search"
-                   placeholder={t("explore.search_twitter")} aria-label=".form-control-lg example"/>
-          </div>
-        </div>
+        {/*<div className="position-sticky top-0 z-1 search-details">*/}
+        {/*  <div className="d-flex justify-content-around">*/}
+        {/*    <input className="form-control bg-element form-control-md rounded-pill search-div" type="search"*/}
+        {/*           placeholder={t("explore.search_twitter")} aria-label=".form-control-lg example"/>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div className="p-0 mt-3 ms-3 overflow-y-auto h-10">
           <div className="maindiv bg-element">
             <h1 style={{

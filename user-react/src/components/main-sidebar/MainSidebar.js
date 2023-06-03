@@ -88,24 +88,24 @@ export function SmNavbar() {
                 {isActive?.home ? <BuildIcon icon={home_fill}/> : <BuildIcon icon={home}/>}
               </Link>
             </div>
-            <div className={"tw-navbar-item"}>
-              <Link
-                onClick={() => handelClick("home")}
-                to={"explore"} className="tw-navbar-link d-flex align-items-center text-dark"
-              >
-                {isActive?.search ? <BuildIcon icon={search_fill}/> :
-                  <BuildIcon icon={search_fill}/>}
-              </Link>
-            </div>
-            <div className={"tw-navbar-item"}>
-              <Link
-                onClick={() => handelClick("home")}
-                to={"/notifications"} className="tw-navbar-link d-flex align-items-center text-dark"
-              >
-                {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :
-                  <BuildIcon icon={notifications}/>}
-              </Link>
-            </div>
+            {/*<div className={"tw-navbar-item"}>*/}
+            {/*  <Link*/}
+            {/*    onClick={() => handelClick("home")}*/}
+            {/*    to={"explore"} className="tw-navbar-link d-flex align-items-center text-dark"*/}
+            {/*  >*/}
+            {/*    {isActive?.search ? <BuildIcon icon={search_fill}/> :*/}
+            {/*      <BuildIcon icon={search_fill}/>}*/}
+            {/*  </Link>*/}
+            {/*</div>*/}
+            {/*<div className={"tw-navbar-item"}>*/}
+            {/*  <Link*/}
+            {/*    onClick={() => handelClick("home")}*/}
+            {/*    to={"/notifications"} className="tw-navbar-link d-flex align-items-center text-dark"*/}
+            {/*  >*/}
+            {/*    {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :*/}
+            {/*      <BuildIcon icon={notifications}/>}*/}
+            {/*  </Link>*/}
+            {/*</div>*/}
             <div className={"tw-navbar-item"}>
               <Link
                 onClick={() => handelClick("home")}
@@ -172,28 +172,28 @@ export default function MainSidebar() {
             <span className={`tw-navbar-text ${isActive?.home && 'fw-medium'}`}>{t("mainSideBar.home_S")}</span>
           </Link>
         </div>
-        <div className="tw-navbar-item">
-          <Link
-            onClick={() => handelClick("explore")}
-            to={"/explore"}
-            className="tw-navbar-link d-flex align-items-center text-dark"
-          >
-            {isActive?.explore ? <BuildIcon icon={explore_fill}/> :
-              <BuildIcon icon={explore}/>}
-            <span className={`tw-navbar-text ${isActive?.explore && 'fw-medium'}`}>{t('mainSideBar.explore_S')}</span>
-          </Link>
-        </div>
-        <div className="tw-navbar-item">
-          <Link
-            onClick={() => handelClick("notifications")}
-            to={"/notifications"}
-            className={`tw-navbar-link d-flex align-items-center text-dark`}
-          >
-            {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :
-              <BuildIcon icon={notifications}/>}
-            <span className={`tw-navbar-text ${isActive?.notifications && 'fw-medium'}`}>{t('mainSideBar.notifications_S')}</span>
-          </Link>
-        </div>
+        {/*<div className="tw-navbar-item">*/}
+        {/*  <Link*/}
+        {/*    onClick={() => handelClick("explore")}*/}
+        {/*    to={"/explore"}*/}
+        {/*    className="tw-navbar-link d-flex align-items-center text-dark"*/}
+        {/*  >*/}
+        {/*    {isActive?.explore ? <BuildIcon icon={explore_fill}/> :*/}
+        {/*      <BuildIcon icon={explore}/>}*/}
+        {/*    <span className={`tw-navbar-text ${isActive?.explore && 'fw-medium'}`}>{t('mainSideBar.explore_S')}</span>*/}
+        {/*  </Link>*/}
+        {/*</div>*/}
+        {/*<div className="tw-navbar-item">*/}
+        {/*  <Link*/}
+        {/*    onClick={() => handelClick("notifications")}*/}
+        {/*    to={"/notifications"}*/}
+        {/*    className={`tw-navbar-link d-flex align-items-center text-dark`}*/}
+        {/*  >*/}
+        {/*    {isActive?.notifications ? <BuildIcon icon={notifications_fill}/> :*/}
+        {/*      <BuildIcon icon={notifications}/>}*/}
+        {/*    <span className={`tw-navbar-text ${isActive?.notifications && 'fw-medium'}`}>{t('mainSideBar.notifications_S')}</span>*/}
+        {/*  </Link>*/}
+        {/*</div>*/}
         <div className="tw-navbar-item">
           <Link
             onClick={() => handelClick("messages")}
@@ -241,9 +241,6 @@ export default function MainSidebar() {
           </Link>
         </div>
 
-
-      
-
         <TwButton
           btnStyle={"primary"}
           classes={"rounded-pill py-2 w-100 d-none d-xl-block"}
@@ -256,8 +253,6 @@ export default function MainSidebar() {
 
           <span className={`tw-navbar-text`}>{t('mainSideBar.tweet_S')}</span>
         </TwButton>
-
-
 
         <TwButton
           btnStyle={"primary"}

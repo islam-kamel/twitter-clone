@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from .views import (
     TweetView,
@@ -12,6 +12,7 @@ from .views import (
     CommentView,
     CreateCommentView,
     TweetByDate,
+    BookmarksView
 )
 
 app_name = 'tweet'
@@ -27,5 +28,6 @@ urlpatterns = [
     path('remove/<str:tweet_id>', DeleteTweetView.as_view(), name="delete-tweet"),
     path('like/<str:tweet_id>', TweetLikeView.as_view()),
     path('<str:username>', TweetByUsernameView.as_view(), name="tweet-filter-by-username"),
-    path('statstic/<str:from_date>/<str:to>', TweetByDate.as_view())
+    path('statstic/<str:from_date>/<str:to>', TweetByDate.as_view()),
+    path('bookmarks/view', BookmarksView.as_view()),
 ]

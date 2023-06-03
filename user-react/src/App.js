@@ -6,6 +6,7 @@ import routes from './router/routes'
 import {useTranslation} from "react-i18next";
 import Settings from "./components/settings/settings";
 import NewTweetModal from "./components/NewTweetModal";
+import useAxiosPrivate from "./hooks/useAxiosPrivate";
 
 // const socket = io.connect('http://localhost:3008');
 //

@@ -42,6 +42,17 @@ class Media(models.Model):
         return f"{self.tweet} - {self.file}"
 
 
+
+class Bookmarks(models.Model):
+    tweet = models.ForeignKey(Tweet, related_name='bookmark_tweet', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='bookmark_user', on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f"{self.tweet} - {self.user}"
+
+
+
 class Comment(models.Model):
     tweet = models.ForeignKey(Tweet, related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, related_name='user_comments', on_delete=models.CASCADE)

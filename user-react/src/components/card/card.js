@@ -8,7 +8,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTweets, likeTweet, retweet,} from "../../store/features/tweets/tweets";
-import {fetchCurrentUserTweets} from "../../store/features/user/user";
+import {addBookmark, fetchCurrentUserTweets} from "../../store/features/user/user";
 import {fetchReplies, likeReply} from "../../store/features/replies/replies";
 import SlideImage from "../post-Detalis/SlideImage";
 
@@ -52,6 +52,8 @@ const Card = ({border = true, ...props}) => {
   const axiosPrivate = useAxiosPrivate();
   const likeBtn = useRef(null);
   const userInfo = useSelector((state) => state.currentUser.userProfile);
+  const bookmarks = useSelector((state) => state.currentUser.bookmarks );
+
   const [isLiked, setIsLiked] = useState(false);
   const [isRetweet, setIsRetweet] = useState(false);
   const dispatch = useDispatch();
@@ -104,7 +106,7 @@ const Card = ({border = true, ...props}) => {
 
 
   const handleBookmark = () => {
-    console.log('engy')
+    dispatch(addBookmark({tweet: props?.tweet?.id, user: userInfo?.id}))
   }
 
   const handleRetweet = (e) => {
@@ -119,9 +121,8 @@ const Card = ({border = true, ...props}) => {
 
   const navigate = useNavigate();
   const showDetailsOfCard = () => {
-    console.log("hi safaaaaaaaaaa");
     if (props?.tweet && !props?.withoutRoute) {
-      navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-")}`, {
+      navigate(`/details/${props?.tweet?.content.split(" ", 10).join("-") || props.tweet.id}`, {
         state: {tweet: props?.tweet},
       });
       console.log(props)
@@ -131,7 +132,7 @@ const Card = ({border = true, ...props}) => {
   return (
     <>
       {showImage && <SlideImage updateState={setShowImage} tweet={props?.tweet}/>}
-      <div className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
+      <div role={"button"} className={` p-3 ${border ? "border-top" : ""} tweet-card-hover`}>
         <div className={"me-3"}>
           <div className={"d-flex"}>
             <img
@@ -186,6 +187,7 @@ const Card = ({border = true, ...props}) => {
                     maxWidth: 60,
                     fontSize: 12,
                   }}
+                  dir={'auto'}
                 >
                 {moment(props?.tweet?.create_at).fromNow()}
               </span>
@@ -240,7 +242,7 @@ const Card = ({border = true, ...props}) => {
 
         <div className={"ps-5 mt-2"}>
           <div className={"row row-cols-1 m-0"}>
-            <p dir={"auto"} className={"fw-light p-0"} style={{fontSize: 15}}>
+            <p onClick={showDetailsOfCard} dir={"auto"} className={"fw-medium fs-6 p-0"} style={{fontSize: 15}}>
               {" "}
               {props?.tweet?.content}
             </p>
@@ -334,7 +336,7 @@ const Card = ({border = true, ...props}) => {
                 handleBookmark()
               }}>
                 <div className={"icon-bg i-bg-primary"}>
-                  {bookmarks}
+                  <i className={'bi bi-bookmark'}></i>
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ const initialState = {
   isLogin: false,
   userProfile: {},
   tweets: [],
+  bookmarks: [],
   loading: false,
   error: null
 }
@@ -68,6 +69,31 @@ export const logout = createAsyncThunk("user/logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response.message || error.response.data)
   }
 })
+
+export const fetchBookmarks = createAsyncThunk('user/fetchBookmarks', async (_, thunkAPI) => {
+  try {
+    return await axiosInstance.get("/api/tweet/bookmarks/view").then(res => res.data)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
+  }
+})
+
+export const deleteBookmark = createAsyncThunk('user/deleteBookmark', async (data, thunkAPI) => {
+  try {
+    return await axiosInstance.post("/api/tweet/bookmarks/view", data).then(res => res.data)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
+  }
+})
+
+export const addBookmark = createAsyncThunk('user/addBookmark', async (data, thunkAPI) => {
+  try {
+    return await axiosInstance.post("/api/tweet/bookmarks/view", data).then(res => res.data)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.message || error.response.data)
+  }
+})
+
 const user = createSlice({
   name: "user",
   initialState,
@@ -160,6 +186,9 @@ const user = createSlice({
     builder.addCase(updateUserProfile.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
+    })
+    builder.addCase(fetchBookmarks.fulfilled, (state, action) => {
+      state.bookmarks = action.payload;
     })
   }
 })

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tweet_controller.models import Tweet, Media, Like, Comment, Reply, LikeReply, CommentMedia
+from tweet_controller.models import Bookmarks, Tweet, Media, Like, Comment, Reply, LikeReply, CommentMedia
 from user_control.models import Profile, CustomUser
 
 
@@ -171,3 +171,17 @@ class ReplySerializer(serializers.ModelSerializer):
             'count': comments.count(),
             'users_list': comments.values_list('user_id', flat=True)
         }
+
+
+class BookmarkSerializer(serializers.ModelSerializer):
+    tweet = TweetSerializer(read_only=True, required=False)
+
+    class Meta:
+        model = Bookmarks
+        fields = '__all__'
+
+
+class CreateBookmarkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bookmarks
+        fields = '__all__'
