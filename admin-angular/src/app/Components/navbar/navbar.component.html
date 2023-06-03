@@ -1,5 +1,28 @@
-<nav class="navbar bg-body-tertiary">
+<nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Dashboard</a>
+    <div class="mx-5 d-flex justify-content-between  w-100">
+      <h4><a class="navbar-brand text-primary" >Dashboard  <span class="text-black"> {{formattedDate}} - {{formattedDates}}</span></a></h4>
+      <ul class="navbar-nav d-flex flex-row">
+        <li class="nav-link mx-3">
+          <a class="nav-link fs-6" aria-current="page" routerLinkActive="active" routerLink="/Chartday"> Chart day</a>
+        </li>
+        <li class="nav-link mx-3">
+          <a class="nav-link fs-6" routerLinkActive="active" routerLink="/ChartMonthe">Chart Monthe</a>
+        </li>
+        <li class="nav-link mx-3">
+          <a class="nav-link fs-6" routerLinkActive="active" routerLink="/ChartYear">Chart year</a>
+        </li>
+        <li class="nav-link mx-3">
+          <a class="nav-link fs-6" routerLinkActive="active" routerLink="/dashboard">table all user</a>
+        </li>
+
+      </ul>
+      <div class="d-flex ">
+       
+        <h3 class=" me-5"><a class="text-decoration-none text-primary" > twitter</a></h3>
+        <button [hidden]="!isuserLogout" (click)="logoutuser()" class="btn btn-danger px-4 ">logout</button>
+      </div>
+      
+    </div>
   </div>
 </nav>

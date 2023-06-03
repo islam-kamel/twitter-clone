@@ -2,23 +2,114 @@
   "users": [
     {
       "id": 1,
-      "username": "islam.kamel",
-      "fullName": "Islam Kamel",
-      "photo": "https://avatars.githubusercontent.com/u/61625045?v=4",
-      "birthDate": "1998-07-13",
-      "email": "example@store.com",
-      "password": "12345678",
-      "accountStatus": true
+      "last_login": "2023-04-10T17:17:20.425325+02:00",
+      "email": "islam@admin.com",
+      "username": "islam.admin",
+      "fullname": "Islam Kamel  👌✌️",
+      "birthdate": "2006-07-13",
+      "create_at": "2023-04-01T16:15:55.980932+02:00",
+      "is_active": true,
+      "is_admin": true,
+      "postsCounter": 3,
+      "profile": {
+        "id": 1,
+        "location": "Qena, Egypt",
+        "website": "",
+        "bio": "الأسوأ هو أن يحدث فيك حرب داخلية بين العقل والقلب بين الرغبة والضمير بين الحلم والواقع,!*",
+        "image": "/media/user_profile/pngfind.com-cruise-ship-png-763568.png",
+        "cover_image": "/media/profile_cover/6d74f1e6dceb10b05a3fdb29a844402a.jpg",
+        "user": 1
+      },
+      "followers": [
+        {
+          "id": 1,
+          "follower": {
+            "username": "eslamkamel1234",
+            "fullname": "Islam k.AbdElMoaty",
+            "image": null
+          },
+          "following": {
+            "username": "islam.admin",
+            "fullname": "Islam Kamel  👌✌️",
+            "image": null
+          }
+        },
+        {
+          "id": 2,
+          "follower": {
+            "username": "islam-kamel",
+            "fullname": "islam kamel",
+            "image": null
+          },
+          "following": {
+            "username": "islam.admin",
+            "fullname": "Islam Kamel  👌✌️",
+            "image": null
+          }
+        },
+        {
+          "id": 3,
+          "follower": {
+            "username": "islamTest",
+            "fullname": "islam Test",
+            "image": null
+          },
+          "following": {
+            "username": "islam.admin",
+            "fullname": "Islam Kamel  👌✌️",
+            "image": null
+          }
+        }
+      ],
+      "following": [
+        {
+          "id": 5,
+          "follower": {
+            "username": "islam.admin",
+            "fullname": "Islam Kamel  👌✌️",
+            "image": "/media/user_profile/pngfind.com-cruise-ship-png-763568.png"
+          },
+          "following": {
+            "username": "mrRobot2",
+            "fullname": "Mr Robot",
+            "image": "/media/user_profile/R_Ojb0SKi.png"
+          }
+        }
+      ]
     },
     {
       "id": 2,
       "username": "mostafa-abd-alhade",
-      "fullName": "Mostafa Abd Al-Hade",
+      "fullname": "Mostafa Abd Al-Hade",
       "photo": "https://avatars.githubusercontent.com/u/118631325?v=4",
       "email": "example@store.com",
-      "birthDate": "1998-07-13",
+      "birthdate": "1998-07-13",
+      "date": "2021-06-15",
       "password": "12345678",
       "accountStatus": true
+    },
+    {
+      "id": 3,
+      "username": "ahmed.khaled",
+      "fullname": "Ahmed Khaled",
+      "photo": "https://avatars.githubusercontent.com/u/61625045?v=4",
+      "birthdate": "1997-09-1",
+      "email": "example@store.com",
+      "date": "2022-04-10",
+      "password": "12345678",
+      "accountStatus": true
+    }
+  ],
+  "logenDashbord":[
+    {
+      "username":"AhmedKhaled",
+      "email":"ahmed.admin@twitter.com",
+      "password":"Ahmed"
+    },
+    {
+      "username":"mohamedadmin",
+      "email":"mohamed.admin@twitter.com",
+      "password":"Ahmed"
     }
   ]
 }
